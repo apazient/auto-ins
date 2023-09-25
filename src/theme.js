@@ -1,4 +1,10 @@
 import { createTheme } from "@mui/material";
+import {
+  openSansBold,
+  openSansExtraBold,
+  openSansRegular,
+  openSansSemiBold,
+} from "./assets/fonts/fonts";
 
 export const theme = createTheme({
   palette: {
@@ -37,12 +43,21 @@ export const theme = createTheme({
       xl: 1536,
     },
   },
+  typography: {
+    fontFamily:
+      "OpenSans-Regular, OpenSans-Bold, OpenSans-ExtraBold, OpenSans-SemiBold, sans-serif",
+  },
   components: {
     MuiCssBaseline: {
       styleOverrides: {
+        html: [
+          { "@font-face": openSansRegular },
+          { "@font-face": openSansBold },
+          { "@font-face": openSansExtraBold },
+          { "@font-face": openSansSemiBold },
+        ],
         body: {
           backgroundColor: "#030303",
-          color: "#FEFEFF",
         },
       },
     },
@@ -54,6 +69,7 @@ theme.typography.h1 = {
   [theme.breakpoints.up("xs")]: {
     color: theme.palette.primary.white,
     fontSize: "1.5rem",
+    fontFamily: "OpenSans-Bold, sans-serif",
     fontWeight: 800,
     lineHeight: "1.5rem",
   },
@@ -68,6 +84,8 @@ theme.typography.h1 = {
 theme.typography.h2 = {
   [theme.breakpoints.up("xs")]: {
     fontSize: "1.375rem",
+    color: theme.palette.primary.white,
+    fontFamily: "OpenSans-Bold, sans-serif",
     fontWeight: 800,
     lineHeight: "1.5rem",
   },
@@ -82,7 +100,9 @@ theme.typography.h2 = {
 theme.typography.h3 = {
   [theme.breakpoints.up("xs")]: {
     fontSize: "1rem",
+    fontFamily: "OpenSans-Bold, sans-serif",
     fontWeight: 800,
+    color: theme.palette.primary.white,
     lineHeight: "1.5rem",
   },
   [theme.breakpoints.up("sm")]: {
@@ -93,7 +113,9 @@ theme.typography.h3 = {
 theme.typography.body1 = {
   [theme.breakpoints.up("xs")]: {
     fontSize: "0.875rem",
-    fontWeight: 800,
+    fontFamily: "OpenSans-Regular, sans-serif",
+    fontWeight: 400,
+    color: theme.palette.primary.white,
     lineHeight: "1.5rem",
   },
   [theme.breakpoints.up("sm")]: {
@@ -105,22 +127,13 @@ theme.typography.body1 = {
 theme.typography.subtitle1 = {
   [theme.breakpoints.up("xs")]: {
     fontSize: "1rem",
+    fontFamily: "OpenSans-Bold, sans-serif",
     fontWeight: 700,
+    color: theme.palette.primary.white,
     lineHeight: "1.5rem",
   },
   [theme.breakpoints.up("sm")]: {
     fontSize: "1.125rem",
-  },
-};
-
-theme.typography.body2 = {
-  [theme.breakpoints.up("xs")]: {
-    fontSize: "0.875rem",
-    fontWeight: 400,
-    lineHeight: "1.5rem",
-  },
-  [theme.breakpoints.up("sm")]: {
-    fontSize: "1rem",
   },
 };
 
@@ -128,7 +141,9 @@ theme.typography.body2 = {
 theme.typography.subtitle2 = {
   [theme.breakpoints.up("xs")]: {
     fontSize: "0.875rem",
+    fontFamily: "OpenSans-SemiBold, sans-serif",
     fontWeight: 600,
+    color: theme.palette.primary.white,
     lineHeight: "1.5rem",
   },
   [theme.breakpoints.up("sm")]: {
@@ -136,16 +151,5 @@ theme.typography.subtitle2 = {
   },
   [theme.breakpoints.up("lg")]: {
     fontSize: "1.125rem",
-  },
-};
-
-theme.typography.caption = {
-  [theme.breakpoints.up("xs")]: {
-    fontSize: "0.875rem",
-    fontWeight: 400,
-    lineHeight: "1.5rem",
-  },
-  [theme.breakpoints.up("sm")]: {
-    fontSize: "1rem",
   },
 };

@@ -1,8 +1,12 @@
 import { Button, styled } from "@mui/material";
 
 export const BlueButton = styled(Button)(({ theme }) => ({
-  padding: "16px 38px",
+  padding: "16px 32px",
   borderRadius: "50px",
+  fontFamily: "OpenSans-SemiBold",
+  fontSize: "18px",
+  fontWeight: 600,
+  textTransform: "none",
   background: theme.palette.primary.blue,
   color: theme.palette.primary.white,
   "&:hover": {
@@ -22,6 +26,10 @@ export const BlueButton = styled(Button)(({ theme }) => ({
 export const WhiteButton = styled(Button)(({ theme }) => ({
   padding: "16px 38px",
   borderRadius: "50px",
+  fontFamily: "OpenSans-SemiBold",
+  fontWeight: 600,
+  textTransform: "none",
+  border: `1px solid ${theme.palette.primary.main}`,
   background: theme.palette.primary.white,
   color: theme.palette.primary.main,
   "&:hover": {
@@ -42,6 +50,9 @@ export const WhiteButton = styled(Button)(({ theme }) => ({
 export const YellowButton = styled(Button)(({ theme }) => ({
   padding: "16px 38px",
   borderRadius: "50px",
+  fontFamily: "OpenSans-SemiBold",
+  fontWeight: 600,
+  textTransform: "none",
   background: theme.palette.primary.yellow,
   color: theme.palette.primary.main,
   "&:hover": {
