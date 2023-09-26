@@ -27,7 +27,15 @@ export const Accordions = styled(Accordion)(({ theme }) => ({
 }));
 
 export const AccordionsSummary = styled(AccordionSummary)(({ theme }) => ({
-  "&.MuiAccordionSummary-content": {
+  "& .MuiAccordionSummary-content": {
+    [theme.breakpoints.up("xs")]: {
+      margin: "16px 0",
+    },
+    [theme.breakpoints.up("sm")]: {
+      margin: "24px 0",
+    },
+  },
+  "& .MuiAccordionSummary-content.Mui-expanded": {
     [theme.breakpoints.up("xs")]: {
       margin: "16px 0",
     },
