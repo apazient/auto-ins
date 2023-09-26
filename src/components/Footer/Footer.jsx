@@ -1,4 +1,6 @@
+import { List, ListItem } from "@mui/material";
 import RRR from "../RRR.js/RRR";
+import { ChapterSpan, LiItemS, UlListS } from "./FooterStyled";
 
 const Footer = () => {
   return (
@@ -6,8 +8,7 @@ const Footer = () => {
       style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
     >
       <RRR/>
-      <div style={{width: 370, height: 282, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '64px auto 32px', gap: '20px'}}>
-        {/* <div>Footer</div> */}
+      <div style={{width: 370, height: 282, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '64px auto 32px', gap: '20px'}}>        
         <div style={{ width: 174, height: 104, backgroundColor: "white" }}>
           <img
             src="#"
@@ -21,31 +22,32 @@ const Footer = () => {
             }}
           />
         </div>
-        <ul style={{ width: '100%', display: "flex", justifyContent: 'space-between', margin: 0, listStyle: "none"}}>
-          <li>
-            <p>Переваги</p>
-          </li>
-          <li>
-            <p>Партнери</p>
-          </li>
-          <li>
-            <p>Питання-відповідь</p>
-          </li>
-        </ul>
-        <ul style={{ listStyle: "none", display: "flex", margin: 0, gap: '16px' }}>
-          <li style={{  width: 40, height: 40, backgroundColor: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '50%'}}>
+        
+        <UlListS>
+          <LiItemS disablePadding={true} >
+            <ChapterSpan>Переваги</ChapterSpan>
+          </LiItemS>
+          <LiItemS disablePadding={true}>
+            <ChapterSpan>Партнери</ChapterSpan>
+          </LiItemS>
+          <LiItemS disablePadding={true}>
+            <ChapterSpan>Питання-відповідь</ChapterSpan>
+          </LiItemS>
+        </UlListS>
+        <UlListS className="centered">
+          <LiItemS disablePadding={true} className="liSocialIcon">
             <svg style={{ width: "24", height: "24", backgroundColor: 'blue' }}></svg>
-          </li>
-          <li style={{  width: 40, height: 40, backgroundColor: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '50%'}}>
+          </LiItemS>
+          <LiItemS disablePadding={true} className="liSocialIcon">
             <svg style={{ width: "24", height: "24", backgroundColor: 'blue' }}></svg>
-          </li>
-          <li style={{  width: 40, height: 40, backgroundColor: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '50%'}}>
+          </LiItemS>
+          <LiItemS disablePadding={true} className="liSocialIcon">
             <svg style={{ width: "24", height: "24", backgroundColor: 'blue' }}></svg>
-          </li>
-          <li style={{  width: 40, height: 40, backgroundColor: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '50%'}}>
+          </LiItemS>
+          <LiItemS disablePadding={true} className="liSocialIcon">
             <svg style={{ width: "24", height: "24", backgroundColor: 'blue' }}></svg>
-          </li>
-        </ul>
+          </LiItemS>
+        </UlListS>
         <p style={{margin: 0}}>&copy; ТОВ «Auto-ins», 2023. Всі права захищені.</p>
       </div>
     </footer>
