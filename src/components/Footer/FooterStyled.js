@@ -1,4 +1,40 @@
-import { List, ListItem, Typography, styled } from "@mui/material";
+import {
+  Box,
+  Container,
+  List,
+  ListItem,
+  Typography,
+  styled,
+} from "@mui/material";
+
+export const FooterS = styled(Container)`
+  outline: 1px solid red;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const FooterBoxS = styled(Container)(({ theme }) => ({
+  [theme.breakpoints.up("xs")]: {
+    width: "343px",
+    height: "350px",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    padding: "64px auto 32px",
+    gap: "20px",
+  },
+  [theme.breakpoints.up("sm")]: {
+    width: "328px",
+    height: "282px",
+  },
+  [theme.breakpoints.up("lg")]: {
+    width: "370px",
+  },
+}));
+
+export const imgBox = styled(Box)``;
 
 export const UlListS = styled(List)`
   width: 100%;
@@ -13,19 +49,15 @@ export const UlListS = styled(List)`
 `;
 
 export const LiItemS = styled(ListItem)(({ theme }) => ({
-    width: 'auto',
-  '&.liSocialIcon': {
-    width: '40px',
-    height: '40px',
-    backgroundColor: theme.palette.primary.white,
-    // display: 'flex',
-    // alignItems: 'center',//default: 'center
-    justifyContent: 'center',
-    borderRadius: '50%',
-  }
-}))
-  
-;
+  width: "auto",
+  "&.liSocialIcon": {
+    width: "40px",
+    height: "40px",
+    backgroundColor: theme.palette.primary.white,        
+    justifyContent: "center",
+    borderRadius: "50%",
+  },
+}));
 
 export const ChapterSpan = styled(Typography)(({ theme }) => ({
   fontFamily: "OpenSans sans-serif",
@@ -36,5 +68,19 @@ export const ChapterSpan = styled(Typography)(({ theme }) => ({
   },
   [theme.breakpoints.up("sm")]: {
     fontSize: "1rem",
+  },
+  "&bottomSpan": {
+    fontSize: "0.75rem",
+    fontWeight: 400,
+    lineHeight: "1.5rem",
+  },
+}));
+
+export const BottomSpan = styled(Typography)(({ theme }) => ({
+  fontFamily: "OpenSans sans-serif",
+  [theme.breakpoints.up("xs")]: {
+    fontSize: "0.75rem",
+    fontWeight: 400,
+    lineHeight: "1.5rem",
   },
 }));

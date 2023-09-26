@@ -1,14 +1,11 @@
-import { List, ListItem } from "@mui/material";
 import RRR from "../RRR.js/RRR";
-import { ChapterSpan, LiItemS, UlListS } from "./FooterStyled";
+import { FooterS, FooterBoxS, UlListS, LiItemS, ChapterSpan, BottomSpan } from "./FooterStyled";
 
 const Footer = () => {
   return (
-    <footer
-      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
-    >
+    <FooterS disableGutters={true} maxWidth={false}>
       <RRR/>
-      <div style={{width: 370, height: 282, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '64px auto 32px', gap: '20px'}}>        
+      <FooterBoxS disableGutters={true}>        
         <div style={{ width: 174, height: 104, backgroundColor: "white" }}>
           <img
             src="#"
@@ -48,9 +45,9 @@ const Footer = () => {
             <svg style={{ width: "24", height: "24", backgroundColor: 'blue' }}></svg>
           </LiItemS>
         </UlListS>
-        <p style={{margin: 0}}>&copy; ТОВ «Auto-ins», 2023. Всі права захищені.</p>
-      </div>
-    </footer>
+        <BottomSpan className="bottomSpan">&copy; ТОВ «Auto-ins», 2023. Всі права захищені.</BottomSpan>
+      </FooterBoxS>
+    </FooterS>
   );
 };
 
