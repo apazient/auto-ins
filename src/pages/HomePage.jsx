@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { BlueButton, WhiteButton, YellowButton } from "../style/Global.styled";
 import { Button, Typography } from "@mui/material";
+import { BlueButton, WhiteButton, YellowButton } from "../style/Global.styled";
 
 const HomePage = () => {
   return (
