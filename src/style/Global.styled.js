@@ -1,4 +1,4 @@
-import { Button, styled } from "@mui/material";
+import { Accordion, Button, styled } from "@mui/material";
 
 export const BlueButton = styled(Button)(({ theme }) => ({
   padding: "16px 32px",
@@ -65,5 +65,11 @@ export const YellowButton = styled(Button)(({ theme }) => ({
     background: theme.palette.primary.lightYellow,
     color: theme.palette.primary.tertiaryDark,
     border: "1px solid theme.palette.primary.lightYellow",
+  },
+}));
+
+export const Accordions = styled(Accordion)(({ theme }) => ({
+  "&.MuiAccordion-root": {
+    background: theme.palette.primary.main,
   },
 }));
