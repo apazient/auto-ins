@@ -85,7 +85,7 @@ theme.typography.h2 = {
   [theme.breakpoints.up("xs")]: {
     fontSize: "1.375rem",
     color: theme.palette.primary.white,
-    fontFamily: "OpenSans-Bold, sans-serif",
+    fontFamily: "OpenSans-ExtraBold, sans-serif",
     fontWeight: 800,
     lineHeight: "1.5rem",
   },
@@ -100,7 +100,7 @@ theme.typography.h2 = {
 theme.typography.h3 = {
   [theme.breakpoints.up("xs")]: {
     fontSize: "1rem",
-    fontFamily: "OpenSans-Bold, sans-serif",
+    fontFamily: "OpenSans-ExtraBold, sans-serif",
     fontWeight: 800,
     color: theme.palette.primary.white,
     lineHeight: "1.5rem",
