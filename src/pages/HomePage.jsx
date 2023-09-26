@@ -1,10 +1,9 @@
-import { AccordionTask } from "../components/AccordionTask/AccordionTask";
-import data from "../assets/texts/askAns.json";
+import { AccordionSection } from "../components/AccordionSektion/AccordionSection";
 
 const HomePage = () => {
   return (
     <>
-      <AccordionTask p={data} />
+      <AccordionSection />
     </>
   );
 };
