@@ -7,80 +7,142 @@ import {
   styled,
 } from "@mui/material";
 
-export const FooterS = styled(Container)`
-  outline: 1px solid red;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
+export const FooterS = styled(Container)(({theme})=>({
+  outline: '1px solid red',  
+  padding: '0',
+  margin: '0 auto',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  [theme.breakpoints.up('xs')]:{
+    padding: "32px 0 8px",
+  },
+  [theme.breakpoints.up('sm')]:{
+    padding: "48px 0 16px",
+  },
+  [theme.breakpoints.up('lg')]:{
+    padding: "64px 0 32px",
+  }
 
-export const FooterBoxS = styled(Container)(({ theme }) => ({
+
+}))
+;
+
+export const FooterBoxS = styled(Container)(({ theme }) => ({  
+  margin: '0',
   [theme.breakpoints.up("xs")]: {
     width: "343px",
     height: "350px",
     display: "flex",
     flexDirection: "column",
-    alignItems: "center",
-    padding: "64px auto 32px",
-    gap: "20px",
+    alignItems: "center",    
+    gap: "28px",
   },
   [theme.breakpoints.up("sm")]: {
     width: "328px",
-    height: "282px",
+    height: "282px",    
+    gap: "32px",
   },
   [theme.breakpoints.up("lg")]: {
-    width: "370px",
+    width: "370px",    
   },
 }));
 
-export const imgBox = styled(Box)``;
+export const LogoBox = styled(Box)(({ theme }) => ({  
+  width: "163px",
+  height: "97px",
+  display: "flex",
+  flexDirection: "column",  
+  alignItems: "center",
+  justifyContent: 'center',  
+  [theme.breakpoints.up("sm")]: {
+    width: "174px",
+    height: "104px",    
+  },
+}));
 
-export const UlListS = styled(List)`
-  width: 100%;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  justify-content: space-between;
-  &.centered {
-    justify-content: center;
-    gap: 16px;
-  }
-`;
+
+export const LogoText = styled(Typography)(({ theme }) => ({
+  "&.logoText": {
+    fontFamily: "OpenSans, sans-serif",
+    fontSize: "33px",    
+    fontWeight: 700,
+    lineHeight: "1.39",
+    [theme.breakpoints.up("sm")]: {
+      fontSize: "36px",
+      lineHeight: "1.36",
+    },
+  },
+}));
+
+export const BoxIconS = styled(Box)(({ theme }) => ({
+  "&.logoIcon": {
+    width: "110px",
+    height: "52px",
+    [theme.breakpoints.up("sm")]: {
+      width: "117px",
+      height: "55px",
+    },
+  },
+  "&.socialIconBox": {
+    width: "24px",
+    height: "24px",
+    stroke: "black",
+    fill: "none",
+  },
+}));
+
+export const UlListS = styled(List)(({ theme }) => ({
+  width: "100%",
+  padding: "0px",
+  margin: "0px",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  gap: "24px",
+  [theme.breakpoints.up("sm")]: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    gap: "0px",
+  },
+  "&.centered": {
+    flexDirection: "row",
+    justifyContent: "center",
+    [theme.breakpoints.up("xs")]: {
+      gap: "17px",
+    },
+    [theme.breakpoints.up("sm")]: {
+      gap: "16px",
+    },
+  },
+}));
 
 export const LiItemS = styled(ListItem)(({ theme }) => ({
   width: "auto",
   "&.liSocialIcon": {
     width: "40px",
     height: "40px",
-    backgroundColor: theme.palette.primary.white,        
+    backgroundColor: theme.palette.primary.white,
     justifyContent: "center",
     borderRadius: "50%",
   },
 }));
 
 export const ChapterSpan = styled(Typography)(({ theme }) => ({
-  fontFamily: "OpenSans sans-serif",
-  [theme.breakpoints.up("xs")]: {
-    fontSize: "0.875rem",
+  "&.chapterSpan": {
+    fontFamily: "OpenSans, sans-serif",    
+    fontSize: "14px",
     fontWeight: 600,
-    lineHeight: "1.5rem",
+    lineHeight: "1.5",
+    [theme.breakpoints.up("sm")]: {
+      fontSize: "1rem",
+    },
   },
-  [theme.breakpoints.up("sm")]: {
-    fontSize: "1rem",
-  },
-  "&bottomSpan": {
-    fontSize: "0.75rem",
-    fontWeight: 400,
-    lineHeight: "1.5rem",
-  },
-}));
-
-export const BottomSpan = styled(Typography)(({ theme }) => ({
-  fontFamily: "OpenSans sans-serif",
-  [theme.breakpoints.up("xs")]: {
-    fontSize: "0.75rem",
-    fontWeight: 400,
-    lineHeight: "1.5rem",
+  "&.bottomSpan": {
+    [theme.breakpoints.up("xs")]: {
+      fontSize: "12px",
+      fontWeight: 400,
+      lineHeight: "1.5",
+    },
   },
 }));
