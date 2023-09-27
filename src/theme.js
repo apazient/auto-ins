@@ -103,7 +103,7 @@ theme.typography.h3 = {
     fontFamily: "OpenSans-ExtraBold, sans-serif",
     fontWeight: 800,
     color: theme.palette.primary.white,
-    lineHeight: "1.5rem",
+    lineHeight: "2.06rem",
   },
   [theme.breakpoints.up("sm")]: {
     fontSize: "1.375rem",

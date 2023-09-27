@@ -5,16 +5,21 @@ import { BlueButton } from "../../style/Global.styled";
 export const BoxImg = styled(Box)(({ theme }) => ({
   fill: theme.palette.primary.white,
   [theme.breakpoints.up("xs")]: {
-    width: "78px",
-    height: "74px",
+    width: "97px",
+    height: "110px",
+    margin: "0 auto",
+    padding: "18px 9px ",
   },
   [theme.breakpoints.up("sm")]: {
-    width: "129px",
-    height: "121px",
+    width: "158px",
+    height: "180px",
+    padding: "30px 15px ",
+    flexShrink: "0",
   },
   [theme.breakpoints.up("lg")]: {
-    width: "118px",
-    height: "110px",
+    width: "145px",
+    height: "166px",
+    padding: "28px 14px ",
   },
 }));
 
@@ -33,6 +38,8 @@ export const ContCheck = styled(Container)(({ theme }) => ({
 
   [theme.breakpoints.up("sm")]: {
     padding: "24px ",
+    display: "flex",
+    gap: "24px",
   },
   [theme.breakpoints.up("lg")]: {
     display: "flex",
