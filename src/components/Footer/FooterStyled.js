@@ -7,8 +7,7 @@ import {
   styled,
 } from "@mui/material";
 
-export const FooterS = styled(Container)(({theme})=>({
-  outline: '1px solid red',  
+export const FooterS = styled(Container)(({theme})=>({  
   padding: '0',
   margin: '0 auto',
   display: 'flex',
@@ -87,8 +86,12 @@ export const BoxIconS = styled(Box)(({ theme }) => ({
   "&.socialIconBox": {
     width: "24px",
     height: "24px",
-    stroke: "black",
-    fill: "none",
+    // stroke: theme.palette.primary.main,
+    // fill: "none",
+    // transition: 'stroke 250ms linear',
+    // '&:hover': {
+    //   stroke: theme.palette.primary.blue,
+    // }
   },
 }));
 
@@ -125,6 +128,12 @@ export const LiItemS = styled(ListItem)(({ theme }) => ({
     backgroundColor: theme.palette.primary.white,
     justifyContent: "center",
     borderRadius: "50%",
+    stroke: theme.palette.primary.main,
+    fill: "none",
+    transition: 'stroke 250ms linear',
+    '&:hover': {
+      stroke: theme.palette.primary.blue,
+    }
   },
 }));
 
@@ -134,6 +143,11 @@ export const ChapterSpan = styled(Typography)(({ theme }) => ({
     fontSize: "14px",
     fontWeight: 600,
     lineHeight: "1.5",
+    color: theme.palette.primary.white,
+    transition: 'color 250ms linear',
+    '&:hover':{
+      color: theme.palette.primary.blue,
+    },
     [theme.breakpoints.up("sm")]: {
       fontSize: "1rem",
     },
