@@ -1,9 +1,12 @@
-
+import { MobileMenu } from "../MobileMenu/MobileMenu";
 
 const Header = () => {
   return (
-    <div>Header</div>
-  )
-}
+    <>
+      <div>Header</div>
+      <MobileMenu />
+    </>
+  );
+};
 
-export default Header
+export default Header;
