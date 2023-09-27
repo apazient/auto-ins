@@ -7,65 +7,60 @@ import {
   styled,
 } from "@mui/material";
 
-export const FooterS = styled(Container)(({theme})=>({
-  outline: '1px solid red',  
-  padding: '0',
-  margin: '0 auto',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  [theme.breakpoints.up('xs')]:{
+export const FooterS = styled(Container)(({ theme }) => ({
+  padding: "0",
+  margin: "0 auto",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  [theme.breakpoints.up("xs")]: {
     padding: "32px 0 8px",
   },
-  [theme.breakpoints.up('sm')]:{
+  [theme.breakpoints.up("sm")]: {
     padding: "48px 0 16px",
   },
-  [theme.breakpoints.up('lg')]:{
+  [theme.breakpoints.up("lg")]: {
     padding: "64px 0 32px",
-  }
+  },
+}));
 
-
-}))
-;
-
-export const FooterBoxS = styled(Container)(({ theme }) => ({  
-  margin: '0',
+export const FooterBoxS = styled(Container)(({ theme }) => ({
+  margin: "0",
   [theme.breakpoints.up("xs")]: {
     width: "343px",
     height: "350px",
     display: "flex",
     flexDirection: "column",
-    alignItems: "center",    
+    alignItems: "center",
     gap: "28px",
   },
   [theme.breakpoints.up("sm")]: {
     width: "328px",
-    height: "282px",    
+    height: "282px",
     gap: "32px",
   },
   [theme.breakpoints.up("lg")]: {
-    width: "370px",    
+    width: "370px",
   },
 }));
 
-export const LogoBox = styled(Box)(({ theme }) => ({  
+export const LogoBox = styled(Box)(({ theme }) => ({
   width: "163px",
   height: "97px",
   display: "flex",
-  flexDirection: "column",  
+  flexDirection: "column",
   alignItems: "center",
-  justifyContent: 'center',  
+  justifyContent: "center",
   [theme.breakpoints.up("sm")]: {
     width: "174px",
-    height: "104px",    
+    height: "104px",
   },
 }));
-
 
 export const LogoText = styled(Typography)(({ theme }) => ({
   "&.logoText": {
     fontFamily: "OpenSans, sans-serif",
-    fontSize: "33px",    
+    fontSize: "33px",
     fontWeight: 700,
     lineHeight: "1.39",
     [theme.breakpoints.up("sm")]: {
@@ -130,7 +125,7 @@ export const LiItemS = styled(ListItem)(({ theme }) => ({
 
 export const ChapterSpan = styled(Typography)(({ theme }) => ({
   "&.chapterSpan": {
-    fontFamily: "OpenSans, sans-serif",    
+    fontFamily: "OpenSans, sans-serif",
     fontSize: "14px",
     fontWeight: 600,
     lineHeight: "1.5",
