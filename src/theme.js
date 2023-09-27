@@ -144,8 +144,24 @@ theme.typography.subtitle2 = {
     fontSize: "0.875rem",
     fontFamily: "OpenSans-SemiBold, sans-serif",
     fontWeight: 600,
-    color: theme.palette.primary.white,
-    lineHeight: "1.5rem",
+    color: theme.palette.primary.main,
+    lineHeight: "1.31rem",
+  },
+  [theme.breakpoints.up("sm")]: {
+    fontSize: "1rem",
+  },
+  [theme.breakpoints.up("lg")]: {
+    fontSize: "1.125rem",
+  },
+};
+
+theme.typography.body2 = {
+  [theme.breakpoints.up("xs")]: {
+    fontSize: "0.875rem",
+    fontFamily: "OpenSans-SemiBold, sans-serif",
+    fontWeight: 400,
+    color: theme.palette.primary.main,
+    lineHeight: "1.31rem",
   },
   [theme.breakpoints.up("sm")]: {
     fontSize: "1rem",
