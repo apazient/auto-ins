@@ -9,7 +9,7 @@ const Footer = () => {
         <div style={{ width: 174, height: 104, backgroundColor: "white" }}>
           <img
             src="#"
-            alt="AUTO-INS"
+            alt="LOGO AUTO-INS"
             style={{
               boxSizing: "border-box",
               display: "block",
