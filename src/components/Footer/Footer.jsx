@@ -1,51 +1,112 @@
+import { Link } from "@mui/material";
+import { Link as ScrollLink } from "react-scroll";
+import { SpriteSVG } from "../../images/SpriteSVG";
 import RRR from "../RRR.js/RRR";
-import { FooterS, FooterBoxS, UlListS, LiItemS, ChapterSpan, BottomSpan } from "./FooterStyled";
+import {
+  FooterS,
+  FooterBoxS,
+  UlListS,
+  LiItemS,
+  ChapterSpan,
+  BoxIconS,
+  LogoBox,
+  LogoText,
+} from "./FooterStyled";
 
 const Footer = () => {
   return (
     <FooterS disableGutters={true} maxWidth={false}>
-      <RRR/>
-      <FooterBoxS disableGutters={true}>        
-        <div style={{ width: 174, height: 104, backgroundColor: "white" }}>
-          <img
-            src="#"
-            alt="AUTO-INS"
-            style={{
-              boxSizing: "border-box",
-              display: "block",
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-            }}
-          />
-        </div>
-        
+      <RRR />
+      <FooterBoxS disableGutters={true}>
+        <LogoBox>
+          <BoxIconS className="logoIcon">
+            <SpriteSVG name={"icon-logo"} />
+          </BoxIconS>
+          <LogoText className="logoText">AUTO-INS</LogoText>
+        </LogoBox>
         <UlListS>
-          <LiItemS disablePadding={true} >
-            <ChapterSpan>Переваги</ChapterSpan>
-          </LiItemS>
-          <LiItemS disablePadding={true}>
-            <ChapterSpan>Партнери</ChapterSpan>
-          </LiItemS>
-          <LiItemS disablePadding={true}>
-            <ChapterSpan>Питання-відповідь</ChapterSpan>
-          </LiItemS>
+          <ScrollLink
+            to="переваги"
+            smooth={true}
+            duration={500}
+            style={{ cursor: "pointer" }}
+          >
+            <LiItemS disablePadding={true}>
+              <ChapterSpan className="chapterSpan">Переваги</ChapterSpan>
+            </LiItemS>
+          </ScrollLink>
+          <ScrollLink
+            to="партнери"
+            smooth={true}
+            duration={500}
+            style={{ cursor: "pointer" }}
+          >
+            <LiItemS disablePadding={true}>
+              <ChapterSpan className="chapterSpan">Партнери</ChapterSpan>
+            </LiItemS>
+          </ScrollLink>
+          <ScrollLink
+            to="питання-відповідь"
+            smooth={true}
+            duration={500}
+            style={{ cursor: "pointer" }}
+          >
+            <LiItemS disablePadding={true}>
+              <ChapterSpan className="chapterSpan">
+                Питання-відповідь
+              </ChapterSpan>
+            </LiItemS>
+          </ScrollLink>
         </UlListS>
         <UlListS className="centered">
-          <LiItemS disablePadding={true} className="liSocialIcon">
-            <svg style={{ width: "24", height: "24", backgroundColor: 'blue' }}></svg>
-          </LiItemS>
-          <LiItemS disablePadding={true} className="liSocialIcon">
-            <svg style={{ width: "24", height: "24", backgroundColor: 'blue' }}></svg>
-          </LiItemS>
-          <LiItemS disablePadding={true} className="liSocialIcon">
-            <svg style={{ width: "24", height: "24", backgroundColor: 'blue' }}></svg>
-          </LiItemS>
-          <LiItemS disablePadding={true} className="liSocialIcon">
-            <svg style={{ width: "24", height: "24", backgroundColor: 'blue' }}></svg>
-          </LiItemS>
+          <Link
+            href="https://www.instagram.com"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            <LiItemS disablePadding={true} className="liSocialIcon">
+              <BoxIconS className="socialIconBox">
+                <SpriteSVG name={"icon-instagram"} />
+              </BoxIconS>
+            </LiItemS>
+          </Link>
+          <Link
+            href="https://www.facebook.com"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            <LiItemS disablePadding={true} className="liSocialIcon">
+              <BoxIconS className="socialIconBox">
+                <SpriteSVG name={"icon-facebook"} />
+              </BoxIconS>
+            </LiItemS>
+          </Link>
+          <Link
+            href="https://web.telegram.org"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            <LiItemS disablePadding={true} className="liSocialIcon">
+              <BoxIconS className="socialIconBox">
+                <SpriteSVG name={"icon-telegram-send"} />
+              </BoxIconS>
+            </LiItemS>
+          </Link>
+          <Link
+            href="mailto:example@mail.ua"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            <LiItemS disablePadding={true} className="liSocialIcon">
+              <BoxIconS className="socialIconBox">
+                <SpriteSVG name={"icon-mail"} />
+              </BoxIconS>
+            </LiItemS>
+          </Link>
         </UlListS>
-        <BottomSpan className="bottomSpan">&copy; ТОВ «Auto-ins», 2023. Всі права захищені.</BottomSpan>
+        <ChapterSpan className="bottomSpan">
+          &copy; ТОВ «Auto-ins», 2023. Всі права захищені.
+        </ChapterSpan>
       </FooterBoxS>
     </FooterS>
   );

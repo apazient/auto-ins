@@ -107,6 +107,7 @@ theme.typography.h3 = {
   },
   [theme.breakpoints.up("sm")]: {
     fontSize: "1.375rem",
+    lineHeight: "2.06rem",
   },
 };
 
@@ -169,3 +170,5 @@ theme.typography.body2 = {
     fontSize: "1.125rem",
   },
 };
+
+

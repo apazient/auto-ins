@@ -23,6 +23,7 @@
     "react-dom": "^18.2.0",
     "react-loader-spinner": "^5.4.5",
     "react-router-dom": "^6.16.0",
+    "react-scroll": "^1.8.9",
     "react-select": "^5.7.5",
     "react-spinner": "^0.2.7",
     "yup": "^1.2.0"
