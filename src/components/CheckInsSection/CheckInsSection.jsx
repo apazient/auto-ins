@@ -1,4 +1,5 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
+import Grid from "@mui/material/Unstable_Grid2";
 import { SpriteSVG } from "../../images/SpriteSVG";
 
 import {
@@ -16,20 +17,26 @@ const CheckInsSection = () => {
           <BoxImg>
             <SpriteSVG name={"icon-car"} />
           </BoxImg>
-          <Typography
-            variant="h3"
-            sx={{ marginBottom: { xs: "4px", sm: "8px" } }}
-          >
-            Перевірка страховки співробітниками поліції
-          </Typography>
-          <div>
-            <Typography variant="body1">
-              Усі оформлені поліси зберігаються в єдиній базі МТСБУ. Поліція
-              може перевірити дійсність вашого поліса онлайн. Також ви можете
-              зробити це самостійно за номером авто або номером поліса.
-            </Typography>
-            <Button>Перевірити поліс</Button>
-          </div>
+          <Grid container>
+            <Grid xs={12} sm={12} md={12} lg={4} spacing={2}>
+              <Typography
+                variant="h3"
+                sx={{
+                  marginBottom: { xs: "4px", sm: "8px", lg: "0" },
+                }}
+              >
+                Перевірка страховки співробітниками поліції
+              </Typography>
+            </Grid>
+            <Grid xs={12} sm={12} md={12} lg={8}>
+              <Typography variant="body1">
+                Усі оформлені поліси зберігаються в єдиній базі МТСБУ. Поліція
+                може перевірити дійсність вашого поліса онлайн. Також ви можете
+                зробити це самостійно за номером авто або номером поліса.
+              </Typography>
+              <Button>Перевірити поліс</Button>
+            </Grid>
+          </Grid>
         </ContCheck>
       </ContainerSection>
     </section>

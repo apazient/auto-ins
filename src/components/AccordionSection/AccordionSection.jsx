@@ -1,5 +1,6 @@
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useState } from "react";
+import { SpriteSVG } from "../../images/SpriteSVG";
 import {
   Accordions,
   AccordionsDetails,
@@ -27,6 +28,11 @@ export const AccordionSection = () => {
           <AccordionsSummary
             aria-controls="panel1bh-content"
             id="panel1bh-header"
+            expandIcon={
+              <Box sx={{ stroke: "#FFFF", width: "32px", height: "32px" }}>
+                <SpriteSVG name={"icon-chevron-down"} />
+              </Box>
+            }
           >
             <Typography variant="subtitle1">
               Як я можу оформити автоцивілку через вашу платформу?
@@ -47,6 +53,11 @@ export const AccordionSection = () => {
           <AccordionsSummary
             aria-controls="panel2bh-content"
             id="panel2bh-header"
+            expandIcon={
+              <Box sx={{ stroke: "#FFFF", width: "32px", height: "32px" }}>
+                <SpriteSVG name={"icon-chevron-down"} />
+              </Box>
+            }
           >
             <Typography variant="subtitle1">
               Чи безпечно надавати свої особисті дані на вашому сайті?
@@ -67,6 +78,11 @@ export const AccordionSection = () => {
           <AccordionsSummary
             aria-controls="panel3bh-content"
             id="panel3bh-header"
+            expandIcon={
+              <Box sx={{ stroke: "#FFFF", width: "32px", height: "32px" }}>
+                <SpriteSVG name={"icon-chevron-down"} />
+              </Box>
+            }
           >
             <Typography variant="subtitle1">
               Як я можу зекономити на оформленні автоцивілки через вашу
@@ -88,6 +104,11 @@ export const AccordionSection = () => {
           <AccordionsSummary
             aria-controls="panel4bh-content"
             id="panel4bh-header"
+            expandIcon={
+              <Box sx={{ stroke: "#FFFF", width: "32px", height: "32px" }}>
+                <SpriteSVG name={"icon-chevron-down"} />
+              </Box>
+            }
           >
             <Typography variant="subtitle1">
               Чи безпечно надавати свої особисті дані на вашому сайті?
@@ -108,6 +129,11 @@ export const AccordionSection = () => {
           <AccordionsSummary
             aria-controls="panel5bh-content"
             id="panel5bh-header"
+            expandIcon={
+              <Box sx={{ stroke: "#FFFF", width: "32px", height: "32px" }}>
+                <SpriteSVG name={"icon-chevron-down"} />
+              </Box>
+            }
           >
             <Typography variant="subtitle1">
               Чи є підтримка, якщо у мене виникнуть питання або проблеми під час
@@ -128,6 +154,11 @@ export const AccordionSection = () => {
           <AccordionsSummary
             aria-controls="panel6bh-content"
             id="panel6bh-header"
+            expandIcon={
+              <Box sx={{ stroke: "#FFFF", width: "32px", height: "32px" }}>
+                <SpriteSVG name={"icon-chevron-down"} />
+              </Box>
+            }
           >
             <Typography variant="subtitle1">
               Чи отримаю я нагадування про терміни оплати та продовження
@@ -149,6 +180,11 @@ export const AccordionSection = () => {
           <AccordionsSummary
             aria-controls="panel7bh-content"
             id="panel7bh-header"
+            expandIcon={
+              <Box sx={{ stroke: "#FFFF", width: "32px", height: "32px" }}>
+                <SpriteSVG name={"icon-chevron-down"} />
+              </Box>
+            }
           >
             <Typography variant="subtitle1">
               Які документи мені потрібні для оформлення автоцивілки через ваш
@@ -171,6 +207,11 @@ export const AccordionSection = () => {
           <AccordionsSummary
             aria-controls="panel8bh-content"
             id="panel8bh-header"
+            expandIcon={
+              <Box sx={{ stroke: "#FFFF", width: "32px", height: "32px" }}>
+                <SpriteSVG name={"icon-chevron-down"} />
+              </Box>
+            }
           >
             <Typography variant="subtitle1">
               Чи можу я оформити автоцивілку для іншої особи?
@@ -191,6 +232,11 @@ export const AccordionSection = () => {
           <AccordionsSummary
             aria-controls="panel9bh-content"
             id="panel9bh-header"
+            expandIcon={
+              <Box sx={{ stroke: "#FFFF", width: "32px", height: "32px" }}>
+                <SpriteSVG name={"icon-chevron-down"} />
+              </Box>
+            }
           >
             <Typography variant="subtitle1">
               Чи є у вас мобільний додаток?
@@ -211,6 +257,11 @@ export const AccordionSection = () => {
           <AccordionsSummary
             aria-controls="panel10bh-content"
             id="panel10bh-header"
+            expandIcon={
+              <Box sx={{ stroke: "#FFFF", width: "32px", height: "32px" }}>
+                <SpriteSVG name={"icon-chevron-down"} />
+              </Box>
+            }
           >
             <Typography variant="subtitle1">
               Чи отримаю я нагадування про терміни оплати та продовження
