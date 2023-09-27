@@ -694,11 +694,11 @@ export const SpriteSVG = ({ name }) => {
               y2="50.3091"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="#F5F5F5" />
-              <stop offset="0.30728" stop-color="#F5F5F5" />
-              <stop offset="0.461382" stop-color="#9A9A9A" />
-              <stop offset="0.695122" stop-color="#D0D0D0" />
-              <stop offset="1" stop-color="#EEEEEE" />
+              <stop stopColor="#F5F5F5" />
+              <stop offset="0.30728" stopColor="#F5F5F5" />
+              <stop offset="0.461382" stopColor="#9A9A9A" />
+              <stop offset="0.695122" stopColor="#D0D0D0" />
+              <stop offset="1" stopColor="#EEEEEE" />
             </linearGradient>
             <linearGradient
               id="paint1_linear_1068_6084"
@@ -708,11 +708,11 @@ export const SpriteSVG = ({ name }) => {
               y2="55.1114"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="#F5F5F5" />
-              <stop offset="0.30728" stop-color="#F5F5F5" />
-              <stop offset="0.461382" stop-color="#9A9A9A" />
-              <stop offset="0.695122" stop-color="#D0D0D0" />
-              <stop offset="1" stop-color="#EEEEEE" />
+              <stop stopColor="#F5F5F5" />
+              <stop offset="0.30728" stopColor="#F5F5F5" />
+              <stop offset="0.461382" stopColor="#9A9A9A" />
+              <stop offset="0.695122" stopColor="#D0D0D0" />
+              <stop offset="1" stopColor="#EEEEEE" />
             </linearGradient>
             <linearGradient
               id="paint2_linear_1068_6084"
@@ -722,11 +722,11 @@ export const SpriteSVG = ({ name }) => {
               y2="52.697"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="#F5F5F5" />
-              <stop offset="0.30728" stop-color="#F5F5F5" />
-              <stop offset="0.461382" stop-color="#9A9A9A" />
-              <stop offset="0.695122" stop-color="#D0D0D0" />
-              <stop offset="1" stop-color="#EEEEEE" />
+              <stop stopColor="#F5F5F5" />
+              <stop offset="0.30728" stopColor="#F5F5F5" />
+              <stop offset="0.461382" stopColor="#9A9A9A" />
+              <stop offset="0.695122" stopColor="#D0D0D0" />
+              <stop offset="1" stopColor="#EEEEEE" />
             </linearGradient>
             <linearGradient
               id="paint3_linear_1068_6084"
@@ -736,11 +736,11 @@ export const SpriteSVG = ({ name }) => {
               y2="52.8502"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="#F5F5F5" />
-              <stop offset="0.30728" stop-color="#F5F5F5" />
-              <stop offset="0.461382" stop-color="#9A9A9A" />
-              <stop offset="0.695122" stop-color="#D0D0D0" />
-              <stop offset="1" stop-color="#EEEEEE" />
+              <stop stopColor="#F5F5F5" />
+              <stop offset="0.30728" stopColor="#F5F5F5" />
+              <stop offset="0.461382" stopColor="#9A9A9A" />
+              <stop offset="0.695122" stopColor="#D0D0D0" />
+              <stop offset="1" stopColor="#EEEEEE" />
             </linearGradient>
             <linearGradient
               id="paint4_linear_1068_6084"
@@ -750,11 +750,11 @@ export const SpriteSVG = ({ name }) => {
               y2="52.9093"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="#F5F5F5" />
-              <stop offset="0.30728" stop-color="#F5F5F5" />
-              <stop offset="0.461382" stop-color="#9A9A9A" />
-              <stop offset="0.695122" stop-color="#D0D0D0" />
-              <stop offset="1" stop-color="#EEEEEE" />
+              <stop stopColor="#F5F5F5" />
+              <stop offset="0.30728" stopColor="#F5F5F5" />
+              <stop offset="0.461382" stopColor="#9A9A9A" />
+              <stop offset="0.695122" stopColor="#D0D0D0" />
+              <stop offset="1" stopColor="#EEEEEE" />
             </linearGradient>
             <linearGradient
               id="paint5_linear_1068_6084"
@@ -764,11 +764,11 @@ export const SpriteSVG = ({ name }) => {
               y2="52.8369"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="#F5F5F5" />
-              <stop offset="0.30728" stop-color="#F5F5F5" />
-              <stop offset="0.461382" stop-color="#9A9A9A" />
-              <stop offset="0.695122" stop-color="#D0D0D0" />
-              <stop offset="1" stop-color="#EEEEEE" />
+              <stop stopColor="#F5F5F5" />
+              <stop offset="0.30728" stopColor="#F5F5F5" />
+              <stop offset="0.461382" stopColor="#9A9A9A" />
+              <stop offset="0.695122" stopColor="#D0D0D0" />
+              <stop offset="1" stopColor="#EEEEEE" />
             </linearGradient>
           </defs>
         </svg>
