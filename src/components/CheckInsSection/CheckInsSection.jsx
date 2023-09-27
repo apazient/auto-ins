@@ -1,12 +1,21 @@
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
+import { SpriteSVG } from "../../images/SpriteSVG";
 
-import { Button, ContainerSection, ContCheck } from "./CheckInsSectionStyle";
+import {
+  BoxImg,
+  Button,
+  ContainerSection,
+  ContCheck,
+} from "./CheckInsSectionStyle";
 
 const CheckInsSection = () => {
   return (
     <section>
       <ContainerSection>
         <ContCheck>
+          <BoxImg>
+            <SpriteSVG name={"icon-car"} />
+          </BoxImg>
           <Typography
             variant="h3"
             sx={{ marginBottom: { xs: "4px", sm: "8px" } }}
