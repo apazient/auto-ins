@@ -71,13 +71,15 @@ theme.typography.h1 = {
     fontSize: "1.5rem",
     fontFamily: "OpenSans-Bold, sans-serif",
     fontWeight: 800,
-    lineHeight: "1.5rem",
+    lineHeight: "2.25rem",
   },
   [theme.breakpoints.up("sm")]: {
     fontSize: "2.375rem",
+    lineHeight: "3.562rem",
   },
   [theme.breakpoints.up("lg")]: {
     fontSize: "3rem",
+    lineHeight: "4.5rem",
   },
 };
 
@@ -170,5 +172,3 @@ theme.typography.body2 = {
     fontSize: "1.125rem",
   },
 };
-
-
