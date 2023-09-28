@@ -84,13 +84,7 @@ export const BoxIconS = styled(Box)(({ theme }) => ({
   },
   "&.socialIconBox": {
     width: "24px",
-    height: "24px",
-    // stroke: theme.palette.primary.main,
-    // fill: "none",
-    // transition: 'stroke 250ms linear',
-    // '&:hover': {
-    //   stroke: theme.palette.primary.blue,
-    // }
+    height: "24px",    
   },
 }));
 
@@ -119,8 +113,7 @@ export const UlListS = styled(List)(({ theme }) => ({
   },
 }));
 
-export const LiItemS = styled(ListItem)(({ theme }) => ({
-  width: "auto",
+export const LiItemS = styled(ListItem)(({ theme }) => ({  
   "&.liSocialIcon": {
     width: "40px",
     height: "40px",
