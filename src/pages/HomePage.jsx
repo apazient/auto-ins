@@ -15,7 +15,6 @@ const HomePage = () => {
 
   return (
     <>
-      <Typography variant="h1">Автоцивілка без зайвих рухів</Typography>
       <HeroTabs />
       <CheckInsSection />
       <AccordionSection />
