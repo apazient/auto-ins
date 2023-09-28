@@ -1,9 +1,4 @@
-import { Link } from "react-router-dom";
-import { Button, Typography } from "@mui/material";
-
-import { BlueButton, WhiteButton, YellowButton } from "../style/Global.styled";
 import HeroTabs from "../components/HeroTabs/HeroTabs";
-
 import { AccordionSection } from "../components/AccordionSection/AccordionSection";
 import CheckInsSection from "../components/CheckInsSection/CheckInsSection";
 import InfoSection from "../components/InfoSection/InfoSection";
@@ -15,7 +10,6 @@ const HomePage = () => {
 
   return (
     <>
-      <Typography variant="h1">Автоцивілка без зайвих рухів</Typography>
       <HeroTabs />
       <CheckInsSection />
       <AccordionSection />

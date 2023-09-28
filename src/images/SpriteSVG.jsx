@@ -83,7 +83,7 @@ export const SpriteSVG = ({ name }) => {
         </svg>
       );
 
-    case "icon-align-justify-tablet-mobile":
+    case "icon-burger":
       return (
         <svg
           id="icon-align-justify-tablet-mobile"
@@ -973,7 +973,7 @@ export const SpriteSVG = ({ name }) => {
         </svg>
       );
 
-    case "icon-x-smaller":
+    case "icon-x":
       return (
         <svg
           id="icon-x-smaller"
@@ -990,22 +990,22 @@ export const SpriteSVG = ({ name }) => {
         </svg>
       );
 
-    case "icon-x-tablet-mobile":
-      return (
-        <svg
-          id="icon-x-tablet-mobile"
-          viewBox="0 0 32 32"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M24 8 8 24M8 8l16 16"
-          />
-        </svg>
-      );
+    // case "icon-x-tablet-mobile":
+    //   return (
+    //     <svg
+    //       id="icon-x-tablet-mobile"
+    //       viewBox="0 0 32 32"
+    //       xmlns="http://www.w3.org/2000/svg"
+    //       aria-hidden="true"
+    //     >
+    //       <path
+    //         strokeLinecap="round"
+    //         strokeLinejoin="round"
+    //         strokeWidth="2"
+    //         d="M24 8 8 24M8 8l16 16"
+    //       />
+    //    </svg>
+    //);
 
     case "icon-zoom-out":
       return (

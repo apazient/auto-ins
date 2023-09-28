@@ -12,13 +12,13 @@ import {
   LogoTextHS,
   UlListHS,
 } from "./HeaderStyled";
-import BurgerMenu from "./BurgerMenu";
+import BurgerMenu from "../BurgerMenu/BurgerMenu";
 
 const Header = () => {
   const isLargeScreen = useMediaQuery("(min-width:1280px)");
 
   return (
-    <>
+    <header>
       <HeaderS disableGutters={true} maxWidth={false}>
         <HeaderBoxS>
           <LogoBoxS>
@@ -55,14 +55,14 @@ const Header = () => {
                   </LiItemHS>
                 </ScrollLink>
                 <ScrollLink
-                  to="питання-відповідь"
+                  to="питання-відповіді"
                   smooth={true}
                   duration={500}
                   style={{ cursor: "pointer" }}
                 >
                   <LiItemHS disablePadding={true}>
                     <ChapterSpanHS className="chapterSpan">
-                      Питання-відповідь
+                      Питання-відповіді
                     </ChapterSpanHS>
                   </LiItemHS>
                 </ScrollLink>
@@ -115,11 +115,11 @@ const Header = () => {
               </UlListHS>
             </>
           ) : (
-            <BurgerMenu />
+            <BurgerMenu sx={{ width: "32px" }} />
           )}
         </HeaderBoxS>
       </HeaderS>
-    </>
+    </header>
   );
 };
 

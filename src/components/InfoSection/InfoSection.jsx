@@ -1,12 +1,4 @@
-import {
-  Box,
-  Collapse,
-  Fade,
-  FormControlLabel,
-  Grow,
-  List,
-  Typography,
-} from "@mui/material";
+import { Box, Fade, FormControlLabel, Typography } from "@mui/material";
 import { useState } from "react";
 import { ContainerSection, YellowButton } from "../../style/Global.styled";
 import { InfoSectionContainer, ListText } from "./InfoSectionStyle";
