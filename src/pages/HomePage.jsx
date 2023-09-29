@@ -6,6 +6,7 @@ import info from "../assets/texts/infos.json";
 import { useEffect, useState } from "react";
 import AdvatagesSection from "../components/AdvatagesSection/AdvatagesSection";
 import { useLocation } from "react-router-dom";
+import Partners from "../components/Partners/Partners";
 
 const HomePage = () => {
   const [text, setText] = useState(info.text);
@@ -24,6 +25,7 @@ const HomePage = () => {
       <HeroTabs />
       <AdvatagesSection />
       <CheckInsSection />
+      <Partners/>
       <AccordionSection />
       <InfoSection text={text} />
     </>

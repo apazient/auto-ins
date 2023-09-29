@@ -1,0 +1,57 @@
+[
+    {        
+        "id": 1,        
+        "imgAlt": "credo logo",
+        "rating": 5,
+        "web": "http://skcredo.com.ua/"
+    },
+    {        
+        "id": 2,        
+        "imgAlt": "euroins logo",
+        "rating": 4.5,
+        "web": "https://euroins.com.ua/"
+    },
+    {        
+        "id": 3,        
+        "imgAlt": "ingo logo",
+        "rating": 4,
+        "web": "https://ingo.ua/"
+    },
+    {        
+        "id": 4,        
+        "imgAlt": "brokbusiness logo",
+        "rating": 3.5,
+        "web": "https://bbs.ua/home/"
+    },
+    {        
+        "id": 5,        
+        "imgAlt": "arx logo",
+        "rating": 4.7,
+        "web": "https://arx.com.ua/"
+    },
+    {        
+        "id": 6,        
+        "imgAlt": "uniqa logo",
+        "rating": 5,
+        "web": "https://uniqa.ua/"
+    },
+    {        
+        "id": 7,        
+        "imgAlt": "inter-polis logo",
+        "rating": 5,
+        "web": "https://inter-policy.com/"
+    },
+    {        
+        "id": 8,        
+        "imgAlt": "europeisky-strahovy-allianz logo",
+        "rating": 5,
+        "web": "https://eia.com.ua/"
+    },
+    {        
+        "id": 9,        
+        "imgAlt": "test partner",
+        "rating": 5,
+        "web": "https://google.com/"
+    }    
+]
+

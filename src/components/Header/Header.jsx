@@ -13,9 +13,15 @@ import {
   UlListHS,
 } from "./HeaderStyled";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const isLargeScreen = useMediaQuery("(min-width:1280px)");
+  const navigate = useNavigate();
+
+  const handleScrollToSection = (chapter) => {    
+    navigate("/", { state: { id: chapter } });
+  };
 
   return (
     <header>
@@ -33,10 +39,11 @@ const Header = () => {
                 <ScrollLink
                   to="переваги"
                   smooth={true}
-                  duration={500}
+                  duration={700}
                   style={{ cursor: "pointer" }}
+                  activeClass="active"
                 >
-                  <LiItemHS disablePadding={true}>
+                  <LiItemHS disablePadding={true} onClick={()=>handleScrollToSection('переваги')}>
                     <ChapterSpanHS className="chapterSpan">
                       Переваги
                     </ChapterSpanHS>
@@ -45,10 +52,11 @@ const Header = () => {
                 <ScrollLink
                   to="партнери"
                   smooth={true}
-                  duration={500}
+                  duration={700}
                   style={{ cursor: "pointer" }}
+                  activeClass="active"
                 >
-                  <LiItemHS disablePadding={true}>
+                  <LiItemHS disablePadding={true} onClick={()=>handleScrollToSection('партнери')}>
                     <ChapterSpanHS className="chapterSpan">
                       Партнери
                     </ChapterSpanHS>
@@ -57,10 +65,11 @@ const Header = () => {
                 <ScrollLink
                   to="питання-відповіді"
                   smooth={true}
-                  duration={500}
+                  duration={700}
                   style={{ cursor: "pointer" }}
+                  activeClass="active"
                 >
-                  <LiItemHS disablePadding={true}>
+                  <LiItemHS disablePadding={true} onClick={()=>handleScrollToSection('питання-відповіді')}>
                     <ChapterSpanHS className="chapterSpan">
                       Питання-відповіді
                     </ChapterSpanHS>
