@@ -7,24 +7,26 @@ export const TabStyled = styled(Tab)(({ theme }) => ({
   textTransform: "none",
   border: `1px solid ${theme.palette.primary.main}`,
   color: "rgba(254, 254, 255, 0.60)",
+  padding: 0,
+  width: 163,
+  textAlign: "left",
+  justifyContent: "start",
   "&.Mui-selected": {
     color: "#FEFEFF",
-  },
-  "& .MuiTabs-flexContainer button": {
-    maxWidth: 163,
-    //   wordBreak: "break-word",
   },
 }));
 export const TabsStyled = styled(Tabs)(({ theme }) => ({
   width: "100%",
   paddingTop: 8,
   paddingBottom: 8,
-  justifyContent: "center",
+  marginBottom: 16,
   alignItems: "flex-start",
   alignSelf: "stretch",
+  height: 64,
   borderBottom: `1px solid ${theme.palette.primary.secondaryWhite}`,
   "& .MuiTabs-flexContainer": {
     gap: 16,
+    justifyContent: "spase-betwen",
   },
 }));
 export const TabsContainer = styled("div")(({ theme }) => ({
@@ -57,5 +59,16 @@ export const TitleStaled = styled(Typography)(({ theme }) => ({
   },
   [theme.breakpoints.up("lg")]: {
     marginBottom: "80px",
+  },
+}));
+export const TypographyStyled = styled(Typography)(() => ({
+  "& h1.MuiTypography-root.MuiTypography-h1.MuiTypography-alignCenter": {
+    color: " #FEFEFF",
+    fontFamily: "OpenSans-SemiBold",
+    fontSize: 24,
+    fontWeight: "800",
+    lineHeight: "150%" /* 36px */,
+    width: "fit-content",
+    marginBottom: "24px",
   },
 }));
