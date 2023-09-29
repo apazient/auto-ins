@@ -1,31 +1,46 @@
-import { Link } from "@mui/material";
+import PropTypes from 'prop-types';
+import { Link, Rating } from "@mui/material";
 import {
   LogoBoxPartnerS,
   RatingBoxPartnersS,
   RatingTextS,
   SinglePartnerContainerS,
 } from "./SinglePartnerStyled";
+import { PartnersImgs } from "./ParterIcons/PartnersImgs";
 
-const SinglePartner = ({ logoSVG }) => {
+const SinglePartner = ({ partner }) => {
+    // console.log(partner);
+    const {id, imgAlt, rating, web} = partner
   return (
     <>
       <SinglePartnerContainerS>
         <Link
-          href="https://www.instagram.com"
+          href={web}
           target="_blank"
           rel="noreferrer noopener"
+          style={{textDecoration: 'none'}}
         >
-          <LogoBoxPartnerS style={{ outline: "1px solid red" }}>
-            <div>svg</div>
+          <LogoBoxPartnerS>            
+            <PartnersImgs data={{id: String(id), imgAlt: imgAlt}}/>
           </LogoBoxPartnerS>
-        </Link>
+        
         <RatingBoxPartnersS>
-          <RatingTextS className="ratingText">Рейтинг МТСБУ</RatingTextS>
-          <div style={{ color: "black" }}>stars</div>
+          <RatingTextS className="ratingText">Рейтинг МТСБУ</RatingTextS>          
+          <Rating name="read-only" value={rating} precision={0.1} readOnly />
         </RatingBoxPartnersS>
+        </Link>
       </SinglePartnerContainerS>
     </>
   );
 };
+
+SinglePartner.propTypes = {
+    partner: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      imgAlt: PropTypes.string.isRequired,
+      rating: PropTypes.number.isRequired,
+      web: PropTypes.string.isRequired,
+    }).isRequired,
+  };
 
 export default SinglePartner;
