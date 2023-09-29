@@ -1,7 +1,7 @@
 import { Box, IconButton, ListItemButton, ListItemText } from "@mui/material";
 
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { SpriteSVG } from "../../images/SpriteSVG";
 
 import {
@@ -18,6 +18,7 @@ import { BoxIconHS, LogoBoxS, LogoTextHS } from "../Header/HeaderStyled";
 
 const BurgerMenu = () => {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
 
   const toggleDrawer = (open) => (event) => {
     if (
@@ -29,17 +30,19 @@ const BurgerMenu = () => {
     setOpen(open);
   };
 
-  const onNavClick = (event) => {
+  // const onNavClick = (event) => {
+  //   event.preventDefault();
+  //   const id = event.target.textContent.toLowerCase();
+  //   console.log(id);
+  //   let element = document.getElementById(id);
+  //   element.scrollIntoView({ behavior: "smooth" });
+  //   setOpen(false);
+  // };
+  const onNavClick = () => {
     event.preventDefault();
-
-    const id = event.target.textContent.toLowerCase();
-    console.log(id);
-    let element = document.getElementById(id);
-    element.scrollIntoView({ behavior: "smooth" });
-
+    navigate("/", { state: { id: event.target.textContent.toLowerCase() } });
     setOpen(false);
   };
-
   return (
     <>
       <IconButton
@@ -84,8 +87,8 @@ const BurgerMenu = () => {
             </ListItemButton>
             <DividerStyled />
             <ListItemButton
-              component={Link}
-              to="/"
+              // component={Link}
+              // to="/"
               onClick={onNavClick}
               sx={{ p: "0" }}
             >
