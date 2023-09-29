@@ -46,14 +46,14 @@ const Footer = () => {
             </LiItemS>
           </ScrollLink>
           <ScrollLink
-            to="питання-відповідь"
+            to="питання-відповіді"
             smooth={true}
             duration={500}
             style={{ cursor: "pointer" }}
           >
             <LiItemS disablePadding={true}>
               <ChapterSpan className="chapterSpan">
-                Питання-відповідь
+                Питання-відповіді
               </ChapterSpan>
             </LiItemS>
           </ScrollLink>

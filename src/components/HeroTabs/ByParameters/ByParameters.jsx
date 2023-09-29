@@ -1,6 +1,11 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { InputStyled, SelectStyled, SubmitButton } from "./ByParameters.styled";
+import {
+  InputStyled,
+  LableStyled,
+  SelectStyled,
+  SubmitButton,
+} from "./ByParameters.styled";
 import { Checkbox, FormControlLabel } from "@mui/material";
 
 const ByParameters = () => {
@@ -20,16 +25,21 @@ const ByParameters = () => {
 
   return (
     <div>
-      <SelectStyled />
-      <SelectStyled />
+      <LableStyled htmlFor="vehicle">Транспортний засіб</LableStyled>
+      <SelectStyled classNamePrefix="customSelect" id="vehicle" />
+      <LableStyled htmlFor="engineCapacity">Об'єм двигуна</LableStyled>
+      <SelectStyled classNamePrefix="customSelect" id="engineCapacity" />
       <form onSubmit={formik.handleSubmit}>
-        <label htmlFor="location-input">Адреса за техпаспортом</label>
+        <LableStyled htmlFor="location-input">
+          Адреса за техпаспортом
+        </LableStyled>
         <InputStyled
           name="location"
           type="text"
           value={formik.values.location}
           onChange={formik.handleChange}
           id="location-input"
+          placeholder="Виберіть населений пункт..."
         />
         <FormControlLabel
           control={

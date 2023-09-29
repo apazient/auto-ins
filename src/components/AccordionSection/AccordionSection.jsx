@@ -18,8 +18,8 @@ export const AccordionSection = () => {
 
   return (
     <section>
-      <ContAccordion id="питання-відповідь">
-        <MainText variant="h2" >Питання - Відповіді</MainText>
+      <ContAccordion id="питання-відповіді">
+        <MainText variant="h2">Питання - Відповіді</MainText>
 
         <Accordions
           expanded={expanded === "panel1"}
