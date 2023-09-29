@@ -1,8 +1,15 @@
 import { useState } from "react";
-import { TabStyled, TabsContainer, TabsStyled } from "./HeroTabs.styled";
+import {
+  TabStyled,
+  TabsContainer,
+  TabsStyled,
+  TitleStaled,
+} from "./HeroTabs.styled";
 import ByParameters from "./ByParameters/ByParameters";
 import ByLicensePlate from "./ByLicensePlate/ByLicensePlate";
-import { Typography } from "@mui/material";
+
+import { useMediaQuery } from "@mui/material";
+
 
 const HeroTabs = () => {
   const [value, setValue] = useState(0);
@@ -10,24 +17,15 @@ const HeroTabs = () => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+  const isMobile = useMediaQuery("(max-width: 767px)");
   return (
     <section>
       <TabsContainer>
-        <Typography
-          align="center"
-          variant="h1"
-          sx={{
-            color: " #FEFEFF",
-            fontFamily: "OpenSans-SemiBold",
-            fontSize: 24,
-            fontWeight: "800",
-            lineHeight: "150%" /* 36px */,
-            width: "fit-content",
-            marginBottom: "24px",
-          }}
-        >
-          Автоцивілка без зайвих рухів
-        </Typography>
+
+        <TitleStaled variant="h1" component="h1">
+          Автоцивілка {isMobile && <br />} без зайвих рухів
+        </TitleStaled>
+
         <TabsStyled value={value} onChange={handleChange}>
           <TabStyled label="За параметрами" />
           <TabStyled label="За держ. номерним знаком" wrapped />

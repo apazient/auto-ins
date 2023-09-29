@@ -12,7 +12,7 @@ export const HeaderS = styled(Container)(({ theme }) => ({
     padding: "8px 16px",
   },
   [theme.breakpoints.up("sm")]: {
-    padding: "16px",
+    padding: "16px 32px",
   },
 }));
 
@@ -25,12 +25,19 @@ export const HeaderS = styled(Container)(({ theme }) => ({
 
 // }))
 
-export const HeaderBoxS = styled(Container)`
-  max-width: 1160px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
+export const HeaderBoxS = styled(Container)(({ theme }) => ({
+  maxWidht: "1160px",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+
+  [theme.breakpoints.up("xs")]: {
+    "&.MuiContainer-root": {
+      paddingLeft: "0",
+      paddingRight: "0",
+    },
+  },
+}));
 
 export const LogoBoxS = styled(Box)(({ theme }) => ({
   display: "flex",
