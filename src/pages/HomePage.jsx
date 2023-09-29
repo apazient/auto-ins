@@ -3,11 +3,21 @@ import { AccordionSection } from "../components/AccordionSection/AccordionSectio
 import CheckInsSection from "../components/CheckInsSection/CheckInsSection";
 import InfoSection from "../components/InfoSection/InfoSection";
 import info from "../assets/texts/infos.json";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AdvatagesSection from "../components/AdvatagesSection/AdvatagesSection";
+import { useLocation } from "react-router-dom";
 
 const HomePage = () => {
   const [text, setText] = useState(info.text);
+  const { state } = useLocation();
+  const { id } = state || {};
+
+  useEffect(() => {
+    let element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [id]);
 
   return (
     <>
