@@ -12,8 +12,15 @@ import {
   LogoBox,
   LogoText,
 } from "./FooterStyled";
+import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
+  const navigate = useNavigate();
+
+  const handleScrollToSection = (chapter) => {
+    navigate("/", { state: { id: chapter } });
+  };
+
   return (
     <FooterS disableGutters={true} maxWidth={false}>
       <RRR />
@@ -31,7 +38,7 @@ const Footer = () => {
             duration={500}
             style={{ cursor: "pointer" }}
           >
-            <LiItemS disablePadding={true}>
+            <LiItemS disablePadding={true} onClick={()=>handleScrollToSection('переваги')}>
               <ChapterSpan className="chapterSpan">Переваги</ChapterSpan>
             </LiItemS>
           </ScrollLink>
@@ -41,7 +48,7 @@ const Footer = () => {
             duration={500}
             style={{ cursor: "pointer" }}
           >
-            <LiItemS disablePadding={true}>
+            <LiItemS disablePadding={true} onClick={()=>handleScrollToSection('партнери')}>
               <ChapterSpan className="chapterSpan">Партнери</ChapterSpan>
             </LiItemS>
           </ScrollLink>
@@ -51,7 +58,7 @@ const Footer = () => {
             duration={500}
             style={{ cursor: "pointer" }}
           >
-            <LiItemS disablePadding={true}>
+            <LiItemS disablePadding={true} onClick={()=>handleScrollToSection('питання-відповіді')}>
               <ChapterSpan className="chapterSpan">
                 Питання-відповіді
               </ChapterSpan>
