@@ -9,6 +9,8 @@ import CheckInsSection from "../components/CheckInsSection/CheckInsSection";
 import InfoSection from "../components/InfoSection/InfoSection";
 import info from "../assets/texts/infos.json";
 import { useState } from "react";
+import Partners from "../components/Partners/Partners";
+
 
 const HomePage = () => {
   const [text, setText] = useState(info.text);
@@ -18,6 +20,7 @@ const HomePage = () => {
       <Typography variant="h1">Автоцивілка без зайвих рухів</Typography>
       <HeroTabs />
       <CheckInsSection />
+      <Partners/>
       <AccordionSection />
       <InfoSection text={text} />
     </>
