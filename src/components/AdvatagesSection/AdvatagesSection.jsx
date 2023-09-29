@@ -9,17 +9,47 @@ import {
   ItemS,
   TextContainerS,
 } from "./AdvatagesSectionStyle";
+import { useState } from "react";
+import dataFromJson from "../../assets/texts/advantages.json";
+import { nanoid } from "nanoid";
 
 const AdvatagesSection = () => {
+  const [data, _] = useState(dataFromJson);
+
   return (
     <section>
-      <ContainerSection>
-        <Typography variant="h2" sx={{ marginBottom: "40px" }}>
+      <ContainerSection id="переваги">
+        <Typography
+          variant="h2"
+          sx={{ marginBottom: "40px", textAlign: "center " }}
+        >
           Наші переваги
         </Typography>
         <GridContainer container>
-          <Grid xs={12} sm={3} md={3} lg={2} spacing={2}>
-            <ItemS>
+          {data.map(({ svg, title, text }) => {
+            return (
+              <Grid key={nanoid()} xs={12} sm={12} md={12} lg={12}>
+                <ItemS>
+                  <BoxImgS>
+                    <SpriteSVG name={svg}></SpriteSVG>
+                  </BoxImgS>
+                  <TextContainerS>
+                    <Typography
+                      variant="h3"
+                      sx={{
+                        marginBottom: { xs: "4px", sm: "8px", lg: "0" },
+                      }}
+                    >
+                      {title}
+                    </Typography>
+
+                    <Typography variant="body1">{text}</Typography>
+                  </TextContainerS>
+                </ItemS>
+              </Grid>
+            );
+          })}
+          {/* <ItemS>
               <BoxImgS>
                 <SpriteSVG name={"icon-rocket"}></SpriteSVG>
               </BoxImgS>
@@ -135,8 +165,7 @@ const AdvatagesSection = () => {
                   оплати та продовження автоцивілки, щоб ви завжди були в курсі.
                 </Typography>
               </TextContainerS>
-            </ItemS>
-          </Grid>
+            </ItemS> */}
         </GridContainer>
       </ContainerSection>
     </section>

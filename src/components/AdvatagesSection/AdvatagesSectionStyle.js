@@ -3,6 +3,7 @@ import { Box, Grid } from "@mui/material";
 
 export const GridContainer = styled(Grid)(({ theme }) => ({
   gap: "16px",
+  justifyContent: "center",
   "& .MuiGrid2-root": {},
   [theme.breakpoints.up("sm")]: {
     gap: "24px",
@@ -14,7 +15,7 @@ export const ItemS = styled(Box)(({ theme }) => ({
 }));
 
 export const TextContainerS = styled(Box)(({ theme }) => ({
-  width: "343px",
+  width: "81%",
   [theme.breakpoints.up("sm")]: {
     width: "242px",
   },
