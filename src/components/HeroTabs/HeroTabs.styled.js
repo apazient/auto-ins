@@ -63,7 +63,7 @@ export const TabsContainer = styled("div")(({ theme }) => ({
     paddingTop: 104,
     paddingLeft: 120,
     paddingRight: 120,
-    maxWidth: "1160px",
+    // maxWidth: "1160px",
   },
 }));
 

@@ -1,9 +1,8 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { BlueButton } from "../../../style/Global.styled";
-import { Checkbox, FormControlLabel } from "@mui/material";
+import { Checkbox, FormControlLabel, Typography } from "@mui/material";
 import { InputStyled } from "./ByLicensePlate.styled";
-import { LableStyled } from "../ByParameters/ByParameters.styled";
 
 const ByLicensePlate = () => {
   const formik = useFormik({
@@ -21,9 +20,9 @@ const ByLicensePlate = () => {
   return (
     <div>
       <form onSubmit={formik.handleSubmit}>
-        <LableStyled htmlFor="license-plate">
+        <Typography variant="body1" component="label" htmlFor="license-plate">
           Номер транспортного засобу{" "}
-        </LableStyled>
+        </Typography>
         <InputStyled
           name="licensePlate"
           type="text"

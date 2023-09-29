@@ -1,8 +1,11 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import {
+  AllInputContStyled,
+  CheckboxContStyled,
+  FormStyled,
+  InputContStyled,
   InputStyled,
-  LableStyled,
   SelectStyled,
   SubmitButton,
 } from "./ByParameters.styled";
@@ -25,61 +28,78 @@ const ByParameters = () => {
 
   return (
     <div>
-      <Typography variant="body1" compomponent="label" htmlFor="vehicle">
-        Транспортний засіб
-      </Typography>
-      <Typography
-        variant="body1"
-        compomponent="label"
-        classNamePrefix="customSelect"
-        id="vehicle"
-      />
-      <Typography variant="body1" compomponent="label" htmlFor="engineCapacity">
-        Об'єм двигуна
-      </Typography>
-      <SelectStyled classnameprefix="customSelect" id="engineCapacity" />
-      <form onSubmit={formik.handleSubmit}>
-        <Typography
-          variant="body1"
-          compomponent="label"
-          htmlFor="location-input"
-        >
-          Адреса за техпаспортом
-        </Typography>
-        <InputStyled
-          name="location"
-          type="text"
-          value={formik.values.location}
-          onChange={formik.handleChange}
-          id="location-input"
-          placeholder="Виберіть населений пункт..."
-        />
-        <FormControlLabel
-          control={
-            <Checkbox
-              defaultChecked
-              value={formik.values.benefits}
-              onChange={formik.handleChange}
-              type="checkbox"
-              name="benefits"
+      <FormStyled onSubmit={formik.handleSubmit}>
+        <AllInputContStyled>
+          <InputContStyled>
+            <Typography variant="body1" component="label" htmlFor="vehicle">
+              Транспортний засіб
+            </Typography>
+            <SelectStyled
+              variant="body1"
+              compomponent="label"
+              classNamePrefix="customSelect"
+              id="vehicle"
             />
-          }
-          label="Є пільги"
-        />
-        <FormControlLabel
-          control={
-            <Checkbox
-              defaultChecked
-              value={formik.values.foreignNumber}
+          </InputContStyled>
+          <InputContStyled>
+            <Typography
+              variant="body1"
+              component="label"
+              htmlFor="engineCapacity"
+            >
+              Об'єм двигуна
+            </Typography>
+            <SelectStyled classNamePrefix="customSelect" id="engineCapacity" />
+          </InputContStyled>
+
+          <InputContStyled>
+            <Typography
+              variant="body1"
+              compomponent="label"
+              htmlFor="location-input"
+            >
+              Адреса за техпаспортом
+            </Typography>
+            <InputStyled
+              name="location"
+              type="text"
+              value={formik.values.location}
               onChange={formik.handleChange}
-              type="checkbox"
-              name="foreignNumber"
+              id="location-input"
+              placeholder="Виберіть населений пункт..."
             />
-          }
-          label="Авто на іноземних номерах"
-        />
+          </InputContStyled>
+        </AllInputContStyled>
+
+        <CheckboxContStyled>
+          <FormControlLabel
+            control={
+              <Checkbox
+                defaultChecked
+                value={formik.values.benefits}
+                onChange={formik.handleChange}
+                type="checkbox"
+                name="benefits"
+              />
+            }
+            label="Є пільги"
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
+                defaultChecked
+                value={formik.values.foreignNumber}
+                onChange={formik.handleChange}
+                type="checkbox"
+                name="foreignNumber"
+              />
+            }
+            label="Авто на іноземних номерах"
+          />
+        </CheckboxContStyled>
+
         <SubmitButton type="submit">Розрахувати вартість</SubmitButton>
-      </form>
+      </FormStyled>
     </div>
   );
 };

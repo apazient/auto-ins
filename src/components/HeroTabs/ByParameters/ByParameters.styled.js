@@ -6,10 +6,9 @@ export const SelectStyled = styled(Select)(({ theme }) => ({
   "& .customSelect__control": {
     width: "100%",
     padding: 16,
+    height: 56,
     borderRadius: 50,
     backgroundColor: "#FEFEFF",
-    marginTop: 8,
-    marginBottom: 8,
   },
   "& .customSelect__value-container": { height: 24, padding: 0 },
   "& .customSelect__indicators": {
@@ -40,13 +39,18 @@ export const SelectStyled = styled(Select)(({ theme }) => ({
       height: 24,
     },
   },
+  "& .customSelect__menu": { marginTop: 0, borderRadius: 50 },
   // "& .customSelect__value-container": { height: 24 },
-  // "& .customSelect__value-container": { height: 24 },
+  [theme.breakpoints.up("sm")]: {
+    "& .customSelect__control": {
+      height: 59,
+    },
+  },
 }));
 export const InputStyled = styled(InputBase)(({ theme }) => ({
   width: "100%",
+  height: 56,
   padding: 16,
-  marginTop: 8,
   borderRadius: 50,
   backgroundColor: `${theme.palette.primary.white}`,
   "& #location-input": {
@@ -56,16 +60,44 @@ export const InputStyled = styled(InputBase)(({ theme }) => ({
     fontSize: 16,
     lineHeight: 1.5 /* 24px */,
   },
+  [theme.breakpoints.up("sm")]: {
+    height: 59,
+    // fontSize: "2.375rem",
+    // lineHeight: "3.562rem",
+  },
 }));
 export const SubmitButton = styled(BlueButton)(({ theme }) => ({
   display: "block",
   marginLeft: "auto",
   marginRight: "auto",
+  [theme.breakpoints.up("sm")]: {
+    marginTop: 8,
+  },
 }));
-export const LableStyled = styled("lable")(({ theme }) => ({
-  color: `${theme.palette.primary.white}`,
-  fontFamily: "OpenSans-SemiBold",
-  fontSize: 14,
-  fontWeight: "400",
-  lineHeight: "150%" /* 21px */,
+export const InputContStyled = styled("div")(({ theme }) => ({
+  display: "flex",
+  flexDirection: "column",
+  gap: 8,
+  [theme.breakpoints.up("sm")]: {
+    gap: 16,
+  },
+}));
+export const AllInputContStyled = styled("div")(({ theme }) => ({
+  display: "flex",
+  flexDirection: "column",
+  gap: 8,
+}));
+export const FormStyled = styled("form")(({ theme }) => ({
+  display: "flex",
+  flexDirection: "column",
+  gap: 16,
+}));
+export const CheckboxContStyled = styled("div")(({ theme }) => ({
+  display: "flex",
+  flexDirection: "column",
+  gap: 16,
+  [theme.breakpoints.up("sm")]: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
 }));
