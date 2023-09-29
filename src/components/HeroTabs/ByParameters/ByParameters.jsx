@@ -6,7 +6,7 @@ import {
   SelectStyled,
   SubmitButton,
 } from "./ByParameters.styled";
-import { Checkbox, FormControlLabel } from "@mui/material";
+import { Checkbox, FormControlLabel, Typography } from "@mui/material";
 
 const ByParameters = () => {
   const formik = useFormik({
@@ -25,14 +25,27 @@ const ByParameters = () => {
 
   return (
     <div>
-      <LableStyled htmlFor="vehicle">Транспортний засіб</LableStyled>
-      <SelectStyled classNamePrefix="customSelect" id="vehicle" />
-      <LableStyled htmlFor="engineCapacity">Об'єм двигуна</LableStyled>
-      <SelectStyled classNamePrefix="customSelect" id="engineCapacity" />
+      <Typography variant="body1" compomponent="label" htmlFor="vehicle">
+        Транспортний засіб
+      </Typography>
+      <Typography
+        variant="body1"
+        compomponent="label"
+        classNamePrefix="customSelect"
+        id="vehicle"
+      />
+      <Typography variant="body1" compomponent="label" htmlFor="engineCapacity">
+        Об'єм двигуна
+      </Typography>
+      <SelectStyled classnameprefix="customSelect" id="engineCapacity" />
       <form onSubmit={formik.handleSubmit}>
-        <LableStyled htmlFor="location-input">
+        <Typography
+          variant="body1"
+          compomponent="label"
+          htmlFor="location-input"
+        >
           Адреса за техпаспортом
-        </LableStyled>
+        </Typography>
         <InputStyled
           name="location"
           type="text"

@@ -1,16 +1,31 @@
-import { Tabs, Tab, styled, Typography } from "@mui/material";
+import {
+  Tabs,
+  Tab,
+  styled,
+  Typography,
+  autocompleteClasses,
+} from "@mui/material";
 
 export const TabStyled = styled(Tab)(({ theme }) => ({
   fontFamily: "OpenSans-SemiBold",
-  fontSize: 16,
+  fontSize: "1rem",
   fontWeight: 700,
   textTransform: "none",
   border: `1px solid ${theme.palette.primary.main}`,
   color: "rgba(254, 254, 255, 0.60)",
   padding: 0,
-  width: 163,
+  maxWidth: 160,
   textAlign: "left",
-  justifyContent: "start",
+  alignItems: "flex-start",
+  justifyContent: "flex-start",
+  flex: "1 1 0%",
+  [theme.breakpoints.up("sm")]: {
+    width: "auto",
+    justifyContent: "center",
+  },
+  [theme.breakpoints.up("lg")]: {
+    justifyContent: "center",
+  },
   "&.Mui-selected": {
     color: "#FEFEFF",
   },
@@ -26,7 +41,10 @@ export const TabsStyled = styled(Tabs)(({ theme }) => ({
   borderBottom: `1px solid ${theme.palette.primary.secondaryWhite}`,
   "& .MuiTabs-flexContainer": {
     gap: 16,
-    justifyContent: "spase-betwen",
+    // [theme.breakpoints.up("sm")]: {
+    //   gap: 16,
+    //   justifyContent: "spase-betwen",
+    // },
   },
 }));
 export const TabsContainer = styled("div")(({ theme }) => ({
