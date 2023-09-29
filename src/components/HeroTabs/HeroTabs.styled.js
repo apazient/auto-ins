@@ -20,7 +20,7 @@ export const TabStyled = styled(Tab)(({ theme }) => ({
   justifyContent: "flex-start",
   flex: "1 1 0%",
   [theme.breakpoints.up("sm")]: {
-    width: "auto",
+    maxWidth: "fit-content",
     justifyContent: "center",
   },
   [theme.breakpoints.up("lg")]: {
@@ -40,11 +40,10 @@ export const TabsStyled = styled(Tabs)(({ theme }) => ({
   height: 64,
   borderBottom: `1px solid ${theme.palette.primary.secondaryWhite}`,
   "& .MuiTabs-flexContainer": {
-    gap: 16,
-    // [theme.breakpoints.up("sm")]: {
-    //   gap: 16,
-    //   justifyContent: "spase-betwen",
-    // },
+    [theme.breakpoints.up("sm")]: {
+      gap: 16,
+      justifyContent: "spase-betwen",
+    },
   },
 }));
 export const TabsContainer = styled("div")(({ theme }) => ({
