@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
-import { Box } from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2";
+import { Box, Grid } from "@mui/material";
 
 export const GridContainer = styled(Grid)(({ theme }) => ({
   gap: "16px",
+  "& .MuiGrid2-root": {},
   [theme.breakpoints.up("sm")]: {
     gap: "24px",
   },
@@ -14,13 +14,13 @@ export const ItemS = styled(Box)(({ theme }) => ({
 }));
 
 export const TextContainerS = styled(Box)(({ theme }) => ({
-  // width: "81%",
-  // [theme.breakpoints.up("sm")]: {
-  //   width: "242px",
-  // },
-  // [theme.breakpoints.up("lg")]: {
-  //   width: "267px",
-  // },
+  width: "343px",
+  [theme.breakpoints.up("sm")]: {
+    width: "242px",
+  },
+  [theme.breakpoints.up("lg")]: {
+    width: "266px",
+  },
 }));
 export const BoxImgS = styled(Box)(({ theme }) => ({
   fill: theme.palette.primary.white,
@@ -34,7 +34,6 @@ export const BoxImgS = styled(Box)(({ theme }) => ({
     width: "78px",
     height: "78px",
     padding: "12px ",
-    flexShrink: "0",
   },
   [theme.breakpoints.up("lg")]: {
     width: "96px",

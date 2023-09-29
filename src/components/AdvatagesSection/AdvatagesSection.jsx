@@ -18,7 +18,7 @@ const AdvatagesSection = () => {
           Наші переваги
         </Typography>
         <GridContainer container>
-          <Grid item xs={12} sm={6} md={6} lg={4} spacing={2}>
+          <Grid xs={12} sm={3} md={3} lg={2} spacing={2}>
             <ItemS>
               <BoxImgS>
                 <SpriteSVG name={"icon-rocket"}></SpriteSVG>
@@ -40,7 +40,7 @@ const AdvatagesSection = () => {
               </TextContainerS>
             </ItemS>
           </Grid>
-          <Grid item xs={12} sm={6} md={6} lg={4} spacing={2}>
+          <Grid xs={12} sm={3} md={3} lg={2} spacing={2}>
             <ItemS>
               <BoxImgS>
                 <SpriteSVG name={"icon-money"}></SpriteSVG>
@@ -60,7 +60,7 @@ const AdvatagesSection = () => {
               </TextContainerS>
             </ItemS>
           </Grid>
-          <Grid item xs={12} sm={6} md={6} lg={4} spacing={2}>
+          <Grid xs={12} sm={3} md={3} lg={2} spacing={2}>
             <ItemS>
               <BoxImgS>
                 <SpriteSVG name={"icon-laptop"}></SpriteSVG>
@@ -80,7 +80,7 @@ const AdvatagesSection = () => {
               </TextContainerS>
             </ItemS>
           </Grid>
-          <Grid item xs={12} sm={6} md={6} lg={4} spacing={2}>
+          <Grid xs={12} sm={3} md={3} lg={2} spacing={2}>
             <ItemS>
               <BoxImgS>
                 <SpriteSVG name={"icon-colaboration"}></SpriteSVG>
@@ -99,7 +99,7 @@ const AdvatagesSection = () => {
               </TextContainerS>
             </ItemS>
           </Grid>
-          <Grid item xs={12} sm={6} md={6} lg={4} spacing={2}>
+          <Grid xs={12} sm={3} md={3} lg={2} spacing={2}>
             <ItemS>
               <BoxImgS>
                 <SpriteSVG name={"icon-lock"}></SpriteSVG>
@@ -118,7 +118,7 @@ const AdvatagesSection = () => {
               </TextContainerS>
             </ItemS>
           </Grid>
-          <Grid item xs={12} sm={6} md={6} lg={4} spacing={2}>
+          <Grid xs={12} sm={3} md={3} lg={2} spacing={2}>
             <ItemS>
               <BoxImgS>
                 <SpriteSVG name={"icon-chat"}></SpriteSVG>
