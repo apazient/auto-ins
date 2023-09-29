@@ -4,6 +4,7 @@ import CheckInsSection from "../components/CheckInsSection/CheckInsSection";
 import InfoSection from "../components/InfoSection/InfoSection";
 import info from "../assets/texts/infos.json";
 import { useState } from "react";
+import AdvatagesSection from "../components/AdvatagesSection/AdvatagesSection";
 
 const HomePage = () => {
   const [text, setText] = useState(info.text);
@@ -11,6 +12,7 @@ const HomePage = () => {
   return (
     <>
       <HeroTabs />
+      <AdvatagesSection />
       <CheckInsSection />
       <AccordionSection />
       <InfoSection text={text} />
