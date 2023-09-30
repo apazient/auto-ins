@@ -163,7 +163,7 @@ theme.typography.body2 = {
     fontFamily: "OpenSans-SemiBold, sans-serif",
     fontWeight: 400,
     color: theme.palette.primary.main,
-    lineHeight: "1.31rem",
+    lineHeight: "1.31",
   },
   [theme.breakpoints.up("sm")]: {
     fontSize: "1rem",
@@ -171,4 +171,17 @@ theme.typography.body2 = {
   [theme.breakpoints.up("lg")]: {
     fontSize: "1.125rem",
   },
+};
+theme.typography.caption = {
+  [theme.breakpoints.up("xs")]: {
+    fontSize: "0.875rem",
+    fontFamily: "OpenSans-Regular, sans-serif",
+    fontWeight: 400,
+    color: theme.palette.primary.main,
+    lineHeight: "1.5",
+  },
+  [theme.breakpoints.up("sm")]: {
+    fontSize: "1rem",
+  },
+  [theme.breakpoints.up("lg")]: {},
 };
