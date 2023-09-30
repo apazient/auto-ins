@@ -8,6 +8,12 @@ export const InfoSectionContainer = styled(ContainerSection)(({ theme }) => ({
 
 export const ListText = styled(List)(({ theme }) => ({
   display: "block",
+  width: "200px",
+  whiteSpace: "nowrap",
+  overflow: "hidden",
+  textOverflow: "ellipsis",
+  padding: "10px",
+  border: "1px solid #ccc",
   [theme.breakpoints.up("sm")]: {
     display: "flex",
     flexWrap: "wrap",

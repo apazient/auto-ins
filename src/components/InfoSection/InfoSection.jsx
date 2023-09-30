@@ -52,7 +52,16 @@ const InfoSection = ({ text }) => {
           </ListText>
         </Box>
 
-        <Fade in={checked} unmountOnExit>
+        <Fade in={checked} unmountOnExit direction="column">
+          <ListText>
+            {splitText(text)[1]?.map((el, index) => (
+              <Typography variant="body2" key={index} sx={{ width: "50%" }}>
+                {el}
+              </Typography>
+            ))}
+          </ListText>
+        </Fade>
+        <Fade in={checked} unmountOnExit direction="column">
           <ListText>
             {splitText(text)[1]?.map((el, index) => (
               <Typography variant="body2" key={index} sx={{ width: "50%" }}>
