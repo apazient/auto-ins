@@ -22,6 +22,7 @@ export const TabStyled = styled(Tab)(({ theme }) => ({
   [theme.breakpoints.up("sm")]: {
     maxWidth: "fit-content",
     justifyContent: "center",
+    fontSize: "1.125rem",
   },
   [theme.breakpoints.up("lg")]: {
     justifyContent: "center",
@@ -63,7 +64,7 @@ export const TabsContainer = styled("div")(({ theme }) => ({
     paddingTop: 104,
     paddingLeft: 120,
     paddingRight: 120,
-    // maxWidth: "1160px",
+    maxWidth: "1400px",
   },
 }));
 
