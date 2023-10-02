@@ -12,22 +12,26 @@ export const openSansRegular = {
   fontStyle: "normal",
   fontWeight: 400,
   src: `url(${OpenSansWoff}) format('woff'), url(${OpenSansWoff2}) format('woff2')`,
+  fontDisplay: "swap",
 };
 export const openSansSemiBold = {
   fontFamily: "OpenSans-SemiBold",
   fontStyle: "normal",
   fontWeight: 600,
   src: `url(${OpenSansSemiBoldWoff}) format('woff'), url(${OpenSansSemiBoldWoff2}) format('woff2')`,
+  fontDisplay: "swap",
 };
 export const openSansBold = {
   fontFamily: "OpenSans-Bold",
   fontStyle: "normal",
   fontWeight: 700,
   src: `url(${OpenSansBoldWoff}) format('woff'), url(${OpenSansBoldWoff2}) format('woff2')`,
+  fontDisplay: "swap",
 };
 export const openSansExtraBold = {
   fontFamily: "OpenSans-ExtraBold",
   fontStyle: "normal",
   fontWeight: 800,
   src: `url(${OpenSansExtraBoldWoff}) format('woff'), url(${OpenSansExtraBoldWoff2}) format('woff2')`,
+  fontDisplay: "swap",
 };

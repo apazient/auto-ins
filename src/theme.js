@@ -36,8 +36,8 @@ export const theme = createTheme({
   },
   breakpoints: {
     values: {
-      xs: 0,
-      sm: 768,
+      xs: 320,
+      sm: 744,
       md: 900,
       lg: 1400,
       xl: 1536,
@@ -55,9 +55,15 @@ export const theme = createTheme({
           { "@font-face": openSansBold },
           { "@font-face": openSansExtraBold },
           { "@font-face": openSansSemiBold },
+          { fontSize: "16px" },
         ],
         body: {
           backgroundColor: "#030303",
+        },
+        img: {
+          display: "block",
+          maxWidth: "100%",
+          height: "auto",
         },
       },
     },

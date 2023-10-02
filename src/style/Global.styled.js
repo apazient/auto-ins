@@ -49,6 +49,7 @@ export const WhiteButton = styled(Button)(({ theme }) => ({
 
 export const YellowButton = styled(Button)(({ theme }) => ({
   padding: "16px 38px",
+  fontSize: "1rem",
   borderRadius: "50px",
   fontFamily: "OpenSans-SemiBold",
   fontWeight: 600,
