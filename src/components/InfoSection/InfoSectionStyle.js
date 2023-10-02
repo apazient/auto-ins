@@ -1,6 +1,6 @@
-import { Box, List, Typography } from "@mui/material";
+import { Box, List, styled, Typography } from "@mui/material";
 import Collapse from "@mui/material/Collapse";
-import { styled } from "@mui/system";
+
 import { ContainerSection } from "../../style/Global.styled";
 
 export const ItemS = styled(List)(({ theme }) => ({
@@ -8,40 +8,56 @@ export const ItemS = styled(List)(({ theme }) => ({
   listStyle: "decimal",
   padding: "0 0 0 2em",
 }));
-export const AbsatzS = styled(Typography)(({ theme }) => ({
+export const AbsatzS = styled(Typography)({
   "&.MuiTypography-caption": {
     textAlign: "justify",
-    margin: "1em 0",
+    margin: "1.5em 0",
+    "&:last-child": {
+      marginBottom: 0,
+    },
+    "&:first-of-type": {
+      marginTop: 0,
+    },
+  },
+});
+
+export const CollapseContainer = styled(Collapse)(({ theme }) => ({
+  "& .MuiCollapse-vertical": {
+    display: "-webkit-box",
+    WebkitBoxOrient: "vertical",
+    WebkitLineClamp: 3,
+    whiteSpace: "pre-wrap",
+    overflow: "hidden",
+    [theme.breakpoints.up("sm")]: {
+      WebkitLineClamp: 6,
+    },
+    [theme.breakpoints.up("lg")]: {
+      WebkitLineClamp: 22,
+    },
+  },
+  "&.MuiCollapse-entered": {
+    "& .MuiCollapse-vertical": {
+      display: "block",
+      whiteSpace: "normal",
+    },
+  },
+}));
+export const WrapperS = styled(Box)(({ theme }) => ({
+  display: "block",
+  [theme.breakpoints.up("sm")]: {
+    display: "flex",
+    gap: "24px",
   },
 }));
 
-export const WrapperS = styled(Box)(({ theme }) => ({
-  // overflow: "hidden",
-}));
-export const CollapseContainer = styled(Collapse)(({ theme }) => ({}));
 export const InfoSectionContainer = styled(ContainerSection)(({ theme }) => ({
   display: "block",
   backgroundColor: theme.palette.primary.white,
-  [theme.breakpoints.up("sm")]: {
-    display: "flex",
-  },
-}));
-
-export const ListText = styled(Box)(({ theme }) => ({
-  display: "block",
-
-  textAlign: "justify",
-  textOverflow: "ellipsis",
-  overflow: "hidden",
-  whiteSpace: "nowrap",
-
-  [theme.breakpoints.up("sm")]: {
-    display: "flex",
-    flexWrap: "wrap",
-    flexDirection: "column",
-    height: "200px",
-  },
   [theme.breakpoints.up("lg")]: {
-    height: "750px",
+    padding: "120px 0 120px 120px ",
   },
 }));
+
+export const ListText = styled(Box)({
+  display: "block",
+});
