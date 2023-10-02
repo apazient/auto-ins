@@ -34,7 +34,7 @@ export const AccordionSection = () => {
               </Box>
             }
           >
-            <Typography variant="subtitle1">
+            <Typography variant="subtitle1" component="h3">
               Як я можу оформити автоцивілку через вашу платформу?
             </Typography>
           </AccordionsSummary>
@@ -59,7 +59,7 @@ export const AccordionSection = () => {
               </Box>
             }
           >
-            <Typography variant="subtitle1">
+            <Typography variant="subtitle1" component="h3">
               Чи безпечно надавати свої особисті дані на вашому сайті?
             </Typography>
           </AccordionsSummary>
@@ -84,7 +84,7 @@ export const AccordionSection = () => {
               </Box>
             }
           >
-            <Typography variant="subtitle1">
+            <Typography variant="subtitle1" component="h3">
               Як я можу зекономити на оформленні автоцивілки через вашу
               платформу?
             </Typography>
@@ -110,7 +110,7 @@ export const AccordionSection = () => {
               </Box>
             }
           >
-            <Typography variant="subtitle1">
+            <Typography variant="subtitle1" component="h3">
               Чи безпечно надавати свої особисті дані на вашому сайті?
             </Typography>
           </AccordionsSummary>
@@ -135,7 +135,7 @@ export const AccordionSection = () => {
               </Box>
             }
           >
-            <Typography variant="subtitle1">
+            <Typography variant="subtitle1" component="h3">
               Чи є підтримка, якщо у мене виникнуть питання або проблеми під час
               оформлення?
             </Typography>
@@ -160,7 +160,7 @@ export const AccordionSection = () => {
               </Box>
             }
           >
-            <Typography variant="subtitle1">
+            <Typography variant="subtitle1" component="h3">
               Чи отримаю я нагадування про терміни оплати та продовження
               автоцивілки?
             </Typography>
@@ -186,7 +186,7 @@ export const AccordionSection = () => {
               </Box>
             }
           >
-            <Typography variant="subtitle1">
+            <Typography variant="subtitle1" component="h3">
               Які документи мені потрібні для оформлення автоцивілки через ваш
               сайт?
             </Typography>
@@ -213,7 +213,7 @@ export const AccordionSection = () => {
               </Box>
             }
           >
-            <Typography variant="subtitle1">
+            <Typography variant="subtitle1" component="h3">
               Чи можу я оформити автоцивілку для іншої особи?
             </Typography>
           </AccordionsSummary>
@@ -238,7 +238,7 @@ export const AccordionSection = () => {
               </Box>
             }
           >
-            <Typography variant="subtitle1">
+            <Typography variant="subtitle1" component="h3">
               Чи є у вас мобільний додаток?
             </Typography>
           </AccordionsSummary>
@@ -263,7 +263,7 @@ export const AccordionSection = () => {
               </Box>
             }
           >
-            <Typography variant="subtitle1">
+            <Typography variant="subtitle1" component="h3">
               Чи отримаю я нагадування про терміни оплати та продовження
               автоцивілки?
             </Typography>
