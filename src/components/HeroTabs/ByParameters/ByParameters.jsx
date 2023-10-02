@@ -3,13 +3,15 @@ import * as Yup from "yup";
 import {
   AllInputContStyled,
   CheckboxContStyled,
+  CheckboxStyled,
   FormStyled,
   InputContStyled,
   InputStyled,
   SelectStyled,
   SubmitButton,
 } from "./ByParameters.styled";
-import { Checkbox, FormControlLabel, Typography } from "@mui/material";
+import { FormControlLabel, Typography, useTheme } from "@mui/material";
+import { SpriteSVG } from "../../../images/SpriteSVG";
 
 const ByParameters = () => {
   const formik = useFormik({
@@ -74,20 +76,24 @@ const ByParameters = () => {
         <CheckboxContStyled>
           <FormControlLabel
             control={
-              <Checkbox
+              <CheckboxStyled
                 defaultChecked
                 value={formik.values.benefits}
                 onChange={formik.handleChange}
                 type="checkbox"
                 name="benefits"
+                icon={<SpriteSVG name="icon-square" />}
+                checkedIcon={<SpriteSVG name="icon-square-checked" />}
               />
             }
             label="Є пільги"
           />
           <FormControlLabel
             control={
-              <Checkbox
+              <CheckboxStyled
                 defaultChecked
+                icon={<SpriteSVG name="icon-square" />}
+                checkedIcon={<SpriteSVG name="icon-square-checked" />}
                 value={formik.values.foreignNumber}
                 onChange={formik.handleChange}
                 type="checkbox"
