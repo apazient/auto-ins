@@ -1,6 +1,7 @@
-import { InputBase, styled } from "@mui/material";
+import { Checkbox, InputBase, styled } from "@mui/material";
 import Select from "react-select";
 import { BlueButton } from "../../../style/Global.styled";
+import { SpriteSVG } from "../../../images/SpriteSVG";
 
 export const SelectStyled = styled(Select)(({ theme }) => ({
   "& .customSelect__control": {
@@ -9,6 +10,9 @@ export const SelectStyled = styled(Select)(({ theme }) => ({
     height: 56,
     borderRadius: 50,
     backgroundColor: "#FEFEFF",
+    [theme.breakpoints.up("lg")]: {
+      width: 272,
+    },
   },
   "& .customSelect__value-container": { height: 24, padding: 0 },
   "& .customSelect__indicators": {
@@ -28,6 +32,9 @@ export const SelectStyled = styled(Select)(({ theme }) => ({
     lineHeight: "150%" /* 24px */,
     margin: 0,
     padding: 0,
+    [theme.breakpoints.up("sm")]: {
+      fontSize: 18,
+    },
   },
   "& .customSelect__indicator-separator": {
     display: "none",
@@ -59,19 +66,32 @@ export const InputStyled = styled(InputBase)(({ theme }) => ({
     fontFamily: "OpenSans-SemiBold",
     fontSize: 16,
     lineHeight: 1.5 /* 24px */,
+    [theme.breakpoints.up("sm")]: {
+      fontSize: 18,
+    },
   },
   [theme.breakpoints.up("sm")]: {
     height: 59,
-    // fontSize: "2.375rem",
-    // lineHeight: "3.562rem",
+  },
+  [theme.breakpoints.up("lg")]: {
+    width: 272,
   },
 }));
 export const SubmitButton = styled(BlueButton)(({ theme }) => ({
   display: "block",
   marginLeft: "auto",
   marginRight: "auto",
+  fontSize: 16,
+  width: "100%",
+
   [theme.breakpoints.up("sm")]: {
     marginTop: 8,
+    fontSize: 18,
+  },
+  [theme.breakpoints.up("lg")]: {
+    height: 59,
+    marginTop: "auto",
+    width: 272,
   },
 }));
 export const InputContStyled = styled("div")(({ theme }) => ({
@@ -86,18 +106,41 @@ export const AllInputContStyled = styled("div")(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   gap: 8,
+
+  [theme.breakpoints.up("lg")]: {
+    flexDirection: "row",
+    alignItems: "flex-end",
+    gap: 24,
+  },
 }));
 export const FormStyled = styled("form")(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   gap: 16,
+  [theme.breakpoints.up("lg")]: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: 24,
+  },
 }));
 export const CheckboxContStyled = styled("div")(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   gap: 16,
+
   [theme.breakpoints.up("sm")]: {
     flexDirection: "row",
     justifyContent: "space-between",
+  },
+  [theme.breakpoints.up("lg")]: {
+    order: 1,
+    width: 557,
+  },
+}));
+export const CheckboxStyled = styled(Checkbox)(({ theme }) => ({
+  "& svg": {
+    height: 24,
+    width: 24,
+    stroke: theme.palette.primary.white,
   },
 }));
