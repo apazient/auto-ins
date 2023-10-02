@@ -3,7 +3,7 @@ import { AbsatzS, ItemS } from "./InfoSectionStyle";
 const EndText = () => {
   return (
     <>
-      <AbsatzS variant="caption" component="p">
+      <AbsatzS variant="caption" component="p" role="text">
         На дорозі ніхто не застрахований від непередбачуваних ситуацій, тому так
         важливо мати страховий поліс ОСЦПВ. Поліс забезпечує відшкодування
         шкоди, заподіяної життю, здоров
@@ -11,13 +11,13 @@ const EndText = () => {
         зупинитися і розглянути, як правильно оформити поліс ОСЦПВ при зміні
         автовласника.
       </AbsatzS>
-      <AbsatzS variant="caption" component="p">
+      <AbsatzS variant="caption" component="p" role="text">
         Існує кілька варіантів оформлення страхового поліса, щоб забезпечити
         неперервний захист:
       </AbsatzS>
       <ItemS component="ol">
         <li>
-          <AbsatzS variant="caption" component="p">
+          <AbsatzS variant="caption" component="p" role="text">
             Якщо ви купуєте вживаний автомобіль, власник може передати вам свій
             поліс <strong> ОСЦПВ </strong>
             безоплатно або за винагороду. Це означає, що страховий поліс
@@ -27,26 +27,26 @@ const EndText = () => {
           </AbsatzS>
         </li>
         <li>
-          <AbsatzS variant="caption" component="p">
+          <AbsatzS variant="caption" component="p" role="text">
             Колишній власник переносить кошти на оформлення нової автоцивілки
             для іншого автомобіля.
           </AbsatzS>
         </li>
       </ItemS>
-      <AbsatzS variant="caption" component="p">
+      <AbsatzS variant="caption" component="p" role="text">
         Цей варіант використовується, коли водій придбав новий автомобіль.
         Колишній власник транспортного засобу повинен звернутися до своєї
         страхової компанії, щоб розірвати чинний договір та перенести залишок
         коштів на оформлення нового поліса на інше авто. Розірвання чинного
         договору відбувається одночасно з укладенням нового.
       </AbsatzS>
-      <AbsatzS variant="caption" component="p">
+      <AbsatzS variant="caption" component="p" role="text">
         <strong> ОСЦПВ </strong>є обов<span>&#39;</span>язковим за законом, тому
         важливо вчасно оформити поліс автоцивілки. В будь-якому випадку, ваш
         страховий поліс гарантує захист у разі дорожньо-транспортної пригоди,
         запобігаючи фінансовим труднощам.
       </AbsatzS>
-      <AbsatzS variant="caption" component="p">
+      <AbsatzS variant="caption" component="p" role="text">
         Не забувайте, що автоцивілка - це не просто обов
         <span>&#39;</span>
         язковість, але й інвестиція в безпеку та ваш фінансовий захист. На

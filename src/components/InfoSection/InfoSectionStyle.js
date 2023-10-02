@@ -1,6 +1,6 @@
-import { Box, List, styled, Typography } from "@mui/material";
+import { Box, List, Typography } from "@mui/material";
 import Collapse from "@mui/material/Collapse";
-
+import { styled } from "@mui/material/styles";
 import { ContainerSection } from "../../style/Global.styled";
 
 export const ItemS = styled(List)(({ theme }) => ({
@@ -58,6 +58,6 @@ export const InfoSectionContainer = styled(ContainerSection)(({ theme }) => ({
   },
 }));
 
-export const ListText = styled(Box)({
-  display: "block",
-});
+export const SectionS = styled("section")(({ theme }) => ({
+  backgroundColor: theme.palette.primary.white,
+}));

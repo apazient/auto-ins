@@ -1,6 +1,9 @@
-import styled from "@emotion/styled";
-import { Divider, Drawer, List, ListItem } from "@mui/material";
-import { Box } from "@mui/system";
+import Divider from "@mui/material/Divider";
+import Drawer from "@mui/material/Drawer";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import Box from "@mui/material/Box";
+import { styled } from "@mui/material/styles";
 
 export const BoxImg = styled(Box)(({ theme }) => ({
   stroke: theme.palette.primary.white,
@@ -20,12 +23,6 @@ export const HeaderMenu = styled(Box)(({ theme }) => ({
   },
 }));
 export const MenuContainer = styled(Drawer)(({ theme }) => ({
-  //   "&.MuiDrawer-root": {
-  //     color: theme.palette.primary.main,
-  //   },
-  //   "& .MuiPaper-root": {
-  //     color: theme.palette.primary.main,
-  //   },
   "& .MuiDrawer-paperAnchorRight": {
     width: "100%",
     [theme.breakpoints.up("sm")]: {
@@ -59,7 +56,6 @@ export const BodyMenu = styled(Box)(({ theme }) => ({
 
 export const DividerStyled = styled(Divider)(({ theme }) => ({
   borderColor: theme.palette.primary.main,
-  //   "&.MuiDivider-root": {},
 }));
 
 export const UlListS = styled(List)(({ theme }) => ({

@@ -1,4 +1,5 @@
-import { Button, Container, styled } from "@mui/material";
+import { Button, Container } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
 export const BlueButton = styled(Button)(({ theme }) => ({
   padding: "16px 32px",
@@ -71,7 +72,7 @@ export const YellowButton = styled(Button)(({ theme }) => ({
 
 export const ContainerSection = styled(Container)(({ theme }) => ({
   width: "100%",
-
+  oveflow: "hidden",
   [theme.breakpoints.up("xs")]: {
     padding: "56px 16px",
   },

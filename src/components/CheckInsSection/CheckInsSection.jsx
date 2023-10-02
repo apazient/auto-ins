@@ -1,18 +1,18 @@
-import { Typography } from "@mui/material";
+import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Unstable_Grid2";
 import { SpriteSVG } from "../../images/SpriteSVG";
 
 import {
   BoxImg,
   Button,
-  ContainerSection,
+  ContainerSectionS,
   ContCheck,
 } from "./CheckInsSectionStyle";
 
 const CheckInsSection = () => {
   return (
     <section>
-      <ContainerSection>
+      <ContainerSectionS>
         <ContCheck>
           <BoxImg>
             <SpriteSVG name={"icon-car"} />
@@ -38,7 +38,7 @@ const CheckInsSection = () => {
             </Grid>
           </Grid>
         </ContCheck>
-      </ContainerSection>
+      </ContainerSectionS>
     </section>
   );
 };

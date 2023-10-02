@@ -1,4 +1,5 @@
-import { Box, Typography } from "@mui/material";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 import { useState } from "react";
 import { SpriteSVG } from "../../images/SpriteSVG";
 import {
@@ -24,6 +25,7 @@ export const AccordionSection = () => {
         <Accordions
           expanded={expanded === "panel1"}
           onChange={handleChange("panel1")}
+          TransitionProps={{ unmountOnExit: true }}
         >
           <AccordionsSummary
             aria-controls="panel1bh-content"

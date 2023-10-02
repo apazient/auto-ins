@@ -1,16 +1,9 @@
 import { useTheme } from "@emotion/react";
-import {
-  Box,
-  Card,
-  CardMedia,
-  FormControlLabel,
-  useMediaQuery,
-} from "@mui/material";
-
+import CardMedia from "@mui/material/CardMedia";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import { useState } from "react";
 
-import { YellowButton } from "../../style/Global.styled";
-import EndText from "./EndText";
 import Car320Webp from "../../images/carMob.webp";
 import Car320Webp2x from "../../images/carMob2x.webp";
 import Car320Webp3x from "../../images/carMob3x.webp";
@@ -32,17 +25,18 @@ import Car1400Jpg from "../../images/carDes.jpg";
 import Car1400Jpg2x from "../../images/carDes2x.jpg";
 import Car1400Jpg3x from "../../images/carDes3x.jpg";
 
+import { YellowButton } from "../../style/Global.styled";
 import {
-  AbsatzS,
   CollapseContainer,
   InfoSectionContainer,
-  ItemS,
-  ListText,
+  SectionS,
   WrapperS,
 } from "./InfoSectionStyle";
+
 import MiddleFirstText from "./MiddleFirstText";
 import MiddleSecondText from "./MiddleSecondText";
 import StartText from "./StartText";
+import EndText from "./EndText";
 
 const InfoSection = () => {
   const [checked, setChecked] = useState(false);
@@ -69,7 +63,7 @@ const InfoSection = () => {
   };
 
   return (
-    <section>
+    <SectionS>
       <InfoSectionContainer component="article">
         <WrapperS>
           <CollapseContainer
@@ -103,7 +97,10 @@ const InfoSection = () => {
             <div>
               <CardMedia
                 sx={{
-                  "& img": { borderRadius: "50px 0px 0px 50px" },
+                  "& img": {
+                    borderRadius: "50px 0px 0px 50px",
+                    aspectRatio: "86/79",
+                  },
                   marginBottom: "24px",
                   background:
                     "linear-gradient(0deg, rgba(3, 3, 3, 0.05) 0%, rgba(3, 3, 3, 0.05) 100%)",
@@ -114,8 +111,9 @@ const InfoSection = () => {
                   src={Car1400Jpg}
                   srcSet={`${Car1400Webp} 688w,${Car1400Jpg} 688w,${Car1400Webp2x} 1376w,${Car1400Jpg2x} 1376w,${Car1400Webp3x} 2064w,${Car1400Jpg3x} 2064w`}
                   sizes="688px"
+                  width="688px"
+                  height="632px"
                   alt="автомобіль"
-                  loading="lazy"
                 />
               </CardMedia>
               <CollapseContainer
@@ -153,6 +151,7 @@ const InfoSection = () => {
             marginTop: "32px",
             margin: "0 auto",
             "& img": { borderRadius: "50px" },
+            aspectRatio: "343/240",
           }}
         >
           <img
@@ -164,7 +163,7 @@ const InfoSection = () => {
           />
         </CardMedia>
       </InfoSectionContainer>
-    </section>
+    </SectionS>
   );
 };
 

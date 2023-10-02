@@ -1,4 +1,7 @@
-import { Box, IconButton, ListItemButton, ListItemText } from "@mui/material";
+import Box from "@mui/material/Box";
+import IconButton from "@mui/material/IconButton";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemText from "@mui/material/ListItemText";
 
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -30,14 +33,6 @@ const BurgerMenu = () => {
     setOpen(open);
   };
 
-  // const onNavClick = (event) => {
-  //   event.preventDefault();
-  //   const id = event.target.textContent.toLowerCase();
-  //   console.log(id);
-  //   let element = document.getElementById(id);
-  //   element.scrollIntoView({ behavior: "smooth" });
-  //   setOpen(false);
-  // };
   const onNavClick = () => {
     event.preventDefault();
     navigate("/", { state: { id: event.target.textContent.toLowerCase() } });
@@ -76,74 +71,72 @@ const BurgerMenu = () => {
               </BoxImg>
             </IconButton>
           </HeaderMenu>
+          <Box>
+            <BodyMenu>
+              <ListItemButton onClick={onNavClick} sx={{ p: "0" }}>
+                <ListItemText primary="Переваги" sx={{ m: 0 }} />
+              </ListItemButton>
+              <DividerStyled />
+              <ListItemButton onClick={onNavClick} sx={{ p: "0" }}>
+                <ListItemText primary="Партнери" sx={{ m: 0 }} />
+              </ListItemButton>
+              <DividerStyled />
+              <ListItemButton onClick={onNavClick} sx={{ p: "0" }}>
+                <ListItemText primary="Питання-відповіді" sx={{ m: 0 }} />
+              </ListItemButton>
+              <DividerStyled />
+            </BodyMenu>
 
-          <BodyMenu>
-            <ListItemButton onClick={onNavClick} sx={{ p: "0" }}>
-              <ListItemText primary="Переваги" sx={{ m: 0 }} />
-            </ListItemButton>
-            <DividerStyled />
-            <ListItemButton onClick={onNavClick} sx={{ p: "0" }}>
-              <ListItemText primary="Партнери" sx={{ m: 0 }} />
-            </ListItemButton>
-            <DividerStyled />
-            <ListItemButton
-              // component={Link}
-              // to="/"
-              onClick={onNavClick}
-              sx={{ p: "0" }}
-            >
-              <ListItemText primary="Питання-відповіді" sx={{ m: 0 }} />
-            </ListItemButton>
-            <DividerStyled />
-          </BodyMenu>
-
-          <UlListS className="centered">
-            <Link
-              to="https://www.instagram.com"
-              target="_blank"
-              rel="noreferrer noopener"
-              onClick={toggleDrawer(false)}
-            >
+            <UlListS className="centered">
               <LiItemS disablePadding={true} className="liSocialIcon">
-                <BoxIconS className="socialIconBox">
-                  <SpriteSVG name={"icon-instagram"} />
-                </BoxIconS>
+                <Link
+                  to="https://www.instagram.com"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  onClick={toggleDrawer(false)}
+                >
+                  <BoxIconS className="socialIconBox">
+                    <SpriteSVG name={"icon-instagram"} />
+                  </BoxIconS>
+                </Link>
               </LiItemS>
-            </Link>
-            <Link
-              to="https://www.facebook.com"
-              target="_blank"
-              rel="noreferrer noopener"
-            >
               <LiItemS disablePadding={true} className="liSocialIcon">
-                <BoxIconS className="socialIconBox">
-                  <SpriteSVG name={"icon-facebook"} />
-                </BoxIconS>
+                <Link
+                  to="https://www.facebook.com"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  <BoxIconS className="socialIconBox">
+                    <SpriteSVG name={"icon-facebook"} />
+                  </BoxIconS>
+                </Link>
               </LiItemS>
-            </Link>
-            <Link
-              to="https://web.telegram.org"
-              target="_blank"
-              rel="noreferrer noopener"
-            >
               <LiItemS disablePadding={true} className="liSocialIcon">
-                <BoxIconS className="socialIconBox">
-                  <SpriteSVG name={"icon-telegram-send"} />
-                </BoxIconS>
+                <Link
+                  to="https://web.telegram.org"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  <BoxIconS className="socialIconBox">
+                    <SpriteSVG name={"icon-telegram-send"} />
+                  </BoxIconS>
+                </Link>
               </LiItemS>
-            </Link>
-            <Link
-              to="mailto:example@mail.ua"
-              target="_blank"
-              rel="noreferrer noopener"
-            >
-              <LiItemS disablePadding={true} className="liSocialIcon">
-                <BoxIconS className="socialIconBox">
-                  <SpriteSVG name={"icon-mail"} />
-                </BoxIconS>
-              </LiItemS>
-            </Link>
-          </UlListS>
+              <div>
+                <LiItemS disablePadding={true} className="liSocialIcon">
+                  <Link
+                    to="mailto:example@mail.ua"
+                    target="_blank"
+                    rel="noreferrer noopener"
+                  >
+                    <BoxIconS className="socialIconBox">
+                      <SpriteSVG name={"icon-mail"} />
+                    </BoxIconS>
+                  </Link>
+                </LiItemS>
+              </div>
+            </UlListS>
+          </Box>
         </Box>
       </MenuContainer>
     </>
