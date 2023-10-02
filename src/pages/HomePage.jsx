@@ -2,14 +2,13 @@ import HeroTabs from "../components/HeroTabs/HeroTabs";
 import { AccordionSection } from "../components/AccordionSection/AccordionSection";
 import CheckInsSection from "../components/CheckInsSection/CheckInsSection";
 import InfoSection from "../components/InfoSection/InfoSection";
-import info from "../assets/texts/infos.json";
-import { useEffect, useState } from "react";
+
+import { useEffect } from "react";
 import AdvatagesSection from "../components/AdvatagesSection/AdvatagesSection";
 import { useLocation } from "react-router-dom";
 import Partners from "../components/Partners/Partners";
 
 const HomePage = () => {
-  const [text, setText] = useState(info.text);
   const { state } = useLocation();
   const { id } = state || {};
 
@@ -25,9 +24,9 @@ const HomePage = () => {
       <HeroTabs />
       <AdvatagesSection />
       <CheckInsSection />
-      <Partners/>
+      <Partners />
       <AccordionSection />
-      <InfoSection text={text} />
+      <InfoSection />
     </>
   );
 };
