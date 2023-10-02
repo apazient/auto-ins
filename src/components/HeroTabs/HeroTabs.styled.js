@@ -71,7 +71,7 @@ export const TabsContainer = styled("div")(({ theme }) => ({
 export const TitleStaled = styled(Typography)(({ theme }) => ({
   textAlign: "center",
   marginBottom: "24px",
-
+  overflow: "hidden",
   [theme.breakpoints.up("sm")]: {
     marginBottom: "48px",
   },

@@ -1,5 +1,6 @@
-import styled from "@emotion/styled";
-import { Box, Grid } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
 
 export const GridContainer = styled(Grid)(({ theme }) => ({
   gap: "16px",
@@ -9,10 +10,10 @@ export const GridContainer = styled(Grid)(({ theme }) => ({
     gap: "24px",
   },
 }));
-export const ItemS = styled(Box)(({ theme }) => ({
+export const ItemS = styled(Box)({
   display: "flex",
   gap: "8px",
-}));
+});
 
 export const TextContainerS = styled(Box)(({ theme }) => ({
   width: "81%",

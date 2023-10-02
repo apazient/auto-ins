@@ -1,6 +1,7 @@
-import styled from "@emotion/styled";
-import { Box, Container } from "@mui/material";
-import { BlueButton } from "../../style/Global.styled";
+import { styled } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+import { BlueButton, ContainerSection } from "../../style/Global.styled";
 
 export const BoxImg = styled(Box)(({ theme }) => ({
   fill: theme.palette.primary.white,
@@ -46,7 +47,7 @@ export const ContCheck = styled(Container)(({ theme }) => ({
   },
 }));
 
-export const ContainerSection = styled(Container)(({ theme }) => ({
+export const ContainerSectionS = styled(ContainerSection)(({ theme }) => ({
   [theme.breakpoints.up("xs")]: {
     padding: "0 16px 56px 16px",
   },

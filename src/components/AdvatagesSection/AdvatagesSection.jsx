@@ -1,7 +1,6 @@
-import { ContainerSection } from "../../style/Global.styled";
+import { nanoid } from "nanoid";
+import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Unstable_Grid2";
-
-import { Typography } from "@mui/material";
 import { SpriteSVG } from "../../images/SpriteSVG";
 import {
   BoxImgS,
@@ -9,9 +8,9 @@ import {
   ItemS,
   TextContainerS,
 } from "./AdvatagesSectionStyle";
+import { ContainerSection } from "../../style/Global.styled";
 import { useState } from "react";
 import dataFromJson from "../../assets/texts/advantages.json";
-import { nanoid } from "nanoid";
 
 const AdvatagesSection = () => {
   const [data, _] = useState(dataFromJson);

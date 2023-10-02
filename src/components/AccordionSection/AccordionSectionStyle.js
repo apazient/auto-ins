@@ -1,10 +1,8 @@
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  styled,
-  Typography,
-} from "@mui/material";
+import Accordion from "@mui/material/Accordion";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import { styled } from "@mui/material/styles";
+import Typography from "@mui/material/Typography";
 import { ContainerSection } from "../../style/Global.styled";
 
 export const MainText = styled(Typography)(({ theme }) => ({
@@ -59,7 +57,7 @@ export const AccordionsDetails = styled(AccordionDetails)(({ theme }) => ({
 
 export const ContAccordion = styled(ContainerSection)(({ theme }) => ({
   backgroundColor: theme.palette.primary.main,
-  [theme.breakpoints.up("lg")]: {
-    maxWidth: "1006px",
-  },
+  // [theme.breakpoints.up("lg")]: {
+  //   maxWidth: "1006px",
+  // },
 }));
