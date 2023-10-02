@@ -138,6 +138,7 @@ const InfoSection = () => {
             display: "block",
             textAlign: "center",
             marginTop: { sx: "24px", sm: "32px", lg: "48px" },
+            marginBottom: { sx: "32px", sm: "56px", lg: "0" },
           }}
           control={
             <YellowButton onClick={handleChange}>
@@ -148,15 +149,16 @@ const InfoSection = () => {
         <CardMedia
           sx={{
             display: { lg: "none" },
-            width: "100%",
+            width: { sm: "680px" },
             marginTop: "32px",
+            margin: "0 auto",
             "& img": { borderRadius: "50px" },
           }}
         >
           <img
             src={Car320Jpg}
             srcSet={`${Car320Jpg} 343w,${Car320Webp} 343w,${Car320Webp2x} 686w,${Car320Jpg2x} 686w,${Car320Webp3x} 1029w,${Car320Jpg3x} 1029w,${Car768Jpg} 680w,${Car768Web} 680w,${Car768Web2x} 1360w,${Car768Jpg2x} 1360w,${Car768Web3x} 2040w,${Car768Jpg3x} 2040w`}
-            sizes="100vw"
+            sizes="(max-widht:744px) 680px, 100vw"
             alt="автомобіль"
             loading="lazy"
           />
