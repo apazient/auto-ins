@@ -1,6 +1,7 @@
 import {
   Box,
   Container,
+  Link,
   List,
   ListItem,
   Typography,
@@ -15,15 +16,6 @@ export const HeaderS = styled(Container)(({ theme }) => ({
     padding: "16px 32px",
   },
 }));
-
-// export const HeaderBoxS = styled(Container)(({theme})=>({
-//     // width: '1160px',
-//     maxWidth: '1160px',
-//     display: 'flex',
-//     alignItems: 'center',
-//     justifyContent: 'space-between',
-
-// }))
 
 export const HeaderBoxS = styled(Container)(({ theme }) => ({
   maxWidht: "1160px",
@@ -110,21 +102,10 @@ export const UlListHS = styled(List)`
   }
 `;
 
-export const LiItemHS = styled(ListItem)(({ theme }) => ({
-  "&.liSocialIcon": {
-    width: "40px",
-    height: "40px",
-    backgroundColor: theme.palette.primary.white,
-    justifyContent: "center",
-    borderRadius: "50%",
-    stroke: theme.palette.primary.main,
-    fill: "none",
-    transition: "stroke 250ms linear",
-    "&:hover": {
-      stroke: theme.palette.primary.blue,
-    },
-  },
-}));
+export const LiItemHS = styled(ListItem)`
+  cursor: pointer;
+  width: auto;
+`;
 
 export const ChapterSpanHS = styled(Typography)(({ theme }) => ({
   "&.chapterSpan": {
@@ -137,5 +118,21 @@ export const ChapterSpanHS = styled(Typography)(({ theme }) => ({
     "&:hover": {
       color: theme.palette.primary.blue,
     },
+  },
+}));
+
+export const LinkS = styled(Link)(({ theme }) => ({  
+    width: "40px",
+    height: "40px",
+    backgroundColor: theme.palette.primary.white,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",    
+    borderRadius: "50%",
+    stroke: theme.palette.primary.main,
+    fill: "none",
+    transition: "stroke 250ms linear",
+    "&:hover": {
+      stroke: theme.palette.primary.blue,    
   },
 }));

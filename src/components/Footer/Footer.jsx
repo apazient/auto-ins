@@ -1,16 +1,16 @@
-import { Link } from "@mui/material";
 import { Link as ScrollLink } from "react-scroll";
 import { SpriteSVG } from "../../images/SpriteSVG";
-import RRR from "../RRR.js/RRR";
+// import RRR from "../RRR.js/RRR";
 import {
   FooterS,
   FooterBoxS,
-  UlListS,
-  LiItemS,
+  UlListS,  
   ChapterSpan,
   BoxIconS,
   LogoBox,
   LogoText,
+  LinkS,
+  LiItemS,
 } from "./FooterStyled";
 import { useNavigate } from "react-router-dom";
 
@@ -22,100 +22,96 @@ const Footer = () => {
   };
 
   return (
-    <FooterS disableGutters={true} maxWidth={false}>
-      <RRR />
-      <FooterBoxS disableGutters={true}>
-        <LogoBox>
-          <BoxIconS className="logoIcon">
-            <SpriteSVG name={"icon-logo"} />
-          </BoxIconS>
-          <LogoText className="logoText">AUTO-INS</LogoText>
-        </LogoBox>
-        <UlListS>
-          <ScrollLink
-            to="переваги"
-            smooth={true}
-            duration={500}
-            style={{ cursor: "pointer" }}
-          >
-            <LiItemS disablePadding={true} onClick={()=>handleScrollToSection('переваги')}>
-              <ChapterSpan className="chapterSpan">Переваги</ChapterSpan>
+    <footer style={{ oveflow: "hidden" }}>
+      <FooterS disableGutters={true} maxWidth={false}>
+        {/* <RRR /> */}
+        <FooterBoxS disableGutters={true}>
+          <LogoBox>
+            <BoxIconS className="logoIcon">
+              <SpriteSVG name={"icon-logo"} />
+            </BoxIconS>
+            <LogoText className="logoText">AUTO-INS</LogoText>
+          </LogoBox>
+          <UlListS>
+            <LiItemS
+              disablePadding={true}
+              onClick={() => handleScrollToSection("переваги")}
+            >
+              <ScrollLink to="переваги" smooth={true} duration={700}>
+                <ChapterSpan className="chapterSpan">Переваги</ChapterSpan>
+              </ScrollLink>
             </LiItemS>
-          </ScrollLink>
-          <ScrollLink
-            to="партнери"
-            smooth={true}
-            duration={500}
-            style={{ cursor: "pointer" }}
-          >
-            <LiItemS disablePadding={true} onClick={()=>handleScrollToSection('партнери')}>
-              <ChapterSpan className="chapterSpan">Партнери</ChapterSpan>
+            <LiItemS
+              disablePadding={true}
+              onClick={() => handleScrollToSection("партнери")}
+            >
+              <ScrollLink to="партнери" smooth={true} duration={700}>
+                <ChapterSpan className="chapterSpan">Партнери</ChapterSpan>
+              </ScrollLink>
             </LiItemS>
-          </ScrollLink>
-          <ScrollLink
-            to="питання-відповіді"
-            smooth={true}
-            duration={500}
-            style={{ cursor: "pointer" }}
-          >
-            <LiItemS disablePadding={true} onClick={()=>handleScrollToSection('питання-відповіді')}>
-              <ChapterSpan className="chapterSpan">
-                Питання-відповіді
-              </ChapterSpan>
+            <LiItemS
+              disablePadding={true}
+              onClick={() => handleScrollToSection("питання-відповіді")}
+            >
+              <ScrollLink to="питання-відповіді" smooth={true} duration={700}>
+                <ChapterSpan className="chapterSpan">
+                  Питання-відповіді
+                </ChapterSpan>
+              </ScrollLink>
             </LiItemS>
-          </ScrollLink>
-        </UlListS>
-        <UlListS className="centered">
-          <Link
-            href="https://www.instagram.com"
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            <LiItemS disablePadding={true} className="liSocialIcon">
-              <BoxIconS className="socialIconBox">
-                <SpriteSVG name={"icon-instagram"} />
-              </BoxIconS>
+          </UlListS>
+          <UlListS className="centered">
+            <LiItemS disablePadding={true}>
+              <LinkS
+                href="https://www.instagram.com"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                <BoxIconS className="socialIconBox">
+                  <SpriteSVG name={"icon-instagram"} />
+                </BoxIconS>
+              </LinkS>
             </LiItemS>
-          </Link>
-          <Link
-            href="https://www.facebook.com"
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            <LiItemS disablePadding={true} className="liSocialIcon">
-              <BoxIconS className="socialIconBox">
-                <SpriteSVG name={"icon-facebook"} />
-              </BoxIconS>
+            <LiItemS disablePadding={true}>
+              <LinkS
+                href="https://www.facebook.com"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                <BoxIconS className="socialIconBox">
+                  <SpriteSVG name={"icon-facebook"} />
+                </BoxIconS>
+              </LinkS>
             </LiItemS>
-          </Link>
-          <Link
-            href="https://web.telegram.org"
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            <LiItemS disablePadding={true} className="liSocialIcon">
-              <BoxIconS className="socialIconBox">
-                <SpriteSVG name={"icon-telegram-send"} />
-              </BoxIconS>
+            <LiItemS disablePadding={true}>
+              <LinkS
+                href="https://web.telegram.org"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                <BoxIconS className="socialIconBox">
+                  <SpriteSVG name={"icon-telegram-send"} />
+                </BoxIconS>
+              </LinkS>
             </LiItemS>
-          </Link>
-          <Link
-            href="mailto:example@mail.ua"
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            <LiItemS disablePadding={true} className="liSocialIcon">
-              <BoxIconS className="socialIconBox">
-                <SpriteSVG name={"icon-mail"} />
-              </BoxIconS>
+            <LiItemS disablePadding={true}>
+              <LinkS
+                href="mailto:example@mail.ua"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                <BoxIconS className="socialIconBox">
+                  <SpriteSVG name={"icon-mail"} />
+                </BoxIconS>
+              </LinkS>
             </LiItemS>
-          </Link>
-        </UlListS>
-        <ChapterSpan className="bottomSpan">
-          &copy; ТОВ «Auto-ins», 2023. Всі права захищені.
-        </ChapterSpan>
-      </FooterBoxS>
-    </FooterS>
+          </UlListS>
+          <ChapterSpan className="bottomSpan">
+            &copy; ТОВ «Auto-ins», 2023. Всі права захищені.
+          </ChapterSpan>
+        </FooterBoxS>
+      </FooterS>
+    </footer>
   );
 };
 
