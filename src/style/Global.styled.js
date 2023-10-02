@@ -71,13 +71,16 @@ export const YellowButton = styled(Button)(({ theme }) => ({
 
 export const ContainerSection = styled(Container)(({ theme }) => ({
   width: "100%",
+
   [theme.breakpoints.up("xs")]: {
     padding: "56px 16px",
   },
   [theme.breakpoints.up("sm")]: {
     padding: "72px 32px",
+    width: "744px",
   },
   [theme.breakpoints.up("lg")]: {
-    padding: "120px 60px",
+    padding: "120px 120px",
+    width: "1400px",
   },
 }));
