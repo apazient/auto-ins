@@ -33,6 +33,7 @@ export const GeneralCheckbox = ({
             sx={{
               "& svg": {
                 stroke: color ? color : theme.palette.primary.white,
+                fill: "transparent",
               },
             }}
             value={val}
