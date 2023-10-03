@@ -1,0 +1,1 @@
+import{j as r}from"./index-dc70f43d.js";import{Y as t}from"./Global.styled-b455a442.js";const s=()=>r.jsxs(r.Fragment,{children:[r.jsx("div",{children:"FormPage"}),r.jsx(t,{width:300,children:"YELLOWBUTTON"})]});export{s as default};
