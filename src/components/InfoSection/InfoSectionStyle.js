@@ -59,5 +59,5 @@ export const InfoSectionContainer = styled(ContainerSection)(({ theme }) => ({
 }));
 
 export const SectionS = styled("section")(({ theme }) => ({
-  backgroundColor: theme.palette.primary.white,
+  backgroundColor: theme.palette.primary.background,
 }));

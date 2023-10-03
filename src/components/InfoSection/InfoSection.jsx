@@ -135,8 +135,10 @@ const InfoSection = () => {
           sx={{
             display: "block",
             textAlign: "center",
-            marginTop: { sx: "24px", sm: "32px", lg: "48px" },
-            marginBottom: { sx: "32px", sm: "56px", lg: "0" },
+            marginTop: { xs: "24px", sm: "32px", lg: "48px" },
+            marginBottom: { xs: "32px", sm: "56px", lg: "0" },
+            marginLeft: "0",
+            marginRight: "0",
           }}
           control={
             <YellowButton onClick={handleChange}>

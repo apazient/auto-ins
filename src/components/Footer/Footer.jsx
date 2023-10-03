@@ -4,7 +4,7 @@ import { SpriteSVG } from "../../images/SpriteSVG";
 import {
   FooterS,
   FooterBoxS,
-  UlListS,  
+  UlListS,
   ChapterSpan,
   BoxIconS,
   LogoBox,
@@ -38,7 +38,9 @@ const Footer = () => {
               onClick={() => handleScrollToSection("переваги")}
             >
               <ScrollLink to="переваги" smooth={true} duration={700}>
-                <ChapterSpan className="chapterSpan">Переваги</ChapterSpan>
+                <ChapterSpan className="chapterSpan" component="span">
+                  Переваги
+                </ChapterSpan>
               </ScrollLink>
             </LiItemS>
             <LiItemS
@@ -46,7 +48,9 @@ const Footer = () => {
               onClick={() => handleScrollToSection("партнери")}
             >
               <ScrollLink to="партнери" smooth={true} duration={700}>
-                <ChapterSpan className="chapterSpan">Партнери</ChapterSpan>
+                <ChapterSpan className="chapterSpan" component="span">
+                  Партнери
+                </ChapterSpan>
               </ScrollLink>
             </LiItemS>
             <LiItemS
@@ -54,7 +58,7 @@ const Footer = () => {
               onClick={() => handleScrollToSection("питання-відповіді")}
             >
               <ScrollLink to="питання-відповіді" smooth={true} duration={700}>
-                <ChapterSpan className="chapterSpan">
+                <ChapterSpan className="chapterSpan" component="span">
                   Питання-відповіді
                 </ChapterSpan>
               </ScrollLink>
@@ -63,9 +67,10 @@ const Footer = () => {
           <UlListS className="centered">
             <LiItemS disablePadding={true}>
               <LinkS
-                href="https://www.instagram.com"
+                href="https://instagram.com/autoins_info?utm_source=qr&igshid=MzNlNGNkZWQ4Mg%3D%3D"
                 target="_blank"
                 rel="noreferrer noopener"
+                aria-label="instagram"
               >
                 <BoxIconS className="socialIconBox">
                   <SpriteSVG name={"icon-instagram"} />
@@ -77,6 +82,7 @@ const Footer = () => {
                 href="https://www.facebook.com"
                 target="_blank"
                 rel="noreferrer noopener"
+                aria-label="facebook"
               >
                 <BoxIconS className="socialIconBox">
                   <SpriteSVG name={"icon-facebook"} />
@@ -85,9 +91,10 @@ const Footer = () => {
             </LiItemS>
             <LiItemS disablePadding={true}>
               <LinkS
-                href="https://web.telegram.org"
+                href="https://t.me/@auto_ins_ua"
                 target="_blank"
                 rel="noreferrer noopener"
+                aria-label="telegram"
               >
                 <BoxIconS className="socialIconBox">
                   <SpriteSVG name={"icon-telegram-send"} />
@@ -96,9 +103,10 @@ const Footer = () => {
             </LiItemS>
             <LiItemS disablePadding={true}>
               <LinkS
-                href="mailto:example@mail.ua"
+                href="mailto:help.autoins@gmail.com"
                 target="_blank"
                 rel="noreferrer noopener"
+                aria-label="mail"
               >
                 <BoxIconS className="socialIconBox">
                   <SpriteSVG name={"icon-mail"} />

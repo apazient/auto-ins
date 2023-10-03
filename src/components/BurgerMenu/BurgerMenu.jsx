@@ -90,7 +90,7 @@ const BurgerMenu = () => {
             <UlListS className="centered">
               <LiItemS disablePadding={true} className="liSocialIcon">
                 <Link
-                  to="https://www.instagram.com"
+                  to="https://instagram.com/autoins_info?utm_source=qr&igshid=MzNlNGNkZWQ4Mg%3D%3D"
                   target="_blank"
                   rel="noreferrer noopener"
                   onClick={toggleDrawer(false)}
@@ -113,7 +113,7 @@ const BurgerMenu = () => {
               </LiItemS>
               <LiItemS disablePadding={true} className="liSocialIcon">
                 <Link
-                  to="https://web.telegram.org"
+                  to="https://t.me/@auto_ins_ua"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -125,7 +125,7 @@ const BurgerMenu = () => {
               <div>
                 <LiItemS disablePadding={true} className="liSocialIcon">
                   <Link
-                    to="mailto:example@mail.ua"
+                    to="mailto:help.autoins@gmail.com"
                     target="_blank"
                     rel="noreferrer noopener"
                   >
