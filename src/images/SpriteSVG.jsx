@@ -1,4 +1,4 @@
-import React from "react";
+import PropTypes from "prop-types";
 
 export const SpriteSVG = ({ name }) => {
   switch (name) {
@@ -1027,4 +1027,8 @@ export const SpriteSVG = ({ name }) => {
     default:
       return "SVG not found";
   }
+};
+
+SpriteSVG.propTypes = {
+  name: PropTypes.string.isRequired,
 };
