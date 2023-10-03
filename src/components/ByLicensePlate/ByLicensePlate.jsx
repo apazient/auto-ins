@@ -30,6 +30,7 @@ const ByLicensePlate = () => {
         <InputContStyled>
           <Typography variant="body1" component="label" htmlFor="license-plate">
             Номер транспортного засобу
+            <HelpCircle lableText="тут потрібно ввести текст)))" />
           </Typography>
           <InputStyled
             name="licensePlate"

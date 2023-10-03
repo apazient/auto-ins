@@ -49,10 +49,11 @@ const ByParameters = () => {
           <InputContStyled>
             <Typography
               variant="body1"
-              compomponent="label"
+              component="label"
               htmlFor="location-input"
             >
               Адреса за техпаспортом
+              <HelpCircle lableText="тут потрібно ввести текст)))" />
             </Typography>
             <InputStyled
               endAdornment={
@@ -85,7 +86,10 @@ const ByParameters = () => {
               }
               label="Є пільги"
             />
-            <HelpCircle lableText="тут потрібно ввести текст)))" />
+            <HelpCircle
+              lableText="тут потрібно ввести текст)))"
+              // colorStyle={fsadf}
+            />
           </CheckboxContainerStyled>
           <CheckboxContainerStyled component="span">
             <FormControlLabel
