@@ -14,7 +14,7 @@ import {
 import { FormControlLabel, Typography } from "@mui/material";
 import { SpriteSVG } from "../../images/SpriteSVG";
 import HelpCircle from "../HelpCircle/HelpCircle";
-import HeroSelect from "../HeroSelect/HeroSelect";
+import GeneralSelect from "../GeneralSelect/GeneralSelect";
 
 const ByParameters = () => {
   const formik = useFormik({
@@ -35,12 +35,12 @@ const ByParameters = () => {
     <div>
       <FormStyled onSubmit={formik.handleSubmit}>
         <AllInputContStyled>
-          <HeroSelect
+          <GeneralSelect
             id="vehicle"
             lableText="Транспортний засіб"
             optionsArr={["Легкове авто", "Вантажівка", "Причеп"]}
           />
-          <HeroSelect
+          <GeneralSelect
             id="engineCapacity"
             lableText="Об’єм двигуна"
             optionsArr={["Легкове авто", "Вантажівка", "Причеп"]}
