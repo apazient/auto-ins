@@ -1,4 +1,5 @@
-import { Button, styled } from "@mui/material";
+import { Button, Container } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
 export const BlueButton = styled(Button)(({ theme }) => ({
   padding: "16px 32px",
@@ -49,6 +50,7 @@ export const WhiteButton = styled(Button)(({ theme }) => ({
 
 export const YellowButton = styled(Button)(({ theme }) => ({
   padding: "16px 38px",
+  fontSize: "1rem",
   borderRadius: "50px",
   fontFamily: "OpenSans-SemiBold",
   fontWeight: 600,
@@ -65,5 +67,21 @@ export const YellowButton = styled(Button)(({ theme }) => ({
     background: theme.palette.primary.lightYellow,
     color: theme.palette.primary.tertiaryDark,
     border: "1px solid theme.palette.primary.lightYellow",
+  },
+}));
+
+export const ContainerSection = styled(Container)(({ theme }) => ({
+  width: "100%",
+  oveflow: "hidden",
+  [theme.breakpoints.up("xs")]: {
+    padding: "56px 16px",
+  },
+  [theme.breakpoints.up("sm")]: {
+    padding: "72px 32px",
+    width: "744px",
+  },
+  [theme.breakpoints.up("lg")]: {
+    padding: "120px 120px",
+    width: "1400px",
   },
 }));

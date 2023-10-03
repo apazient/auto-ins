@@ -37,9 +37,9 @@ export const theme = createTheme({
   breakpoints: {
     values: {
       xs: 0,
-      sm: 768,
+      sm: 744,
       md: 900,
-      lg: 1280,
+      lg: 1400,
       xl: 1536,
     },
   },
@@ -55,9 +55,15 @@ export const theme = createTheme({
           { "@font-face": openSansBold },
           { "@font-face": openSansExtraBold },
           { "@font-face": openSansSemiBold },
+          { fontSize: "16px" },
         ],
         body: {
           backgroundColor: "#030303",
+        },
+        img: {
+          display: "block",
+          maxWidth: "100%",
+          height: "auto",
         },
       },
     },
@@ -71,13 +77,15 @@ theme.typography.h1 = {
     fontSize: "1.5rem",
     fontFamily: "OpenSans-Bold, sans-serif",
     fontWeight: 800,
-    lineHeight: "1.5rem",
+    lineHeight: "2.25rem",
   },
   [theme.breakpoints.up("sm")]: {
     fontSize: "2.375rem",
+    lineHeight: "3.562rem",
   },
   [theme.breakpoints.up("lg")]: {
     fontSize: "3rem",
+    lineHeight: "4.5rem",
   },
 };
 
@@ -85,7 +93,7 @@ theme.typography.h2 = {
   [theme.breakpoints.up("xs")]: {
     fontSize: "1.375rem",
     color: theme.palette.primary.white,
-    fontFamily: "OpenSans-Bold, sans-serif",
+    fontFamily: "OpenSans-ExtraBold, sans-serif",
     fontWeight: 800,
     lineHeight: "1.5rem",
   },
@@ -100,13 +108,14 @@ theme.typography.h2 = {
 theme.typography.h3 = {
   [theme.breakpoints.up("xs")]: {
     fontSize: "1rem",
-    fontFamily: "OpenSans-Bold, sans-serif",
+    fontFamily: "OpenSans-ExtraBold, sans-serif",
     fontWeight: 800,
     color: theme.palette.primary.white,
     lineHeight: "1.5rem",
   },
   [theme.breakpoints.up("sm")]: {
     fontSize: "1.375rem",
+    lineHeight: "2.06rem",
   },
 };
 
@@ -143,8 +152,8 @@ theme.typography.subtitle2 = {
     fontSize: "0.875rem",
     fontFamily: "OpenSans-SemiBold, sans-serif",
     fontWeight: 600,
-    color: theme.palette.primary.white,
-    lineHeight: "1.5rem",
+    color: theme.palette.primary.main,
+    lineHeight: "1.31rem",
   },
   [theme.breakpoints.up("sm")]: {
     fontSize: "1rem",
@@ -152,4 +161,33 @@ theme.typography.subtitle2 = {
   [theme.breakpoints.up("lg")]: {
     fontSize: "1.125rem",
   },
+};
+
+theme.typography.body2 = {
+  [theme.breakpoints.up("xs")]: {
+    fontSize: "0.875rem",
+    fontFamily: "OpenSans-SemiBold, sans-serif",
+    fontWeight: 400,
+    color: theme.palette.primary.main,
+    lineHeight: "1.31",
+  },
+  [theme.breakpoints.up("sm")]: {
+    fontSize: "1rem",
+  },
+  [theme.breakpoints.up("lg")]: {
+    fontSize: "1.125rem",
+  },
+};
+theme.typography.caption = {
+  [theme.breakpoints.up("xs")]: {
+    fontSize: "0.875rem",
+    fontFamily: "OpenSans-Regular, sans-serif",
+    fontWeight: 400,
+    color: theme.palette.primary.main,
+    lineHeight: "1.5",
+  },
+  [theme.breakpoints.up("sm")]: {
+    fontSize: "1rem",
+  },
+  [theme.breakpoints.up("lg")]: {},
 };

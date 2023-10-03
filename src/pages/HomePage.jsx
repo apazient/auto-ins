@@ -1,20 +1,33 @@
-import { Link } from "react-router-dom";
-import { BlueButton, WhiteButton, YellowButton } from "../style/Global.styled";
-import { Button, Typography } from "@mui/material";
+import HeroTabs from "../components/HeroTabs/HeroTabs";
+import { AccordionSection } from "../components/AccordionSection/AccordionSection";
+import CheckInsSection from "../components/CheckInsSection/CheckInsSection";
+import InfoSection from "../components/InfoSection/InfoSection";
+
+import { useEffect } from "react";
+import AdvatagesSection from "../components/AdvatagesSection/AdvatagesSection";
+import { useLocation } from "react-router-dom";
+import Partners from "../components/Partners/Partners";
 
 const HomePage = () => {
+  const { state } = useLocation();
+  const { id } = state || {};
+
+  useEffect(() => {
+    let element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [id]);
+
   return (
     <>
-      <div>HomePage</div>
-      <BlueButton component={Link} display={{ xs: "none", sm: "block" }}>
-        Hallo
-      </BlueButton>
-      <Button variant="contained">New Button</Button>
-      <WhiteButton> WhiteButton</WhiteButton>
+      <HeroTabs />
 
-      <YellowButton width={300}>HALLLLLLLLLL</YellowButton>
-
-      <Typography variant="h1">Автоцивілка без зайвих рухів</Typography>
+      <AdvatagesSection />
+      <CheckInsSection />
+      <Partners />
+      <AccordionSection />
+      <InfoSection />
     </>
   );
 };
