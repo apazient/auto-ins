@@ -3,7 +3,12 @@ import { Typography } from "@mui/material";
 import PropTypes from "prop-types";
 import { useState } from "react";
 
-const GeneralSelect = ({ id, lableText, optionsArr }) => {
+const GeneralSelect = ({
+  id,
+  lableText, //текст елемента lable
+  optionsArr, //масив елементів які відображає SElect
+  //changeCB, //функція що повертає вибране значення (піднесення)
+}) => {
   const allOptions = createSelectOptions(optionsArr);
   const [curentValue, setCurentValue] = useState(allOptions[0]);
 
@@ -36,6 +41,7 @@ const GeneralSelect = ({ id, lableText, optionsArr }) => {
 };
 
 export default GeneralSelect;
+
 GeneralSelect.propTypes = {
   lableText: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,

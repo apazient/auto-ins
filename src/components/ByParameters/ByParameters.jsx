@@ -3,18 +3,17 @@ import * as Yup from "yup";
 import {
   AllCheckboxContStyled,
   AllInputContStyled,
-  CheckboxContainerStyled,
-  CheckboxStyled,
   FormStyled,
   InputContStyled,
   InputSerchIcon,
   InputStyled,
   SubmitButton,
 } from "./ByParameters.styled";
-import { FormControlLabel, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { SpriteSVG } from "../../images/SpriteSVG";
 import HelpCircle from "../HelpCircle/HelpCircle";
 import GeneralSelect from "../GeneralSelect/GeneralSelect";
+import { GeneralCheckbox } from "../GeneralCheckbox/GeneralCheckbox";
 
 const ByParameters = () => {
   const formik = useFormik({
@@ -72,40 +71,19 @@ const ByParameters = () => {
         </AllInputContStyled>
 
         <AllCheckboxContStyled>
-          <CheckboxContainerStyled component="span">
-            <FormControlLabel
-              control={
-                <CheckboxStyled
-                  value={formik.values.benefits}
-                  onChange={formik.handleChange}
-                  type="checkbox"
-                  name="benefits"
-                  icon={<SpriteSVG name="icon-square" />}
-                  checkedIcon={<SpriteSVG name="icon-square-checked" />}
-                />
-              }
-              label="Є пільги"
-            />
-            <HelpCircle
-              lableText="тут потрібно ввести текст)))"
-              // colorStyle={fsadf}
-            />
-          </CheckboxContainerStyled>
-          <CheckboxContainerStyled component="span">
-            <FormControlLabel
-              control={
-                <CheckboxStyled
-                  icon={<SpriteSVG name="icon-square" />}
-                  checkedIcon={<SpriteSVG name="icon-square-checked" />}
-                  value={formik.values.foreignNumber}
-                  onChange={formik.handleChange}
-                  type="checkbox"
-                  name="foreignNumber"
-                />
-              }
-              label="Авто на іноземних номерах"
-            />
-          </CheckboxContainerStyled>
+          <GeneralCheckbox
+            lableText="Є пільги"
+            name="benefits"
+            val={formik.values.benefits}
+            changeCB={formik.handleChange}
+            helper="тут потрібно ввести текст)))"
+          />
+          <GeneralCheckbox
+            lableText="Авто на іноземних номерах"
+            name="foreignNumber"
+            val={formik.values.foreignNumber}
+            changeCB={formik.handleChange}
+          />
         </AllCheckboxContStyled>
 
         <SubmitButton type="submit">Розрахувати вартість</SubmitButton>
