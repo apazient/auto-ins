@@ -18,6 +18,7 @@ import {
   UlListS,
 } from "./BurgerMenuStyled";
 import { BoxIconHS, LogoBoxS, LogoTextHS } from "../Header/HeaderStyled";
+import { display } from "@mui/system";
 
 const BurgerMenu = () => {
   const [open, setOpen] = useState(false);
@@ -71,7 +72,15 @@ const BurgerMenu = () => {
               </BoxImg>
             </IconButton>
           </HeaderMenu>
-          <Box>
+
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              height: "calc(100% - 80px)",
+            }}
+          >
             <BodyMenu>
               <ListItemButton onClick={onNavClick} sx={{ p: "0" }}>
                 <ListItemText primary="Переваги" sx={{ m: 0 }} />

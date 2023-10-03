@@ -20,6 +20,7 @@ export const HeaderMenu = styled(Box)(({ theme }) => ({
   justifyContent: "space-between",
   [theme.breakpoints.up("sm")]: {
     padding: "16px",
+    justifyContent: "flex-end",
   },
 }));
 export const MenuContainer = styled(Drawer)(({ theme }) => ({
