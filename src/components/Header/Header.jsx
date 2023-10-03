@@ -89,9 +89,10 @@ const Header = () => {
               <UlListHS className="socialIcons">
                 <LiItemHS disablePadding={true}>
                   <LinkS
-                    href="https://www.instagram.com"
+                    href="https://instagram.com/autoins_info?utm_source=qr&igshid=MzNlNGNkZWQ4Mg%3D%3D"
                     target="_blank"
                     rel="noreferrer noopener"
+                    aria-label="instagram"
                   >
                     <BoxIconHS className="socialIconBox">
                       <SpriteSVG name={"icon-instagram"} />
@@ -103,6 +104,7 @@ const Header = () => {
                     href="https://www.facebook.com"
                     target="_blank"
                     rel="noreferrer noopener"
+                    aria-label="facebook"
                   >
                     <BoxIconHS className="socialIconBox">
                       <SpriteSVG name={"icon-facebook"} />
@@ -111,9 +113,10 @@ const Header = () => {
                 </LiItemHS>
                 <LiItemHS disablePadding={true}>
                   <LinkS
-                    href="https://web.telegram.org"
+                    href="https://t.me/@auto_ins_ua"
                     target="_blank"
                     rel="noreferrer noopener"
+                    aria-label="telegram"
                   >
                     <BoxIconHS className="socialIconBox">
                       <SpriteSVG name={"icon-telegram-send"} />
@@ -122,9 +125,10 @@ const Header = () => {
                 </LiItemHS>
                 <LiItemHS disablePadding={true}>
                   <LinkS
-                    href="mailto:example@mail.ua"
+                    href="mailto:help.autoins@gmail.com"
                     target="_blank"
                     rel="noreferrer noopener"
+                    aria-label="mail"
                   >
                     <BoxIconHS className="socialIconBox">
                       <SpriteSVG name={"icon-mail"} />
