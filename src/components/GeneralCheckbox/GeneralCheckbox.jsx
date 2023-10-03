@@ -9,7 +9,7 @@ import PropTypes from "prop-types";
 import { useTheme } from "@emotion/react";
 
 export const GeneralCheckbox = ({
-  lableText, //текст елемента lable
+  lableText = "", //текст елемента lable
   name, //ім’я імпута в формі (потрібне для коректної роботи formik)
   val, //значення чи вибраний імпут чи ні(boolian)
   changeCB, //функція що повертає вибране значення (піднесення)
@@ -45,12 +45,7 @@ export const GeneralCheckbox = ({
         }
         label={lableText}
       />
-      {helper && (
-        <HelpCircle
-          lableText="тут потрібно ввести текст)))"
-          colorStyle={color ? color : ""}
-        />
-      )}
+      {helper && <HelpCircle lableText={helper} color={color ? color : ""} />}
     </CheckboxContainerStyled>
   );
 };
