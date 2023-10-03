@@ -3,10 +3,10 @@ import { SpriteSVG } from "../../images/SpriteSVG";
 import PropTypes from "prop-types";
 import { useTheme } from "@emotion/react";
 
-const HelpCircle = ({ lableText = "", colorStyle = "" }) => {
+const HelpCircle = ({ lableText = "", color = "" }) => {
   const theme = useTheme();
-  if (!colorStyle) {
-    colorStyle = theme.palette.primary.white;
+  if (!color) {
+    color = theme.palette.primary.white;
   }
   return (
     <Box component="span" sx={{ marginLeft: 1 }}>
@@ -22,7 +22,7 @@ const HelpCircle = ({ lableText = "", colorStyle = "" }) => {
             padding: 0,
             width: 16,
             height: 16,
-            stroke: colorStyle,
+            stroke: color,
             fill: "transparent",
           }}
         >
@@ -37,5 +37,6 @@ export default HelpCircle;
 
 HelpCircle.propTypes = {
   lableText: PropTypes.string,
-  colorStyle: PropTypes.string,
+  color: PropTypes.string,
+  colorBG: PropTypes.string,
 };
