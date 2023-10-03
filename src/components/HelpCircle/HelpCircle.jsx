@@ -1,10 +1,15 @@
 import { Box, IconButton, Tooltip, Zoom } from "@mui/material";
 import { SpriteSVG } from "../../images/SpriteSVG";
 import PropTypes from "prop-types";
+import { useTheme } from "@emotion/react";
 
-const HelpCircle = ({ lableText }) => {
+const HelpCircle = ({ lableText = "", colorStyle = "" }) => {
+  const theme = useTheme();
+  if (!colorStyle) {
+    colorStyle = theme.palette.primary.white;
+  }
   return (
-    <Box component="span">
+    <Box component="span" sx={{ marginLeft: 1 }}>
       <Tooltip
         title={lableText}
         arrow
@@ -13,7 +18,12 @@ const HelpCircle = ({ lableText }) => {
       >
         <IconButton
           aria-label="info"
-          sx={{ padding: 0, width: 16, height: 16 }}
+          sx={{
+            padding: 0,
+            width: 16,
+            height: 16,
+            stroke: colorStyle,
+          }}
         >
           <SpriteSVG name="icon-help-circle" />
         </IconButton>
@@ -25,5 +35,6 @@ const HelpCircle = ({ lableText }) => {
 export default HelpCircle;
 
 HelpCircle.propTypes = {
-  lableText: PropTypes.string.isRequired,
+  lableText: PropTypes.string,
+  colorStyle: PropTypes.string,
 };

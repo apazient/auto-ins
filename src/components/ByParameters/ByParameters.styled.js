@@ -162,7 +162,7 @@ export const CheckboxContainerStyled = styled(Box)(({ theme }) => ({
   stroke: theme.palette.primary.white,
   order: 1,
   "& .MuiFormControlLabel-root": {
-    marginRight: 8,
+    marginRight: 0,
     width: "fit-content",
   },
   "& .MuiButtonBase-root": {
