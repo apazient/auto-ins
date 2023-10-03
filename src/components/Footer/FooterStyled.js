@@ -1,22 +1,20 @@
 import {
   Box,
   Container,
+  Link,
   List,
   ListItem,
   Typography,
   styled,
 } from "@mui/material";
 
-
-export const FooterS = styled(Container)(({theme})=>({  
-  padding: '0',
-  margin: '0 auto',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  [theme.breakpoints.up('xs')]:{
-
-
+export const FooterS = styled(Container)(({ theme }) => ({
+  padding: "0",
+  margin: "0 auto",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  [theme.breakpoints.up("xs")]: {
     padding: "32px 0 8px",
   },
   [theme.breakpoints.up("sm")]: {
@@ -84,7 +82,7 @@ export const BoxIconS = styled(Box)(({ theme }) => ({
   },
   "&.socialIconBox": {
     width: "24px",
-    height: "24px",    
+    height: "24px",
   },
 }));
 
@@ -113,21 +111,10 @@ export const UlListS = styled(List)(({ theme }) => ({
   },
 }));
 
-export const LiItemS = styled(ListItem)(({ theme }) => ({  
-  "&.liSocialIcon": {
-    width: "40px",
-    height: "40px",
-    backgroundColor: theme.palette.primary.white,
-    justifyContent: "center",
-    borderRadius: "50%",
-    stroke: theme.palette.primary.main,
-    fill: "none",
-    transition: 'stroke 250ms linear',
-    '&:hover': {
-      stroke: theme.palette.primary.blue,
-    }
-  },
-}));
+export const LiItemS = styled(ListItem)`
+  cursor: pointer;
+  width: auto;  
+`;
 
 export const ChapterSpan = styled(Typography)(({ theme }) => ({
   "&.chapterSpan": {
@@ -136,8 +123,8 @@ export const ChapterSpan = styled(Typography)(({ theme }) => ({
     fontWeight: 600,
     lineHeight: "1.5",
     color: theme.palette.primary.white,
-    transition: 'color 250ms linear',
-    '&:hover':{
+    transition: "color 250ms linear",
+    "&:hover": {
       color: theme.palette.primary.blue,
     },
     [theme.breakpoints.up("sm")]: {
@@ -150,5 +137,21 @@ export const ChapterSpan = styled(Typography)(({ theme }) => ({
       fontWeight: 400,
       lineHeight: "1.5",
     },
+  },
+}));
+
+export const LinkS = styled(Link)(({ theme }) => ({
+  width: "40px",
+  height: "40px",
+  backgroundColor: theme.palette.primary.white,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  borderRadius: "50%",
+  stroke: theme.palette.primary.main,
+  fill: "none",
+  transition: "stroke 250ms linear",
+  "&:hover": {
+    stroke: theme.palette.primary.blue,
   },
 }));

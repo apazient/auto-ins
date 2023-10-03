@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import { Link, Rating } from "@mui/material";
 import {
   LogoBoxPartnerS,
@@ -6,11 +6,10 @@ import {
   RatingTextS,
   SinglePartnerContainerS,
 } from "./SinglePartnerStyled";
-import { PartnersImgs } from "./ParterIcons/PartnersImgs";
+import { PartnersImgs } from "./PartnersImgs";
 
 const SinglePartner = ({ partner }) => {
-    // console.log(partner);
-    const {id, imgAlt, rating, web} = partner
+  const { id, imgAlt, rating, web } = partner;
   return (
     <>
       <SinglePartnerContainerS>
@@ -18,16 +17,16 @@ const SinglePartner = ({ partner }) => {
           href={web}
           target="_blank"
           rel="noreferrer noopener"
-          style={{textDecoration: 'none'}}
+          style={{ textDecoration: "none" }}
         >
-          <LogoBoxPartnerS>            
-            <PartnersImgs data={{id: String(id), imgAlt: imgAlt}}/>
+          <LogoBoxPartnerS>
+            <PartnersImgs data={{ id: String(id), imgAlt: imgAlt }} />
           </LogoBoxPartnerS>
-        
-        <RatingBoxPartnersS>
-          <RatingTextS className="ratingText">Рейтинг МТСБУ</RatingTextS>          
-          <Rating name="read-only" value={rating} precision={0.1} readOnly />
-        </RatingBoxPartnersS>
+
+          <RatingBoxPartnersS>
+            <RatingTextS className="ratingText">Рейтинг МТСБУ</RatingTextS>
+            <Rating name="read-only" value={rating} precision={0.1} readOnly />
+          </RatingBoxPartnersS>
         </Link>
       </SinglePartnerContainerS>
     </>
@@ -35,12 +34,12 @@ const SinglePartner = ({ partner }) => {
 };
 
 SinglePartner.propTypes = {
-    partner: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      imgAlt: PropTypes.string.isRequired,
-      rating: PropTypes.number.isRequired,
-      web: PropTypes.string.isRequired,
-    }).isRequired,
-  };
+  partner: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    imgAlt: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    web: PropTypes.string.isRequired,
+  }).isRequired,
+};
 
 export default SinglePartner;

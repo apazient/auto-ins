@@ -1,5 +1,5 @@
 import { Link as ScrollLink } from "react-scroll";
-import { Link } from "@mui/material";
+import { useTheme } from "@mui/material";
 import { useMediaQuery } from "@mui/material";
 import { SpriteSVG } from "../../images/SpriteSVG";
 import {
@@ -8,6 +8,7 @@ import {
   HeaderBoxS,
   HeaderS,
   LiItemHS,
+  LinkS,
   LogoBoxS,
   LogoTextHS,
   UlListHS,
@@ -16,10 +17,10 @@ import BurgerMenu from "../BurgerMenu/BurgerMenu";
 import { useNavigate } from "react-router-dom";
 
 const Header = () => {
-  const isLargeScreen = useMediaQuery("(min-width:1280px)");
+  const theme = useTheme();
+  const isLargeScreen = useMediaQuery(`${theme.breakpoints.up("lg")}`);
   const navigate = useNavigate();
-
-  const handleScrollToSection = (chapter) => {    
+  const handleScrollToSection = (chapter) => {
     navigate("/", { state: { id: chapter } });
   };
 
@@ -36,91 +37,100 @@ const Header = () => {
           {isLargeScreen ? (
             <>
               <UlListHS>
-                <ScrollLink
-                  to="переваги"
-                  smooth={true}
-                  duration={700}
-                  style={{ cursor: "pointer" }}
-                  activeClass="active"
+                <LiItemHS
+                  disablePadding={true}
+                  onClick={() => handleScrollToSection("переваги")}
                 >
-                  <LiItemHS disablePadding={true} onClick={()=>handleScrollToSection('переваги')}>
+                  <ScrollLink
+                    to="переваги"
+                    smooth={true}
+                    duration={700}
+                    style={{ cursor: "pointer" }}
+                    activeClass="active"
+                  >
                     <ChapterSpanHS className="chapterSpan">
                       Переваги
                     </ChapterSpanHS>
-                  </LiItemHS>
-                </ScrollLink>
-                <ScrollLink
-                  to="партнери"
-                  smooth={true}
-                  duration={700}
-                  style={{ cursor: "pointer" }}
-                  activeClass="active"
+                  </ScrollLink>
+                </LiItemHS>
+                <LiItemHS
+                  disablePadding={true}
+                  onClick={() => handleScrollToSection("партнери")}
                 >
-                  <LiItemHS disablePadding={true} onClick={()=>handleScrollToSection('партнери')}>
+                  <ScrollLink
+                    to="партнери"
+                    smooth={true}
+                    duration={700}
+                    style={{ cursor: "pointer" }}
+                    activeClass="active"
+                  >
                     <ChapterSpanHS className="chapterSpan">
                       Партнери
                     </ChapterSpanHS>
-                  </LiItemHS>
-                </ScrollLink>
-                <ScrollLink
-                  to="питання-відповіді"
-                  smooth={true}
-                  duration={700}
-                  style={{ cursor: "pointer" }}
-                  activeClass="active"
+                  </ScrollLink>
+                </LiItemHS>
+                <LiItemHS
+                  disablePadding={true}
+                  onClick={() => handleScrollToSection("питання-відповіді")}
                 >
-                  <LiItemHS disablePadding={true} onClick={()=>handleScrollToSection('питання-відповіді')}>
+                  <ScrollLink
+                    to="питання-відповіді"
+                    smooth={true}
+                    duration={700}
+                    style={{ cursor: "pointer" }}
+                    activeClass="active"
+                  >
                     <ChapterSpanHS className="chapterSpan">
                       Питання-відповіді
                     </ChapterSpanHS>
-                  </LiItemHS>
-                </ScrollLink>
+                  </ScrollLink>
+                </LiItemHS>
               </UlListHS>
               <UlListHS className="socialIcons">
-                <Link
-                  href="https://www.instagram.com"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                >
-                  <LiItemHS disablePadding={true} className="liSocialIcon">
+                <LiItemHS disablePadding={true}>
+                  <LinkS
+                    href="https://www.instagram.com"
+                    target="_blank"
+                    rel="noreferrer noopener"
+                  >
                     <BoxIconHS className="socialIconBox">
                       <SpriteSVG name={"icon-instagram"} />
                     </BoxIconHS>
-                  </LiItemHS>
-                </Link>
-                <Link
-                  href="https://www.facebook.com"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                >
-                  <LiItemHS disablePadding={true} className="liSocialIcon">
+                  </LinkS>
+                </LiItemHS>
+                <LiItemHS disablePadding={true}>
+                  <LinkS
+                    href="https://www.facebook.com"
+                    target="_blank"
+                    rel="noreferrer noopener"
+                  >
                     <BoxIconHS className="socialIconBox">
                       <SpriteSVG name={"icon-facebook"} />
                     </BoxIconHS>
-                  </LiItemHS>
-                </Link>
-                <Link
-                  href="https://web.telegram.org"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                >
-                  <LiItemHS disablePadding={true} className="liSocialIcon">
+                  </LinkS>
+                </LiItemHS>
+                <LiItemHS disablePadding={true}>
+                  <LinkS
+                    href="https://web.telegram.org"
+                    target="_blank"
+                    rel="noreferrer noopener"
+                  >
                     <BoxIconHS className="socialIconBox">
                       <SpriteSVG name={"icon-telegram-send"} />
                     </BoxIconHS>
-                  </LiItemHS>
-                </Link>
-                <Link
-                  href="mailto:example@mail.ua"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                >
-                  <LiItemHS disablePadding={true} className="liSocialIcon">
+                  </LinkS>
+                </LiItemHS>
+                <LiItemHS disablePadding={true}>
+                  <LinkS
+                    href="mailto:example@mail.ua"
+                    target="_blank"
+                    rel="noreferrer noopener"
+                  >
                     <BoxIconHS className="socialIconBox">
                       <SpriteSVG name={"icon-mail"} />
                     </BoxIconHS>
-                  </LiItemHS>
-                </Link>
+                  </LinkS>
+                </LiItemHS>
               </UlListHS>
             </>
           ) : (

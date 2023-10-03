@@ -32,7 +32,7 @@ const MiddleSecondText = () => {
       <AbsatzS variant="caption" component="p" role="text">
         Також якщо власник транспортного засобу і страхувальник різні особи.
       </AbsatzS>
-      <AbsatzS variant="caption" component="p" role="text">
+      <AbsatzS variant="caption" component="p">
         <a
           href="http://www.mtsbu.ua/ua/presscenter/news/158143/"
           target="_blank"
@@ -41,7 +41,7 @@ const MiddleSecondText = () => {
           Посилання на джерело
         </a>
       </AbsatzS>
-      <AbsatzS variant="caption" component="p" role="text">
+      <AbsatzS variant="caption" component="p">
         <a
           href="https://policy-web.mtsbu.ua/"
           target="_blank"
