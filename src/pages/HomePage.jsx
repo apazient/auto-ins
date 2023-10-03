@@ -7,7 +7,6 @@ import { useEffect } from "react";
 import AdvatagesSection from "../components/AdvatagesSection/AdvatagesSection";
 import { useLocation } from "react-router-dom";
 import Partners from "../components/Partners/Partners";
-import HeroPicture from "../components/HeroPicture/HeroPicture";
 
 const HomePage = () => {
   const { state } = useLocation();
@@ -23,7 +22,7 @@ const HomePage = () => {
   return (
     <>
       <HeroTabs />
-      <HeroPicture />
+
       <AdvatagesSection />
       <CheckInsSection />
       <Partners />
