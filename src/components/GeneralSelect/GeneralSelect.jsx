@@ -1,9 +1,9 @@
-import { InputContStyled, SelectStyled } from "./HeroSelect.styled";
+import { InputContStyled, SelectStyled } from "./GeneralSelect.styled";
 import { Typography } from "@mui/material";
 import PropTypes from "prop-types";
 import { useState } from "react";
 
-const HeroSelect = ({ id, lableText, optionsArr }) => {
+const GeneralSelect = ({ id, lableText, optionsArr }) => {
   const allOptions = createSelectOptions(optionsArr);
   const [curentValue, setCurentValue] = useState(allOptions[0]);
 
@@ -35,8 +35,8 @@ const HeroSelect = ({ id, lableText, optionsArr }) => {
   );
 };
 
-export default HeroSelect;
-HeroSelect.propTypes = {
+export default GeneralSelect;
+GeneralSelect.propTypes = {
   lableText: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   optionsArr: PropTypes.array.isRequired,
