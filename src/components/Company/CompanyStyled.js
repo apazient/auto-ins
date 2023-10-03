@@ -3,6 +3,7 @@ import Card from "@mui/material/Card";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import { Rating } from "@mui/material";
+import { YellowButton } from "../../style/Global.styled";
 
 export const CardStyled = styled(Card)(({ theme }) => ({
   "&.MuiCard-root": {
@@ -66,4 +67,16 @@ export const GridContainerRaiting = styled(Grid)(({ theme }) => ({
 export const BoxFooter = styled(Box)(({ theme }) => ({
   display: "flex",
   justifyContent: "space-between",
+}));
+
+export const YellowButtonRund = styled(YellowButton)(({ theme }) => ({
+  minWidth: "0",
+  stroke: theme.palette.primary.main,
+  fill: theme.palette.primary.yellow,
+  width: "24px",
+
+  height: "24px",
+  padding: "4px",
+  borderRadius: "50%",
+  backgroundColor: theme.palette.primary.yellow,
 }));
