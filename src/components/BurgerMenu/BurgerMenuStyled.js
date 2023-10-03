@@ -29,6 +29,9 @@ export const MenuContainer = styled(Drawer)(({ theme }) => ({
       width: "48%",
     },
   },
+  "& .MuiBackdrop-root": {
+    top: "80px",
+  },
 }));
 
 export const BodyMenu = styled(Box)(({ theme }) => ({
