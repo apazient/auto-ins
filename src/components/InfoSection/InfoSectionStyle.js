@@ -52,7 +52,7 @@ export const WrapperS = styled(Box)(({ theme }) => ({
 
 export const InfoSectionContainer = styled(ContainerSection)(({ theme }) => ({
   display: "block",
-  backgroundColor: theme.palette.primary.white,
+  backgroundColor: theme.palette.primary.background,
   [theme.breakpoints.up("lg")]: {
     padding: "120px 0 120px 120px ",
   },
