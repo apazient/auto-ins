@@ -1,10 +1,4 @@
-import {
-  Tabs,
-  Tab,
-  styled,
-  Typography,
-  autocompleteClasses,
-} from "@mui/material";
+import { Tabs, Tab, styled, Typography } from "@mui/material";
 
 export const TabStyled = styled(Tab)(({ theme }) => ({
   fontFamily: "OpenSans-SemiBold",
@@ -56,15 +50,16 @@ export const TabsContainer = styled("div")(({ theme }) => ({
   marginLeft: "auto",
   marginRight: "auto",
   [theme.breakpoints.up("sm")]: {
+    maxWidth: 744,
     paddingTop: 64,
     paddingLeft: 32,
     paddingRight: 32,
   },
   [theme.breakpoints.up("lg")]: {
+    maxWidth: 1400,
     paddingTop: 104,
     paddingLeft: 120,
     paddingRight: 120,
-    maxWidth: "1400px",
   },
 }));
 

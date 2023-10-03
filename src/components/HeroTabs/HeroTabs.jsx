@@ -5,10 +5,10 @@ import {
   TabsStyled,
   TitleStaled,
 } from "./HeroTabs.styled";
-import ByParameters from "./ByParameters/ByParameters";
-import ByLicensePlate from "./ByLicensePlate/ByLicensePlate";
 
 import { useMediaQuery } from "@mui/material";
+import ByParameters from "../ByParameters/ByParameters";
+import ByLicensePlate from "../ByLicensePlate/ByLicensePlate";
 
 const HeroTabs = () => {
   const [value, setValue] = useState(0);

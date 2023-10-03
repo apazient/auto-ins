@@ -1,13 +1,15 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { Checkbox, FormControlLabel, Typography } from "@mui/material";
+import { FormControlLabel, Typography } from "@mui/material";
 import { FormStyled, InputStyled } from "./ByLicensePlate.styled";
 import {
+  CheckboxContainerStyled,
   CheckboxStyled,
   InputContStyled,
   SubmitButton,
 } from "../ByParameters/ByParameters.styled";
-import { SpriteSVG } from "../../../images/SpriteSVG";
+import { SpriteSVG } from "../../images/SpriteSVG";
+import HelpCircle from "../HelpCircle/HelpCircle";
 
 const ByLicensePlate = () => {
   const formik = useFormik({
@@ -27,7 +29,7 @@ const ByLicensePlate = () => {
       <FormStyled onSubmit={formik.handleSubmit}>
         <InputContStyled>
           <Typography variant="body1" component="label" htmlFor="license-plate">
-            Номер транспортного засобу{" "}
+            Номер транспортного засобу
           </Typography>
           <InputStyled
             name="licensePlate"
@@ -37,21 +39,22 @@ const ByLicensePlate = () => {
             id="license-plate"
           />
         </InputContStyled>
-
-        <FormControlLabel
-          label="Є пільги"
-          sx={{ order: 1 }}
-          control={
-            <CheckboxStyled
-              icon={<SpriteSVG name="icon-square" />}
-              checkedIcon={<SpriteSVG name="icon-square-checked" />}
-              value={formik.values.benefits}
-              onChange={formik.handleChange}
-              type="checkbox"
-              name="benefits"
-            />
-          }
-        />
+        <CheckboxContainerStyled component="span">
+          <FormControlLabel
+            control={
+              <CheckboxStyled
+                icon={<SpriteSVG name="icon-square" />}
+                checkedIcon={<SpriteSVG name="icon-square-checked" />}
+                value={formik.values.benefits}
+                onChange={formik.handleChange}
+                type="checkbox"
+                name="benefits"
+              />
+            }
+            label="Є пільги"
+          />
+          <HelpCircle lableText="тут потрібно ввести текст)))" />
+        </CheckboxContainerStyled>
         <SubmitButton type="submit">Розрахувати вартість</SubmitButton>
       </FormStyled>
     </div>
