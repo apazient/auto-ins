@@ -1,10 +1,10 @@
-import { WhiteButton } from "../style/Global.styled";
+import Company from "../components/Company/Company";
 
 export const PricesPage = () => {
   return (
     <>
       <div>PricesPage</div>
-      <WhiteButton> WhiteButton</WhiteButton>
+      <Company />
     </>
   );
 };

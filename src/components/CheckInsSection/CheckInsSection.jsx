@@ -34,7 +34,7 @@ const CheckInsSection = () => {
                 може перевірити дійсність вашого поліса онлайн. Також ви можете
                 зробити це самостійно за номером авто або номером поліса.
               </Typography>
-              <Button>Перевірити поліс</Button>
+              <Button color="primary">Перевірити поліс</Button>
             </Grid>
           </Grid>
         </ContCheck>
