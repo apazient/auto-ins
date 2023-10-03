@@ -1,15 +1,14 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { FormControlLabel, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { FormStyled, InputStyled } from "./ByLicensePlate.styled";
 import {
-  CheckboxContainerStyled,
-  CheckboxStyled,
   InputContStyled,
   SubmitButton,
 } from "../ByParameters/ByParameters.styled";
-import { SpriteSVG } from "../../images/SpriteSVG";
+
 import HelpCircle from "../HelpCircle/HelpCircle";
+import { GeneralCheckbox } from "../GeneralCheckbox/GeneralCheckbox";
 
 const ByLicensePlate = () => {
   const formik = useFormik({
@@ -40,22 +39,13 @@ const ByLicensePlate = () => {
             id="license-plate"
           />
         </InputContStyled>
-        <CheckboxContainerStyled component="span">
-          <FormControlLabel
-            control={
-              <CheckboxStyled
-                icon={<SpriteSVG name="icon-square" />}
-                checkedIcon={<SpriteSVG name="icon-square-checked" />}
-                value={formik.values.benefits}
-                onChange={formik.handleChange}
-                type="checkbox"
-                name="benefits"
-              />
-            }
-            label="Є пільги"
-          />
-          <HelpCircle lableText="тут потрібно ввести текст)))" />
-        </CheckboxContainerStyled>
+        <GeneralCheckbox
+          lableText="Є пільги"
+          name="benefits"
+          val={formik.values.benefits}
+          changeCB={formik.handleChange}
+          helper="тут потрібно ввести текст)))"
+        />
         <SubmitButton type="submit">Розрахувати вартість</SubmitButton>
       </FormStyled>
     </div>
