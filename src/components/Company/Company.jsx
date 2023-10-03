@@ -7,6 +7,7 @@ import { YellowButton } from "../../style/Global.styled";
 import { Stack } from "@mui/system";
 import CheckBox from "../CheckBox/CheckBox";
 import { CardStyled, WrapperStyled } from "./CompanyStyled";
+import HelpCircle from "../HelpCircle/HelpCircle";
 
 const Company = () => {
   const prop = {
@@ -21,7 +22,9 @@ const Company = () => {
       <WrapperStyled>
         <WrapperStyled>
           <Typography>ОСЦПВ від {name}</Typography>
-          <Stack></Stack>
+          <Stack>
+            <HelpCircle lableText="Пояснення до франчизи"></HelpCircle>
+          </Stack>
           <CheckBox label="Свідомий захист"></CheckBox>
         </WrapperStyled>
         <WrapperStyled>
