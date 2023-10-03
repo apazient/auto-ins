@@ -9,6 +9,7 @@ import {
 import { useMediaQuery } from "@mui/material";
 import ByParameters from "../ByParameters/ByParameters";
 import ByLicensePlate from "../ByLicensePlate/ByLicensePlate";
+import HeroPicture from "../HeroPicture/HeroPicture";
 
 const HeroTabs = () => {
   const [value, setValue] = useState(0);
@@ -32,6 +33,7 @@ const HeroTabs = () => {
         {value === 0 && <ByParameters />}
         {value === 1 && <ByLicensePlate />}
       </TabsContainer>
+      <HeroPicture />
     </section>
   );
 };
