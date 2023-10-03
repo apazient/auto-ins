@@ -62,3 +62,8 @@ export const RaitingStyled = styled(Rating)(({ theme }) => ({
 export const GridContainerRaiting = styled(Grid)(({ theme }) => ({
   textAlign: "end",
 }));
+
+export const BoxFooter = styled(Box)(({ theme }) => ({
+  display: "flex",
+  justifyContent: "space-between",
+}));

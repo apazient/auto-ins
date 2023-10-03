@@ -7,6 +7,7 @@ import { YellowButton } from "../../style/Global.styled";
 import { Stack } from "@mui/system";
 import CheckBox from "../CheckBox/CheckBox";
 import {
+  BoxFooter,
   CardStyled,
   GridContainer,
   GridContainerImg,
@@ -22,6 +23,8 @@ import { useState } from "react";
 import Rating from "@mui/material/Rating";
 import { CardMedia, useTheme } from "@mui/material";
 import { PartnersImgs } from "../Partners/PartnersImgs";
+import GeneralSelect from "../GeneralSelect/GeneralSelect";
+import { GeneralCheckbox } from "../GeneralCheckbox/GeneralCheckbox";
 
 const Company = () => {
   const prop = {
@@ -62,23 +65,29 @@ const Company = () => {
         <WrapperStyled>
           <Typography variant="body1">
             Франшиза
-            <HelpCircle
-              lableText="Пояснення до франчизи"
-              color={theme.palette.primary.main}
-              sx={{
-                fill: theme.palette.primary.white,
-                stroke: theme.palette.primary.main,
-              }}
-            ></HelpCircle>
+            <HelpCircle lableText="Пояснення до франчизи" colorStyle="#000" />
           </Typography>
+          <GeneralSelect
+            id="1"
+            lableText="Франшиза"
+            optionsArr={["3200", "2330"]}
+          />
 
-          <CheckBox label="Свідомий захист"></CheckBox>
+          <GeneralCheckbox
+            lableText="Свідомий захист"
+            name="check"
+            val={false}
+            color={theme.palette.primary.main}
+          />
         </WrapperStyled>
-        <WrapperStyled>
+
+        <BoxFooter>
           <Typography>Вартість</Typography>
-          <Typography>{price}</Typography>
-          <YellowButton>Придбати</YellowButton>
-        </WrapperStyled>
+          <Typography variant="h3">{price}</Typography>
+        </BoxFooter>
+        <YellowButton sx={{ margin: { sx: "16px 0 20px 0" } }}>
+          Придбати
+        </YellowButton>
       </WrapperStyled>
     </CardStyled>
   );

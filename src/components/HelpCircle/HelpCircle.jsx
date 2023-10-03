@@ -23,6 +23,7 @@ const HelpCircle = ({ lableText = "", colorStyle = "" }) => {
             width: 16,
             height: 16,
             stroke: colorStyle,
+            fill: "transparent",
           }}
         >
           <SpriteSVG name="icon-help-circle" />
