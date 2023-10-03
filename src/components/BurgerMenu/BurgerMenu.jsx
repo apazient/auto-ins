@@ -18,6 +18,7 @@ import {
   UlListS,
 } from "./BurgerMenuStyled";
 import { BoxIconHS, LogoBoxS, LogoTextHS } from "../Header/HeaderStyled";
+import { display } from "@mui/system";
 
 const BurgerMenu = () => {
   const [open, setOpen] = useState(false);
@@ -52,9 +53,9 @@ const BurgerMenu = () => {
         </BoxImg>
       </IconButton>
       <MenuContainer anchor="right" open={open} onClose={() => setOpen(false)}>
-        <Box sx={{ height: "100%", flexDirection: "column" }}>
+        <Box sx={{ height: "100%" }}>
           <HeaderMenu>
-            <LogoBoxS>
+            <LogoBoxS sx={{ display: { sm: "none", lg: "none" } }}>
               <BoxIconHS className="logoIcon">
                 <SpriteSVG name={"icon-logo"} />
               </BoxIconHS>
@@ -71,7 +72,15 @@ const BurgerMenu = () => {
               </BoxImg>
             </IconButton>
           </HeaderMenu>
-          <Box>
+
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              height: "calc(100% - 80px)",
+            }}
+          >
             <BodyMenu>
               <ListItemButton onClick={onNavClick} sx={{ p: "0" }}>
                 <ListItemText primary="Переваги" sx={{ m: 0 }} />
@@ -122,19 +131,18 @@ const BurgerMenu = () => {
                   </BoxIconS>
                 </Link>
               </LiItemS>
-              <div>
-                <LiItemS disablePadding={true} className="liSocialIcon">
-                  <Link
-                    to="mailto:help.autoins@gmail.com"
-                    target="_blank"
-                    rel="noreferrer noopener"
-                  >
-                    <BoxIconS className="socialIconBox">
-                      <SpriteSVG name={"icon-mail"} />
-                    </BoxIconS>
-                  </Link>
-                </LiItemS>
-              </div>
+
+              <LiItemS disablePadding={true} className="liSocialIcon">
+                <Link
+                  to="mailto:help.autoins@gmail.com"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  <BoxIconS className="socialIconBox">
+                    <SpriteSVG name={"icon-mail"} />
+                  </BoxIconS>
+                </Link>
+              </LiItemS>
             </UlListS>
           </Box>
         </Box>
