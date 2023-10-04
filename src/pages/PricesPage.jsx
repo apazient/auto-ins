@@ -1,10 +1,13 @@
-import { WhiteButton } from "../style/Global.styled";
+import Company from "../components/Company/Company";
+import Container from "@mui/material/Container";
 
 export const PricesPage = () => {
   return (
     <>
       <div>PricesPage</div>
-      <WhiteButton> WhiteButton</WhiteButton>
+      <Container sx={{ backgroundColor: "#BCC3E7" }}>
+        <Company />
+      </Container>
     </>
   );
 };

@@ -1,6 +1,6 @@
 import { Link as ScrollLink } from "react-scroll";
 import { SpriteSVG } from "../../images/SpriteSVG";
-// import RRR from "../RRR.js/RRR";
+import RRR from "../RRR.js/RRR";
 import {
   FooterS,
   FooterBoxS,
@@ -24,7 +24,7 @@ const Footer = () => {
   return (
     <footer style={{ oveflow: "hidden" }}>
       <FooterS disableGutters={true} maxWidth={false}>
-        {/* <RRR /> */}
+        <RRR />
         <FooterBoxS disableGutters={true}>
           <LogoBox>
             <BoxIconS className="logoIcon">
