@@ -8,6 +8,7 @@ import {
   BoxFooter,
   CardStyled,
   ExpandIconBox,
+  GeneralSelectS,
   GridContainer,
   GridContainerImg,
   GridContainerRaiting,
@@ -98,7 +99,7 @@ const Company = () => {
             ОСЦПВ від {name}
           </Typography>
           <Box sx={{ marginBottom: { xs: "8px", sm: "12px" } }}>
-            <GeneralSelect
+            <GeneralSelectS
               id="1"
               lableText="Франшиза"
               helper="Пояснення до франчизи"
@@ -107,7 +108,7 @@ const Company = () => {
             />
           </Box>
           <Box sx={{ marginBottom: "16px" }}>
-            <GeneralSelect
+            <GeneralSelectS
               id="1"
               lableText="Додаткове покриття"
               helper="Пояснення до додаткове покриття"

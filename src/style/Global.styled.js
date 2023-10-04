@@ -1,5 +1,6 @@
 import { Button, Container } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import PricesPage from "../pages/PricesPage";
 
 export const BlueButton = styled(Button)(({ theme }) => ({
   padding: "16px 32px",
@@ -84,4 +85,9 @@ export const ContainerSection = styled(Container)(({ theme }) => ({
     padding: "120px 120px",
     width: "1400px",
   },
+}));
+
+export const PricesPageMainS = styled("main")(({ theme }) => ({
+  backgroundColor: theme.palette.primary.lightBlue2,
+  color: theme.palette.primary.main,
 }));

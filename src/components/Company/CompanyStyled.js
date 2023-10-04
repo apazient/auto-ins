@@ -3,6 +3,7 @@ import Card from "@mui/material/Card";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Rating from "@mui/material/Rating";
+import GeneralSelect from "../GeneralSelect/GeneralSelect";
 
 export const CardStyled = styled(Card)(({ theme }) => ({
   "&.MuiCard-root": {
@@ -109,4 +110,9 @@ export const ExpandIconBox = styled(Box)(({ theme }) => ({
   transition: theme.transitions.create("transform", {
     duration: theme.transitions.duration.shortest,
   }),
+}));
+
+export const GeneralSelectS = styled(GeneralSelect)(({ theme }) => ({
+  width: "100%",
+  gap: "8px",
 }));

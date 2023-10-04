@@ -1,14 +1,13 @@
 import Company from "../components/Company/Company";
-import Container from "@mui/material/Container";
+import OutletNavaigation from "../components/OutletNavigation/OutletNavigation";
+import { PricesPageMainS } from "../style/Global.styled";
 
 export const PricesPage = () => {
   return (
-    <>
-      <div>PricesPage</div>
-      <Container sx={{ backgroundColor: "#BCC3E7" }}>
-        <Company />
-      </Container>
-    </>
+    <PricesPageMainS>
+      <OutletNavaigation />
+      <Company />
+    </PricesPageMainS>
   );
 };
 
