@@ -85,3 +85,19 @@ export const ContainerSection = styled(Container)(({ theme }) => ({
     width: "1400px",
   },
 }));
+
+export const FormContainer = styled(Container)(({theme})=>({
+  width: "100%",
+  oveflow: "hidden",
+  backgroundColor: theme.palette.primary.white,  
+  padding: "16px",
+  borderRadius: "35px",
+  
+  [theme.breakpoints.up("sm")]: {
+    padding: "24px",
+    borderRadius: "50px",    
+  },
+  [theme.breakpoints.up("lg")]: {
+    padding: "32px",    
+  },
+}))
