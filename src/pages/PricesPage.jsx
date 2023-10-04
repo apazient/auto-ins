@@ -1,3 +1,4 @@
+import ProposalsFilter from "../components/ProposalsFilter/ProposalsFilter";
 import { WhiteButton } from "../style/Global.styled";
 
 export const PricesPage = () => {
@@ -5,6 +6,7 @@ export const PricesPage = () => {
     <>
       <div>PricesPage</div>
       <WhiteButton> WhiteButton</WhiteButton>
+      <ProposalsFilter />
     </>
   );
 };
