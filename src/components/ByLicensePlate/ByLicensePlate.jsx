@@ -9,8 +9,11 @@ import {
 
 import HelpCircle from "../HelpCircle/HelpCircle";
 import { GeneralCheckbox } from "../GeneralCheckbox/GeneralCheckbox";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const ByLicensePlate = () => {
+  const navigate = useNavigate();
+  const locationPath = useLocation();
   const formik = useFormik({
     initialValues: {
       licensePlate: "",
@@ -18,6 +21,7 @@ const ByLicensePlate = () => {
     },
     onSubmit: (values) => {
       console.log(values);
+      navigate("/prices", { state: { from: locationPath.pathname } });
     },
     validationSchema: Yup.object().shape({
       licensePlate: Yup.string().required("Required field!"),

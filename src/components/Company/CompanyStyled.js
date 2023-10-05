@@ -8,7 +8,6 @@ import GeneralSelect from "../GeneralSelect/GeneralSelect";
 export const CardStyled = styled(Card)(({ theme }) => ({
   "&.MuiCard-root": {
     width: "100%",
-
     padding: "16px",
     backgroundColor: theme.palette.primary.white,
     color: theme.palette.primary.main,
@@ -115,4 +114,19 @@ export const ExpandIconBox = styled(Box)(({ theme }) => ({
 export const GeneralSelectS = styled(GeneralSelect)(({ theme }) => ({
   width: "100%",
   gap: "8px",
+  "& .MuiBox-root": {
+    gap: "8px",
+  },
+}));
+
+export const BoxSelect = styled(Box)(({ theme }) => ({
+  marginBottom: "16px",
+  "& .select-container": {
+    gap: "4px",
+  },
+  "& .customSelect__": {
+    "&control": {
+      width: "100%",
+    },
+  },
 }));
