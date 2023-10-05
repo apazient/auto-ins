@@ -7,7 +7,6 @@ import {
 } from "../style/Global.styled";
 import OutletNavaigation from "../components/OutletNavigation/OutletNavigation";
 import FormContacts from "../forms/FormContacts/FormContacts";
-import { YellowButton } from "../style/Global.styled";
 
 const FormPage = () => {
   const location = useLocation();
@@ -25,6 +24,7 @@ const FormPage = () => {
           <YellowButton>goBack</YellowButton>
         </Link>
       </ContainerSectionPage>
+      <FormContacts />
     </PageContainerS>
   );
 };

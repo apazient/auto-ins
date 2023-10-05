@@ -114,6 +114,7 @@ export const ExpandIconBox = styled(Box)(({ theme }) => ({
 export const GeneralSelectS = styled(GeneralSelect)(({ theme }) => ({
   width: "100%",
   gap: "8px",
+
   "& .MuiBox-root": {
     gap: "8px",
   },
@@ -127,6 +128,7 @@ export const BoxSelect = styled(Box)(({ theme }) => ({
   "& .customSelect__": {
     "&control": {
       width: "100%",
+      borderColor: theme.palette.primary.main,
     },
   },
 }));
