@@ -17,8 +17,6 @@ export const SpriteSVG = ({ name }) => {
             d="M29.333 4H2.666l10.667 12.613v8.72L18.666 28V16.613L29.333 4z"
           />
           <path
-            fill="#bcc3e7"
-            stroke="#000"
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth="1.333"
@@ -49,7 +47,8 @@ export const SpriteSVG = ({ name }) => {
             d="M29.333 4H2.666l10.667 12.613v8.72L18.666 28V16.613L29.333 4z"
           />
           <path
-            fill="#bcc3e7"
+            // fill="#bcc3e7"
+            // fill="#000"
             stroke="#000"
             strokeLinecap="round"
             strokeLinejoin="round"
