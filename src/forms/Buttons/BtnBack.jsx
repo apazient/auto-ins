@@ -16,7 +16,7 @@ const BtnBack = () => {
     <>
       <Link to={backLinkRef.current ?? "/"}>
         <WhiteButtonS onClick={handleOnBackClick}>
-          <BoxIconS style={{ width: "24px", height: "24px" }}>
+          <BoxIconS style={{ width: "24px", height: "24px", stroke: 'red', fill: 'white'}}>
             <SpriteSVG name={"icon-arrow-left"} />
           </BoxIconS>
           Назад
