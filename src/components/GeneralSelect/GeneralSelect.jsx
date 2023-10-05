@@ -23,7 +23,7 @@ const GeneralSelect = ({
   }
 
   return (
-    <InputContStyled>
+    <InputContStyled className="select-container">
       <Typography variant="body1" component="label" htmlFor={id}>
         {lableText}
         {helper && <HelpCircle lableText={helper} color={color ? color : ""} />}

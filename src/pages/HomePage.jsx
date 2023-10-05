@@ -22,7 +22,6 @@ const HomePage = () => {
   return (
     <>
       <HeroTabs />
-
       <AdvatagesSection />
       <CheckInsSection />
       <Partners />

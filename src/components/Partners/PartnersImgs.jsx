@@ -77,105 +77,303 @@ export const PartnersImgs = ({ data }) => {
   const { id, imgAlt } = data;
   const theme = useTheme();
   const { sm } = theme.breakpoints.values;
-  const maxMobileScreen = '743px'
+  const maxMobileScreen = "743px";
 
   switch (id) {
     case "1":
       return (
         <picture>
-          <source srcSet={`${credoMobileWebP} 1x, ${credoMobileWebP2x} 2x`} media={`(max-width: ${maxMobileScreen})`} type="image/webp"/>
-          <source srcSet={`${credoMobile} 1x, ${credoMobile2x} 2x`} media={`(max-width: ${maxMobileScreen})`} type="image/png"/>
-          <source srcSet={`${credoTabletWebP} 1x, ${credoTabletWebP2x} 2x`} media={`(min-width: ${sm}px)`} type="image/webp"/>
-          <source srcSet={`${credoTablet} 1x, ${credoTablet2x} 2x`} media={`(min-width: ${sm}px)`} type="image/png"/>          
-          <img src={`${credoMobile}`} alt={imgAlt} style={imgStyle} sizes={`(max-width: ${maxMobileScreen}) 100vw, 50vw`} loading="lazy"/>
-        </picture>        
+          <source
+            srcSet={`${credoMobileWebP} 1x, ${credoMobileWebP2x} 2x`}
+            media={`(max-width: ${maxMobileScreen})`}
+            type="image/webp"
+          />
+          <source
+            srcSet={`${credoMobile} 1x, ${credoMobile2x} 2x`}
+            media={`(max-width: ${maxMobileScreen})`}
+            type="image/png"
+          />
+          <source
+            srcSet={`${credoTabletWebP} 1x, ${credoTabletWebP2x} 2x`}
+            media={`(min-width: ${sm}px)`}
+            type="image/webp"
+          />
+          <source
+            srcSet={`${credoTablet} 1x, ${credoTablet2x} 2x`}
+            media={`(min-width: ${sm}px)`}
+            type="image/png"
+          />
+          <img
+            src={`${credoMobile}`}
+            alt={imgAlt}
+            style={imgStyle}
+            sizes={`(max-width: ${maxMobileScreen}) 100vw, 50vw`}
+            loading="lazy"
+          />
+        </picture>
       );
 
     case "2":
-      return (        
+      return (
         <picture>
-          <source srcSet={`${euroInsMobileWebP} 1x, ${euroInsMobileWebP2x} 2x`} media={`(max-width: ${maxMobileScreen})`} type="image/webp"/>
-          <source srcSet={`${euroInsMobile} 1x, ${euroInsMobile2x} 2x`} media={`(max-width: ${maxMobileScreen})`} type="image/png"/>
-          <source srcSet={`${euroInsTabletWebP} 1x, ${euroInsTabletWebP2x} 2x`} media={`(min-width: ${sm}px)`} type="image/webp"/>
-          <source srcSet={`${euroInsTablet} 1x, ${euroInsTablet2x} 2x`} media={`(min-width: ${sm}px)`} type="image/png"/>          
-          <img src={`${euroInsMobile}`} alt={imgAlt} style={imgStyle} sizes={`(max-width: ${maxMobileScreen}) 100vw, 50vw`} loading="lazy"/>
+          <source
+            srcSet={`${euroInsMobileWebP} 1x, ${euroInsMobileWebP2x} 2x`}
+            media={`(max-width: ${maxMobileScreen})`}
+            type="image/webp"
+          />
+          <source
+            srcSet={`${euroInsMobile} 1x, ${euroInsMobile2x} 2x`}
+            media={`(max-width: ${maxMobileScreen})`}
+            type="image/png"
+          />
+          <source
+            srcSet={`${euroInsTabletWebP} 1x, ${euroInsTabletWebP2x} 2x`}
+            media={`(min-width: ${sm}px)`}
+            type="image/webp"
+          />
+          <source
+            srcSet={`${euroInsTablet} 1x, ${euroInsTablet2x} 2x`}
+            media={`(min-width: ${sm}px)`}
+            type="image/png"
+          />
+          <img
+            src={`${euroInsMobile}`}
+            alt={imgAlt}
+            style={imgStyle}
+            sizes={`(max-width: ${maxMobileScreen}) 100vw, 50vw`}
+            loading="lazy"
+          />
         </picture>
       );
 
     case "3":
       return (
         <picture>
-          <source srcSet={`${ingoMobileWebP} 1x, ${ingoMobileWebP2x} 2x`} media={`(max-width: ${maxMobileScreen})`} type="image/webp"/>
-          <source srcSet={`${ingoMobile} 1x, ${ingoMobile2x} 2x`} media={`(max-width: ${maxMobileScreen})`} type="image/png"/>
-          <source srcSet={`${ingoTabletWebP} 1x, ${ingoTabletWebP2x} 2x`} media={`(min-width: ${sm}px)`} type="image/webp"/>
-          <source srcSet={`${ingoTablet} 1x, ${ingoTablet2x} 2x`} media={`(min-width: ${sm}px)`} type="image/png"/>          
-          <img src={`${ingoMobile}`} alt={imgAlt} style={imgStyle} sizes={`(max-width: ${maxMobileScreen}) 100vw, 50vw`} loading="lazy"/>
+          <source
+            srcSet={`${ingoMobileWebP} 1x, ${ingoMobileWebP2x} 2x`}
+            media={`(max-width: ${maxMobileScreen})`}
+            type="image/webp"
+          />
+          <source
+            srcSet={`${ingoMobile} 1x, ${ingoMobile2x} 2x`}
+            media={`(max-width: ${maxMobileScreen})`}
+            type="image/png"
+          />
+          <source
+            srcSet={`${ingoTabletWebP} 1x, ${ingoTabletWebP2x} 2x`}
+            media={`(min-width: ${sm}px)`}
+            type="image/webp"
+          />
+          <source
+            srcSet={`${ingoTablet} 1x, ${ingoTablet2x} 2x`}
+            media={`(min-width: ${sm}px)`}
+            type="image/png"
+          />
+          <img
+            src={`${ingoMobile}`}
+            alt={imgAlt}
+            style={imgStyle}
+            sizes={`(max-width: ${maxMobileScreen}) 100vw, 50vw`}
+            loading="lazy"
+          />
         </picture>
       );
 
     case "4":
       return (
         <picture>
-          <source srcSet={`${brokbusynessMobileWebP} 1x, ${brokbusynessMobileWebP2x} 2x`} media={`(max-width: ${maxMobileScreen})`} type="image/webp"/>
-          <source srcSet={`${brokbusynessMobile} 1x, ${brokbusynessMobile2x} 2x`} media={`(max-width: ${maxMobileScreen})`} type="image/png"/>
-          <source srcSet={`${brokbusynessTabletWebP} 1x, ${brokbusynessTabletWebP2x} 2x`} media={`(min-width: ${sm}px)`} type="image/webp"/>
-          <source srcSet={`${brokbusynessTablet} 1x, ${brokbusynessTablet2x} 2x`} media={`(min-width: ${sm}px)`} type="image/png"/>          
-          <img src={`${brokbusynessMobile}`} alt={imgAlt} style={imgStyle} sizes={`(max-width: ${maxMobileScreen}) 100vw, 50vw`} loading="lazy"/>
+          <source
+            srcSet={`${brokbusynessMobileWebP} 1x, ${brokbusynessMobileWebP2x} 2x`}
+            media={`(max-width: ${maxMobileScreen})`}
+            type="image/webp"
+          />
+          <source
+            srcSet={`${brokbusynessMobile} 1x, ${brokbusynessMobile2x} 2x`}
+            media={`(max-width: ${maxMobileScreen})`}
+            type="image/png"
+          />
+          <source
+            srcSet={`${brokbusynessTabletWebP} 1x, ${brokbusynessTabletWebP2x} 2x`}
+            media={`(min-width: ${sm}px)`}
+            type="image/webp"
+          />
+          <source
+            srcSet={`${brokbusynessTablet} 1x, ${brokbusynessTablet2x} 2x`}
+            media={`(min-width: ${sm}px)`}
+            type="image/png"
+          />
+          <img
+            src={`${brokbusynessMobile}`}
+            alt={imgAlt}
+            style={imgStyle}
+            sizes={`(max-width: ${maxMobileScreen}) 100vw, 50vw`}
+            loading="lazy"
+          />
         </picture>
       );
 
     case "5":
       return (
         <picture>
-          <source srcSet={`${arxMobileWebP} 1x, ${arxMobileWebP2x} 2x`} media={`(max-width: ${maxMobileScreen})`} type="image/webp"/>
-          <source srcSet={`${arxMobile} 1x, ${arxMobile2x} 2x`} media={`(max-width: ${maxMobileScreen})`} type="image/png"/>
-          <source srcSet={`${arxTabletWebP} 1x, ${arxTabletWebP2x} 2x`} media={`(min-width: ${sm}px)`} type="image/webp"/>
-          <source srcSet={`${arxTablet} 1x, ${arxTablet2x} 2x`} media={`(min-width: ${sm}px)`} type="image/png"/>          
-          <img src={`${arxMobile}`} alt={imgAlt} style={imgStyle} sizes={`(max-width: ${maxMobileScreen}) 100vw, 50vw`} loading="lazy"/>
+          <source
+            srcSet={`${arxMobileWebP} 1x, ${arxMobileWebP2x} 2x`}
+            media={`(max-width: ${maxMobileScreen})`}
+            type="image/webp"
+          />
+          <source
+            srcSet={`${arxMobile} 1x, ${arxMobile2x} 2x`}
+            media={`(max-width: ${maxMobileScreen})`}
+            type="image/png"
+          />
+          <source
+            srcSet={`${arxTabletWebP} 1x, ${arxTabletWebP2x} 2x`}
+            media={`(min-width: ${sm}px)`}
+            type="image/webp"
+          />
+          <source
+            srcSet={`${arxTablet} 1x, ${arxTablet2x} 2x`}
+            media={`(min-width: ${sm}px)`}
+            type="image/png"
+          />
+          <img
+            src={`${arxMobile}`}
+            alt={imgAlt}
+            style={imgStyle}
+            sizes={`(max-width: ${maxMobileScreen}) 100vw, 50vw`}
+            loading="lazy"
+          />
         </picture>
       );
 
     case "6":
       return (
-      <picture>
-          <source srcSet={`${uniqaMobileWebP} 1x, ${uniqaMobileWebP2x} 2x`} media={`(max-width: ${maxMobileScreen})`} type="image/webp"/>
-          <source srcSet={`${uniqaMobile} 1x, ${uniqaMobile2x} 2x`} media={`(max-width: ${maxMobileScreen})`} type="image/png"/>
-          <source srcSet={`${uniqaTabletWebP} 1x, ${uniqaTabletWebP2x} 2x`} media={`(min-width: ${sm}px)`} type="image/webp"/>
-          <source srcSet={`${uniqaTablet} 1x, ${uniqaTablet2x} 2x`} media={`(min-width: ${sm}px)`} type="image/png"/>          
-          <img src={`${uniqaMobile}`} alt={imgAlt} style={imgStyle} sizes={`(max-width: ${maxMobileScreen}) 100vw, 50vw`} loading="lazy"/>
+        <picture>
+          <source
+            srcSet={`${uniqaMobileWebP} 1x, ${uniqaMobileWebP2x} 2x`}
+            media={`(max-width: ${maxMobileScreen})`}
+            type="image/webp"
+          />
+          <source
+            srcSet={`${uniqaMobile} 1x, ${uniqaMobile2x} 2x`}
+            media={`(max-width: ${maxMobileScreen})`}
+            type="image/png"
+          />
+          <source
+            srcSet={`${uniqaTabletWebP} 1x, ${uniqaTabletWebP2x} 2x`}
+            media={`(min-width: ${sm}px)`}
+            type="image/webp"
+          />
+          <source
+            srcSet={`${uniqaTablet} 1x, ${uniqaTablet2x} 2x`}
+            media={`(min-width: ${sm}px)`}
+            type="image/png"
+          />
+          <img
+            src={`${uniqaMobile}`}
+            alt={imgAlt}
+            style={imgStyle}
+            sizes={`(max-width: ${maxMobileScreen}) 100vw, 50vw`}
+            loading="lazy"
+          />
         </picture>
       );
 
     case "7":
       return (
         <picture>
-          <source srcSet={`${interPolisMobileWebP} 1x, ${interPolisMobileWebP2x} 2x`} media={`(max-width: ${maxMobileScreen})`} type="image/webp"/>
-          <source srcSet={`${interPolisMobile} 1x, ${interPolisMobile2x} 2x`} media={`(max-width: ${maxMobileScreen})`} type="image/png"/>
-          <source srcSet={`${interPolisTabletWebP} 1x, ${interPolisTabletWebP2x} 2x`} media={`(min-width: ${sm}px)`} type="image/webp"/>
-          <source srcSet={`${interPolisTablet} 1x, ${interPolisTablet2x} 2x`} media={`(min-width: ${sm}px)`} type="image/png"/>          
-          <img src={`${interPolisMobile}`} alt={imgAlt} style={imgStyle} sizes={`(max-width: ${maxMobileScreen}) 100vw, 50vw`} loading="lazy"/>
+          <source
+            srcSet={`${interPolisMobileWebP} 1x, ${interPolisMobileWebP2x} 2x`}
+            media={`(max-width: ${maxMobileScreen})`}
+            type="image/webp"
+          />
+          <source
+            srcSet={`${interPolisMobile} 1x, ${interPolisMobile2x} 2x`}
+            media={`(max-width: ${maxMobileScreen})`}
+            type="image/png"
+          />
+          <source
+            srcSet={`${interPolisTabletWebP} 1x, ${interPolisTabletWebP2x} 2x`}
+            media={`(min-width: ${sm}px)`}
+            type="image/webp"
+          />
+          <source
+            srcSet={`${interPolisTablet} 1x, ${interPolisTablet2x} 2x`}
+            media={`(min-width: ${sm}px)`}
+            type="image/png"
+          />
+          <img
+            src={`${interPolisMobile}`}
+            alt={imgAlt}
+            style={imgStyle}
+            sizes={`(max-width: ${maxMobileScreen}) 100vw, 50vw`}
+            loading="lazy"
+          />
         </picture>
       );
 
     case "8":
       return (
         <picture>
-          <source srcSet={`${ESAMobileWebP} 1x, ${ESAMobileWebP2x} 2x`} media={`(max-width: ${maxMobileScreen})`} type="image/webp"/>
-          <source srcSet={`${ESAMobile} 1x, ${ESAMobile2x} 2x`} media={`(max-width: ${maxMobileScreen})`} type="image/png"/>
-          <source srcSet={`${ESATabletWebP} 1x, ${ESATabletWebP2x} 2x`} media={`(min-width: ${sm}px)`} type="image/webp"/>
-          <source srcSet={`${ESATablet} 1x, ${ESATablet2x} 2x`} media={`(min-width: ${sm}px)`} type="image/png"/>          
-          <img src={`${ESAMobile}`} alt={imgAlt} style={imgStyle} sizes={`(max-width: ${maxMobileScreen}) 100vw, 50vw`} loading="lazy"/>
+          <source
+            srcSet={`${ESAMobileWebP} 1x, ${ESAMobileWebP2x} 2x`}
+            media={`(max-width: ${maxMobileScreen})`}
+            type="image/webp"
+          />
+          <source
+            srcSet={`${ESAMobile} 1x, ${ESAMobile2x} 2x`}
+            media={`(max-width: ${maxMobileScreen})`}
+            type="image/png"
+          />
+          <source
+            srcSet={`${ESATabletWebP} 1x, ${ESATabletWebP2x} 2x`}
+            media={`(min-width: ${sm}px)`}
+            type="image/webp"
+          />
+          <source
+            srcSet={`${ESATablet} 1x, ${ESATablet2x} 2x`}
+            media={`(min-width: ${sm}px)`}
+            type="image/png"
+          />
+          <img
+            src={`${ESAMobile}`}
+            alt={imgAlt}
+            style={imgStyle}
+            sizes={`(max-width: ${maxMobileScreen}) 100vw, 50vw`}
+            loading="lazy"
+          />
         </picture>
       );
 
     case "9":
       return (
-      <picture>
-          <source srcSet={`${oberigMobileWebP} 1x, ${oberigMobileWebP2x} 2x`} media={`(max-width: ${maxMobileScreen})`} type="image/webp"/>
-          <source srcSet={`${oberigMobile} 1x, ${oberigMobile2x} 2x`} media={`(max-width: ${maxMobileScreen})`} type="image/png"/>
-          <source srcSet={`${oberigTabletWebP} 1x, ${oberigTabletWebP2x} 2x`} media={`(min-width: ${sm}px)`} type="image/webp"/>
-          <source srcSet={`${oberigTablet} 1x, ${oberigTablet2x} 2x`} media={`(min-width: ${sm}px)`} type="image/png"/>          
-          <img src={`${oberigMobile}`} alt={imgAlt} style={imgStyle} sizes={`(max-width: ${maxMobileScreen})`} loading="lazy"/>
+        <picture>
+          <source
+            srcSet={`${oberigMobileWebP} 1x, ${oberigMobileWebP2x} 2x`}
+            media={`(max-width: ${maxMobileScreen})`}
+            type="image/webp"
+          />
+          <source
+            srcSet={`${oberigMobile} 1x, ${oberigMobile2x} 2x`}
+            media={`(max-width: ${maxMobileScreen})`}
+            type="image/png"
+          />
+          <source
+            srcSet={`${oberigTabletWebP} 1x, ${oberigTabletWebP2x} 2x`}
+            media={`(min-width: ${sm}px)`}
+            type="image/webp"
+          />
+          <source
+            srcSet={`${oberigTablet} 1x, ${oberigTablet2x} 2x`}
+            media={`(min-width: ${sm}px)`}
+            type="image/png"
+          />
+          <img
+            src={`${oberigMobile}`}
+            alt={imgAlt}
+            style={imgStyle}
+            sizes={`(max-width: ${maxMobileScreen})`}
+            loading="lazy"
+          />
         </picture>
       );
 
