@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { ContainerSection, YellowButton } from "../../style/Global.styled";
-import { PartnersContainerS, TitleS, UlPartnersListS } from "./PartnersStyled";
+import { PartnersContainerS, SectionS, TitleS, UlPartnersListS } from "./PartnersStyled";
 import SinglePartner from "./SinglePartner";
 import PartnersList from "./parnersList.json";
-import { Collapse, useTheme } from "@mui/material";
+import { Collapse } from "@mui/material";
 
-const Partners = () => {
-  const theme = useTheme();
+const Partners = () => {  
   const totalPartners = PartnersList?.length;
   const maxDisplayedPartners = 8;
   const [showAdditionalPartners, setshowAdditionalPartners] = useState(false);
@@ -19,7 +18,7 @@ const Partners = () => {
   const additionalPartners = PartnersList?.slice(maxDisplayedPartners);
 
   return (
-    <section style={{ backgroundColor: `${theme.palette.primary.background}` }}>
+    <SectionS>
       <ContainerSection>
         <PartnersContainerS disableGutters={true} id="партнери">
           <TitleS variant="h2" className="titleBlack">
@@ -52,7 +51,7 @@ const Partners = () => {
           )}
         </PartnersContainerS>
       </ContainerSection>
-    </section>
+    </SectionS>
   );
 };
 

@@ -1,5 +1,9 @@
 import { Container, List, Typography, styled } from "@mui/material";
 
+export const SectionS = styled("section")(({ theme }) => ({
+  backgroundColor: theme.palette.primary.background,
+}));
+
 export const PartnersContainerS = styled(Container)`
   display: flex;
   flex-direction: column;
