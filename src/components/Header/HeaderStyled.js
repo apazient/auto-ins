@@ -8,8 +8,7 @@ import {
   styled,
 } from "@mui/material";
 
-export const HeaderS = styled(Container)(({ theme }) => ({
-  outline: "1px solid red",
+export const HeaderS = styled(Container)(({ theme }) => ({  
   minwidth: "375px",
   padding: "8px 16px",
 
