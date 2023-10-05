@@ -18,7 +18,9 @@ import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const theme = useTheme();
-  const isLargeScreen = useMediaQuery(`${theme.breakpoints.up("lg")}`);
+  const isLargeScreen = useMediaQuery(`${theme.breakpoints.up("ml")}`);
+  // const isLargeScreen = useMediaQuery(`${theme.breakpoints.up("lg")}`);
+  // const isLargeScreen = useMediaQuery(`(min-width: 1160px)`);
   const navigate = useNavigate();
   const handleScrollToSection = (chapter) => {
     navigate("/", { state: { id: chapter } });
