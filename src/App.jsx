@@ -1,6 +1,5 @@
 import { Suspense, lazy } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-import { Calculator } from "./components/Calculator/Calculator";
 import Layout from "./components/Layout";
 import Loader from "./components/Loader/Loader";
 
