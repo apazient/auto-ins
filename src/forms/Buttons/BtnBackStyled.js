@@ -12,7 +12,16 @@ export const WhiteButtonS = styled(WhiteButton)(({ theme }) => ({
   },
 }));
 
-export const BoxIconS = styled(Box)`
-  width: "24px";
-  height: "24px";
-`;
+export const BoxIconS = styled(Box)(({theme})=>({
+  width: '24px',  
+  height: '24px',
+  stroke: theme.palette.primary.main,
+  fill: theme.palette.primary.white,
+  // "&:hover": {
+  //   fill: theme.palette.primary.blue,
+  //   background: theme.palette.primary.blue,
+  // },
+  // "&:active": {
+  //   fill: theme.palette.primary.tertiaryBlue,    
+  // },
+}));

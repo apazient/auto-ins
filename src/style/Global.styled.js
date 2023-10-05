@@ -1,7 +1,9 @@
 import { Button, Container } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import { Link } from "react-router-dom";
 
 export const BlueButton = styled(Button)(({ theme }) => ({
+  
   padding: "16px 32px",
   borderRadius: "50px",
   fontFamily: "OpenSans-SemiBold",
@@ -24,8 +26,12 @@ export const BlueButton = styled(Button)(({ theme }) => ({
   },
 }));
 
-export const WhiteButton = styled(Button)(({ theme }) => ({
+export const WhiteButton = styled(Link)(({ theme }) => ({
+  display: 'flex',
+  textDecoration: 'none',
+  width: "163px",
   padding: "16px 38px",
+  
   borderRadius: "50px",
   fontFamily: "OpenSans-SemiBold",
   fontWeight: 600,
@@ -34,8 +40,14 @@ export const WhiteButton = styled(Button)(({ theme }) => ({
   background: theme.palette.primary.white,
   color: theme.palette.primary.main,
   "&:hover": {
+
+    "& div":{
+      fill: theme.palette.primary.blue,
+    },
+
     background: theme.palette.primary.blue,
     color: theme.palette.primary.white,
+
   },
   "&:active": {
     background: theme.palette.primary.tertiaryBlue,

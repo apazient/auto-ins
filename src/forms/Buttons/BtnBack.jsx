@@ -1,6 +1,5 @@
 import { useRef } from "react";
 import { useLocation } from "react-router-dom";
-import { Link } from "react-router-dom";
 import { SpriteSVG } from "../../images/SpriteSVG";
 import { BoxIconS, WhiteButtonS } from "./BtnBackStyled";
 
@@ -13,15 +12,13 @@ const BtnBack = () => {
   };
 
   return (
-    <>
-      <Link to={backLinkRef.current ?? "/"}>
-        <WhiteButtonS onClick={handleOnBackClick}>
-          <BoxIconS style={{ width: "24px", height: "24px", stroke: 'red', fill: 'white'}}>
+    <>      
+        <WhiteButtonS onClick={handleOnBackClick} to={backLinkRef.current ?? "/"}>
+          <BoxIconS>
             <SpriteSVG name={"icon-arrow-left"} />
           </BoxIconS>
           Назад
-        </WhiteButtonS>
-      </Link>
+        </WhiteButtonS>      
     </>
   );
 };
