@@ -1,13 +1,16 @@
-import Company from "../components/Company/Company";
-import Container from "@mui/material/Container";
+
+import ProposalsFilter from "../components/ProposalsFilter/ProposalsFilter";
+import { WhiteButton } from "../style/Global.styled";
+
 
 export const PricesPage = () => {
   return (
     <>
       <div>PricesPage</div>
-      <Container sx={{ backgroundColor: "#BCC3E7" }}>
-        <Company />
-      </Container>
+
+      <WhiteButton> WhiteButton</WhiteButton>
+      <ProposalsFilter />
+
     </>
   );
 };
