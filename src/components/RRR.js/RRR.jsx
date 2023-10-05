@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
-
+import { useLocation } from "react-router-dom";
 const RRR = () => {
+  const location = useLocation()
+  // console.log('RRR', location);
   return (
     <div style={{display: 'flex', marginTop: '20px'}}>
       <Link to="/" style={{ color: "lime" }}>
@@ -9,7 +11,7 @@ const RRR = () => {
       <Link to="/prices" style={{ color: "lime" }}>
         PricesPage |
       </Link>
-      <Link to="/form" style={{ color: "lime" }}>
+      <Link state={{from: location}} to="/form"  style={{ color: "lime" }}>
         FormPage
       </Link>
     </div>
