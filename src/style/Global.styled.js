@@ -3,7 +3,6 @@ import { styled } from "@mui/material/styles";
 import { Link } from "react-router-dom";
 
 export const BlueButton = styled(Button)(({ theme }) => ({
-  
   padding: "16px 32px",
   borderRadius: "50px",
   fontFamily: "OpenSans-SemiBold",
@@ -27,11 +26,11 @@ export const BlueButton = styled(Button)(({ theme }) => ({
 }));
 
 export const WhiteButton = styled(Link)(({ theme }) => ({
-  display: 'flex',
-  textDecoration: 'none',
+  display: "flex",
+  textDecoration: "none",
   width: "163px",
   padding: "16px 38px",
-  
+
   borderRadius: "50px",
   fontFamily: "OpenSans-SemiBold",
   fontWeight: 600,
@@ -40,14 +39,12 @@ export const WhiteButton = styled(Link)(({ theme }) => ({
   background: theme.palette.primary.white,
   color: theme.palette.primary.main,
   "&:hover": {
-
-    "& div":{
+    "& div": {
       fill: theme.palette.primary.blue,
     },
 
     background: theme.palette.primary.blue,
     color: theme.palette.primary.white,
-
   },
   "&:active": {
     background: theme.palette.primary.tertiaryBlue,
@@ -98,18 +95,25 @@ export const ContainerSection = styled(Container)(({ theme }) => ({
   },
 }));
 
-export const FormContainer = styled(Container)(({theme})=>({
+export const ContainerSectionPage = styled(ContainerSection)(({ theme }) => ({
+  "&.MuiContainer-root": { paddingTop: "16px" },
+}));
+export const PageContainerS = styled("main")(({ theme }) => ({
+  backgroundColor: theme.palette.primary.lightBlue2,
+  color: theme.palette.primary.main,
+}));
+export const FormContainer = styled(Container)(({ theme }) => ({
   width: "100%",
   oveflow: "hidden",
-  backgroundColor: theme.palette.primary.white,  
+  backgroundColor: theme.palette.primary.white,
   padding: "16px",
   borderRadius: "35px",
-  
+
   [theme.breakpoints.up("sm")]: {
     padding: "24px",
-    borderRadius: "50px",    
+    borderRadius: "50px",
   },
   [theme.breakpoints.up("lg")]: {
-    padding: "32px",    
+    padding: "32px",
   },
-}))
+}));
