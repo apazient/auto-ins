@@ -244,23 +244,6 @@ export const SpriteSVG = ({ name }) => {
         </svg>
       );
 
-    case "icon-chevron-down-smaller":
-      return (
-        <svg
-          id="icon-chevron-down-smaller"
-          viewBox="0 0 32 32"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="4"
-            d="m8 12 8 8 8-8"
-          />
-        </svg>
-      );
-
     case "icon-colaboration":
       return (
         <svg
