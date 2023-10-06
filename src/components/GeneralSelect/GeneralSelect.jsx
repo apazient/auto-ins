@@ -32,7 +32,7 @@ const GeneralSelect = ({
         id={id}
         placeholder="Enter the text"
         options={optionsArr}
-        value={curentValue}
+        value={curentValue || optionsArr[0]}
         onChange={(e) => {
           setCurentValue(e);
           changeCB(e.value);

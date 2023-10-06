@@ -9,14 +9,14 @@ import { useState } from "react";
 
 export const PricesPage = () => {
   const location = useLocation();
-  const [companies, _] = useState(companiesData);
+  const [companies, setCompanies] = useState(companiesData);
 
   return (
     <PageContainerS>
       <ContainerSectionPage component="section">
         <OutletNavaigation locationPath={location} />
         <hr />
-        <ProposalsFilter />
+        <ProposalsFilter companies={companies} setCompanies={setCompanies} />
         <CompanyList companies={companies} />
       </ContainerSectionPage>
     </PageContainerS>
