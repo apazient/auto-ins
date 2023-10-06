@@ -14,6 +14,22 @@ import {
 } from "./InsuredDataForm.styled";
 import GeneralSelect from "../GeneralSelect/GeneralSelect";
 import { SpriteSVG } from "../../images/SpriteSVG";
+
+const selectArrOptions = [
+  {
+    value: "Ціна",
+    label: "Ціна",
+  },
+  {
+    value: "Популярність",
+    label: "Популярність",
+  },
+  {
+    value: "Компанії",
+    label: "Компанії",
+  },
+];
+
 const InsuredDataForm = () => {
   const formik = useFormik({
     initialValues: {
@@ -130,7 +146,7 @@ const InsuredDataForm = () => {
           <GeneralSelect
             id="licensDoc"
             lableText="Документ на вибір*:"
-            optionsArr={["Легкове авто", "Вантажівка", "Причеп"]}
+            optionsArr={selectArrOptions}
             //changeCB, //функція що повертає вибране значення (піднесення)
           />
           <DocInputsStyled>

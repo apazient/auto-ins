@@ -27,12 +27,13 @@ export const InputStyled = styled(OutlinedInput)(({ theme }) => ({
     },
   },
   "&:hover, &:focus": {
-    border: `1px solid ${theme.palette.primary.darkBlue}!important`,
+    border: `1px solid ${theme.palette.primary.darkBlue}`,
   },
   "& .MuiOutlinedInput-notchedOutline": {
-    border: `1px solid ${theme.palette.primary.main}!important`,
+    border: `1px solid ${theme.palette.primary.main}`,
     "&:hover": {
       border: `1px solid ${theme.palette.primary.darkBlue}!important`,
+      // border: `none!important`,
     },
   },
   [theme.breakpoints.up("sm")]: {
