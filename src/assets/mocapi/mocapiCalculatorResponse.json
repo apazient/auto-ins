@@ -1,0 +1,123 @@
+[
+{
+"idCompany": 2,
+"nameCompany": "Євроінс",
+"fransizes": [
+{
+"sum": 2584,
+"idFransize": 1,
+"nameFransize": "0"
+},
+{
+"sum": 2584,
+"idFransize": 3,
+"nameFransize": "1000"
+},
+{
+"sum": 2369,
+"idFransize": 2,
+"nameFransize": "2000"
+},
+{
+"sum": 1795,
+"idFransize": 4,
+"nameFransize": "2600"
+}
+]
+},
+{
+"idCompany": 3,
+"nameCompany": "ІНГО",
+"fransizes": [
+{
+"sum": 2131,
+"idFransize": 1,
+"nameFransize": "0"
+},
+{
+"sum": 1628,
+"idFransize": 5,
+"nameFransize": "1300"
+},
+{
+"sum": 1550,
+"idFransize": 4,
+"nameFransize": "2600"
+}
+]
+},
+{
+"idCompany": 1,
+"nameCompany": "АСКА",
+"fransizes": [
+{
+"sum": 2100,
+"idFransize": 1,
+"nameFransize": "0"
+},
+{
+"sum": 1725,
+"idFransize": 3,
+"nameFransize": "1000"
+},
+{
+"sum": 1561,
+"idFransize": 2,
+"nameFransize": "2000"
+}
+]
+},
+{
+"idCompany": 4,
+"nameCompany": "ARX",
+"fransizes": [
+{
+"sum": 2584,
+"idFransize": 1,
+"nameFransize": "0"
+},
+{
+"sum": 2064,
+"idFransize": 7,
+"nameFransize": "1500"
+},
+{
+"sum": 1885,
+"idFransize": 6,
+"nameFransize": "2500"
+}
+]
+},
+{
+"idCompany": 8,
+"nameCompany": "КРЕДО",
+"fransizes": [
+{
+"sum": 2100,
+"idFransize": 1,
+"nameFransize": "0"
+},
+{
+"sum": 1850,
+"idFransize": 7,
+"nameFransize": "1500"
+},
+{
+"sum": 1557,
+"idFransize": 6,
+"nameFransize": "2500"
+}
+]
+},
+{
+"idCompany": 9,
+"nameCompany": "ПЗУ",
+"fransizes": [
+{
+"sum": 1813,
+"idFransize": 6,
+"nameFransize": "2500"
+}
+]
+}
+]
