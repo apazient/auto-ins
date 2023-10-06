@@ -108,6 +108,7 @@ export const FormContainer = styled(Container)(({ theme }) => ({
   backgroundColor: theme.palette.primary.white,
   padding: "16px",
   borderRadius: "35px",
+  color: theme.palette.primary.main,
 
   [theme.breakpoints.up("sm")]: {
     padding: "24px",
