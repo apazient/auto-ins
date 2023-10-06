@@ -26,34 +26,45 @@ export const BlueButton = styled(Button)(({ theme }) => ({
 }));
 
 export const WhiteButton = styled(Link)(({ theme }) => ({
-  display: "flex",
-  textDecoration: "none",
-  width: "163px",
+  width: "100%",
   padding: "16px 38px",
-
+  textDecoration: "none",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  gap: "8px",
   borderRadius: "50px",
   fontFamily: "OpenSans-SemiBold",
   fontWeight: 600,
+  fontSize: "16px",
+  lineHeight: "1.5",
   textTransform: "none",
-  border: `1px solid ${theme.palette.primary.main}`,
+  border: `1px solid transparent`,  
   background: theme.palette.primary.white,
   color: theme.palette.primary.main,
+  transition: "background 350ms linear",
+  [theme.breakpoints.up("sm")]: {
+    width: "163px",
+    border: `1px solid ${theme.palette.primary.main}`,
+    fontSize: "18px",
+  },
   "&:hover": {
     "& div": {
-      fill: theme.palette.primary.blue,
+      fill: theme.palette.primary.yellow,
     },
-
-    background: theme.palette.primary.blue,
-    color: theme.palette.primary.white,
+    background: theme.palette.primary.yellow,    
   },
   "&:active": {
-    background: theme.palette.primary.tertiaryBlue,
-    color: theme.palette.primary.white,
+    background: theme.palette.primary.tertiaryYellow,    
   },
   "&.Mui-disabled": {
     background: theme.palette.primary.white,
     color: theme.palette.primary.tertiaryDark,
-    border: "1px solid theme.palette.primary.tertiaryDark",
+    border: `1px solid ${theme.palette.primary.tertiaryDark}`,
+    cursor: 'default',
+    "& div": {
+      fill: theme.palette.primary.white,
+    },
   },
 }));
 

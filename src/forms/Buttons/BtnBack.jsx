@@ -1,7 +1,8 @@
 import { useRef } from "react";
 import { useLocation } from "react-router-dom";
 import { SpriteSVG } from "../../images/SpriteSVG";
-import { BoxIconS, WhiteButtonS } from "./BtnBackStyled";
+import { BoxIconS } from "./BtnBackStyled";
+import { WhiteButton } from "../../style/Global.styled";
 
 const BtnBack = () => {
   const location = useLocation();
@@ -12,13 +13,29 @@ const BtnBack = () => {
   };
 
   return (
-    <>      
-        <WhiteButtonS onClick={handleOnBackClick} to={backLinkRef.current ?? "/"}>
-          <BoxIconS>
-            <SpriteSVG name={"icon-arrow-left"} />
-          </BoxIconS>
-          Назад
-        </WhiteButtonS>      
+    <>
+      {backLinkRef.current ? (
+        <>
+          <WhiteButton
+            onClick={handleOnBackClick}
+            to={backLinkRef.current ?? "/"}
+          >
+            <BoxIconS>
+              <SpriteSVG name={"icon-arrow-left"} />
+            </BoxIconS>
+            Назад
+          </WhiteButton>
+        </>
+      ) : (
+        <>
+          <WhiteButton className="Mui-disabled">
+            <BoxIconS className="disabled">
+              <SpriteSVG name={"icon-arrow-left"} />
+            </BoxIconS>
+            Назад
+          </WhiteButton>
+        </>
+      )}
     </>
   );
 };
