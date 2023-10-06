@@ -3,6 +3,7 @@ import Company from "../components/Company/Company";
 
 import OutletNavaigation from "../components/OutletNavigation/OutletNavigation";
 import { ContainerSectionPage, PageContainerS } from "../style/Global.styled";
+import ProposalsFilter from "../components/ProposalsFilter/ProposalsFilter";
 
 export const PricesPage = () => {
   const location = useLocation();
@@ -12,6 +13,7 @@ export const PricesPage = () => {
       <ContainerSectionPage component="section">
         <OutletNavaigation locationPath={location} />
         <hr />
+        <ProposalsFilter />
         <Company />
       </ContainerSectionPage>
     </PageContainerS>
