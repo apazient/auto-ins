@@ -16,6 +16,21 @@ import GeneralSelect from "../GeneralSelect/GeneralSelect";
 import { GeneralCheckbox } from "../GeneralCheckbox/GeneralCheckbox";
 import { useLocation, useNavigate } from "react-router-dom";
 
+const selectArrOptions = [
+  {
+    value: "Ціна",
+    label: "Ціна",
+  },
+  {
+    value: "Популярність",
+    label: "Популярність",
+  },
+  {
+    value: "Компанії",
+    label: "Компанії",
+  },
+];
+
 const ByParameters = () => {
   const navigate = useNavigate();
   const locationPath = useLocation();
@@ -41,12 +56,12 @@ const ByParameters = () => {
           <GeneralSelect
             id="vehicle"
             lableText="Транспортний засіб"
-            optionsArr={["Легкове авто", "Вантажівка", "Причеп"]}
+            optionsArr={selectArrOptions}
           />
           <GeneralSelect
             id="engineCapacity"
             lableText="Об’єм двигуна"
-            optionsArr={["Легкове авто", "Вантажівка", "Причеп"]}
+            optionsArr={selectArrOptions}
           />
 
           <InputContStyled>

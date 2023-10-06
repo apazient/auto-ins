@@ -19,6 +19,7 @@ export const SelectsContStyled = styled(Box)(({ theme }) => ({
     "& .customSelect__": {
       "&control": {
         backgroundColor: theme.palette.primary.lightBlue2,
+        border: `1px solid ${theme.palette.primary.white}`,
         [theme.breakpoints.up("sm")]: {
           width: 187,
         },
