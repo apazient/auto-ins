@@ -80,7 +80,7 @@ export const PartnersImgs = ({ data }) => {
   const maxMobileScreen = "743px";
 
   switch (id) {
-    case "1":
+    case "8":
       return (
         <picture>
           <source
@@ -179,7 +179,7 @@ export const PartnersImgs = ({ data }) => {
         </picture>
       );
 
-    case "4":
+    case "400":
       return (
         <picture>
           <source
@@ -212,7 +212,7 @@ export const PartnersImgs = ({ data }) => {
         </picture>
       );
 
-    case "5":
+    case "4":
       return (
         <picture>
           <source
@@ -245,7 +245,7 @@ export const PartnersImgs = ({ data }) => {
         </picture>
       );
 
-    case "6":
+    case "5":
       return (
         <picture>
           <source
@@ -278,7 +278,7 @@ export const PartnersImgs = ({ data }) => {
         </picture>
       );
 
-    case "7":
+    case "401":
       return (
         <picture>
           <source
@@ -311,7 +311,7 @@ export const PartnersImgs = ({ data }) => {
         </picture>
       );
 
-    case "8":
+    case "402":
       return (
         <picture>
           <source
@@ -344,7 +344,7 @@ export const PartnersImgs = ({ data }) => {
         </picture>
       );
 
-    case "9":
+    case "403":
       return (
         <picture>
           <source
