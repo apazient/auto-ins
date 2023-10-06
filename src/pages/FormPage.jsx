@@ -7,15 +7,20 @@ import {
 } from "../style/Global.styled";
 import OutletNavaigation from "../components/OutletNavigation/OutletNavigation";
 import FormContacts from "../forms/FormContacts/FormContacts";
+import CardCompanySmall from "../components/CardCompanySmall/CardCompanySmall";
+import { useState } from "react";
+
+import companyForm from "../assets/mocapi/companyForm.json";
 
 const FormPage = () => {
   const location = useLocation();
+  const [company, _] = useState(companyForm);
 
   return (
     <PageContainerS>
       <ContainerSectionPage component="section">
         <OutletNavaigation locationPath={location} />
-        <div>FormPage</div>
+        <CardCompanySmall company={company} />
         <Link
           state={{ from: location }}
           to={location.state?.from || "/prices"}

@@ -1,10 +1,10 @@
 [
   {
-    "raitingCompany": 5,
+ 
     "idCompany": 2,
     "nameCompany": "Євроінс",
     "sum": 2584,
-    "сшея": "Київ",
+    "city": "Київ",
     "nameFransize": "0"
   }
 ]

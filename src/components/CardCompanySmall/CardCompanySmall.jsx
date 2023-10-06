@@ -1,16 +1,9 @@
 import { Grid, Typography } from "@mui/material";
 import { FormContainer } from "../../style/Global.styled";
 import { PartnersImgs } from "../Partners/PartnersImgs";
+import { FormContainerS } from "./CardCompanySmallStyled";
 
 const CardCompanySmall = ({ company }) => {
-  const data = {
-    img: "logo-ukraine",
-    name: "Україна",
-    prise: "1000",
-    address: "Київ",
-    total: "1000",
-  };
-
   // "calculator": {
   //   "idFransize": 0,
   //   "idCompany": 0,
@@ -31,46 +24,64 @@ const CardCompanySmall = ({ company }) => {
   // "sum": 2584,
   // "idFransize": 1,
   // "nameFransize": "0"
-  const { idCompany, nameCompany, nameFransize, sum, city } = company;
+
+  // {
+  //
+  //   "idCompany": 2,
+  //   "nameCompany": "Євроінс",
+  //   "sum": 2584,
+  //   "city": "Київ",
+  //   "nameFransize": "0"
+  // }
+  const { idCompany, nameCompany, nameFransize, sum, city } = company[0];
+  console.log(company);
   return (
-    <FormContainer>
+    <FormContainerS>
       <Typography variant="subtitle1" component="h3">
         Електронний поліс ОСЦПВ
       </Typography>
       <Grid container>
-        <Grid item>
+        <Grid item sm={6}>
           <PartnersImgs
             sx={{ width: { sm: "125px" } }}
             data={{ id: String(idCompany), imgAlt: nameCompany || "ОСЦП" }}
           />
         </Grid>
-        <Grid item>
+        <Grid item sm={6}>
           <Typography component="span">{nameCompany}</Typography>
         </Grid>
-        <Grid item>
-          <Typography component="span" variant="">
+        <Grid item sm={6}>
+          <Typography component="span" variant="body1">
             Франшиза
           </Typography>
         </Grid>
-        <Grid item>
-          <Typography component="span" variant="">
+        <Grid item sm={6}>
+          <Typography component="span" variant="body1">
             {nameFransize} грн
           </Typography>
         </Grid>
-        <Grid item>
-          <Typography component="span" variant="">
+        <Grid item sm={6}>
+          <Typography component="span" variant="body1">
             Реєстрація
           </Typography>
         </Grid>
-        <Grid item>
-          <Typography component="span" variant="">
+        <Grid item sm={6}>
+          <Typography component="span" variant="body1">
             {city}
           </Typography>
         </Grid>
-        <Grid item>До сплати</Grid>
-        <Grid item>{sum} грн</Grid>
+        <Grid item sm={6}>
+          <Typography component="span" variant="subtitle1">
+            До сплати
+          </Typography>
+        </Grid>
+        <Grid item sm={6}>
+          <Typography component="span" variant="subtitle1">
+            {sum} грн
+          </Typography>
+        </Grid>
       </Grid>
-    </FormContainer>
+    </FormContainerS>
   );
 };
 
