@@ -20,14 +20,14 @@ const HomePage = () => {
   }, [id]);
 
   return (
-    <>
+    <main>
       <HeroTabs />
       <AdvatagesSection />
       <CheckInsSection />
       <Partners />
       <AccordionSection />
       <InfoSection />
-    </>
+    </main>
   );
 };
 

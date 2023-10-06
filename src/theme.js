@@ -33,6 +33,9 @@ export const theme = createTheme({
     error: {
       main: "#E04040",
     },
+    inputBase: {
+      main: "#052A74",
+    },
   },
   primary: {
     "&:hover": {
@@ -44,6 +47,7 @@ export const theme = createTheme({
       xs: 0,
       sm: 744,
       md: 900,
+      ml: 1160,
       lg: 1400,
       xl: 1536,
     },
@@ -200,6 +204,32 @@ theme.typography.caption = {
     fontWeight: 400,
     color: theme.palette.primary.main,
     lineHeight: "1.5",
+  },
+  [theme.breakpoints.up("sm")]: {
+    fontSize: "1rem",
+  },
+  [theme.breakpoints.up("lg")]: {},
+};
+theme.typography.formTitle = {
+  [theme.breakpoints.up("xs")]: {
+    fontSize: "1rem",
+    fontFamily: "OpenSans-Regular, sans-serif",
+    fontWeight: 800,
+    color: theme.palette.primary.main,
+    lineHeight: 1.5,
+  },
+  [theme.breakpoints.up("sm")]: {
+    fontSize: "1.375rem",
+  },
+  [theme.breakpoints.up("lg")]: {},
+};
+theme.typography.inputLable = {
+  [theme.breakpoints.up("xs")]: {
+    fontSize: "0.875rem",
+    fontFamily: "OpenSans-SemiBold, sans-serif",
+    fontWeight: 600,
+    color: theme.palette.primary.main,
+    lineHeight: 1.5,
   },
   [theme.breakpoints.up("sm")]: {
     fontSize: "1rem",

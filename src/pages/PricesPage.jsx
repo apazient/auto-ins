@@ -1,14 +1,20 @@
+import { Outlet, useLocation } from "react-router-dom";
 import Company from "../components/Company/Company";
-import Container from "@mui/material/Container";
+
+import OutletNavaigation from "../components/OutletNavigation/OutletNavigation";
+import { ContainerSectionPage, PageContainerS } from "../style/Global.styled";
 
 export const PricesPage = () => {
+  const location = useLocation();
+
   return (
-    <>
-      <div>PricesPage</div>
-      <Container sx={{ backgroundColor: "#BCC3E7" }}>
+    <PageContainerS>
+      <ContainerSectionPage component="section">
+        <OutletNavaigation locationPath={location} />
+        <hr />
         <Company />
-      </Container>
-    </>
+      </ContainerSectionPage>
+    </PageContainerS>
   );
 };
 

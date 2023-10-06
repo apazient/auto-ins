@@ -1,5 +1,6 @@
 import { Button, Container } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import { Link } from "react-router-dom";
 
 export const BlueButton = styled(Button)(({ theme }) => ({
   padding: "16px 32px",
@@ -24,22 +25,36 @@ export const BlueButton = styled(Button)(({ theme }) => ({
   },
 }));
 
-export const WhiteButton = styled(Button)(({ theme }) => ({
+export const WhiteButton = styled(Link)(({ theme }) => ({
+  width: "100%",
   padding: "16px 38px",
+  textDecoration: "none",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  gap: "8px",
   borderRadius: "50px",
   fontFamily: "OpenSans-SemiBold",
   fontWeight: 600,
+  fontSize: "16px",
+  lineHeight: "1.5",
   textTransform: "none",
-  border: `1px solid ${theme.palette.primary.main}`,
+  border: `1px solid transparent`,  
   background: theme.palette.primary.white,
   color: theme.palette.primary.main,
+  [theme.breakpoints.up("sm")]: {
+    width: "163px",
+    border: `1px solid ${theme.palette.primary.main}`,
+    fontSize: "18px",
+  },
   "&:hover": {
-    background: theme.palette.primary.blue,
-    color: theme.palette.primary.white,
+    "& div": {
+      fill: theme.palette.primary.yellow,
+    },
+    background: theme.palette.primary.yellow,    
   },
   "&:active": {
-    background: theme.palette.primary.tertiaryBlue,
-    color: theme.palette.primary.white,
+    background: theme.palette.primary.tertiaryYellow,    
   },
   "&.Mui-disabled": {
     background: theme.palette.primary.white,
@@ -83,5 +98,28 @@ export const ContainerSection = styled(Container)(({ theme }) => ({
   [theme.breakpoints.up("lg")]: {
     padding: "120px 120px",
     width: "1400px",
+  },
+}));
+
+export const ContainerSectionPage = styled(ContainerSection)(({ theme }) => ({
+  "&.MuiContainer-root": { paddingTop: "16px" },
+}));
+export const PageContainerS = styled("main")(({ theme }) => ({
+  backgroundColor: theme.palette.primary.lightBlue2,
+  color: theme.palette.primary.main,
+}));
+export const FormContainer = styled(Container)(({ theme }) => ({
+  width: "100%",
+  oveflow: "hidden",
+  backgroundColor: theme.palette.primary.white,
+  padding: "16px",
+  borderRadius: "35px",
+
+  [theme.breakpoints.up("sm")]: {
+    padding: "24px",
+    borderRadius: "50px",
+  },
+  [theme.breakpoints.up("lg")]: {
+    padding: "32px",
   },
 }));

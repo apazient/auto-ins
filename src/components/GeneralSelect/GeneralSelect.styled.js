@@ -4,11 +4,32 @@ import Select from "react-select";
 export const SelectStyled = styled(Select)(({ theme }) => ({
   "& .customSelect__": {
     "&control": {
+      color: theme.palette.primary.main,
+      fontFamily: "OpenSans-SemiBold",
+      fontSize: 16,
+      fontWeight: "600",
+      lineHeight: "150%" /* 24px */,
       width: "100%",
       padding: 16,
       height: 56,
       borderRadius: 50,
       backgroundColor: "#FEFEFF",
+      borderColor: theme.palette.primary.main,
+      boxShadow: "0 0 0 0",
+      "&:hover": {
+        borderColor: theme.palette.primary.main,
+      },
+      "& svg": {
+        transition: "transform 200ms ease-in-out",
+      },
+      "&--menu-is-open": {
+        "& svg": {
+          transform: "rotateX(180deg)",
+        },
+      },
+      [theme.breakpoints.up("sm")]: {
+        fontSize: 18,
+      },
       [theme.breakpoints.up("lg")]: {
         width: 272,
       },
@@ -24,16 +45,8 @@ export const SelectStyled = styled(Select)(({ theme }) => ({
     },
     "&input-container": {
       height: 24,
-      color: "#030303",
-      fontFamily: "OpenSans-SemiBold",
-      fontSize: 16,
-      fontWeight: "600",
-      lineHeight: "150%" /* 24px */,
       margin: 0,
       padding: 0,
-      [theme.breakpoints.up("sm")]: {
-        fontSize: 18,
-      },
     },
     "&indicator-separator": {
       display: "none",
@@ -48,6 +61,14 @@ export const SelectStyled = styled(Select)(({ theme }) => ({
     "&menu": {
       marginTop: 0,
       borderRadius: 25,
+      color: theme.palette.primary.main,
+      fontFamily: "OpenSans-SemiBold",
+      fontSize: 16,
+      fontWeight: "600",
+      lineHeight: "150%" /* 24px */,
+      [theme.breakpoints.up("sm")]: {
+        fontSize: 18,
+      },
     },
     "&menu-list": {
       padding: 4,
@@ -65,6 +86,9 @@ export const SelectStyled = styled(Select)(({ theme }) => ({
         backgroundColor: theme.palette.primary.lightBlue2,
       },
     },
+    "&indicator": {
+      color: theme.palette.primary.main,
+    },
 
     [theme.breakpoints.up("sm")]: {
       "&control": {
@@ -72,54 +96,6 @@ export const SelectStyled = styled(Select)(({ theme }) => ({
       },
     },
   },
-  //   "& .customSelect__control": {
-  //     width: "100%",
-  //     padding: 16,
-  //     height: 56,
-  //     borderRadius: 50,
-  //     backgroundColor: "#FEFEFF",
-  //     [theme.breakpoints.up("lg")]: {
-  //       width: 272,
-  //     },
-  //   },
-  //   "& .customSelect__value-container": { height: 24, padding: 0 },
-  //   "& .customSelect__indicators": {
-  //     height: 24,
-  //     padding: 0,
-  //     "& svg": {
-  //       width: 24,
-  //       height: 24,
-  //     },
-  //   },
-  //   "& .customSelect__input-container": {
-  //     height: 24,
-  //     color: "#030303",
-  //     fontFamily: "OpenSans-SemiBold",
-  //     fontSize: 16,
-  //     fontWeight: "600",
-  //     lineHeight: "150%" /* 24px */,
-  //     margin: 0,
-  //     padding: 0,
-  //     [theme.breakpoints.up("sm")]: {
-  //       fontSize: 18,
-  //     },
-  //   },
-  //   "& .customSelect__indicator-separator": {
-  //     display: "none",
-  //   },
-  //   "& .customSelect__dropdown-indicator": {
-  //     padding: 0,
-  //     "& svg": {
-  //       width: 24,
-  //       height: 24,
-  //     },
-  //   },
-  //   "& .customSelect__menu": { marginTop: 0, borderRadius: 50 },
-  //   [theme.breakpoints.up("sm")]: {
-  //     "& .customSelect__control": {
-  //       height: 59,
-  //     },
-  //   },
 }));
 export const InputContStyled = styled(Box)(({ theme }) => ({
   display: "flex",

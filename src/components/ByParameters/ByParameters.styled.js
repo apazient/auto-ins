@@ -64,12 +64,12 @@ export const InputStyled = styled(OutlinedInput)(({ theme }) => ({
   borderRadius: 50,
   backgroundColor: `${theme.palette.primary.white}`,
   outline: `none`,
-  "& #location-input": {
+  "& .MuiInputBase-input.MuiOutlinedInput-input": {
     color: `${theme.palette.primary.main}`,
     fontWeight: 600,
     fontFamily: "OpenSans-SemiBold",
     fontSize: 16,
-    lineHeight: 1.5 /* 24px */,
+    lineHeight: "150%" /* 24px */,
     [theme.breakpoints.up("sm")]: {
       fontSize: 18,
     },

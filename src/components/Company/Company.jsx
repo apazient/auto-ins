@@ -6,8 +6,10 @@ import { YellowButton } from "../../style/Global.styled";
 import {
   BoxContent,
   BoxFooter,
+  BoxSelect,
   CardStyled,
   ExpandIconBox,
+  GeneralSelectS,
   GridContainer,
   GridContainerImg,
   GridContainerRaiting,
@@ -24,12 +26,16 @@ import GeneralSelect from "../GeneralSelect/GeneralSelect";
 import { GeneralCheckbox } from "../GeneralCheckbox/GeneralCheckbox";
 import { SpriteSVG } from "../../images/SpriteSVG";
 import Button from "@mui/material/Button";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Company = () => {
   const prop = {
     name: "Євронінс Україна",
     price: "1000 грн",
   };
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const theme = useTheme();
   const [partners, setPartners] = useState(partnersData);
   const [expanded, setExpanded] = useState(false);
@@ -97,25 +103,24 @@ const Company = () => {
           >
             ОСЦПВ від {name}
           </Typography>
-          <Box sx={{ marginBottom: { xs: "8px", sm: "12px" } }}>
-            <GeneralSelect
+          <BoxSelect sx={{ marginBottom: { xs: "8px", sm: "12px" } }}>
+            <GeneralSelectS
               id="1"
               lableText="Франшиза"
               helper="Пояснення до франчизи"
               color={theme.palette.primary.main}
               optionsArr={["3200", "2330"]}
             />
-          </Box>
-          <Box sx={{ marginBottom: "16px" }}>
-            <GeneralSelect
+          </BoxSelect>
+          <BoxSelect>
+            <GeneralSelectS
               id="1"
               lableText="Додаткове покриття"
               helper="Пояснення до додаткове покриття"
               color={theme.palette.primary.main}
               optionsArr={["3200", "2330"]}
-              sx={{ width: "100%" }}
             />
-          </Box>
+          </BoxSelect>
           <GeneralCheckbox
             lableText="Свідомий захист"
             name="check"
@@ -134,7 +139,9 @@ const Company = () => {
               {price}
             </Typography>
           </BoxFooter>
-          <YellowButton sx={{ width: "100%" }}>Придбати</YellowButton>
+          <Link state={{ from: location }} to="/form" style={{ color: "lime" }}>
+            <YellowButton>Придбати</YellowButton>
+          </Link>
         </WrapperStyled>
       </WrapperStyled>
       <WrapperStyled>

@@ -11,7 +11,7 @@ export const CheckboxContainerStyled = styled(Box)(({ theme }) => ({
   display: "inline-flex",
   alignItems: "center",
   stroke: theme.palette.primary.white,
-  order: 1,
+
   "& .MuiFormControlLabel-root": {
     marginRight: 0,
     width: "fit-content",
@@ -21,5 +21,8 @@ export const CheckboxContainerStyled = styled(Box)(({ theme }) => ({
       height: 16,
       width: 16,
     },
+  },
+  [theme.breakpoints.up("lg")]: {
+    order: 1,
   },
 }));
