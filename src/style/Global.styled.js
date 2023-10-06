@@ -42,6 +42,7 @@ export const WhiteButton = styled(Link)(({ theme }) => ({
   border: `1px solid transparent`,  
   background: theme.palette.primary.white,
   color: theme.palette.primary.main,
+  transition: "background 350ms linear",
   [theme.breakpoints.up("sm")]: {
     width: "163px",
     border: `1px solid ${theme.palette.primary.main}`,
@@ -59,7 +60,11 @@ export const WhiteButton = styled(Link)(({ theme }) => ({
   "&.Mui-disabled": {
     background: theme.palette.primary.white,
     color: theme.palette.primary.tertiaryDark,
-    border: "1px solid theme.palette.primary.tertiaryDark",
+    border: `1px solid ${theme.palette.primary.tertiaryDark}`,
+    cursor: 'default',
+    "& div": {
+      fill: theme.palette.primary.white,
+    },
   },
 }));
 

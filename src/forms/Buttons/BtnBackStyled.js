@@ -5,6 +5,8 @@ export const BoxIconS = styled(Box)(({theme})=>({
   height: '24px',
   stroke: theme.palette.primary.main,
   fill: theme.palette.primary.white,
-  // display: 'flex',
-  // alignItems: 'flex-end',  
+  "&.disabled" :{
+    stroke: theme.palette.primary.tertiaryDark,
+  }   
 }));
+
