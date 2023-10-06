@@ -10,6 +10,21 @@ import {
 import GeneralSelect from "../GeneralSelect/GeneralSelect";
 import { useTheme } from "@emotion/react";
 
+const selectArrOptions = [
+  {
+    value: "Ціна",
+    label: "Ціна",
+  },
+  {
+    value: "Популярність",
+    label: "Популярність",
+  },
+  {
+    value: "Компанії",
+    label: "Компанії",
+  },
+];
+
 const ProposalsFilter = () => {
   const theme = useTheme();
   const smScreen = useMediaQuery(theme.breakpoints.up("sm"));
@@ -46,19 +61,19 @@ const ProposalsFilter = () => {
           <GeneralSelect
             id="price"
             lableText="Ціна"
-            optionsArr={["Ціна", "Популярність", "Компанії"]}
+            optionsArr={selectArrOptions}
             //changeCB, //функція що повертає вибране значення (піднесення)
           />
           <GeneralSelect
             id="popularity"
             lableText="Популярність"
-            optionsArr={["Ціна", "Популярність", "Компанії"]}
+            optionsArr={selectArrOptions}
             //changeCB, //функція що повертає вибране значення (піднесення)
           />
           <GeneralSelect
             id="companies"
             lableText="Компанії"
-            optionsArr={["Ціна", "Популярність", "Компанії"]}
+            optionsArr={selectArrOptions}
             //changeCB, //функція що повертає вибране значення (піднесення)
           />
           <TooltipStyled

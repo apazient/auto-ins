@@ -15,6 +15,21 @@ import HelpCircle from "../HelpCircle/HelpCircle";
 import GeneralSelect from "../GeneralSelect/GeneralSelect";
 import { GeneralCheckbox } from "../GeneralCheckbox/GeneralCheckbox";
 
+const selectArrOptions = [
+  {
+    value: "Ціна",
+    label: "Ціна",
+  },
+  {
+    value: "Популярність",
+    label: "Популярність",
+  },
+  {
+    value: "Компанії",
+    label: "Компанії",
+  },
+];
+
 const ByParameters = () => {
   const formik = useFormik({
     initialValues: {
@@ -37,12 +52,12 @@ const ByParameters = () => {
           <GeneralSelect
             id="vehicle"
             lableText="Транспортний засіб"
-            optionsArr={["Легкове авто", "Вантажівка", "Причеп"]}
+            optionsArr={selectArrOptions}
           />
           <GeneralSelect
             id="engineCapacity"
             lableText="Об’єм двигуна"
-            optionsArr={["Легкове авто", "Вантажівка", "Причеп"]}
+            optionsArr={selectArrOptions}
           />
 
           <InputContStyled>
