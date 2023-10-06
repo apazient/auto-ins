@@ -13,6 +13,7 @@ export const CardStyled = styled(Card)(({ theme }) => ({
     color: theme.palette.primary.main,
     borderRadius: "50px",
     marginBottom: "16px",
+    listStyle: "none",
     [theme.breakpoints.up("sm")]: {
       padding: "24px",
       maxWidth: "680px",

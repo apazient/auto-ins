@@ -1,7 +1,5 @@
 import Typography from "@mui/material/Typography";
-
 import { YellowButton } from "../../style/Global.styled";
-
 import {
   BoxContent,
   BoxFooter,
@@ -14,40 +12,36 @@ import {
   WrapperStyled,
 } from "./CompanyStyled";
 import Grid from "@mui/material/Grid";
-
-import { useEffect, useState } from "react";
-
+import { useState } from "react";
 import useTheme from "@mui/material/styles/useTheme";
 import { PartnersImgs } from "../Partners/PartnersImgs";
-
 import { GeneralCheckbox } from "../GeneralCheckbox/GeneralCheckbox";
-
-import { Link, useLocation, useNavigate } from "react-router-dom";
-
+import { Link, useLocation } from "react-router-dom";
 import { CompanyExpandMore } from "../CompanyExpandMore/CompanyExpandMore";
-
 import GeneralSelect from "../GeneralSelect/GeneralSelect";
 
 const Company = ({ companyObject }) => {
   const { nameCompany, idCompany, raitingCompany, fransizes } = companyObject;
-
-  // const location = useLocation();
-  // const navigate = useNavigate();
-
-  const theme = useTheme();
-
-  const [checkSavety, setCheckSavety] = useState(false);
-
   const fransizeSelect = fransizes?.map(({ sum, idFransize, nameFransize }) => {
     return { value: sum, label: nameFransize };
   });
 
+  const location = useLocation();
+
+  const theme = useTheme();
+
+  const [checkSavety, setCheckSavety] = useState(false);
+  const [franchise, setFranchise] = useState(null);
+  const [price, setPrice] = useState(fransizeSelect[0].value);
+
   const handleChangeSelect = (value) => {
     setFranchise(value);
+    setPrice(value);
+    console.log(value);
   };
 
   return (
-    <CardStyled>
+    <CardStyled component="li" sx={{ overflow: "visible" }}>
       <WrapperStyled
         sx={{ display: { sm: "flex" }, gap: { sm: "16px", lg: "24px" } }}
       >
@@ -103,23 +97,23 @@ const Company = ({ companyObject }) => {
             ОСЦПВ від {nameCompany}
           </Typography>
           <BoxSelect sx={{ marginBottom: { xs: "8px", sm: "12px" } }}>
-            {/* <GeneralSelect
+            <GeneralSelect
               id="1"
               lableText="Франшиза"
               helper="Пояснення до франчизи"
               color={theme.palette.primary.main}
               optionsArr={fransizeSelect}
               changeCB={handleChangeSelect}
-            /> */}
+            />
           </BoxSelect>
           <BoxSelect>
-            {/* <GeneralSelect
+            <GeneralSelect
               id="2"
               lableText="Додаткове покриття"
               helper="Пояснення до додаткове покриття"
               color={theme.palette.primary.main}
-              optionsArr={["0", "2330"]}
-            /> */}
+              optionsArr={fransizeSelect}
+            />
           </BoxSelect>
           <GeneralCheckbox
             lableText="Свідомий захист"
@@ -136,7 +130,7 @@ const Company = ({ companyObject }) => {
               component="span"
               sx={{ fontSize: { sm: "18px", lg: "22px" } }}
             >
-              {"=0000"}
+              {price}
             </Typography>
           </BoxFooter>
           <Link state={{ from: location }} to="/form" style={{ color: "lime" }}>
