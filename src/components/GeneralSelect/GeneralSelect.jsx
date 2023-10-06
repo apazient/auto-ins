@@ -10,17 +10,17 @@ const GeneralSelect = ({
   optionsArr, //масив елементів які відображає SElect
   helper = "", //якщо текст присутній то показується елемент <HelpCircle/>
   color = "", //базовий колір для елемента <HelpCircle/>
-  //changeCB, //функція що повертає вибране значення (піднесення)
+  changeCB, //функція що повертає вибране значення (піднесення)
 }) => {
-  const allOptions = createSelectOptions(optionsArr);
-  const [curentValue, setCurentValue] = useState(allOptions[0]);
+  //const allOptions = createSelectOptions(optionsArr);
+  const [curentValue, setCurentValue] = useState(null);
 
-  function createSelectOptions(arr) {
-    return arr.map((el) => ({
-      value: el,
-      label: el,
-    }));
-  }
+  // function createSelectOptions(arr) {
+  //   return arr.map((el) => ({
+  //     value: el,
+  //     label: el,
+  //   }));
+  // }
 
   return (
     <InputContStyled className="select-container">
@@ -34,10 +34,11 @@ const GeneralSelect = ({
         classNamePrefix="customSelect"
         id={id}
         placeholder="Enter the text"
-        options={allOptions}
+        options={changeCB}
         value={curentValue}
         onChange={(e) => {
           setCurentValue(e);
+          changeCB(e);
         }}
       />
     </InputContStyled>
