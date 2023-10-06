@@ -1,6 +1,6 @@
 [
     {        
-        "id": 1,        
+        "id": 8,        
         "imgAlt": "credo logo",
         "rating": 5,
         "web": "http://skcredo.com.ua/"
@@ -18,37 +18,37 @@
         "web": "https://ingo.ua/"
     },
     {        
-        "id": 4,        
+        "id": 400,        
         "imgAlt": "brokbusiness logo",
         "rating": 3.5,
         "web": "https://bbs.ua/home/"
     },
     {        
-        "id": 5,        
+        "id": 4,        
         "imgAlt": "arx logo",
         "rating": 4.7,
         "web": "https://arx.com.ua/"
     },
     {        
-        "id": 6,        
+        "id": 5,        
         "imgAlt": "uniqa logo",
         "rating": 5,
         "web": "https://uniqa.ua/"
     },
     {        
-        "id": 7,        
+        "id": 401,        
         "imgAlt": "inter-polis logo",
         "rating": 5,
         "web": "https://inter-policy.com/"
     },
     {        
-        "id": 8,        
+        "id": 402,        
         "imgAlt": "europeisky-strahovy-allianz logo",
         "rating": 5,
         "web": "https://eia.com.ua/"
     },
     {        
-        "id": 9,        
+        "id": 403,        
         "imgAlt": "oberig logo",
         "rating": 5,
         "web": "https://uk.oberig-sg.com/"

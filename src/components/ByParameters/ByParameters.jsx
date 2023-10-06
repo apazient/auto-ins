@@ -14,6 +14,7 @@ import { SpriteSVG } from "../../images/SpriteSVG";
 import HelpCircle from "../HelpCircle/HelpCircle";
 import GeneralSelect from "../GeneralSelect/GeneralSelect";
 import { GeneralCheckbox } from "../GeneralCheckbox/GeneralCheckbox";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const selectArrOptions = [
   {
@@ -31,6 +32,8 @@ const selectArrOptions = [
 ];
 
 const ByParameters = () => {
+  const navigate = useNavigate();
+  const locationPath = useLocation();
   const formik = useFormik({
     initialValues: {
       location: "",
@@ -39,6 +42,7 @@ const ByParameters = () => {
     },
     onSubmit: (values) => {
       console.log(values);
+      navigate("/prices", { state: { from: locationPath.pathname } });
     },
     validationSchema: Yup.object().shape({
       location: Yup.string().required("Required field!"),

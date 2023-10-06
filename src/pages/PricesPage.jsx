@@ -1,17 +1,20 @@
+import { Outlet, useLocation } from "react-router-dom";
+import Company from "../components/Company/Company";
 
-import ProposalsFilter from "../components/ProposalsFilter/ProposalsFilter";
-import { WhiteButton } from "../style/Global.styled";
-
+import OutletNavaigation from "../components/OutletNavigation/OutletNavigation";
+import { ContainerSectionPage, PageContainerS } from "../style/Global.styled";
 
 export const PricesPage = () => {
+  const location = useLocation();
+
   return (
-    <>
-      <div>PricesPage</div>
-
-      <WhiteButton> WhiteButton</WhiteButton>
-      <ProposalsFilter />
-
-    </>
+    <PageContainerS>
+      <ContainerSectionPage component="section">
+        <OutletNavaigation locationPath={location} />
+        <hr />
+        <Company />
+      </ContainerSectionPage>
+    </PageContainerS>
   );
 };
 

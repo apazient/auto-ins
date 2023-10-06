@@ -1,13 +1,31 @@
-import InsuredDataForm from "../components/InsuredDataForm/InsuredDataForm";
-import { YellowButton } from "../style/Global.styled";
+import { Card } from "@mui/material";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
+import {
+  ContainerSectionPage,
+  PageContainerS,
+  YellowButton,
+} from "../style/Global.styled";
+import OutletNavaigation from "../components/OutletNavigation/OutletNavigation";
+import FormContacts from "../forms/FormContacts/FormContacts";
 
 const FormPage = () => {
+  const location = useLocation();
+
   return (
-    <>
-      <div>FormPage</div>
-      <YellowButton width={300}>YELLOWBUTTON</YellowButton>
-      <InsuredDataForm />
-    </>
+    <PageContainerS>
+      <ContainerSectionPage component="section">
+        <OutletNavaigation locationPath={location} />
+        <div>FormPage</div>
+        <Link
+          state={{ from: location }}
+          to={location.state?.from || "/prices"}
+          style={{ color: "lime" }}
+        >
+          <YellowButton>goBack</YellowButton>
+        </Link>
+      </ContainerSectionPage>
+      <FormContacts />
+    </PageContainerS>
   );
 };
 
