@@ -1,11 +1,11 @@
 import {
   Box,
+  Button,
   IconButton,
   Tooltip,
   styled,
   tooltipClasses,
 } from "@mui/material";
-import { WhiteButton } from "../../style/Global.styled";
 
 export const SelectsContStyled = styled(Box)(({ theme }) => ({
   display: "flex",
@@ -38,12 +38,14 @@ export const SelectsContStyled = styled(Box)(({ theme }) => ({
     width: "fit-content",
   },
 }));
-export const FilterButtonStyled = styled(WhiteButton)(({ theme }) => ({
+export const FilterButtonStyled = styled(Button)(({ theme }) => ({
   display: "flex",
   flexDirection: "row",
   width: "100%",
   marginBottom: 0,
   backgroundColor: "transparent",
+  padding: "16px 38px",
+  borderRadius: 50,
 
   "&.MuiButtonBase-root.MuiButton-root": {
     border: `1px solid ${theme.palette.primary.white}`,
@@ -52,6 +54,9 @@ export const FilterButtonStyled = styled(WhiteButton)(({ theme }) => ({
     fontSize: 16,
     fontWeight: 600,
     lineHeight: 1.5 /* 24px */,
+    "&:hover, &:focus": {
+      border: `1px solid ${theme.palette.primary.darkBlue}`,
+    },
     [theme.breakpoints.up("sm")]: {
       display: "none",
     },
