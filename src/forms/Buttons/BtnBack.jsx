@@ -13,13 +13,29 @@ const BtnBack = () => {
   };
 
   return (
-    <>      
-        <WhiteButton onClick={handleOnBackClick} to={backLinkRef.current ?? "/"}>
-          <BoxIconS>
-            <SpriteSVG name={"icon-arrow-left"} />
-          </BoxIconS>
-          Назад
-        </WhiteButton>      
+    <>
+      {backLinkRef.current ? (
+        <>
+          <WhiteButton
+            onClick={handleOnBackClick}
+            to={backLinkRef.current ?? "/"}
+          >
+            <BoxIconS>
+              <SpriteSVG name={"icon-arrow-left"} />
+            </BoxIconS>
+            Назад
+          </WhiteButton>
+        </>
+      ) : (
+        <>
+          <WhiteButton className="Mui-disabled">
+            <BoxIconS className="disabled">
+              <SpriteSVG name={"icon-arrow-left"} />
+            </BoxIconS>
+            Назад
+          </WhiteButton>
+        </>
+      )}
     </>
   );
 };

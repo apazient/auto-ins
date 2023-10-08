@@ -74,6 +74,7 @@ export const theme = createTheme({
           maxWidth: "100%",
           height: "auto",
         },
+        ul: { margin: 0, padding: 0 },
       },
     },
     // MuiButtonBase: {
@@ -144,7 +145,7 @@ theme.typography.body1 = {
     fontFamily: "OpenSans-Regular, sans-serif",
     fontWeight: 400,
     color: theme.palette.primary.white,
-    lineHeight: "1.5rem",
+    lineHeight: "1.5em",
   },
   [theme.breakpoints.up("sm")]: {
     fontSize: "1rem",
@@ -213,7 +214,7 @@ theme.typography.caption = {
 theme.typography.formTitle = {
   [theme.breakpoints.up("xs")]: {
     fontSize: "1rem",
-    fontFamily: "OpenSans-Regular, sans-serif",
+    fontFamily: "OpenSans-ExtraBold, sans-serif",
     fontWeight: 800,
     color: theme.palette.primary.main,
     lineHeight: 1.5,

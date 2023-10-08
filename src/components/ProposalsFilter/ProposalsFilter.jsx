@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Box, Collapse, Zoom, useMediaQuery } from "@mui/material";
 import { SpriteSVG } from "../../images/SpriteSVG";
 import {
@@ -9,15 +9,46 @@ import {
 } from "./ProposalsFilter.styled";
 import GeneralSelect from "../GeneralSelect/GeneralSelect";
 import { useTheme } from "@emotion/react";
+import {
+  createSelectOptionsByCompaniName,
+  priceSortOptionsGeneral,
+} from "../../helpers/proposalsFilter";
+import PropTypes from "prop-types";
 
-const ProposalsFilter = () => {
+const ProposalsFilter = ({ companies, setCompanies }) => {
+  const { current } = useRef(companies);
+
+  const [companiesNameOptions, setCompaniesNameOptions] = useState([]);
+  const [selectedCompanieName, setSelectedCompanieName] = useState("");
+  const [selectedPriceSort, setSelectedPriceSort] = useState("");
+
   const theme = useTheme();
   const smScreen = useMediaQuery(theme.breakpoints.up("sm"));
   const [isShowFilter, setIsShowFilter] = useState(false);
 
   useEffect(() => {
+    setCompaniesNameOptions(createSelectOptionsByCompaniName(current));
+  }, [current]);
+
+  useEffect(() => {
     setIsShowFilter(smScreen);
   }, [smScreen]);
+
+  useEffect(() => {
+    let filteredCompanies = [...current];
+    if (selectedCompanieName) {
+      filteredCompanies = filteredCompanies.filter(
+        (el) => el.nameCompany === selectedCompanieName
+      );
+    }
+    // if (selectedPriceSort) {
+    // }
+    if (selectedCompanieName || selectedPriceSort) {
+      setCompanies(filteredCompanies);
+    } else {
+      setCompanies(current);
+    }
+  }, [selectedCompanieName, current, setCompanies, selectedPriceSort]);
 
   const handleChange = () => {
     setIsShowFilter((prev) => !prev);
@@ -46,20 +77,20 @@ const ProposalsFilter = () => {
           <GeneralSelect
             id="price"
             lableText="Ціна"
-            optionsArr={["Ціна", "Популярність", "Компанії"]}
-            //changeCB, //функція що повертає вибране значення (піднесення)
+            optionsArr={priceSortOptionsGeneral}
+            changeCB={setSelectedPriceSort} //функція що повертає вибране значення (піднесення)
           />
           <GeneralSelect
             id="popularity"
             lableText="Популярність"
-            optionsArr={["Ціна", "Популярність", "Компанії"]}
+            optionsArr={priceSortOptionsGeneral}
             //changeCB, //функція що повертає вибране значення (піднесення)
           />
           <GeneralSelect
             id="companies"
             lableText="Компанії"
-            optionsArr={["Ціна", "Популярність", "Компанії"]}
-            //changeCB, //функція що повертає вибране значення (піднесення)
+            optionsArr={companiesNameOptions}
+            changeCB={setSelectedCompanieName} //функція що повертає вибране значення (піднесення)
           />
           <TooltipStyled
             title="Очистити фільтр"
@@ -67,7 +98,13 @@ const ProposalsFilter = () => {
             placement="top"
             TransitionComponent={Zoom}
           >
-            <ResetFilterButtonStyled type="button">
+            <ResetFilterButtonStyled
+              type="button"
+              onClick={() => {
+                setSelectedCompanieName("");
+                setSelectedPriceSort("");
+              }}
+            >
               <SpriteSVG name="icon-filter-desktop-tablet" />
             </ResetFilterButtonStyled>
           </TooltipStyled>
@@ -78,3 +115,8 @@ const ProposalsFilter = () => {
 };
 
 export default ProposalsFilter;
+
+ProposalsFilter.propTypes = {
+  companies: PropTypes.array,
+  setCompanies: PropTypes.func,
+};
