@@ -214,7 +214,7 @@ theme.typography.caption = {
 theme.typography.formTitle = {
   [theme.breakpoints.up("xs")]: {
     fontSize: "1rem",
-    fontFamily: "OpenSans-Regular, sans-serif",
+    fontFamily: "OpenSans-ExtraBold, sans-serif",
     fontWeight: 800,
     color: theme.palette.primary.main,
     lineHeight: 1.5,
