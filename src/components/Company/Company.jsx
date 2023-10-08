@@ -1,9 +1,9 @@
 import Typography from "@mui/material/Typography";
-import { YellowButton } from "../../style/Global.styled";
 import {
   BoxContent,
   BoxFooter,
   BoxSelect,
+  ButtonStyled,
   CardStyled,
   GridContainer,
   GridContainerImg,
@@ -16,9 +16,10 @@ import { useState } from "react";
 import useTheme from "@mui/material/styles/useTheme";
 import { PartnersImgs } from "../Partners/PartnersImgs";
 import { GeneralCheckbox } from "../GeneralCheckbox/GeneralCheckbox";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { CompanyExpandMore } from "../CompanyExpandMore/CompanyExpandMore";
 import GeneralSelect from "../GeneralSelect/GeneralSelect";
+import Box from "@mui/material/Box";
 
 const Company = ({ companyObject }) => {
   const { nameCompany, idCompany, raitingCompany, fransizes } = companyObject;
@@ -37,18 +38,21 @@ const Company = ({ companyObject }) => {
   const handleChangeSelect = (value) => {
     setFranchise(value);
     setPrice(value);
-    console.log(value);
   };
 
   return (
     <CardStyled component="li" sx={{ overflow: "visible" }}>
       <WrapperStyled
-        sx={{ display: { sm: "flex" }, gap: { sm: "16px", lg: "24px" } }}
+        sx={{
+          display: { sm: "flex" },
+          gap: { sm: "16px", lg: "24px" },
+          marginBottom: { xs: "16px", sm: "24px", lg: "40px" },
+        }}
       >
-        <WrapperStyled sx={{ marginBottom: { xs: "16px" } }}>
+        <WrapperStyled>
           <Grid
             container
-            sx={{ width: { xs: "100%", sm: "125px", lg: "320px" } }}
+            sx={{ width: { xs: "100%", sm: "125px", lg: "256px" } }}
           >
             <GridContainer
               item
@@ -60,13 +64,12 @@ const Company = ({ companyObject }) => {
                 width: { xs: "100%" },
               }}
             >
-              <Typography variant="subtitle1">
+              <Typography variant="subtitle1" component="h3">
                 ОСЦПВ від {nameCompany}
               </Typography>
             </GridContainer>
             <GridContainerImg item xs={6} sm={12}>
               <PartnersImgs
-                sx={{ width: { sm: "125px" } }}
                 data={{ id: String(idCompany), imgAlt: nameCompany || "ОСЦП" }}
               />
             </GridContainerImg>
@@ -89,32 +92,38 @@ const Company = ({ companyObject }) => {
         <BoxContent>
           <Typography
             variant="subtitle1"
+            component="h3"
             sx={{
               display: { xs: "none", sm: "block" },
               marginBottom: { sm: "20px", lg: "32px" },
+              lineHeight: { sm: "1.5em" },
+              fontSize: { lg: "22px" },
             }}
           >
             ОСЦПВ від {nameCompany}
           </Typography>
-          <BoxSelect sx={{ marginBottom: { xs: "8px", sm: "12px" } }}>
-            <GeneralSelect
-              id="1"
-              lableText="Франшиза"
-              helper="Пояснення до франчизи"
-              color={theme.palette.primary.main}
-              optionsArr={fransizeSelect}
-              changeCB={handleChangeSelect}
-            />
-          </BoxSelect>
-          <BoxSelect>
-            <GeneralSelect
-              id="2"
-              lableText="Додаткове покриття"
-              helper="Пояснення до додаткове покриття"
-              color={theme.palette.primary.main}
-              optionsArr={fransizeSelect}
-            />
-          </BoxSelect>
+          <Box sx={{ display: { lg: "flex" } }}>
+            <BoxSelect sx={{ marginBottom: { xs: "8px", sm: "12px" } }}>
+              <GeneralSelect
+                id="1"
+                lableText="Франшиза"
+                helper="Пояснення до франчизи"
+                color={theme.palette.primary.main}
+                optionsArr={fransizeSelect}
+                changeCB={handleChangeSelect}
+              />
+            </BoxSelect>
+            <BoxSelect>
+              <GeneralSelect
+                id="2"
+                lableText="Додаткове покриття"
+                helper="Пояснення до додаткове покриття"
+                color={theme.palette.primary.main}
+                optionsArr={fransizeSelect}
+              />
+            </BoxSelect>
+          </Box>
+
           <GeneralCheckbox
             lableText="Свідомий захист"
             name="check"
@@ -122,7 +131,7 @@ const Company = ({ companyObject }) => {
             color={theme.palette.primary.main}
           />
         </BoxContent>
-        <WrapperStyled>
+        <WrapperStyled sx={{ width: "100%" }}>
           <BoxFooter>
             <Typography component="span">Вартість</Typography>
             <Typography
@@ -130,12 +139,12 @@ const Company = ({ companyObject }) => {
               component="span"
               sx={{ fontSize: { sm: "18px", lg: "22px" } }}
             >
-              {price}
+              {price} грн
             </Typography>
           </BoxFooter>
-          <Link state={{ from: location }} to="/form" style={{ color: "lime" }}>
-            <YellowButton>Придбати</YellowButton>
-          </Link>
+          <ButtonStyled state={{ from: location }} to="/form">
+            Придбати
+          </ButtonStyled>
         </WrapperStyled>
       </WrapperStyled>
       <WrapperStyled>

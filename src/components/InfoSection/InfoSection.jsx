@@ -4,26 +4,26 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useState } from "react";
 
-import Car320Webp from "../../images/carMob.webp";
-import Car320Webp2x from "../../images/carMob2x.webp";
-import Car320Webp3x from "../../images/carMob3x.webp";
-import Car320Jpg from "../../images/carMob.jpg";
-import Car320Jpg2x from "../../images/carMob2x.jpg";
-import Car320Jpg3x from "../../images/carMob3x.jpg";
+import Car320Webp from "../../images/infoCar/carMob.webp";
+import Car320Webp2x from "../../images/infoCar/carMob2x.webp";
+import Car320Webp3x from "../../images/infoCar/carMob3x.webp";
+import Car320Jpg from "../../images/infoCar/carMob.jpg";
+import Car320Jpg2x from "../../images/infoCar/carMob2x.jpg";
+import Car320Jpg3x from "../../images/infoCar/carMob3x.jpg";
 
-import Car768Web from "../../images/carTab.webp";
-import Car768Web2x from "../../images/carTab2x.webp";
-import Car768Web3x from "../../images/carTab3x.webp";
-import Car768Jpg from "../../images/carTab.jpg";
-import Car768Jpg2x from "../../images/carTab2x.jpg";
-import Car768Jpg3x from "../../images/carTab3x.jpg";
+import Car768Web from "../../images/infoCar/carTab.webp";
+import Car768Web2x from "../../images/infoCar/carTab2x.webp";
+import Car768Web3x from "../../images/infoCar/carTab3x.webp";
+import Car768Jpg from "../../images/infoCar/carTab.jpg";
+import Car768Jpg2x from "../../images/infoCar/carTab2x.jpg";
+import Car768Jpg3x from "../../images/infoCar/carTab3x.jpg";
 
-import Car1400Webp from "../../images/carDes.webp";
-import Car1400Webp2x from "../../images/carDes2x.webp";
-import Car1400Webp3x from "../../images/carDes3x.webp";
-import Car1400Jpg from "../../images/carDes.jpg";
-import Car1400Jpg2x from "../../images/carDes2x.jpg";
-import Car1400Jpg3x from "../../images/carDes3x.jpg";
+import Car1400Webp from "../../images/infoCar/carDes.webp";
+import Car1400Webp2x from "../../images/infoCar/carDes2x.webp";
+import Car1400Webp3x from "../../images/infoCar/carDes3x.webp";
+import Car1400Jpg from "../../images/infoCar/carDes.jpg";
+import Car1400Jpg2x from "../../images/infoCar/carDes2x.jpg";
+import Car1400Jpg3x from "../../images/infoCar/carDes3x.jpg";
 
 import { YellowButton } from "../../style/Global.styled";
 import {
