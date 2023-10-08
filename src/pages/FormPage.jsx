@@ -1,16 +1,12 @@
-import { Card } from "@mui/material";
-import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
-import {
-  ContainerSectionPage,
-  PageContainerS,
-  YellowButton,
-} from "../style/Global.styled";
+import { useLocation, useNavigate } from "react-router-dom";
+import { ContainerSectionPage, PageContainerS } from "../style/Global.styled";
 import OutletNavaigation from "../components/OutletNavigation/OutletNavigation";
 import FormContacts from "../forms/FormContacts/FormContacts";
-import CardCompanySmall from "../components/CardCompanySmall/CardCompanySmall";
+import CompanySmall from "../components/CompanySmall/CompanySmall";
 import { useState } from "react";
 
 import companyForm from "../assets/mocapi/companyForm.json";
+import { Wrapper } from "./FormPageStyled";
 
 const FormPage = () => {
   const location = useLocation();
@@ -18,18 +14,14 @@ const FormPage = () => {
 
   return (
     <PageContainerS>
-      <ContainerSectionPage component="section">
+      <ContainerSectionPage component="div">
         <OutletNavaigation locationPath={location} />
-        <CardCompanySmall company={company} />
-        <Link
-          state={{ from: location }}
-          to={location.state?.from || "/prices"}
-          style={{ color: "lime" }}
-        >
-          <YellowButton>goBack</YellowButton>
-        </Link>
+        <Wrapper>
+          <CompanySmall company={company} />
+
+          <FormContacts />
+        </Wrapper>
       </ContainerSectionPage>
-      <FormContacts />
     </PageContainerS>
   );
 };

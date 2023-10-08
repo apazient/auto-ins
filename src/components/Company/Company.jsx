@@ -19,7 +19,7 @@ import { GeneralCheckbox } from "../GeneralCheckbox/GeneralCheckbox";
 import { useLocation } from "react-router-dom";
 import { CompanyExpandMore } from "../CompanyExpandMore/CompanyExpandMore";
 import GeneralSelect from "../GeneralSelect/GeneralSelect";
-import { Box } from "@mui/material";
+import Box from "@mui/material/Box";
 
 const Company = ({ companyObject }) => {
   const { nameCompany, idCompany, raitingCompany, fransizes } = companyObject;
@@ -38,7 +38,6 @@ const Company = ({ companyObject }) => {
   const handleChangeSelect = (value) => {
     setFranchise(value);
     setPrice(value);
-    console.log(value);
   };
 
   return (

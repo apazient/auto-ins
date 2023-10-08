@@ -145,7 +145,7 @@ theme.typography.body1 = {
     fontFamily: "OpenSans-Regular, sans-serif",
     fontWeight: 400,
     color: theme.palette.primary.white,
-    lineHeight: "1.5rem",
+    lineHeight: "1.5em",
   },
   [theme.breakpoints.up("sm")]: {
     fontSize: "1rem",
