@@ -7,6 +7,7 @@ import { useState } from "react";
 
 import companyForm from "../assets/mocapi/companyForm.json";
 import { Wrapper } from "./FormPageStyled";
+import { BlockThank } from "../components/BlockThank/BlockThank";
 
 const FormPage = () => {
   const location = useLocation();
