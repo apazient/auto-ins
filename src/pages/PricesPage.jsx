@@ -9,25 +9,21 @@ import { useState } from "react";
 import { Line } from "./PricesPageStyled";
 import { Typography } from "@mui/material";
 
-export const PricesPage = () => {
+const PricesPage = () => {
   const location = useLocation();
 
-  const [companies, _] = useState(companiesData);
+  const [companies, setCompanies] = useState(companiesData);
   const word = (companies) => {
     if (companies.length === 0) return "пропозицій";
     if (companies.length === 1) return "пропозиція";
     if (companies.length > 1) return "пропозицій";
-
+  };
 
   return (
     <PageContainerS>
       <ContainerSectionPage component="div">
         <OutletNavaigation locationPath={location} />
-<
         <ProposalsFilter companies={companies} setCompanies={setCompanies} />
-
-
-
         <section>
           <Line>
             <Typography variant="body1" component="span">
@@ -36,10 +32,8 @@ export const PricesPage = () => {
           </Line>
           <CompanyList companies={companies} />
         </section>
-
       </ContainerSectionPage>
     </PageContainerS>
   );
 };
-
 export default PricesPage;
