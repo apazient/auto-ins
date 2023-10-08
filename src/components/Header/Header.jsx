@@ -91,7 +91,7 @@ const Header = () => {
               <UlListHS className="socialIcons">
                 <LiItemHS disablePadding={true}>
                   <LinkS
-                    href="https://instagram.com/autoins_info?utm_source=qr&igshid=MzNlNGNkZWQ4Mg%3D%3D"
+                    href="https://instagram.com/autoins_info?igshid=NzZlODBkYWE4Ng=="
                     target="_blank"
                     rel="noreferrer noopener"
                     aria-label="instagram"
@@ -103,7 +103,7 @@ const Header = () => {
                 </LiItemHS>
                 <LiItemHS disablePadding={true}>
                   <LinkS
-                    href="https://www.facebook.com"
+                    href="https://www.facebook.com/profile.php?id=61551725567425"
                     target="_blank"
                     rel="noreferrer noopener"
                     aria-label="facebook"
