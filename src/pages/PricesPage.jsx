@@ -12,8 +12,6 @@ import { Typography } from "@mui/material";
 export const PricesPage = () => {
   const location = useLocation();
 
-  const [companies, setCompanies] = useState(companiesData);
-
   const [companies, _] = useState(companiesData);
   const word = (companies) => {
     if (companies.length === 0) return "пропозицій";
