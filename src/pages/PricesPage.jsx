@@ -5,17 +5,31 @@ import { ContainerSectionPage, PageContainerS } from "../style/Global.styled";
 
 import companiesData from "../assets/mocapi/companyDataList.json";
 import { useState } from "react";
+import { Line } from "./PricesPageStyled";
+import { Box, Typography } from "@mui/material";
 
 export const PricesPage = () => {
   const location = useLocation();
   const [companies, _] = useState(companiesData);
+  const number = (companies) => {
+    if (companies.length === 0) return "пропозицій";
+    if (companies.length === 1) return "пропозиція";
+    if (companies.length > 1) return "пропозицій";
+  };
 
   return (
     <PageContainerS>
-      <ContainerSectionPage component="section">
+      <ContainerSectionPage component="div">
         <OutletNavaigation locationPath={location} />
-        <hr />
-        <CompanyList companies={companies} />
+
+        <section>
+          <Line>
+            <Typography variant="body1" component="span">
+              {companies.length} {number(companies)}
+            </Typography>
+          </Line>
+          <CompanyList companies={companies} />
+        </section>
       </ContainerSectionPage>
     </PageContainerS>
   );

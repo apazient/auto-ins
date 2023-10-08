@@ -70,6 +70,9 @@ const CardCompanySmall = ({ company }) => {
             {city}
           </Typography>
         </Grid>
+        <Grid item sm={12}>
+          <hr />
+        </Grid>
         <Grid item sm={6}>
           <Typography component="span" variant="subtitle1">
             До сплати

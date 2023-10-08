@@ -3,7 +3,7 @@ import Card from "@mui/material/Card";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Rating from "@mui/material/Rating";
-import GeneralSelect from "../GeneralSelect/GeneralSelect";
+import { Link } from "react-router-dom";
 
 export const CardStyled = styled(Card)(({ theme }) => ({
   "&.MuiCard-root": {
@@ -53,6 +53,7 @@ export const GridContainerImg = styled(Grid)(({ theme }) => ({
     "& img": {
       width: "125px!important",
       padding: "7px",
+      borderRadius: "16px",
     },
   },
   [theme.breakpoints.up("sm")]: {
@@ -63,6 +64,7 @@ export const GridContainerImg = styled(Grid)(({ theme }) => ({
 export const RaitingStyled = styled(Rating)(({ theme }) => ({
   "&.MuiRating-root": {
     fontSize: "21px",
+    color: theme.palette.primary.yellow,
     [theme.breakpoints.up("sm")]: {
       fontSize: "24px",
     },
@@ -80,9 +82,8 @@ export const BoxContent = styled(Box)(({ theme }) => ({
   marginBottom: "20px",
   width: "100%",
   [theme.breakpoints.up("sm")]: {
-    width: "308px",
+    marginBottom: "0px",
   },
-  [theme.breakpoints.up("lg")]: { width: "625px" },
 }));
 export const BoxFooter = styled(Box)(({ theme }) => ({
   marginBottom: "16px",
@@ -94,26 +95,6 @@ export const BoxFooter = styled(Box)(({ theme }) => ({
     width: "165px",
     flexDirection: "column",
     gap: "8px",
-    marginBottom: "20px",
-  },
-  [theme.breakpoints.up("lg")]: {
-    marginBottom: "32px",
-  },
-}));
-
-export const GeneralSelectS = styled(GeneralSelect)(({ theme }) => ({
-  width: "100%",
-  gap: "8px",
-  "& .MuiBox-root": {
-    gap: "8px",
-  },
-  "& .customSelect__": {
-    "&control": {
-      borderColor: `${theme.palette.primary.main}!important`,
-      "&:hover": {
-        borderColor: theme.palette.primary.main,
-      },
-    },
   },
 }));
 
@@ -126,9 +107,39 @@ export const BoxSelect = styled(Box)(({ theme }) => ({
     "&control": {
       width: "100%",
       borderColor: theme.palette.primary.main,
+      [theme.breakpoints.up("lg")]: {
+        width: "304px",
+      },
       "&:hover": {
         borderColor: theme.palette.primary.main,
       },
     },
+  },
+  [theme.breakpoints.up("sm")]: {
+    width: "308px",
+  },
+}));
+
+export const ButtonStyled = styled(Link)(({ theme }) => ({
+  padding: "16px 38px",
+  fontSize: "1rem",
+  borderRadius: "50px",
+  fontFamily: "OpenSans-SemiBold",
+  fontWeight: 600,
+  lineHeight: "1.5",
+  textTransform: "none",
+  textDecoration: "none",
+  background: theme.palette.primary.yellow,
+  color: theme.palette.primary.main,
+  textAlign: "center",
+  display: "block",
+  "&:hover, &:focus": {
+    background: theme.palette.primary.secondaryYellow,
+  },
+  "&:active": {
+    background: theme.palette.primary.tertiaryYellow,
+  },
+  [theme.breakpoints.up("sm")]: {
+    width: "165px",
   },
 }));
