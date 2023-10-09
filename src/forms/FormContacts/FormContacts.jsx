@@ -23,7 +23,7 @@ const FormContacts = ({ step, funcNextStep, backLinkRef }) => {
     phone: null,
   });
   
-  //console.log(userContacts);
+  console.log(userContacts);
 
   const validationSchema = Yup.object().shape({
     email: Yup.string()
@@ -49,10 +49,8 @@ const FormContacts = ({ step, funcNextStep, backLinkRef }) => {
 
   const handleOnChange = (evt) => {    
     const field = evt.target.name    
-    formik.handleChange(evt); // Update formik form values
-    console.log('error', formik.errors[field]);
-    // console.log('error', Boolean(formik.errors.email));        
-    // if(formik.errors[field]) return    
+    formik.handleChange(evt); // Update formik form values              
+
       setUserContacts((prevState) => ({ ...prevState, [field]: evt.target.value }));
   };
 

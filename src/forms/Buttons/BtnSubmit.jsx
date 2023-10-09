@@ -11,7 +11,7 @@ const BtnSubmit = ({ data, funcNextStep }) => {
 
   return (
     <>
-      {email && phone ? (
+      {email?.length > 4 && phone?.length > 9 ? (
         <YellowButton type="submit" onClick={handleOnSubmitClick}>
           Підтвердити
         </YellowButton>
