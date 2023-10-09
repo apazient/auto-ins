@@ -68,7 +68,7 @@ const BurgerMenu = () => {
               onClick={toggleDrawer(false)}
             >
               <BoxImg>
-                <SpriteSVG name={"icon-x"} />{" "}
+                <SpriteSVG name={"icon-x"} />
               </BoxImg>
             </IconButton>
           </HeaderMenu>
