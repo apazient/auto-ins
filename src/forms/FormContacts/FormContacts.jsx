@@ -2,37 +2,35 @@ import PropTypes from "prop-types";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Typography, useMediaQuery, useTheme } from "@mui/material";
-// import { useLocation } from "react-router-dom";
 import { FormContainer, InputS } from "../../style/Global.styled";
 import BtnBack from "../Buttons/BtnBack";
 import BtnSubmit from "../Buttons/BtnSubmit";
 import {
   BtnBoxS,
+  ErrorBox,
   InputBoxS,
   SingleInputBoxS,
+  SpanS,
   TitleS,
 } from "./FormContactsStyled";
 import { useState } from "react";
 
-const FormContacts = ({ funcNextStep }) => {
-  // const location = useLocation();
+const FormContacts = ({ step, funcNextStep, backLinkRef }) => {  
   const theme = useTheme();
   const isLargeScreen = useMediaQuery(`${theme.breakpoints.up("sm")}`);
   const [userContacts, setUserContacts] = useState({
     email: null,
     phone: null,
   });
-
-  // useEffect(() => {
-  //   console.log('userContacts updated:', userContacts);
-  // }, [userContacts]);
+  
+  //console.log(userContacts);
 
   const validationSchema = Yup.object().shape({
     email: Yup.string()
       .required("Email is required")
-      .email("Invalid email address"),
+      .email("Електронна пошта вказана невірно"),
     phone: Yup.string()
-      .required("Phone is required")
+      .required("Phone is required")      
       .matches(/^\d{10}$/, "Invalid phone number (10 digits required)"),
     // .matches(/^[\d()\s-]+$/, "Invalid phone number")
   });
@@ -50,9 +48,12 @@ const FormContacts = ({ funcNextStep }) => {
   });
 
   const handleOnChange = (evt) => {    
-    const field = evt.target.name
+    const field = evt.target.name    
     formik.handleChange(evt); // Update formik form values
-    setUserContacts((prevState) => ({ ...prevState, [field]: evt.target.value }));
+    console.log('error', formik.errors[field]);
+    // console.log('error', Boolean(formik.errors.email));        
+    // if(formik.errors[field]) return    
+      setUserContacts((prevState) => ({ ...prevState, [field]: evt.target.value }));
   };
 
   // const handlePhoneChange = (e) => {
@@ -87,18 +88,18 @@ const FormContacts = ({ funcNextStep }) => {
               type="text"
               id="email"
               name="email"
-              onChange={handleOnChange}
+              onChange={handleOnChange}              
               onBlur={formik.handleBlur}
               value={formik.values.email}
             />
             {formik.touched.email && formik.errors.email && (
-              <div className="error">{formik.errors.email}</div>
+              <ErrorBox className="error">{formik.errors.email}</ErrorBox>
             )}
           </SingleInputBoxS>
-          <Typography variant="inputSpan">
+          <SpanS variant="inputSpan">
             *ПЕРЕКОНАЙТЕСЬ ЩО ПОШТУ ВКАЗАНО КОРЕКТНО. НА ВКАЗАНУ ВАМИ ЕЛЕКТРОННУ
             ПОШТУ БУДЕ НАДІСЛАНО ДОГОВІР СТРАХУВАННЯ.
-          </Typography>
+          </SpanS>
           <SingleInputBoxS>
             <Typography variant="inputLable" htmlFor="phone">
               Телефон*:
@@ -114,7 +115,7 @@ const FormContacts = ({ funcNextStep }) => {
               disabled={false} // or disabled={false} make it programatically
             />
             {formik.touched.phone && formik.errors.phone && (
-              <div className="error">{formik.errors.phone}</div>
+              <ErrorBox className="error">{formik.errors.phone}</ErrorBox>
             )}
           </SingleInputBoxS>
           {/* <SingleInputBoxS className="disabled">
@@ -128,13 +129,13 @@ const FormContacts = ({ funcNextStep }) => {
         <BtnBoxS>
           {isLargeScreen ? (
             <>
-              <BtnBack />
+              <BtnBack step={step} backLinkRef={backLinkRef}/>
               <BtnSubmit data={userContacts} funcNextStep={funcNextStep} />
             </>
           ) : (
             <>
               <BtnSubmit data={userContacts} funcNextStep={funcNextStep} />
-              <BtnBack />
+              <BtnBack step={step}/>
             </>
           )}
         </BtnBoxS>
@@ -144,6 +145,9 @@ const FormContacts = ({ funcNextStep }) => {
 };
 
 FormContacts.propTypes = {
+  step: PropTypes.number,
   funcNextStep: PropTypes.func,
+  backLinkRef: PropTypes.object,
+
 };
 export default FormContacts;

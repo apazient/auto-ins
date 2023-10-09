@@ -4,10 +4,11 @@ import { YellowButton } from "../../style/Global.styled";
 const BtnSubmit = ({ data, funcNextStep }) => {
   // console.log("data", data);
   const {email, phone} = data;
-  const handleOnSubmitClick = () => {
-    console.log("Pressed handleOnSubmitClick");
+
+  const handleOnSubmitClick = () => {    
     funcNextStep()
   };
+
   return (
     <>
       {email && phone ? (
@@ -22,12 +23,6 @@ const BtnSubmit = ({ data, funcNextStep }) => {
     </>
   );
 };
-
-{
-  /* <Link state={{from: location}} to="/form"  style={{ color: "lime" }}>
-        FormPage
-      </Link> */
-}
 
 BtnSubmit.propTypes = {
   data: PropTypes.shape({
