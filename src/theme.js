@@ -75,6 +75,13 @@ export const theme = createTheme({
           height: "auto",
         },
         ul: { margin: 0, padding: 0 },
+        h1: { margin: 0, padding: 0 },
+        h2: { margin: 0, padding: 0 },
+        h3: { margin: 0, padding: 0 },
+        h4: { margin: 0, padding: 0 },
+        h5: { margin: 0, padding: 0 },
+        h6: { margin: 0, padding: 0 },
+        p: { margin: 0, padding: 0 },
       },
     },
     // MuiButtonBase: {
