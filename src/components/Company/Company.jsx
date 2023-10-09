@@ -1,15 +1,10 @@
 import Typography from "@mui/material/Typography";
-
-import Box from "@mui/material/Box";
-import { YellowButton } from "../../style/Global.styled";
-
 import {
   BoxContent,
   BoxFooter,
   BoxSelect,
+  ButtonStyled,
   CardStyled,
-  ExpandIconBox,
-  GeneralSelectS,
   GridContainer,
   GridContainerImg,
   GridContainerRaiting,
@@ -17,47 +12,47 @@ import {
   WrapperStyled,
 } from "./CompanyStyled";
 import Grid from "@mui/material/Grid";
-import partnersData from "../Partners/parnersList.json";
 import { useState } from "react";
-import Collapse from "@mui/material/Collapse";
 import useTheme from "@mui/material/styles/useTheme";
 import { PartnersImgs } from "../Partners/PartnersImgs";
-import GeneralSelect from "../GeneralSelect/GeneralSelect";
 import { GeneralCheckbox } from "../GeneralCheckbox/GeneralCheckbox";
-import { SpriteSVG } from "../../images/SpriteSVG";
-import Button from "@mui/material/Button";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { CompanyExpandMore } from "../CompanyExpandMore/CompanyExpandMore";
+import GeneralSelect from "../GeneralSelect/GeneralSelect";
+import Box from "@mui/material/Box";
 
-const Company = () => {
-  const prop = {
-    name: "Євронінс Україна",
-    price: "1000 грн",
-  };
+const Company = ({ companyObject }) => {
+  const { nameCompany, idCompany, raitingCompany, fransizes } = companyObject;
+  const fransizeSelect = fransizes?.map(({ sum, idFransize, nameFransize }) => {
+    return { value: sum, label: nameFransize };
+  });
+
   const location = useLocation();
-  const navigate = useNavigate();
 
   const theme = useTheme();
-  const [partners, setPartners] = useState(partnersData);
-  const [expanded, setExpanded] = useState(false);
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
+  const [checkSavety, setCheckSavety] = useState(false);
+  const [franchise, setFranchise] = useState(null);
+  const [price, setPrice] = useState(fransizeSelect[0].value);
+
+  const handleChangeSelect = (value) => {
+    setFranchise(value);
+    setPrice(value);
   };
 
-  const rotate = !expanded ? "rotate(0deg)" : "rotate(180deg)";
-  const partner = partners[1];
-  const { id, imgAlt, rating, web } = partner;
-  const { name, price } = prop;
-
   return (
-    <CardStyled>
+    <CardStyled component="li" sx={{ overflow: "visible" }}>
       <WrapperStyled
-        sx={{ display: { sm: "flex" }, gap: { sm: "16px", lg: "24px" } }}
+        sx={{
+          display: { sm: "flex" },
+          gap: { sm: "16px", lg: "24px" },
+          marginBottom: { xs: "16px", sm: "24px", lg: "40px" },
+        }}
       >
-        <WrapperStyled sx={{ marginBottom: { xs: "16px" } }}>
+        <WrapperStyled>
           <Grid
             container
-            sx={{ width: { xs: "100%", sm: "125px", lg: "320px" } }}
+            sx={{ width: { xs: "100%", sm: "125px", lg: "256px" } }}
           >
             <GridContainer
               item
@@ -69,12 +64,13 @@ const Company = () => {
                 width: { xs: "100%" },
               }}
             >
-              <Typography variant="subtitle1">ОСЦПВ від {name}</Typography>
+              <Typography variant="subtitle1" component="h3">
+                ОСЦПВ від {nameCompany}
+              </Typography>
             </GridContainer>
             <GridContainerImg item xs={6} sm={12}>
               <PartnersImgs
-                sx={{ width: { sm: "125px" } }}
-                data={{ id: String(id), imgAlt }}
+                data={{ id: String(idCompany), imgAlt: nameCompany || "ОСЦП" }}
               />
             </GridContainerImg>
             <GridContainer item xs={6} sm={12}>
@@ -89,46 +85,53 @@ const Company = () => {
               </Typography>
             </GridContainer>
             <GridContainerRaiting item xs={6} sm={12}>
-              <RaitingStyled name="read-only" value={rating} readOnly />
+              <RaitingStyled name="read-only" value={raitingCompany} readOnly />
             </GridContainerRaiting>
           </Grid>
         </WrapperStyled>
         <BoxContent>
           <Typography
             variant="subtitle1"
+            component="h3"
             sx={{
               display: { xs: "none", sm: "block" },
               marginBottom: { sm: "20px", lg: "32px" },
+              lineHeight: { sm: "1.5em" },
+              fontSize: { lg: "22px" },
             }}
           >
-            ОСЦПВ від {name}
+            ОСЦПВ від {nameCompany}
           </Typography>
-          <BoxSelect sx={{ marginBottom: { xs: "8px", sm: "12px" } }}>
-            <GeneralSelectS
-              id="1"
-              lableText="Франшиза"
-              helper="Пояснення до франчизи"
-              color={theme.palette.primary.main}
-              optionsArr={["3200", "2330"]}
-            />
-          </BoxSelect>
-          <BoxSelect>
-            <GeneralSelectS
-              id="1"
-              lableText="Додаткове покриття"
-              helper="Пояснення до додаткове покриття"
-              color={theme.palette.primary.main}
-              optionsArr={["3200", "2330"]}
-            />
-          </BoxSelect>
+          <Box sx={{ display: { lg: "flex" } }}>
+            <BoxSelect sx={{ marginBottom: { xs: "8px", sm: "12px" } }}>
+              <GeneralSelect
+                id="1"
+                lableText="Франшиза"
+                helper="Пояснення до франчизи"
+                color={theme.palette.primary.main}
+                optionsArr={fransizeSelect}
+                changeCB={handleChangeSelect}
+              />
+            </BoxSelect>
+            <BoxSelect>
+              <GeneralSelect
+                id="2"
+                lableText="Додаткове покриття"
+                helper="Пояснення до додаткове покриття"
+                color={theme.palette.primary.main}
+                optionsArr={fransizeSelect}
+              />
+            </BoxSelect>
+          </Box>
+
           <GeneralCheckbox
             lableText="Свідомий захист"
             name="check"
-            val={false}
+            val={checkSavety}
             color={theme.palette.primary.main}
           />
         </BoxContent>
-        <WrapperStyled>
+        <WrapperStyled sx={{ width: "100%" }}>
           <BoxFooter>
             <Typography component="span">Вартість</Typography>
             <Typography
@@ -136,41 +139,16 @@ const Company = () => {
               component="span"
               sx={{ fontSize: { sm: "18px", lg: "22px" } }}
             >
-              {price}
+              {price} грн
             </Typography>
           </BoxFooter>
-          <Link state={{ from: location }} to="/form" style={{ color: "lime" }}>
-            <YellowButton>Придбати</YellowButton>
-          </Link>
+          <ButtonStyled state={{ from: location }} to="/form">
+            Придбати
+          </ButtonStyled>
         </WrapperStyled>
       </WrapperStyled>
       <WrapperStyled>
-        <Button
-          aria-label="Докладніше"
-          onClick={handleExpandClick}
-          sx={{
-            textTransform: "none",
-            textAlign: "center",
-            width: "100%",
-            padding: "0px",
-          }}
-          endIcon={
-            <ExpandIconBox sx={{ transform: rotate }}>
-              <SpriteSVG name="icon-chevron-down" />
-            </ExpandIconBox>
-          }
-        >
-          Докладніше
-        </Button>
-        <Box sx={{ width: "100%" }}>
-          <Collapse in={expanded} unmountOnExit>
-            <Typography variant="body1">
-              АВТОЦИВІЛКА від СК Оберіг (для юридичних осіб). Оплата виключно з
-              рахунку ЮО-Страхувальника згідно автоматично сформованого
-              рахунку-фактури
-            </Typography>
-          </Collapse>
-        </Box>
+        <CompanyExpandMore />
       </WrapperStyled>
     </CardStyled>
   );

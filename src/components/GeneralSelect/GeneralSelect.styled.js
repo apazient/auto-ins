@@ -14,10 +14,11 @@ export const SelectStyled = styled(Select)(({ theme }) => ({
       height: 56,
       borderRadius: 50,
       backgroundColor: "#FEFEFF",
-      borderColor: theme.palette.primary.main,
+      // borderColor: theme.palette.primary.main,
       boxShadow: "0 0 0 0",
-      "&:hover": {
-        borderColor: theme.palette.primary.main,
+      "&:hover, &:focus": {
+        borderColor: theme.palette.primary.darkBlue,
+        cursor: "pointer",
       },
       "& svg": {
         transition: "transform 200ms ease-in-out",
