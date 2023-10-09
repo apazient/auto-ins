@@ -129,3 +129,42 @@ export const FormContainer = styled(Container)(({ theme }) => ({
     padding: "32px",
   },
 }));
+
+export const InputS = styled("input")(({ theme }) => ({
+  padding: "16px",
+  border: `1px solid`,
+  borderColor: `${theme.palette.primary.main}`,
+  borderRadius: "50px",
+  fontFamily: "OpenSans, sans-serif",
+  fontSize: "16px",
+  fontWeight: "600",
+  lineHeight: "1.5",
+  color: theme.palette.primary.main,
+  transition: "borderColor 350ms linear",
+  [theme.breakpoints.up("md")]: {
+    fontSize: "18px",
+  },
+  "&::placeholder":{
+    color: theme.palette.primary.main,
+  },
+  "&:hover": {
+    borderColor: `${theme.palette.primary.darkBlue}`,
+  },
+  "&:focus": {
+    borderColor: `${theme.palette.primary.darkBlue}`,
+    outline: "none",
+  },
+  "&.error": {
+    borderColor: `${theme.palette.primary.red}`,
+    "&:hover": {
+      borderColor: `${theme.palette.primary.red}`,
+    },
+    "&:focus": {
+      borderColor: `${theme.palette.primary.red}`,
+      outline: "none",
+    },
+  },
+  "&.disabled": {
+    borderColor: `${theme.palette.primary.tertiaryDark}`,   
+  },
+}));

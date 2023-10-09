@@ -1,106 +1,139 @@
+import PropTypes from "prop-types";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { Typography, useMediaQuery, useTheme } from "@mui/material";
 // import { useLocation } from "react-router-dom";
-import { FormContainer } from "../../style/Global.styled";
+import { FormContainer, InputS } from "../../style/Global.styled";
 import BtnBack from "../Buttons/BtnBack";
 import BtnSubmit from "../Buttons/BtnSubmit";
-import { TextField, useMediaQuery, useTheme } from "@mui/material";
-import { BtnBoxS, InputBoxS } from "./FormContactsStyled";
-import { Controller, useForm } from "react-hook-form";
+import {
+  BtnBoxS,
+  InputBoxS,
+  SingleInputBoxS,
+  TitleS,
+} from "./FormContactsStyled";
+import { useState } from "react";
 
-const FormContacts = () => {
+const FormContacts = ({ funcNextStep }) => {
   // const location = useLocation();
   const theme = useTheme();
   const isLargeScreen = useMediaQuery(`${theme.breakpoints.up("sm")}`);
+  const [userContacts, setUserContacts] = useState({
+    email: null,
+    phone: null,
+  });
 
-  // const HookForm = () = {
-  //   const { register, handleSubmit, formState:{errors}, formState} = useForm()
-  //   mode: "onSubmit",
-  //   defaultValues: {
-  //     email: '',
-  //     phone: ''
-  //   }
-  // }
+  // useEffect(() => {
+  //   console.log('userContacts updated:', userContacts);
+  // }, [userContacts]);
 
-  const {
-    handleSubmit,
-    control,
-    formState: { errors },
-  } = useForm();
+  const validationSchema = Yup.object().shape({
+    email: Yup.string()
+      .required("Email is required")
+      .email("Invalid email address"),
+    phone: Yup.string()
+      .required("Phone is required")
+      .matches(/^\d{10}$/, "Invalid phone number (10 digits required)"),
+    // .matches(/^[\d()\s-]+$/, "Invalid phone number")
+  });
 
-  const onSubmit = (data) => {
-    console.log("FormData", data);
-    
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      phone: "",
+    },
+    validationSchema,
+    onSubmit: (values) => {
+      console.log("onSubmit", values);
+      setUserContacts(values);
+    },
+  });
+
+  const handleOnChange = (evt) => {    
+    const field = evt.target.name
+    formik.handleChange(evt); // Update formik form values
+    setUserContacts((prevState) => ({ ...prevState, [field]: evt.target.value }));
   };
-  const inputStyle = {
-    color: "blue", // Set the text color to blue
-  };
+
+  // const handlePhoneChange = (e) => {
+  //   const { value } = e.target;
+  //   // Remove non-numeric characters from the input
+  //   const numericValue = value.replace(/\D/g, '');
+  //   // Format the numeric value as desired (e.g., (123) 456-7890)
+  //   const formattedValue = formatPhoneNumber(numericValue);
+  //   // Set the formatted value back to the formik field
+  //   formik.setFieldValue('phone', formattedValue);
+  // };
+
+  // const formatPhoneNumber = (numericValue) => {
+  //   // Implement your phone number formatting logic here
+  //   // Example: Format as (123) 456-7890
+  //   return numericValue.replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3');
+  // };
 
   return (
     <FormContainer>
-      <h2 style={{ color: "black" }}>FormContacts</h2>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <TitleS variant="formTitle" className="formTitlePlus">
+        Контакти
+      </TitleS>
+
+      <form onSubmit={formik.handleSubmit}>
         <InputBoxS>
-          <Controller
-            name="email"
-            control={control}
-            defaultValue=""
-            rules={{
-              required: "Email is required",
-              pattern: {
-                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                message: "Invalid email address",
-              },
-            }}
-            render={({ field }) => (
-              <TextField
-                {...field}
-                label="Email"
-                variant="outlined"
-                fullWidth
-                color="secondary"
-                error={!!errors.email}
-                helperText={errors.email?.message}
-                InputProps={{ style: inputStyle }}
-              />
+          <SingleInputBoxS>
+            <Typography variant="inputLable" htmlFor="email">
+              Електронна пошта*:
+            </Typography>
+            <InputS
+              type="text"
+              id="email"
+              name="email"
+              onChange={handleOnChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.email}
+            />
+            {formik.touched.email && formik.errors.email && (
+              <div className="error">{formik.errors.email}</div>
             )}
-          />
-          <p style={{ color: "black" }}>
+          </SingleInputBoxS>
+          <Typography variant="inputSpan">
             *ПЕРЕКОНАЙТЕСЬ ЩО ПОШТУ ВКАЗАНО КОРЕКТНО. НА ВКАЗАНУ ВАМИ ЕЛЕКТРОННУ
             ПОШТУ БУДЕ НАДІСЛАНО ДОГОВІР СТРАХУВАННЯ.
-          </p>
-          <Controller
-            name="phone"
-            control={control}
-            defaultValue=""
-            rules={{
-              required: "Phone is required",
-              pattern: {
-                // value: /^[0-9]{10}$/i,// 10 цифр без ввода плюса
-                value: /^[+0-9()\s-]*$/, // Теперь валидация разрешит номера телефонов с разными символами, включая +, 0-9, (), -, и пробелы.
-                message: "Invalid phone number",
-              },
-            }}
-            render={({ field }) => (
-              <TextField
-                {...field}
-                label="Phone"
-                variant="outlined"
-                fullWidth
-                error={!!errors.phone}
-                helperText={errors.phone?.message}
-                InputProps={{ style: inputStyle }}
-              />
+          </Typography>
+          <SingleInputBoxS>
+            <Typography variant="inputLable" htmlFor="phone">
+              Телефон*:
+            </Typography>
+            <InputS
+              type="text"
+              id="phone"
+              name="phone"
+              placeholder="(_ _ _)_ _ _ - _ _ _ _"
+              onChange={handleOnChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.phone}
+              disabled={false} // or disabled={false} make it programatically
+            />
+            {formik.touched.phone && formik.errors.phone && (
+              <div className="error">{formik.errors.phone}</div>
             )}
-          />
+          </SingleInputBoxS>
+          {/* <SingleInputBoxS className="disabled">
+            <Typography  variant="inputLable" htmlFor="phone" className="disabled">Phone:</Typography>
+            <InputS
+              className="disabled"
+              disabled={true} // or disabled={false} make it programatically
+            />            
+          </SingleInputBoxS> */}
         </InputBoxS>
         <BtnBoxS>
           {isLargeScreen ? (
             <>
               <BtnBack />
-              <BtnSubmit />
+              <BtnSubmit data={userContacts} funcNextStep={funcNextStep} />
             </>
           ) : (
             <>
-              <BtnSubmit />
+              <BtnSubmit data={userContacts} funcNextStep={funcNextStep} />
               <BtnBack />
             </>
           )}
@@ -110,4 +143,7 @@ const FormContacts = () => {
   );
 };
 
+FormContacts.propTypes = {
+  funcNextStep: PropTypes.func,
+};
 export default FormContacts;
