@@ -130,7 +130,7 @@ theme.typography.h3 = {
     fontFamily: "OpenSans-ExtraBold, sans-serif",
     fontWeight: 800,
     color: theme.palette.primary.white,
-    lineHeight: "1.5rem",
+    lineHeight: "1.5rem",    
   },
   [theme.breakpoints.up("sm")]: {
     fontSize: "1.375rem",
@@ -234,5 +234,22 @@ theme.typography.inputLable = {
   [theme.breakpoints.up("sm")]: {
     fontSize: "1rem",
   },
-  [theme.breakpoints.up("lg")]: {},
+  "&.disabled": {
+    color: `${theme.palette.primary.tertiaryDark}`,
+  },
+};
+
+theme.typography.inputSpan = {
+  fontSize: "12px",
+  fontFamily: "OpenSans-Regular, sans-serif",
+  fontWeight: 400,
+  color: theme.palette.primary.main,
+  lineHeight: "1.5rem",
+  margin: '4px 0 16px',
+  [theme.breakpoints.up("md")]:{
+    margin: '8px 0 16px',
+  },
+  [theme.breakpoints.up("lg")]:{
+    margin: '16px 0 24px',
+  }
 };
