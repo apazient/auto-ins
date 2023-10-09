@@ -1,39 +1,41 @@
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  TextField,
-  Typography,
-} from "@mui/material";
+import Box from "@mui/material/Box";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import Typography from "@mui/material/Typography";
 import { useState } from "react";
 import { SpriteSVG } from "../../images/SpriteSVG";
-import { BlueButton, WhiteButton } from "../../style/Global.styled";
-import { BoxImg, DialogStyled, TitleWrapper } from "./ModalErrorStyled";
+import { BlueButton } from "../../style/Global.styled";
+import {
+  BoxImgYellow,
+  ButtonCancel,
+  DialogStyled,
+  TitleWrapper,
+} from "./ModalErrorStyled";
 
 const ModalError = () => {
   const [open, setOpen] = useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
 
   const handleClose = () => {
     setOpen(false);
   };
 
   return (
-    <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
-        Open form dialog
-      </Button>
+    <>
       <DialogStyled open={open} onClose={handleClose}>
+        <Box
+          aria-label="close"
+          className="closeIcon"
+          component="button"
+          onClick={handleClose}
+        >
+          <SpriteSVG name={"icon-x"} />
+        </Box>
+
         <TitleWrapper>
-          <BoxImg>
+          <BoxImgYellow>
             <SpriteSVG name="icon-alert-triangle" />
-          </BoxImg>
+          </BoxImgYellow>
           <Typography variant="subtitle1" className="title" component="h2">
             Увага
           </Typography>
@@ -59,15 +61,24 @@ const ModalError = () => {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <BlueButton onClick={handleClose}>
+          <BlueButton
+            arai-label="Розрахувати по єврономеру"
+            className="buttonDesktop"
+            onClick={handleClose}
+            sx={{ width: { xs: "100%" } }}
+          >
             Розрахувати по єврономеру
           </BlueButton>
-          <WhiteButton onClick={handleClose} sx={{ border: "none" }}>
+          <ButtonCancel
+            className="buttonDesktop"
+            onClick={handleClose}
+            aria-label="скасувати"
+          >
             Скасувати
-          </WhiteButton>
+          </ButtonCancel>
         </DialogActions>
       </DialogStyled>
-    </div>
+    </>
   );
 };
 
