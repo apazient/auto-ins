@@ -26,10 +26,10 @@ const HomeAddressForm = () => {
       console.log(values);
     },
     validationSchema: Yup.object().shape({
-      region: Yup.string().required("Required field!"),
-      city: Yup.string().required("Required field!"),
-      street: Yup.string().required("Required field!"),
-      houseNumber: Yup.string().required("Required field!"),
+      region: Yup.string().required("Обов’язкове поле!"),
+      city: Yup.string().required("Обов’язкове поле!"),
+      street: Yup.string().required("Обов’язкове поле!"),
+      houseNumber: Yup.string().required("Обов’язкове поле!"),
       apartmentNumber: Yup.string(),
     }),
   });
@@ -40,41 +40,26 @@ const HomeAddressForm = () => {
           Домашня адреса
         </Typography>
         <InputContBoxStyled>
-          <GeneralInput
-            id="region"
-            lableText="Область*:"
-            value={formik.values.region}
-            changeCB={formik.handleChange}
-          />
-          <GeneralInput
-            id="city"
-            lableText="Місто*:"
-            value={formik.values.city}
-            changeCB={formik.handleChange}
-          />
-          <GeneralInput
-            id="street"
-            lableText="Вулиця*:"
-            value={formik.values.street}
-            changeCB={formik.handleChange}
-          />
+          <GeneralInput id="region" lableText="Область*:" formikData={formik} />
+          <GeneralInput id="city" lableText="Місто*:" formikData={formik} />
+          <GeneralInput id="street" lableText="Вулиця*:" formikData={formik} />
           <DocInputsStyled>
             <GeneralInput
               id="houseNumber"
               lableText="Будинок*:"
-              value={formik.values.houseNumber}
-              changeCB={formik.handleChange}
+              formikData={formik}
             />
             <GeneralInput
               id="apartmentNumber"
               lableText="Квартира:"
-              value={formik.values.apartmentNumber}
-              changeCB={formik.handleChange}
+              formikData={formik}
             />
           </DocInputsStyled>
         </InputContBoxStyled>
         <ButtonContainerStyled component="div">
-          <YellowButtonStyled>Підтвердити</YellowButtonStyled>
+          <YellowButtonStyled onClick={formik.handleSubmit}>
+            Підтвердити
+          </YellowButtonStyled>
           <WhiteButtonStyled>
             <WhiteButtonSVGStyled component="span">
               <SpriteSVG name="icon-arrow-left" />

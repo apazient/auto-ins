@@ -15,6 +15,7 @@ import HelpCircle from "../HelpCircle/HelpCircle";
 import GeneralSelect from "../GeneralSelect/GeneralSelect";
 import { GeneralCheckbox } from "../GeneralCheckbox/GeneralCheckbox";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const selectArrOptions = [
   {
@@ -34,6 +35,10 @@ const selectArrOptions = [
 const ByParameters = () => {
   const navigate = useNavigate();
   const locationPath = useLocation();
+
+  const [vehicle, setVehicle] = useState(selectArrOptions[0]);
+  const [engineCapacity, setEngineCapacity] = useState(selectArrOptions[0]);
+
   const formik = useFormik({
     initialValues: {
       location: "",
@@ -57,11 +62,15 @@ const ByParameters = () => {
             id="vehicle"
             lableText="Транспортний засіб"
             optionsArr={selectArrOptions}
+            changeCB={setVehicle} //функція що повертає вибране значення (піднесення)
+            currentValue={vehicle}
           />
           <GeneralSelect
             id="engineCapacity"
             lableText="Об’єм двигуна"
             optionsArr={selectArrOptions}
+            changeCB={setEngineCapacity} //функція що повертає вибране значення (піднесення)
+            currentValue={engineCapacity}
           />
 
           <InputContStyled>

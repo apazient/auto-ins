@@ -1,4 +1,4 @@
-import { Box, OutlinedInput, styled } from "@mui/material";
+import { Box, OutlinedInput, Typography, styled } from "@mui/material";
 
 export const InputContStyled = styled(Box)(({ theme }) => ({
   display: "flex",
@@ -8,6 +8,7 @@ export const InputContStyled = styled(Box)(({ theme }) => ({
     gap: 16,
   },
 }));
+
 export const InputStyled = styled(OutlinedInput)(({ theme }) => ({
   width: "100%",
   height: 56,
@@ -26,16 +27,23 @@ export const InputStyled = styled(OutlinedInput)(({ theme }) => ({
     },
   },
   "&:hover, &:focus": {
-    border: `1px solid ${theme.palette.primary.darkBlue}`,
+    // border: `1px solid ${theme.palette.primary.darkBlue}`,
   },
-  "& .MuiOutlinedInput-notchedOutline": {
+  "& fieldset.MuiOutlinedInput-notchedOutline": {
     border: `1px solid ${theme.palette.primary.main}`,
-    "&:hover": {
-      border: `1px solid ${theme.palette.primary.darkBlue}!important`,
-      // border: `none!important`,
-    },
+    // "&:hover": {
+    //   border: `1px solid ${theme.palette.primary.darkBlue}!important`,
+    // },
   },
   [theme.breakpoints.up("sm")]: {
     height: 59,
+  },
+}));
+export const LableStyled = styled(Typography)(({ theme }) => ({
+  display: "flex",
+  justifyContent: "space-between",
+  "& .errorMessages": {
+    color: theme.palette.primary.red,
+    textAlign: "end",
   },
 }));
