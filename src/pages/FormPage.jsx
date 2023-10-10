@@ -10,8 +10,9 @@ import { useState } from "react";
 
 import companyForm from "../assets/mocapi/companyForm.json";
 import { Wrapper } from "./FormPageStyled";
-import { BlockThank } from "../components/BlockThank/BlockThank";
 
+import StepperStyles from "../components/StepperStyles/StepperStyles";
+import { Box } from "@mui/material";
 
 const FormPage = () => {
   const location = useLocation();
@@ -23,14 +24,12 @@ const FormPage = () => {
         <OutletNavaigation locationPath={location} />
         <Wrapper>
           <CompanySmall company={company} />
-
-          <FormContacts />
+          <Box sx={{ display: "block" }}>
+            <StepperStyles />
+            <FormContacts />
+          </Box>
         </Wrapper>
       </ContainerSectionPage>
-
-      <AllFormsContainer />
-
-
     </PageContainerS>
   );
 };
