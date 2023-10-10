@@ -24,6 +24,7 @@ const PricesPage = () => {
     <PageContainerS>
       <ContainerSectionPage component="div">
         <OutletNavaigation locationPath={location} />
+        <CostCalculation />
         <ProposalsFilter companies={companies} setCompanies={setCompanies} />
         <section>
           <Line>
