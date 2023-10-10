@@ -46,14 +46,17 @@ const InsuredDataForm = () => {
       console.log(values);
     },
     validationSchema: Yup.object().shape({
-      surname: Yup.string().required("Required field!"),
-      name: Yup.string().required("Required field!"),
-      middleName: Yup.string().required("Required field!"),
-      taxNumber: Yup.string().required("Required field!"),
-      series: Yup.string().required("Required field!"),
-      docNumber: Yup.string().required("Required field!"),
-      docIssuedBy: Yup.string().required("Required field!"),
-      issueDate: Yup.string().required("Required field!"),
+      surname: Yup.string()
+        .min(6, "Введіть мінімум 6 символів")
+        .required("Обов’язкове поле!"),
+      name: Yup.string().required("Обов’язкове поле!"),
+      middleName: Yup.string().required("Обов’язкове поле!"),
+      birthDate: Yup.string().required("Обов’язкове поле!"),
+      taxNumber: Yup.string().required("Обов’язкове поле!"),
+      series: Yup.string().required("Обов’язкове поле!"),
+      docNumber: Yup.string().required("Обов’язкове поле!"),
+      docIssuedBy: Yup.string().required("Обов’язкове поле!"),
+      issueDate: Yup.string().required("Обов’язкове поле!"),
     }),
   });
   return (
@@ -66,33 +69,24 @@ const InsuredDataForm = () => {
           <GeneralInput
             id="surname"
             lableText="Прізвище*:"
-            value={formik.values.surname}
-            changeCB={formik.handleChange}
+            formikData={formik}
           />
-          <GeneralInput
-            id="name"
-            lableText="Ім’я*:"
-            value={formik.values.name}
-            changeCB={formik.handleChange}
-          />
+          <GeneralInput id="name" lableText="Ім’я*:" formikData={formik} />
           <GeneralInput
             id="middleName"
             lableText="По батькові*:"
-            value={formik.values.middleName}
-            changeCB={formik.handleChange}
+            formikData={formik}
           />
           <GeneralInput
             id="birthDate"
             lableText="Дата народження*:"
-            value={formik.values.birthDate}
-            changeCB={formik.handleChange}
+            formikData={formik}
             type="date"
           />
           <GeneralInput
             id="taxNumber"
             lableText="РНОКПП*:"
-            value={formik.values.taxNumber}
-            changeCB={formik.handleChange}
+            formikData={formik}
           />
           <GeneralSelect
             id="licensDoc"
@@ -101,35 +95,29 @@ const InsuredDataForm = () => {
             //changeCB, //функція що повертає вибране значення (піднесення)
           />
           <DocInputsStyled>
-            <GeneralInput
-              id="series"
-              lableText="Серія*:"
-              value={formik.values.series}
-              changeCB={formik.handleChange}
-            />
+            <GeneralInput id="series" lableText="Серія*:" formikData={formik} />
             <GeneralInput
               id="docNumber"
               lableText="Номер*:"
-              value={formik.values.docNumber}
-              changeCB={formik.handleChange}
+              formikData={formik}
             />
             <GeneralInput
               id="docIssuedBy"
               lableText="Ким виданий*:"
-              value={formik.values.docIssuedBy}
-              changeCB={formik.handleChange}
+              formikData={formik}
             />
             <GeneralInput
               id="issueDate"
               lableText="Дата видачі*:"
-              value={formik.values.issueDate}
-              changeCB={formik.handleChange}
+              formikData={formik}
               type="date"
             />
           </DocInputsStyled>
         </InputContBoxStyled>
         <ButtonContainerStyled component="div">
-          <YellowButtonStyled>Підтвердити</YellowButtonStyled>
+          <YellowButtonStyled onClick={formik.handleSubmit}>
+            Підтвердити
+          </YellowButtonStyled>
           <WhiteButtonStyled>
             <WhiteButtonSVGStyled component="span">
               <SpriteSVG name="icon-arrow-left" />

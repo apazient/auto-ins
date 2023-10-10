@@ -1,7 +1,6 @@
 import { InputContStyled, SelectStyled } from "./GeneralSelect.styled";
 import { Typography } from "@mui/material";
 import PropTypes from "prop-types";
-import { useState } from "react";
 import HelpCircle from "../HelpCircle/HelpCircle";
 
 const GeneralSelect = ({
@@ -10,15 +9,9 @@ const GeneralSelect = ({
   optionsArr, //масив елементів які відображає SElect
   helper = "", //якщо текст присутній то показується елемент <HelpCircle/>
   color = "", //базовий колір для елемента <HelpCircle/>
-  changeCB = () => {}, //функція що повертає вибране значення (піднесення)
+  changeCB, //функція що повертає вибране значення (піднесення)
+  currentValue,
 }) => {
-  const [curentValue, setCurentValue] = useState(optionsArr[0]);
-  // function createSelectOptions(arr) {
-  //   return arr.map((el) => ({
-  //     value: el,
-  //     label: el,
-  //   }));
-  // }
   return (
     <InputContStyled className="select-container">
       <Typography variant="body1" component="label" htmlFor={id}>
@@ -32,10 +25,10 @@ const GeneralSelect = ({
         id={id}
         placeholder="Enter the text"
         options={optionsArr}
-        value={curentValue || optionsArr[0]}
+        defaultValue={optionsArr[0]}
+        value={currentValue}
         onChange={(e) => {
-          setCurentValue(e);
-          changeCB(e.value);
+          changeCB(e);
         }}
       />
     </InputContStyled>
@@ -44,6 +37,7 @@ const GeneralSelect = ({
 export default GeneralSelect;
 GeneralSelect.propTypes = {
   lableText: PropTypes.string.isRequired,
+  currentValue: PropTypes.object,
   id: PropTypes.string.isRequired,
   helper: PropTypes.string,
   color: PropTypes.string,
