@@ -20,6 +20,7 @@ import { useLocation } from "react-router-dom";
 import { CompanyExpandMore } from "../CompanyExpandMore/CompanyExpandMore";
 import GeneralSelect from "../GeneralSelect/GeneralSelect";
 import Box from "@mui/material/Box";
+import ModalError from "../ModalError/ModalError";
 
 const Company = ({ companyObject }) => {
   const { nameCompany, idCompany, raitingCompany, fransizes } = companyObject;
@@ -145,6 +146,7 @@ const Company = ({ companyObject }) => {
           <ButtonStyled state={{ from: location }} to="/form">
             Придбати
           </ButtonStyled>
+          <ModalError />
         </WrapperStyled>
       </WrapperStyled>
       <WrapperStyled>

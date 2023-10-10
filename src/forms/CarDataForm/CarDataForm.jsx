@@ -26,12 +26,12 @@ const CarDataForm = () => {
       console.log(values);
     },
     validationSchema: Yup.object().shape({
-      effectiveDatePolicy: Yup.string().required("Required field!"),
-      licensePlate: Yup.string().required("Required field!"),
-      graduationYear: Yup.string().required("Required field!"),
-      brand: Yup.string().required("Required field!"),
-      model: Yup.string().required("Required field!"),
-      vinCode: Yup.string().required("Required field!"),
+      effectiveDatePolicy: Yup.string().required("Обов’язкове поле!"),
+      licensePlate: Yup.string().required("Обов’язкове поле!"),
+      graduationYear: Yup.string().required("Обов’язкове поле!"),
+      brand: Yup.string().required("Обов’язкове поле!"),
+      model: Yup.string().required("Обов’язкове поле!"),
+      vinCode: Yup.string().required("Обов’язкове поле!"),
     }),
   });
   return (
@@ -44,44 +44,27 @@ const CarDataForm = () => {
           <GeneralInput
             id="effectiveDatePolicy"
             lableText="Дата початку дії поліса*:"
-            value={formik.values.effectiveDatePolicy}
-            changeCB={formik.handleChange}
+            formikData={formik}
             type="date"
           />
           <GeneralInput
             id="licensePlate"
             lableText="Номерний знак*:"
-            value={formik.values.licensePlate}
-            changeCB={formik.handleChange}
+            formikData={formik}
           />
           <GeneralInput
             id="graduationYear"
             lableText="Рік випуску*:"
-            value={formik.values.graduationYear}
-            changeCB={formik.handleChange}
+            formikData={formik}
           />
-
-          <GeneralInput
-            id="brand"
-            lableText="Марка*:"
-            value={formik.values.brand}
-            changeCB={formik.handleChange}
-          />
-          <GeneralInput
-            id="model"
-            lableText="Модель*:"
-            value={formik.values.model}
-            changeCB={formik.handleChange}
-          />
-          <GeneralInput
-            id="vinCode"
-            lableText="VIN*:"
-            value={formik.values.vinCode}
-            changeCB={formik.handleChange}
-          />
+          <GeneralInput id="brand" lableText="Марка*:" formikData={formik} />
+          <GeneralInput id="model" lableText="Модель*:" formikData={formik} />
+          <GeneralInput id="vinCode" lableText="VIN*:" formikData={formik} />
         </InputContBoxStyled>
         <ButtonContainerStyled component="div">
-          <YellowButtonStyled>Підтвердити</YellowButtonStyled>
+          <YellowButtonStyled onClick={formik.handleSubmit}>
+            Підтвердити
+          </YellowButtonStyled>
           <WhiteButtonStyled>
             <WhiteButtonSVGStyled component="span">
               <SpriteSVG name="icon-arrow-left" />

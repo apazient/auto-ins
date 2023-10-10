@@ -1,29 +1,40 @@
-import { Typography } from "@mui/material";
+import { useMediaQuery, useTheme } from "@mui/material";
 import PropTypes from "prop-types";
-import { InputContStyled, InputStyled } from "./GeneralInput.styled";
+import {
+  InputContStyled,
+  InputStyled,
+  LableStyled,
+} from "./GeneralInput.styled";
 
 const GeneralInput = ({
   id,
   lableText,
   type,
-  value,
-  changeCB,
-  //   isRequired,
   color,
+  formikData: { values, handleChange, handleBlur, errors, touched },
 }) => {
+  const theme = useTheme();
+  const smScreen = useMediaQuery(theme.breakpoints.up("sm"));
+
   return (
     <InputContStyled>
-      <Typography variant="inputLable" component="label" htmlFor={id}>
-        {lableText}
-      </Typography>
+      <LableStyled variant="inputLable" component="label" htmlFor={id}>
+        <span>{lableText}</span>
+        {touched[id] && Boolean(errors[id]) && (
+          <span className="errorMessages">
+            {smScreen ? errors[id] : "Помилка введення"}
+          </span>
+        )}
+      </LableStyled>
       <InputStyled
         name={id}
         type={type || "text"}
-        value={value}
-        onChange={changeCB}
+        value={values[id]}
+        onChange={handleChange}
+        onBlur={handleBlur}
         id={id}
-        // {isRequired?"required":null}
         color={color || "inputBase"}
+        error={touched[id] && Boolean(errors[id])}
       />
     </InputContStyled>
   );
@@ -35,7 +46,6 @@ GeneralInput.propTypes = {
   lableText: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   type: PropTypes.string,
-  value: PropTypes.string.isRequired,
   color: PropTypes.string,
-  changeCB: PropTypes.func.isRequired,
+  formikData: PropTypes.object,
 };
