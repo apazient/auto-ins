@@ -36,9 +36,9 @@ const Company = ({ companyObject }) => {
   const [franchise, setFranchise] = useState(null);
   const [price, setPrice] = useState(fransizeSelect[0].value);
 
-  const handleChangeSelect = (value) => {
-    setFranchise(value);
-    setPrice(value);
+  const handleChangeSelect = (e) => {
+    setFranchise(e.label);
+    setPrice(e.value);
   };
 
   return (
