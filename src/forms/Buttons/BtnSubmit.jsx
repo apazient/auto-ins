@@ -1,22 +1,24 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import { YellowButton } from "../../style/Global.styled";
 
-const BtnSubmit = ({ data, funcNextStep }) => {  
+const BtnSubmit = ({ data, step, funcNextStep }) => {
+  let dataHasNull = false;
 
-let dataHasNull = false
+  const hasNullValue = Object.values(data).some((value) => value === null);
+  if (hasNullValue) {
+    //console.log('Есть хотя бы одно поле, равное null');
+    dataHasNull = false;
+  } else {
+    //console.log('Все поля имеют значения, отличные от null');
+    dataHasNull = true;
+  }
 
-const hasNullValue = Object.values(data).some((value) => value === null);
-if (hasNullValue) {
-  //console.log('Есть хотя бы одно поле, равное null');
-  dataHasNull = false
-} else {
-  //console.log('Все поля имеют значения, отличные от null');
-  dataHasNull = true
-}
+  const handleOnSubmitClick = () => {
+    if (step === 4) {
+      return;
+    }
 
-
-  const handleOnSubmitClick = () => {    
-    funcNextStep()
+    funcNextStep();
   };
 
   return (
@@ -39,6 +41,7 @@ BtnSubmit.propTypes = {
     email: PropTypes.string,
     phone: PropTypes.string,
   }),
+  step: PropTypes.number,
   funcNextStep: PropTypes.func,
 };
 export default BtnSubmit;
