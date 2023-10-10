@@ -1,9 +1,19 @@
 import PropTypes from 'prop-types';
 import { YellowButton } from "../../style/Global.styled";
 
-const BtnSubmit = ({ data, funcNextStep }) => {
-  // console.log("data", data);
-  const {email, phone} = data;
+const BtnSubmit = ({ data, funcNextStep }) => {  
+
+let dataHasNull = false
+
+const hasNullValue = Object.values(data).some((value) => value === null);
+if (hasNullValue) {
+  //console.log('Есть хотя бы одно поле, равное null');
+  dataHasNull = false
+} else {
+  //console.log('Все поля имеют значения, отличные от null');
+  dataHasNull = true
+}
+
 
   const handleOnSubmitClick = () => {    
     funcNextStep()
@@ -11,7 +21,7 @@ const BtnSubmit = ({ data, funcNextStep }) => {
 
   return (
     <>
-      {email?.length > 4 && phone?.length > 9 ? (
+      {dataHasNull ? (
         <YellowButton type="submit" onClick={handleOnSubmitClick}>
           Підтвердити
         </YellowButton>

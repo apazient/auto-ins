@@ -66,10 +66,10 @@ export const BtnBoxS = styled(Box)(({ theme }) => ({
 //   right: '0',
 // }))
 
-export const ErrorBox = styled(Typography)`
-  &.error {
-    position: absolute;
-    right: 0;
-    color: red;
-  }
-`;
+// export const ErrorBox = styled(Typography)`
+//   &.error {
+//     position: absolute;
+//     right: 0;
+//     color: red;
+//   }
+// `;
