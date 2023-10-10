@@ -23,12 +23,12 @@ const FormPage = () => {
         <OutletNavaigation locationPath={location} />
         <Wrapper>
           <CompanySmall company={company} />
-
-          <FormContacts />
+                    
+          <AllFormsContainer />
         </Wrapper>
       </ContainerSectionPage>
 
-      <AllFormsContainer />
+      
 
 
     </PageContainerS>

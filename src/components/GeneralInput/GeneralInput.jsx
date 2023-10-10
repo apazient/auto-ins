@@ -11,6 +11,7 @@ const GeneralInput = ({
   lableText,
   type,
   color,
+  customFunc,
   formikData: { values, handleChange, handleBlur, errors, touched },
 }) => {
   const theme = useTheme();
@@ -30,7 +31,7 @@ const GeneralInput = ({
         name={id}
         type={type || "text"}
         value={values[id]}
-        onChange={handleChange}
+        onChange={customFunc || handleChange}
         onBlur={handleBlur}
         id={id}
         color={color || "inputBase"}
@@ -48,4 +49,5 @@ GeneralInput.propTypes = {
   type: PropTypes.string,
   color: PropTypes.string,
   formikData: PropTypes.object,
+  customFunc: PropTypes.func,
 };
