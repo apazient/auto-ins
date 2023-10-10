@@ -1,31 +1,32 @@
-import { useRef } from "react";
-import { useLocation } from "react-router-dom";
+import PropTypes from "prop-types";
 import { SpriteSVG } from "../../images/SpriteSVG";
 import { BoxIconS } from "./BtnBackStyled";
 import { WhiteButton } from "../../style/Global.styled";
 
-const BtnBack = () => {
-  const location = useLocation();
-  const backLinkRef = useRef(location.state?.from);
 
-  const handleOnBackClick = () => {
-    console.log("Pressed handleOnBackClick");
-  };
+const BtnBack = ({step, funcPreviousStep, backLinkRef}) => {
+  // console.log(step);  
+  // console.log('backLinkRef', backLinkRef);
+
+  const handleOnBackClick = () => {    
+    if(step === 1) return;
+    funcPreviousStep()
+  }
+    
 
   return (
     <>
-      {backLinkRef.current ? (
-        <>
-          <WhiteButton
+      {backLinkRef?.current ? (      
+          
+          <WhiteButton        
             onClick={handleOnBackClick}
-            to={backLinkRef.current ?? "/"}
+            to={step === 1 ? backLinkRef?.current ?? "/" : undefined}            
           >
             <BoxIconS>
               <SpriteSVG name={"icon-arrow-left"} />
             </BoxIconS>
             Назад
-          </WhiteButton>
-        </>
+          </WhiteButton>        
       ) : (
         <>
           <WhiteButton className="Mui-disabled">
@@ -40,4 +41,14 @@ const BtnBack = () => {
   );
 };
 
+BtnBack.propTypes = {
+  step: PropTypes.number,
+  funcPreviousStep: PropTypes.func,
+  backLinkRef: PropTypes.object,
+
+}
+
 export default BtnBack;
+
+
+

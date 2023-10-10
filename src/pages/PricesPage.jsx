@@ -2,6 +2,7 @@ import { useLocation } from "react-router-dom";
 import CompanyList from "../components/CompanyList/CompanyList";
 import OutletNavaigation from "../components/OutletNavigation/OutletNavigation";
 import { ContainerSectionPage, PageContainerS } from "../style/Global.styled";
+import { CostCalculation } from "../components/CostCalculation/CostCalculation";
 import ProposalsFilter from "../components/ProposalsFilter/ProposalsFilter";
 
 import companiesData from "../assets/mocapi/companyDataList.json";
@@ -23,6 +24,7 @@ const PricesPage = () => {
     <PageContainerS>
       <ContainerSectionPage component="div">
         <OutletNavaigation locationPath={location} />
+        <CostCalculation />
         <ProposalsFilter companies={companies} setCompanies={setCompanies} />
         <section>
           <Line>
