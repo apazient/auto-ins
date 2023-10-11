@@ -21,14 +21,14 @@ const FormContacts = ({ step, funcNextStep, backLinkRef }) => {
 
   const validationSchema = Yup.object().shape({
     email: Yup.string()
-      .required("Email is required")      
+      .required("Введіть електронну пошту")      
       .min(5, "Електронна пошта вказана невірно")
       .matches(
         /^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,9}$/,
         "Електронна пошта вказана невірно"
       ),
     phone: Yup.string()
-      .required("Phone is required")
+      .required("Введіть номер телефону")
       .matches(/^\d{10}$/, "Номер телефону неправильний (введіть 10 цифр)"),
   });
 
