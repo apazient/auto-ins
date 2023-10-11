@@ -17,7 +17,7 @@ const FormContacts = ({ step, funcNextStep, backLinkRef }) => {
     phone: null,
   });
 
-  // console.log(userContacts);
+   console.log(userContacts);
 
   const validationSchema = Yup.object().shape({
     email: Yup.string()
@@ -98,7 +98,7 @@ const FormContacts = ({ step, funcNextStep, backLinkRef }) => {
           <GeneralInput
             id="phone"
             lableText="Телефон*:"
-            type="number"
+            type="phone"
             formikData={formik}
             customFunc={handleOnChange}
             // placeholder="(_ _ _)_ _ _ - _ _ _ _"
