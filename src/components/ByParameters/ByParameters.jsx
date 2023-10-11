@@ -104,7 +104,8 @@ const ByParameters = () => {
             name="benefits"
             val={formik.values.benefits}
             changeCB={formik.handleChange}
-            helper="тут потрібно ввести текст)))"
+            helper="Учасники війни; Інваліди II групи; Громадяни України, які постраждали внаслідок Чорнобильської катастрофи, віднесені до I та II категорії; 
+          Пенсіонери"
           />
           <GeneralCheckbox
             lableText="Авто на іноземних номерах"

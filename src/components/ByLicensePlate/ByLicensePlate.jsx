@@ -33,7 +33,7 @@ const ByLicensePlate = () => {
         <InputContStyled>
           <Typography variant="body1" component="label" htmlFor="license-plate">
             Номер транспортного засобу
-            <HelpCircle lableText="тут потрібно ввести текст)))" />
+            <HelpCircle lableText="Державний номерний знак" />
           </Typography>
           <InputStyled
             name="licensePlate"
@@ -48,7 +48,8 @@ const ByLicensePlate = () => {
           name="benefits"
           val={formik.values.benefits}
           changeCB={formik.handleChange}
-          helper="тут потрібно ввести текст)))"
+          helper="Учасники війни; Інваліди II групи; Громадяни України, які постраждали внаслідок Чорнобильської катастрофи, віднесені до I та II категорії; 
+          Пенсіонери"
         />
         <SubmitButton type="submit">Розрахувати вартість</SubmitButton>
       </FormStyled>
