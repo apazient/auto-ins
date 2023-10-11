@@ -11,7 +11,7 @@ const Step3 = ({ step, funcNextStep, funcPreviousStep, backLinkRef }) => {
     <>
     <div>Step3</div>
     <BtnBack step={step} funcPreviousStep={funcPreviousStep} backLinkRef={backLinkRef}/>
-      <BtnSubmit data={userContacts} funcNextStep={funcNextStep} />
+      <BtnSubmit data={userContacts} step={step} funcNextStep={funcNextStep} />
       </>
   )
 }

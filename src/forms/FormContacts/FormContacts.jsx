@@ -108,11 +108,11 @@ const FormContacts = ({ step, funcNextStep, backLinkRef }) => {
           {isLargeScreen ? (
             <>
               <BtnBack step={step} backLinkRef={backLinkRef} />
-              <BtnSubmit data={userContacts} funcNextStep={funcNextStep} />
+              <BtnSubmit data={userContacts} step={step} funcNextStep={funcNextStep} />
             </>
           ) : (
             <>
-              <BtnSubmit data={userContacts} funcNextStep={funcNextStep} />
+              <BtnSubmit data={userContacts} step={step} funcNextStep={funcNextStep} />
               <BtnBack step={step} />
             </>
           )}
