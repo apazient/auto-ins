@@ -24,9 +24,10 @@ const FormPage = () => {
         <OutletNavaigation locationPath={location} />
         <Wrapper>
           <CompanySmall company={company} />
+
           <Box sx={{ display: "block" }}>
             <StepperStyles />
-            <FormContacts />
+            <AllFormsContainer />
           </Box>
         </Wrapper>
       </ContainerSectionPage>

@@ -1,16 +1,29 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import { YellowButton } from "../../style/Global.styled";
 
-const BtnSubmit = ({ data, funcNextStep }) => {
-  // console.log("data", data);
-  const {email, phone} = data;
+const BtnSubmit = ({ data, step, funcNextStep }) => {
+  let dataHasNull = false;
+
+  const hasNullValue = Object.values(data).some((value) => value === null);
+  if (hasNullValue) {
+    //console.log('Есть хотя бы одно поле, равное null');
+    dataHasNull = false;
+  } else {
+    //console.log('Все поля имеют значения, отличные от null');
+    dataHasNull = true;
+  }
+
   const handleOnSubmitClick = () => {
-    console.log("Pressed handleOnSubmitClick");
-    funcNextStep()
+    if (step === 4) {
+      return;
+    }
+
+    funcNextStep();
   };
+
   return (
     <>
-      {email && phone ? (
+      {dataHasNull ? (
         <YellowButton type="submit" onClick={handleOnSubmitClick}>
           Підтвердити
         </YellowButton>
@@ -23,17 +36,12 @@ const BtnSubmit = ({ data, funcNextStep }) => {
   );
 };
 
-{
-  /* <Link state={{from: location}} to="/form"  style={{ color: "lime" }}>
-        FormPage
-      </Link> */
-}
-
 BtnSubmit.propTypes = {
   data: PropTypes.shape({
     email: PropTypes.string,
     phone: PropTypes.string,
   }),
+  step: PropTypes.number,
   funcNextStep: PropTypes.func,
 };
 export default BtnSubmit;
