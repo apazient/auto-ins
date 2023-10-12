@@ -67,7 +67,7 @@ const Footer = () => {
           <UlListS className="centered">
             <LiItemS disablePadding={true}>
               <LinkS
-                href="https://instagram.com/autoins_info?igshid=NzZlODBkYWE4Ng=="
+                href="https://instagram.com/autoins_info?utm_source=qr&igshid=MzNlNGNkZWQ4Mg%3D%3D"
                 target="_blank"
                 rel="noreferrer noopener"
                 aria-label="instagram"
