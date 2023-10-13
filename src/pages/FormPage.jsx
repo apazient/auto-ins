@@ -11,7 +11,7 @@ import { useState } from "react";
 import companyForm from "../assets/mocapi/companyForm.json";
 import { Wrapper } from "./FormPageStyled";
 
-import StepperStyles from "../components/StepperStyles/StepperStyles";
+import Stepper from "../components/Stepper/Stepper";
 import { Box } from "@mui/material";
 
 const FormPage = () => {
@@ -26,7 +26,7 @@ const FormPage = () => {
           <CompanySmall company={company} />
 
           <Box sx={{ display: "block" }}>
-            <StepperStyles />
+            <Stepper />
             <AllFormsContainer />
           </Box>
         </Wrapper>
