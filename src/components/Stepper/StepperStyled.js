@@ -1,36 +1,15 @@
-import { Box, Stepper } from "@mui/material";
+import Stepper from "@mui/material/Stepper";
 import { styled } from "@mui/material/styles";
 import StepConnector, {
   stepConnectorClasses,
 } from "@mui/material/StepConnector";
 import StepLabel, { stepLabelClasses } from "@mui/material/StepLabel";
 
-export const BoxImg = styled(Box)(({ theme }) => ({
-  //   fill: theme.palette.primary.main,
-  [theme.breakpoints.up("xs")]: {
-    // width: "56px",
-    // height: "74px",
-    // margin: "0 auto",
-    // padding: "10px 9px",
-  },
-  [theme.breakpoints.up("sm")]: {
-    // width: "152px",
-    // height: "72px",
-    // padding: "12px ",
-  },
-  [theme.breakpoints.up("lg")]: {
-    // width: "96px",
-    // height: "96px",
-    // padding: "15px ",
-  },
-}));
-
-export const StepperStyled = styled(Stepper)(({ theme }) => ({
-  //  "&.MuiStepper-root": { justifyContent: "center", alignItems: "center" },
+export const StepperStyled = styled(Stepper)({
   "& .MuiStep-root": {
     padding: "0",
   },
-}));
+});
 
 export const Connector = styled(StepConnector)(({ theme }) => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {
