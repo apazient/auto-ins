@@ -1,123 +1,186 @@
 [
-{
-"idCompany": 2,
-"nameCompany": "Євроінс",
-"fransizes": [
-{
-"sum": 2584,
-"idFransize": 1,
-"nameFransize": "0"
-},
-{
-"sum": 2584,
-"idFransize": 3,
-"nameFransize": "1000"
-},
-{
-"sum": 2369,
-"idFransize": 2,
-"nameFransize": "2000"
-},
-{
-"sum": 1795,
-"idFransize": 4,
-"nameFransize": "2600"
-}
-]
-},
-{
-"idCompany": 3,
-"nameCompany": "ІНГО",
-"fransizes": [
-{
-"sum": 2131,
-"idFransize": 1,
-"nameFransize": "0"
-},
-{
-"sum": 1628,
-"idFransize": 5,
-"nameFransize": "1300"
-},
-{
-"sum": 1550,
-"idFransize": 4,
-"nameFransize": "2600"
-}
-]
-},
-{
-"idCompany": 1,
-"nameCompany": "АСКА",
-"fransizes": [
-{
-"sum": 2100,
-"idFransize": 1,
-"nameFransize": "0"
-},
-{
-"sum": 1725,
-"idFransize": 3,
-"nameFransize": "1000"
-},
-{
-"sum": 1561,
-"idFransize": 2,
-"nameFransize": "2000"
-}
-]
-},
-{
-"idCompany": 4,
-"nameCompany": "ARX",
-"fransizes": [
-{
-"sum": 2584,
-"idFransize": 1,
-"nameFransize": "0"
-},
-{
-"sum": 2064,
-"idFransize": 7,
-"nameFransize": "1500"
-},
-{
-"sum": 1885,
-"idFransize": 6,
-"nameFransize": "2500"
-}
-]
-},
-{
-"idCompany": 8,
-"nameCompany": "КРЕДО",
-"fransizes": [
-{
-"sum": 2100,
-"idFransize": 1,
-"nameFransize": "0"
-},
-{
-"sum": 1850,
-"idFransize": 7,
-"nameFransize": "1500"
-},
-{
-"sum": 1557,
-"idFransize": 6,
-"nameFransize": "2500"
-}
-]
-},
-{
-"idCompany": 9,
-"nameCompany": "ПЗУ",
-"fransizes": [
-{
-"sum": 1813,
-"idFransize": 6,
-"nameFransize": "2500"
-}
-]
-}
+	{
+		"idCompany": 3,
+		"nameCompany": "ІНГО",
+		"fransizes": [
+			{
+				"sum": 3516,
+				"idFransize": 1,
+				"nameFransize": "0"
+			},
+			{
+				"sum": 2758,
+				"idFransize": 8,
+				"nameFransize": "1600"
+			},
+			{
+				"sum": 2627,
+				"idFransize": 9,
+				"nameFransize": "3200"
+			}
+		]
+	},
+	{
+		"idCompany": 4,
+		"nameCompany": "ARX",
+		"fransizes": [
+			{
+				"sum": 4199,
+				"idFransize": 1,
+				"nameFransize": "0"
+			},
+			{
+				"sum": 3284,
+				"idFransize": 6,
+				"nameFransize": "2500"
+			},
+			{
+				"sum": 3194,
+				"idFransize": 9,
+				"nameFransize": "3200"
+			}
+		]
+	},
+	{
+		"idCompany": 5,
+		"nameCompany": "UNIQA",
+		"fransizes": [
+			{
+				"sum": 4881,
+				"idFransize": 1,
+				"nameFransize": "0"
+			},
+			{
+				"sum": 3733,
+				"idFransize": 7,
+				"nameFransize": "1500"
+			},
+			{
+				"sum": 3159,
+				"idFransize": 6,
+				"nameFransize": "2500"
+			},
+			{
+				"sum": 3033,
+				"idFransize": 9,
+				"nameFransize": "3200"
+			}
+		]
+	},
+	{
+		"idCompany": 8,
+		"nameCompany": "КРЕДО",
+		"fransizes": [
+			{
+				"sum": 2778,
+				"idFransize": 1,
+				"nameFransize": "0"
+			},
+			{
+				"sum": 2455,
+				"idFransize": 8,
+				"nameFransize": "1600"
+			},
+			{
+				"sum": 2100,
+				"idFransize": 9,
+				"nameFransize": "3200"
+			}
+		]
+	},
+	{
+		"idCompany": 9,
+		"nameCompany": "PZU",
+		"fransizes": [
+			{
+				"sum": 2961,
+				"idFransize": 1,
+				"nameFransize": "0"
+			},
+			{
+				"sum": 2100,
+				"idFransize": 6,
+				"nameFransize": "2500"
+			}
+		]
+	},
+	{
+		"idCompany": 2,
+		"nameCompany": "Євроінс",
+		"fransizes": [
+			{
+				"sum": 3343,
+				"idFransize": 1,
+				"nameFransize": "0"
+			},
+			{
+				"sum": 2342,
+				"idFransize": 4,
+				"nameFransize": "2600"
+			},
+			{
+				"sum": 2229,
+				"idFransize": 9,
+				"nameFransize": "3200"
+			}
+		]
+	},
+	{
+		"idCompany": 10,
+		"nameCompany": "ЄСА",
+		"fransizes": [
+			{
+				"sum": 2961,
+				"idFransize": 1,
+				"nameFransize": "0"
+			},
+			{
+				"sum": 2458,
+				"idFransize": 6,
+				"nameFransize": "2500"
+			},
+			{
+				"sum": 2369,
+				"idFransize": 9,
+				"nameFransize": "3200"
+			}
+		]
+	},
+	{
+		"idCompany": 11,
+		"nameCompany": "Інтер-поліс",
+		"fransizes": [
+			{
+				"sum": 2617,
+				"idFransize": 1,
+				"nameFransize": "0"
+			},
+			{
+				"sum": 2520,
+				"idFransize": 4,
+				"nameFransize": "2600"
+			},
+			{
+				"sum": 2504,
+				"idFransize": 9,
+				"nameFransize": "3200"
+			}
+		]
+	},
+	{
+		"idCompany": 14,
+		"nameCompany": "Інтер-поліс.min",
+		"fransizes": [
+			{
+				"sum": 2439,
+				"idFransize": 1,
+				"nameFransize": "0"
+			},
+			{
+				"sum": 2132,
+				"idFransize": 9,
+				"nameFransize": "3200"
+			}
+		]
+	}
 ]
