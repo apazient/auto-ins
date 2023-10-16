@@ -3,9 +3,10 @@ import IconButton from "@mui/material/IconButton";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { SpriteSVG } from "../../images/SpriteSVG";
+import { socialMedia } from "../../assets/utils/socialMedia";
 
 import {
   BodyMenu,
@@ -18,7 +19,6 @@ import {
   UlListS,
 } from "./BurgerMenuStyled";
 import { BoxIconHS, LogoBoxS, LogoTextHS } from "../Header/HeaderStyled";
-import { display } from "@mui/system";
 
 const BurgerMenu = () => {
   const [open, setOpen] = useState(false);
@@ -34,8 +34,7 @@ const BurgerMenu = () => {
     setOpen(open);
   };
 
-  const onNavClick = () => {
-    event.preventDefault();
+  const onNavClick = (event) => {
     navigate("/", { state: { id: event.target.textContent.toLowerCase() } });
     setOpen(false);
   };
@@ -82,67 +81,44 @@ const BurgerMenu = () => {
             }}
           >
             <BodyMenu>
-              <ListItemButton onClick={onNavClick} sx={{ p: "0" }}>
-                <ListItemText primary="Переваги" sx={{ m: 0 }} />
-              </ListItemButton>
-              <DividerStyled />
-              <ListItemButton onClick={onNavClick} sx={{ p: "0" }}>
-                <ListItemText primary="Партнери" sx={{ m: 0 }} />
-              </ListItemButton>
-              <DividerStyled />
-              <ListItemButton onClick={onNavClick} sx={{ p: "0" }}>
-                <ListItemText primary="Питання-відповіді" sx={{ m: 0 }} />
-              </ListItemButton>
-              <DividerStyled />
+              {["Переваги", "Партнери", "Питання-відповіді"].map(
+                (text, index) => {
+                  return (
+                    <Fragment key={text + index}>
+                      <ListItemButton
+                        key={text + index}
+                        onClick={onNavClick}
+                        sx={{ p: "0" }}
+                      >
+                        <ListItemText primary={text} sx={{ m: 0 }} />
+                      </ListItemButton>
+                      <DividerStyled />
+                    </Fragment>
+                  );
+                }
+              )}
             </BodyMenu>
-
             <UlListS className="centered">
-              <LiItemS disablePadding={true} className="liSocialIcon">
-                <Link
-                  to="https://instagram.com/autoins_info?igshid=NzZlODBkYWE4Ng=="
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  onClick={toggleDrawer(false)}
-                >
-                  <BoxIconS className="socialIconBox">
-                    <SpriteSVG name={"icon-instagram"} />
-                  </BoxIconS>
-                </Link>
-              </LiItemS>
-              <LiItemS disablePadding={true} className="liSocialIcon">
-                <Link
-                  to="https://www.facebook.com/profile.php?id=61551725567425"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                >
-                  <BoxIconS className="socialIconBox">
-                    <SpriteSVG name={"icon-facebook"} />
-                  </BoxIconS>
-                </Link>
-              </LiItemS>
-              <LiItemS disablePadding={true} className="liSocialIcon">
-                <Link
-                  to="https://t.me/@auto_ins_ua"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                >
-                  <BoxIconS className="socialIconBox">
-                    <SpriteSVG name={"icon-telegram-send"} />
-                  </BoxIconS>
-                </Link>
-              </LiItemS>
-
-              <LiItemS disablePadding={true} className="liSocialIcon">
-                <Link
-                  to="mailto:help.autoins@gmail.com"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                >
-                  <BoxIconS className="socialIconBox">
-                    <SpriteSVG name={"icon-mail"} />
-                  </BoxIconS>
-                </Link>
-              </LiItemS>
+              {socialMedia.map(({ icon, path }, index) => {
+                return (
+                  <LiItemS
+                    key={index}
+                    disablePadding={true}
+                    className="liSocialIcon"
+                  >
+                    <Link
+                      to={path}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      onClick={toggleDrawer(false)}
+                    >
+                      <BoxIconS className="socialIconBox">
+                        <SpriteSVG name={icon} />
+                      </BoxIconS>
+                    </Link>
+                  </LiItemS>
+                );
+              })}
             </UlListS>
           </Box>
         </Box>

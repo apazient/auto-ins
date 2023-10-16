@@ -1,6 +1,5 @@
 import { Typography } from "@mui/material";
 import { useFormik } from "formik";
-import * as Yup from "yup";
 import {
   ButtonContainerStyled,
   DocInputsStyled,
@@ -12,6 +11,7 @@ import {
 } from "../InsuredDataForm/InsuredDataForm.styled";
 import { SpriteSVG } from "../../images/SpriteSVG";
 import GeneralInput from "../../components/GeneralInput/GeneralInput";
+import { HomeAddressFormValidationSchema } from "../../helpers/formValidationSchema";
 
 const HomeAddressForm = () => {
   const formik = useFormik({
@@ -25,13 +25,7 @@ const HomeAddressForm = () => {
     onSubmit: (values) => {
       console.log(values);
     },
-    validationSchema: Yup.object().shape({
-      region: Yup.string().required("Обов’язкове поле!"),
-      city: Yup.string().required("Обов’язкове поле!"),
-      street: Yup.string().required("Обов’язкове поле!"),
-      houseNumber: Yup.string().required("Обов’язкове поле!"),
-      apartmentNumber: Yup.string(),
-    }),
+    validationSchema: HomeAddressFormValidationSchema(),
   });
   return (
     <div>

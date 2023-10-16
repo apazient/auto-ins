@@ -1,6 +1,5 @@
 import { Typography } from "@mui/material";
 import { useFormik } from "formik";
-import * as Yup from "yup";
 import {
   ButtonContainerStyled,
   DocInputsStyled,
@@ -13,6 +12,7 @@ import {
 import GeneralSelect from "../../components/GeneralSelect/GeneralSelect";
 import { SpriteSVG } from "../../images/SpriteSVG";
 import GeneralInput from "../../components/GeneralInput/GeneralInput";
+import { insuredDataFormValidationSchema } from "../../helpers/formValidationSchema";
 
 const selectArrOptions = [
   {
@@ -45,19 +45,7 @@ const InsuredDataForm = () => {
     onSubmit: (values) => {
       console.log(values);
     },
-    validationSchema: Yup.object().shape({
-      surname: Yup.string()
-        .min(6, "Введіть мінімум 6 символів")
-        .required("Обов’язкове поле!"),
-      name: Yup.string().required("Обов’язкове поле!"),
-      middleName: Yup.string().required("Обов’язкове поле!"),
-      birthDate: Yup.string().required("Обов’язкове поле!"),
-      taxNumber: Yup.string().required("Обов’язкове поле!"),
-      series: Yup.string().required("Обов’язкове поле!"),
-      docNumber: Yup.string().required("Обов’язкове поле!"),
-      docIssuedBy: Yup.string().required("Обов’язкове поле!"),
-      issueDate: Yup.string().required("Обов’язкове поле!"),
-    }),
+    validationSchema: insuredDataFormValidationSchema(),
   });
   return (
     <div>

@@ -9,12 +9,9 @@ import {
   TextContainerS,
 } from "./AdvatagesSectionStyle";
 import { ContainerSection } from "../../style/Global.styled";
-import { useState } from "react";
-import dataFromJson from "../../assets/texts/advantages.json";
+import { advantages } from "../../assets/utils/advantages";
 
 const AdvatagesSection = () => {
-  const [data, _] = useState(dataFromJson);
-
   return (
     <section>
       <ContainerSection id="переваги">
@@ -25,9 +22,9 @@ const AdvatagesSection = () => {
           Наші переваги
         </Typography>
         <GridContainer container>
-          {data.map(({ svg, title, text }) => {
+          {advantages.map(({ svg, title, text }) => {
             return (
-              <Grid key={nanoid()} xs={12} sm={12} md={12} lg={12}>
+              <Grid key={title} xs={12} sm={12} md={12} lg={12}>
                 <ItemS>
                   <BoxImgS>
                     <SpriteSVG name={svg}></SpriteSVG>

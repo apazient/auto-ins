@@ -22,13 +22,21 @@ export const InputStyled = styled(OutlinedInput)(({ theme }) => ({
     fontFamily: "OpenSans-SemiBold",
     fontSize: 16,
     lineHeight: "150%" /* 24px */,
+    "&:-webkit-autofill": {
+      WebkitBackgroundClip: "text",
+      WebkitTextFillColor: theme.palette.primary.main,
+    },
+    "&:-webkit-autofill:focus": {
+      WebkitBackgroundClip: "text",
+      WebkitTextFillColor: theme.palette.primary.main,
+    },
     [theme.breakpoints.up("sm")]: {
       fontSize: 18,
     },
   },
-  "&:hover, &:focus": {
-    // border: `1px solid ${theme.palette.primary.darkBlue}`,
-  },
+  // "&:hover, &:focus": {
+  //   border: `1px solid ${theme.palette.primary.darkBlue}`,
+  // },
   "& fieldset.MuiOutlinedInput-notchedOutline": {
     border: `1px solid ${theme.palette.primary.main}`,
     // "&:hover": {

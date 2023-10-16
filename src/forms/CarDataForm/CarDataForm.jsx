@@ -1,6 +1,5 @@
 import { Typography } from "@mui/material";
 import { useFormik } from "formik";
-import * as Yup from "yup";
 import {
   ButtonContainerStyled,
   FormStyled,
@@ -11,6 +10,7 @@ import {
 } from "../InsuredDataForm/InsuredDataForm.styled";
 import { SpriteSVG } from "../../images/SpriteSVG";
 import GeneralInput from "../../components/GeneralInput/GeneralInput";
+import { carDataFormValidationSchema } from "../../helpers/formValidationSchema";
 
 const CarDataForm = () => {
   const formik = useFormik({
@@ -25,14 +25,7 @@ const CarDataForm = () => {
     onSubmit: (values) => {
       console.log(values);
     },
-    validationSchema: Yup.object().shape({
-      effectiveDatePolicy: Yup.string().required("Обов’язкове поле!"),
-      licensePlate: Yup.string().required("Обов’язкове поле!"),
-      graduationYear: Yup.string().required("Обов’язкове поле!"),
-      brand: Yup.string().required("Обов’язкове поле!"),
-      model: Yup.string().required("Обов’язкове поле!"),
-      vinCode: Yup.string().required("Обов’язкове поле!"),
-    }),
+    validationSchema: carDataFormValidationSchema(),
   });
   return (
     <div>
