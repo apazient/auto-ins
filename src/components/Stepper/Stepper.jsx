@@ -1,7 +1,5 @@
-import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import Step from "@mui/material/Step";
-import { Box } from "@mui/system";
 import { useState } from "react";
 import { SpriteSVG } from "../../images/SpriteSVG";
 import { Connector, Lable, LableIcon, StepperStyled } from "./StepperStyled";
@@ -12,7 +10,7 @@ import {
   contactsInitialValues,
   homeAddressInitialValues,
   insuredDataInitialValues,
-} from "../../helpers/formikForForms";
+} from "../../helpers/formikInitialValues";
 import {
   HomeAddressFormValidationSchema,
   carDataFormValidationSchema,
@@ -38,9 +36,43 @@ const steps = [
   { "Домашня адреса": "icon-home" },
   { "Дані авто": "icon-car-little" },
 ];
+const InsuredDataSelectOptions = [
+  {
+    value: "Паспорт",
+    label: "Паспорт",
+  },
+  {
+    value: "ID карта",
+    label: "ID карта",
+  },
+  {
+    value: "Посвідчення водія",
+    label: "Посвідчення водія",
+  },
+  {
+    value: "Пенсійне посвідчення",
+    label: "Пенсійне посвідчення",
+  },
+  {
+    value: "Посвідчення учасника війни",
+    label: "Посвідчення учасника війни",
+  },
+  {
+    value: "Посвідчення інваліда 2гр.",
+    label: "Посвідчення інваліда 2гр.",
+  },
+  {
+    value: "Посвідчення постраждалого на ЧАЕС (1,2 кат.)",
+    label: "Посвідчення постраждалого на ЧАЕС (1,2 кат.)",
+  },
+];
 
 const Stepper = () => {
   const [activeStep, setActiveStep] = useState(0);
+  const [identityCard, setIdentityCard] = useState({
+    value: "Паспорт",
+    label: "Паспорт",
+  });
   // =======================Formik======================================
   // const contactsFormik = useFormik({
   //   initialValues: contactsInitialValues,
@@ -99,7 +131,16 @@ const Stepper = () => {
       // case 0:
       //   return <FormContacts formik={contactsFormik} />;
       case 0:
-        return <InsuredDataForm formik={insuredDataFormik} />;
+        return (
+          <InsuredDataForm
+            formik={insuredDataFormik}
+            selectData={{
+              InsuredDataSelectOptions,
+              identityCard,
+              setIdentityCard,
+            }}
+          />
+        );
       case 1:
         return <HomeAddressForm formik={homeAddressFormik} />;
       case 2:
@@ -157,10 +198,7 @@ const Stepper = () => {
         </Typography>
         {getStepContent(activeStep)}
         <ButtonContainerStyled component="div">
-          <YellowButtonStyled
-            // onClick={formik.handleSubmit}
-            onClick={handleSubmit}
-          >
+          <YellowButtonStyled onClick={handleSubmit}>
             Підтвердити
           </YellowButtonStyled>
           <WhiteButtonStyled disabled={activeStep === 0} onClick={handleBack}>

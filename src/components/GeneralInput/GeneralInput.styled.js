@@ -34,14 +34,9 @@ export const InputStyled = styled(OutlinedInput)(({ theme }) => ({
       fontSize: 18,
     },
   },
-  // "&:hover, &:focus": {
-  //   border: `1px solid ${theme.palette.primary.darkBlue}`,
-  // },
+
   "& fieldset.MuiOutlinedInput-notchedOutline": {
     border: `1px solid ${theme.palette.primary.main}`,
-    // "&:hover": {
-    //   border: `1px solid ${theme.palette.primary.darkBlue}!important`,
-    // },
   },
   [theme.breakpoints.up("sm")]: {
     height: 59,

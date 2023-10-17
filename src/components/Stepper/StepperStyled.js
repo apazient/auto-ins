@@ -5,11 +5,14 @@ import StepConnector, {
 } from "@mui/material/StepConnector";
 import StepLabel, { stepLabelClasses } from "@mui/material/StepLabel";
 
-export const StepperStyled = styled(Stepper)({
+export const StepperStyled = styled(Stepper)(({ theme }) => ({
   "& .MuiStep-root": {
-    padding: "0",
+    paddingBottom: 0,
   },
-});
+  [theme.breakpoints.up("xs")]: { paddingBottom: "50px" },
+  [theme.breakpoints.up("sm")]: { paddingBottom: "82px" },
+  [theme.breakpoints.up("lg")]: { paddingBottom: "92px" },
+}));
 
 export const Connector = styled(StepConnector)(({ theme }) => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {

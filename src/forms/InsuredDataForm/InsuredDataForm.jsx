@@ -3,22 +3,9 @@ import GeneralSelect from "../../components/GeneralSelect/GeneralSelect";
 import GeneralInput from "../../components/GeneralInput/GeneralInput";
 import PropTypes from "prop-types";
 
-const selectArrOptions = [
-  {
-    value: "Ціна",
-    label: "Ціна",
-  },
-  {
-    value: "Популярність",
-    label: "Популярність",
-  },
-  {
-    value: "Компанії",
-    label: "Компанії",
-  },
-];
-
-const InsuredDataForm = ({ formik }) => {
+const InsuredDataForm = ({ formik, selectData }) => {
+  const { InsuredDataSelectOptions, identityCard, setIdentityCard } =
+    selectData;
   return (
     <>
       <InputContBoxStyled>
@@ -39,8 +26,9 @@ const InsuredDataForm = ({ formik }) => {
         <GeneralSelect
           id="licensDoc"
           lableText="Документ на вибір*:"
-          optionsArr={selectArrOptions}
-          //changeCB, //функція що повертає вибране значення (піднесення)
+          optionsArr={InsuredDataSelectOptions}
+          changeCB={setIdentityCard} //функція що повертає вибране значення (піднесення)
+          currentValue={identityCard}
         />
         <DocInputsStyled>
           <GeneralInput id="series" lableText="Серія*:" formikData={formik} />
@@ -70,4 +58,5 @@ export default InsuredDataForm;
 
 InsuredDataForm.propTypes = {
   formik: PropTypes.object,
+  selectData: PropTypes.object,
 };
