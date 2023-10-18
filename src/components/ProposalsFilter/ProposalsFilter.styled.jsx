@@ -27,6 +27,12 @@ export const SelectsContStyled = styled(Box)(({ theme }) => ({
           width: 272,
         },
       },
+      "&option": {
+        "&--is-focused, &:active, &--is-selected": {
+          backgroundColor: theme.palette.primary.white,
+          color: theme.palette.primary.blue,
+        },
+      },
     },
     [theme.breakpoints.up("sm")]: {
       gap: 16,

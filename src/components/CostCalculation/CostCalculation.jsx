@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import {
   FormContainerS,
   Item,
@@ -9,26 +9,38 @@ import {
 export const CostCalculation = () => {
   const arr = ["Легкове авто", "до 1600 см3", "м. Київ"];
   return (
-    <FormContainerS
-      sx={{
-        display: { lg: "flex" },
-        alignItems: "center",
-        justifyContent: "space-between",
-      }}
-    >
-      <Typography variant="subtitle1" component="span">
+    <FormContainerS>
+      <Typography
+        variant="formTitle"
+        component="span"
+        sx={{
+          fontSize: { sm: "18px", lg: "22px" },
+          fontWeight: { sm: "700", lg: "800" },
+        }}
+      >
         Розрахунок вартості:
       </Typography>
-      <StackS direction="row">
-        {arr.map((el, index) => {
-          return (
-            <Item key={index}>
-              <Typography component="span">{el}</Typography>
-            </Item>
-          );
-        })}
-      </StackS>
-      <YellowButtonS>Змінити параметри</YellowButtonS>
+      <Box className="wrapContent">
+        <StackS direction="row">
+          {arr.map((el, index) => {
+            return (
+              <Item key={index}>
+                <Typography
+                  component="span"
+                  variant="inputLable"
+                  sx={{
+                    fontSize: { lg: "18px" },
+                    fontWeight: { lg: "600" },
+                  }}
+                >
+                  {el}
+                </Typography>
+              </Item>
+            );
+          })}
+        </StackS>
+        <YellowButtonS>Змінити параметри</YellowButtonS>
+      </Box>
     </FormContainerS>
   );
 };
