@@ -2,14 +2,17 @@ import { Suspense, lazy } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
 import Loader from "./components/Loader/Loader";
+import { ReactQueryDevtools } from "react-query/devtools";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 const HomePage = lazy(() => import("./pages/HomePage.jsx"));
 const PricesPage = lazy(() => import("./pages/PricesPage.jsx"));
 const FormPage = lazy(() => import("./pages/FormPage.jsx"));
 
 function App() {
+  const queryClient = new QueryClient();
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
       <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<Layout />}>
@@ -20,7 +23,8 @@ function App() {
           </Route>
         </Routes>
       </Suspense>
-    </>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   );
 }
 
