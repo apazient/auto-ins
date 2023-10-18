@@ -80,6 +80,10 @@ export const SelectStyled = styled(Select)(({ theme }) => ({
     "&option:last-of-type": {
       borderRadius: "0px 0px 25px 25px",
     },
+    "&option:only-child": {
+      borderRadius: "25px 25px 25px 25px",
+    },
+
     "&option": {
       cursor: "pointer",
       color: theme.palette.primary.main,
