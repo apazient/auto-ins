@@ -1,10 +1,7 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { ContainerSectionPage, PageContainerS } from "../style/Global.styled";
 import OutletNavaigation from "../components/OutletNavigation/OutletNavigation";
 
-import AllFormsContainer from "../forms/AllFormsContainer/AllFormsContainer";
-
-import FormContacts from "../forms/FormContacts/FormContacts";
 import CompanySmall from "../components/CompanySmall/CompanySmall";
 import { useState } from "react";
 
@@ -26,8 +23,7 @@ const FormPage = () => {
           <CompanySmall company={company} />
 
           <Box sx={{ display: "block" }}>
-            <Stepper />
-            {/* <AllFormsContainer /> */}
+            <Stepper />            
           </Box>
         </Wrapper>
       </ContainerSectionPage>

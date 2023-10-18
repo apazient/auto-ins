@@ -12,6 +12,7 @@ const GeneralInput = ({
   type,
   color,
   customFunc,
+  placeholder,
   formikData: { values, handleChange, handleBlur, errors, touched },
 }) => {
   const theme = useTheme();
@@ -36,6 +37,7 @@ const GeneralInput = ({
         id={id}
         color={color || "inputBase"}
         error={touched[id] && Boolean(errors[id])}
+        placeholder={placeholder}
       />
     </InputContStyled>
   );
@@ -50,4 +52,5 @@ GeneralInput.propTypes = {
   color: PropTypes.string,
   formikData: PropTypes.object,
   customFunc: PropTypes.func,
+  placeholder: PropTypes.string,
 };
