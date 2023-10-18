@@ -27,7 +27,7 @@ const FormPage = () => {
 
           <Box sx={{ display: "block" }}>
             <Stepper />
-            <AllFormsContainer />
+            {/* <AllFormsContainer /> */}
           </Box>
         </Wrapper>
       </ContainerSectionPage>

@@ -32,6 +32,18 @@ export const InputContBoxStyled = styled(Box)(({ theme }) => ({
     marginTop: 8,
   },
   "& .select-container": {
+    "& .MuiTypography-root.MuiTypography-body1": {
+      [theme.breakpoints.up("xs")]: {
+        fontSize: "0.875rem",
+        fontFamily: "OpenSans-SemiBold, sans-serif",
+        fontWeight: 600,
+        color: theme.palette.primary.main,
+        lineHeight: 1.5,
+      },
+      [theme.breakpoints.up("sm")]: {
+        fontSize: "1rem",
+      },
+    },
     "& .customSelect__": {
       "&control": {
         [theme.breakpoints.up("lg")]: {
