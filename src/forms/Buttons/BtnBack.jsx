@@ -3,24 +3,13 @@ import { SpriteSVG } from "../../images/SpriteSVG";
 import { BoxIconS } from "./BtnBackStyled";
 import { WhiteButton } from "../../style/Global.styled";
 
-
-const BtnBack = ({step, funcPreviousStep, backLinkRef}) => {
-  // console.log(step);  
-  // console.log('backLinkRef', backLinkRef);
-
-  const handleOnBackClick = () => {    
-    if(step === 1) return;
-    funcPreviousStep()
-  }
-    
-
+const BtnBack = ({backLinkRef}) => {
+  
   return (
     <>
-      {backLinkRef?.current ? (      
-          
-          <WhiteButton        
-            onClick={handleOnBackClick}
-            to={step === 1 ? backLinkRef?.current ?? "/" : undefined}            
+      {backLinkRef?.current ? (          
+          <WhiteButton            
+            to={backLinkRef?.current ?? "/"}            
           >
             <BoxIconS>
               <SpriteSVG name={"icon-arrow-left"} />
@@ -41,14 +30,8 @@ const BtnBack = ({step, funcPreviousStep, backLinkRef}) => {
   );
 };
 
-BtnBack.propTypes = {
-  step: PropTypes.number,
-  funcPreviousStep: PropTypes.func,
+BtnBack.propTypes = {  
   backLinkRef: PropTypes.object,
-
 }
 
 export default BtnBack;
-
-
-

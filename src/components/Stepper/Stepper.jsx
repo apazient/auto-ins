@@ -1,6 +1,6 @@
 import Stack from "@mui/material/Stack";
 import Step from "@mui/material/Step";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { SpriteSVG } from "../../images/SpriteSVG";
 import { Connector, Lable, LableIcon, StepperStyled } from "./StepperStyled";
 import StepIcon from "./StepIcon";
@@ -29,9 +29,11 @@ import {
   YellowButtonStyled,
 } from "../../forms/InsuredDataForm/InsuredDataForm.styled";
 import { Typography } from "@mui/material";
+import BtnBack from "../../forms/Buttons/BtnBack";
+import { useLocation } from "react-router-dom";
 
 const steps = [
-  // { Контакти: "icon-email" },
+  { "Контакти": "icon-email" },
   { "Дані страхувальника": "icon-passport" },
   { "Домашня адреса": "icon-home" },
   { "Дані авто": "icon-car-little" },
@@ -73,16 +75,18 @@ const Stepper = () => {
     value: "Паспорт",
     label: "Паспорт",
   });
+  const location = useLocation();
+  let backLinkRef = useRef(location.state?.from);  
+
   // =======================Formik======================================
-  // const contactsFormik = useFormik({
-  //   initialValues: contactsInitialValues,
-  //   validationSchema: contactsValidationSchema(),
-  //   onSubmit: (values) => {
-  //     console.log("onSubmit", values);
-  //     handleNext();
-  //     // setUserContacts(values);
-  //   },
-  // });
+  const contactsFormik = useFormik({
+    initialValues: contactsInitialValues,
+    validationSchema: contactsValidationSchema(),
+    onSubmit: (values) => {
+      console.log("onSubmit", values);
+      handleNext();      
+    },
+  });
 
   const insuredDataFormik = useFormik({
     initialValues: insuredDataInitialValues,
@@ -106,6 +110,7 @@ const Stepper = () => {
     initialValues: carDataFormikInitialValues,
     onSubmit: (values) => {
       const allValues = {
+        ...contactsFormik.values,
         ...insuredDataFormik.values,
         ...homeAddressFormik.values,
         ...values,
@@ -128,9 +133,9 @@ const Stepper = () => {
 
   const getStepContent = (step) => {
     switch (step) {
-      // case 0:
-      //   return <FormContacts formik={contactsFormik} />;
       case 0:
+        return <FormContacts formik={contactsFormik} />;
+      case 1:
         return (
           <InsuredDataForm
             formik={insuredDataFormik}
@@ -141,9 +146,9 @@ const Stepper = () => {
             }}
           />
         );
-      case 1:
-        return <HomeAddressForm formik={homeAddressFormik} />;
       case 2:
+        return <HomeAddressForm formik={homeAddressFormik} />;
+      case 3:
         return <CarDataForm formik={carDataFormik} />;
       default:
         return "Unknown step";
@@ -152,16 +157,16 @@ const Stepper = () => {
 
   const handleSubmit = () => {
     switch (activeStep) {
-      // case 0:
-      //   contactsFormik.handleSubmit();
-      //   break;
       case 0:
-        insuredDataFormik.handleSubmit();
+        contactsFormik.handleSubmit();
         break;
       case 1:
-        homeAddressFormik.handleSubmit();
+        insuredDataFormik.handleSubmit();
         break;
       case 2:
+        homeAddressFormik.handleSubmit();
+        break;
+      case 3:
         carDataFormik.handleSubmit();
         break;
     }
@@ -201,12 +206,16 @@ const Stepper = () => {
           <YellowButtonStyled onClick={handleSubmit}>
             Підтвердити
           </YellowButtonStyled>
-          <WhiteButtonStyled disabled={activeStep === 0} onClick={handleBack}>
-            <WhiteButtonSVGStyled component="span">
+          {activeStep === 0 ?
+           (<BtnBack backLinkRef={backLinkRef} />)
+            :
+            (<WhiteButtonStyled onClick={handleBack}>
+              <WhiteButtonSVGStyled component="span">
               <SpriteSVG name="icon-arrow-left" />
             </WhiteButtonSVGStyled>
             Назад
-          </WhiteButtonStyled>
+          </WhiteButtonStyled>)
+            }         
         </ButtonContainerStyled>
       </FormStyled>
     </Stack>
