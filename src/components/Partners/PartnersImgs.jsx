@@ -110,7 +110,7 @@ export const PartnersImgs = ({ data }) => {
             sizes={`(max-width: ${maxMobileScreen}) 100vw, 50vw`}
             loading="lazy"
           />
-        </picture>
+        </picture>       
       );
 
     case "2":

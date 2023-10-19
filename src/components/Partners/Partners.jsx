@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { ContainerSection, YellowButton } from "../../style/Global.styled";
 import { PartnersContainerS, SectionS, TitleS, UlPartnersListS } from "./PartnersStyled";
-import SinglePartner from "./SinglePartner";
-import PartnersList from "./parnersList.json";
+// import SinglePartner from "./SinglePartner"; //logo img-png
+// import PartnersList from "./parnersList.json"; //logo img-png
 import { Collapse } from "@mui/material";
+import SinglePartner from "../PartnersCopy/SinglePartner"; //logo http
+import PartnersList from "../PartnersCopy/parnersList.json"; //logo http
 
 const Partners = () => {  
   const totalPartners = PartnersList?.length;
