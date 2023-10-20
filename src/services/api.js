@@ -2,33 +2,33 @@ import axios from "axios";
 import { useQueryClient } from "react-query";
 import { userNormalize } from "../helpers/dataNormalize/userNormalize";
 
-const xBaseURL = import.meta.env.VITE_REACT_APP_BaseURL
-const xAuthUser = import.meta.env.VITE_REACT_APP_X_AUTH_USER;
-const xAuthToken = import.meta.env.VITE_REACT_APP_X_AUTH_TOKEN;
-console.log(xAuthUser)
-
-// const instance = axios.create({  
-//   baseURL: "https://web.eua.in.ua/eua/api/v15",
-//   headers: {
-//     "x-auth-user": "persichek5@gmail.com",
-//     "x-auth-token": "8a87f6e8-55e5-4448-ba5d-f9466667aca1",
-//   },
-//   mode: 'cors',
-// });
+// const xBaseURL = import.meta.env.VITE_REACT_APP_BaseURL
+// const xAuthUser = import.meta.env.VITE_REACT_APP_X_AUTH_USER;
+// const xAuthToken = import.meta.env.VITE_REACT_APP_X_AUTH_TOKEN;
+// console.log(xAuthUser)
 
 const instance = axios.create({  
-  baseURL: xBaseURL,
+  baseURL: "https://web.eua.in.ua/eua/api/v15",
   headers: {
-    "x-auth-user": xAuthUser,
-    "x-auth-token": xAuthToken,
+    "x-auth-user": "persichek5@gmail.com",
+    "x-auth-token": "8a87f6e8-55e5-4448-ba5d-f9466667aca1",
   },
   mode: 'cors',
 });
 
+// const instance = axios.create({  
+//   baseURL: xBaseURL,
+//   headers: {
+//     "x-auth-user": xAuthUser,
+//     "x-auth-token": xAuthToken,
+//   },
+//   mode: 'cors',
+// });
+
 export const getUserByEmail = async () => {
   const { data } = await instance.get("/user/getByEmail", {
-    // params: { email: "persichek5@gmail.com" },
-    params: { email: xAuthUser },
+    params: { email: "persichek5@gmail.com" },
+    // params: { email: xAuthUser },
   });
   return userNormalize(data);
 };
