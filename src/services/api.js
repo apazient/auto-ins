@@ -42,15 +42,14 @@ export const getPolicyByParams = async (params) => {
   //   customerCategory: "NATURAL",
   //   outsideUkraine: false,
   //   dateFrom: "2023-10-20",
+  //   dateTo: "2024-10-20",
   // };
 
-  const { dateFrom } = params;
   const { data } = await instance.get("/tariff/choose/policy", {
     params: {
       ...params,
       usageMonths: 0,
       taxi: false,
-      dateTo: setDateInOneYear(dateFrom),
       salePoint: "40629",
     },
   });
