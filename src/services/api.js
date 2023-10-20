@@ -7,7 +7,8 @@ const xAuthUser = import.meta.env.VITE_REACT_APP_X_AUTH_USER;
 const xAuthToken = import.meta.env.VITE_REACT_APP_X_AUTH_TOKEN;
 
 const instance = axios.create({
-  baseURL: baseURL,
+  // baseURL: baseURL,
+  baseURL: "/api",
 
   headers: {
     "x-auth-user": xAuthUser,
@@ -20,6 +21,7 @@ export const getUserByEmail = async () => {
   const { data } = await instance.get("/user/getByEmail", {
     params: { email: "persichek5@gmail.com" },
   });
+  console.log(data);
   return userNormalize(data);
 };
 
