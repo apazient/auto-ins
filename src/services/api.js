@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useQueryClient } from "react-query";
+// import { useQueryClient } from "react-query";
 import { userNormalize } from "../helpers/dataNormalize/userNormalize";
 
 const instance = axios.create({
@@ -7,6 +7,7 @@ const instance = axios.create({
   headers: {
     "x-auth-user": "persichek5@gmail.com",
     "x-auth-token": "8a87f6e8-55e5-4448-ba5d-f9466667aca1",
+    "content-type": "application/json",
   },
 });
 
