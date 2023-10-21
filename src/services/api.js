@@ -11,9 +11,11 @@ const instance = axios.create({
   baseURL: "/api",
 
   headers: {
+
     "x-auth-user": xAuthUser,
     "x-auth-token": xAuthToken,
     "Content-Type": "application/json",
+
   },
 });
 

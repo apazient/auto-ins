@@ -1,7 +1,7 @@
 import { Box, styled } from "@mui/material";
 import Select from "react-select";
 
-export const SelectStyled = styled(Select)(({ theme }) => ({
+export const SelectStyled = styled(Select)(({ theme, $find }) => ({
   "& .customSelect__": {
     "&control": {
       color: theme.palette.primary.main,
@@ -14,7 +14,6 @@ export const SelectStyled = styled(Select)(({ theme }) => ({
       height: 56,
       borderRadius: 50,
       backgroundColor: "#FEFEFF",
-      // borderColor: theme.palette.primary.main,
       boxShadow: "0 0 0 0",
       "&:hover, &:focus": {
         borderColor: theme.palette.primary.darkBlue,
@@ -22,10 +21,12 @@ export const SelectStyled = styled(Select)(({ theme }) => ({
       },
       "& svg": {
         transition: "transform 200ms ease-in-out",
+        stroke: theme.palette.primary.main,
+        fill: $find ? "none" : theme.palette.primary.main,
       },
       "&--menu-is-open": {
         "& svg": {
-          transform: "rotateX(180deg)",
+          transform: $find ? "rotateX(0deg)" : "rotateX(180deg)",
         },
       },
       [theme.breakpoints.up("sm")]: {
@@ -89,6 +90,9 @@ export const SelectStyled = styled(Select)(({ theme }) => ({
       color: theme.palette.primary.main,
       "&--is-focused, &:active, &--is-selected": {
         backgroundColor: theme.palette.primary.lightBlue2,
+      },
+      "&:active": {
+        backgroundColor: theme.palette.primary.white,
       },
     },
     "&indicator": {

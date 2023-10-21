@@ -17,6 +17,7 @@
     "@mui/material": "^5.14.10",
     "axios": "^1.5.0",
     "formik": "^2.4.5",
+    "lodash.debounce": "^4.0.8",
     "nanoid": "^5.0.1",
     "normalize.css": "^8.0.1",
     "prop-types": "^15.8.1",
