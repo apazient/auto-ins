@@ -1,66 +1,56 @@
 [
     {        
-        "id": 85,
-        "imgSrc": "https://web.eua.in.ua/eua/api/binary/companyLogo?id=85",        
+        "id": 8,        
         "imgAlt": "credo logo",
         "rating": 4.1,
         "web": "http://skcredo.com.ua/"
     },
     {        
-        "id": 221,
-        "imgSrc": "https://web.eua.in.ua/eua/api/binary/companyLogo?id=221",
+        "id": 2,        
         "imgAlt": "euroins logo",
         "rating": 4.5,
         "web": "https://euroins.com.ua/"
     },
     {        
-        "id": 38,
-        "imgSrc": "https://web.eua.in.ua/eua/api/binary/companyLogo?id=38",
+        "id": 3,        
         "imgAlt": "ingo logo",
         "rating": 4.9,        
         "web": "https://online.ingo.ua/?utm_source=google_g&utm_medium=cpc&utm_campaign=1748001480&gclid=Cj0KCQjwoeemBhCfARIsADR2QCtztk19rZxBJ4Fay12MyYNU-fOHJmswOu59hz6in0HGfFLwzjy4zh0aAm_-EALw_wcB"
     },
     {        
-        "id": 73,
-        "imgSrc": "https://web.eua.in.ua/eua/api/binary/companyLogo?id=73",
+        "id": 400,        
         "imgAlt": "brokbusiness logo",
         "rating": 4.5,
         "web": "https://bbs.ua/home/"
     },
     {        
-        "id": 10,
-        "imgSrc": "https://web.eua.in.ua/eua/api/binary/companyLogo?id=10",
+        "id": 4,        
         "imgAlt": "arx logo",
         "rating": 5,
         "web": "https://arx.com.ua/?gad=1&gclid=Cj0KCQjwoeemBhCfARIsADR2QCu5drROdvvG2xK5EZmhXwKmP52j2O-ad_lYP8Xch13YqbBje8WMSZIaAhoaEALw_wcB"
     },
     {        
-        "id": 59,
-        "imgSrc": "https://web.eua.in.ua/eua/api/binary/companyLogo?id=59",
+        "id": 5,        
         "imgAlt": "uniqa logo",
         "rating": 5,
         "web": "https://uniqa.ua/?gclid=Cj0KCQjwoeemBhCfARIsADR2QCvyhgJHdxv6jEAcwG94A5WEdw03XU92CdOEbUuUGD-vsPY4cp7njKgaAhniEALw_wcB"
     },
     {        
-        "id": 456,        
-        "imgSrc": "https://web.eua.in.ua/eua/api/binary/companyLogo?id=456",
+        "id": 401,        
         "imgAlt": "inter-polis logo",
         "rating": 4.8,
         "web": "https://inter-policy.com/"
     },
     {        
-        "id": 61,        
-        "imgSrc": "https://web.eua.in.ua/eua/api/binary/companyLogo?id=61",
+        "id": 402,        
         "imgAlt": "europeisky-strahovy-allianz logo",
         "rating": 4.6,
         "web": "https://eia.com.ua/"
     },
     {        
-        "id": 254,
-        "imgSrc": "https://web.eua.in.ua/eua/api/binary/companyLogo?id=254",        
+        "id": 403,        
         "imgAlt": "oberig logo",
         "rating": 4.7,
         "web": "https://uk.oberig-sg.com/"
     }    
 ]
-

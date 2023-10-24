@@ -1,3 +1,5 @@
+
+
 import { Box, ListItem, Typography, styled } from "@mui/material";
 
 export const SinglePartnerContainerS = styled(ListItem)(({ theme }) => ({

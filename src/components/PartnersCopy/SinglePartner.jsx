@@ -1,3 +1,6 @@
+
+
+
 import PropTypes from "prop-types";
 import { Link, Rating } from "@mui/material";
 import {
@@ -6,30 +9,21 @@ import {
   RatingTextS,
   SinglePartnerContainerS,
 } from "./SinglePartnerStyled";
+import { PartnersImgs } from "./PartnersImgs";
 
 const SinglePartner = ({ partner }) => {
-  const { id, imgSrc, imgAlt, rating, web } = partner;
+  const { id, imgAlt, rating, web } = partner;
   return (
     <>
-      <SinglePartnerContainerS id={id}>
+      <SinglePartnerContainerS>
         <Link
           href={web}
           target="_blank"
           rel="noreferrer noopener"
-          id={id}
           style={{ textDecoration: "none" }}
         >
           <LogoBoxPartnerS>
-            <img
-              src={imgSrc}
-              alt={imgAlt}
-              id={id}
-              style={{ width: "100%",
-              height: "100%",
-              objectFit: "contain",
-              display: "block"
-            }}
-            />
+            <PartnersImgs data={{ id: String(id), imgAlt: imgAlt }} />
           </LogoBoxPartnerS>
 
           <RatingBoxPartnersS>
@@ -45,7 +39,6 @@ const SinglePartner = ({ partner }) => {
 SinglePartner.propTypes = {
   partner: PropTypes.shape({
     id: PropTypes.number.isRequired,
-    imgSrc: PropTypes.string.isRequired,
     imgAlt: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
     web: PropTypes.string.isRequired,
