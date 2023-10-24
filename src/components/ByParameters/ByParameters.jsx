@@ -1,57 +1,83 @@
 import { useFormik } from "formik";
-import * as Yup from "yup";
 import {
   AllCheckboxContStyled,
   AllInputContStyled,
   FormStyled,
-  InputContStyled,
-  InputSerchIcon,
-  InputStyled,
   SubmitButton,
 } from "./ByParameters.styled";
-import { Typography } from "@mui/material";
-import { SpriteSVG } from "../../images/SpriteSVG";
-import HelpCircle from "../HelpCircle/HelpCircle";
 import GeneralSelect from "../GeneralSelect/GeneralSelect";
 import { GeneralCheckbox } from "../GeneralCheckbox/GeneralCheckbox";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useState } from "react";
-
-const selectArrOptions = [
-  {
-    value: "Ціна",
-    label: "Ціна",
-  },
-  {
-    value: "Популярність",
-    label: "Популярність",
-  },
-  {
-    value: "Компанії",
-    label: "Компанії",
-  },
-];
+import { useEffect, useState } from "react";
+import { getCityByName } from "../../services/api";
+import debounce from "lodash.debounce";
+import {
+  selectCategoryOptions,
+  selestAutoCategory,
+} from "../../helpers/ByParameters/selectOptions";
 
 const ByParameters = () => {
   const navigate = useNavigate();
   const locationPath = useLocation();
 
-  const [vehicle, setVehicle] = useState(selectArrOptions[0]);
-  const [engineCapacity, setEngineCapacity] = useState(selectArrOptions[0]);
+  const [vehicle, setVehicle] = useState(selectCategoryOptions[0]);
+  const [engineCapacity, setEngineCapacity] = useState(
+    selestAutoCategory(vehicle.value)[0]
+  );
+  const [allAddress, setAllAddress] = useState([]);
+  const [address, setAddress] = useState({ label: "", value: "" });
+  const [qweryText, setQweryText] = useState("");
 
+  useEffect(
+    () => async () => {
+      try {
+        if (qweryText) {
+          const addressVariants = await getCityByName(qweryText);
+          const addressSelectOptions = addressVariants.map((address) => ({
+            label: address.nameFull,
+            value: address.id,
+          }));
+          setAllAddress(addressSelectOptions);
+        }
+      } catch (error) {
+        console.log(error.message);
+      }
+    },
+    [qweryText]
+  );
+
+  const handleChangeVehicle = (e) => {
+    setVehicle(e);
+    setEngineCapacity(selestAutoCategory(e.value)[0]);
+  };
+  const handleChangeAddress = (e) => {
+    setAddress(e);
+  };
   const formik = useFormik({
     initialValues: {
-      location: "",
       benefits: false,
       foreignNumber: false,
     },
     onSubmit: (values) => {
-      console.log(values);
-      navigate("/prices", { state: { from: locationPath.pathname } });
+      const dateF = new Date(Date.now() + 86400000);
+      const date = new Date();
+      const dateFrom = dateF.toISOString().substring(0, 10);
+      const dateTo =
+        date.getFullYear() + 1 + date.toISOString().substring(4, 10);
+      const sendObj = {
+        customerCategory: values.benefits ? "PRIVILEGED" : "NATURAL",
+        autoCategory: engineCapacity.value,
+        outsideUkraine: values.foreignNumber,
+        registrationPlace: address.value,
+        usageMonths: 0,
+        taxi: false,
+        dateFrom,
+        dateTo,
+        salePoint: 40629,
+      };
+      console.log(sendObj);
+      // navigate("/prices", { state: { from: locationPath.pathname } });
     },
-    validationSchema: Yup.object().shape({
-      location: Yup.string().required("Required field!"),
-    }),
   });
 
   return (
@@ -61,41 +87,27 @@ const ByParameters = () => {
           <GeneralSelect
             id="vehicle"
             lableText="Транспортний засіб"
-            optionsArr={selectArrOptions}
-            changeCB={setVehicle} //функція що повертає вибране значення (піднесення)
+            optionsArr={selectCategoryOptions}
+            changeCB={handleChangeVehicle} //функція що повертає вибране значення (піднесення)
             currentValue={vehicle}
           />
           <GeneralSelect
-            id="engineCapacity"
+            id="address"
             lableText="Об’єм двигуна"
-            optionsArr={selectArrOptions}
+            optionsArr={selestAutoCategory(vehicle.value)}
             changeCB={setEngineCapacity} //функція що повертає вибране значення (піднесення)
             currentValue={engineCapacity}
           />
-
-          <InputContStyled>
-            <Typography
-              variant="body1"
-              component="label"
-              htmlFor="location-input"
-            >
-              Адреса за техпаспортом
-              <HelpCircle lableText="тут потрібно ввести текст)))" />
-            </Typography>
-            <InputStyled
-              endAdornment={
-                <InputSerchIcon position="end">
-                  <SpriteSVG name="icon-zoom-out" />
-                </InputSerchIcon>
-              }
-              name="location"
-              type="text"
-              value={formik.values.location}
-              onChange={formik.handleChange}
-              id="location-input"
-              placeholder="Виберіть населений пункт..."
-            />
-          </InputContStyled>
+          <GeneralSelect
+            id="engineCapacity"
+            lableText="Адреса за техпаспортом"
+            optionsArr={allAddress}
+            changeCB={handleChangeAddress} //функція що повертає вибране значення (піднесення)
+            currentValue={address}
+            inputValue={qweryText}
+            inputChangeCB={setQweryText}
+            helper={"тут потрібно ввести текст)))"}
+          />
         </AllInputContStyled>
 
         <AllCheckboxContStyled>

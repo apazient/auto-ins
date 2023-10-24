@@ -6,14 +6,16 @@ const baseURL = import.meta.env.VITE_REACT_APP_API_URL;
 const xAuthUser = import.meta.env.VITE_REACT_APP_X_AUTH_USER;
 const xAuthToken = import.meta.env.VITE_REACT_APP_X_AUTH_TOKEN;
 
-const instance = axios.create({  
-  baseURL: "https://web.eua.in.ua/eua/api/v15",
-  
+const instance = axios.create({
+  // baseURL: baseURL,
+  baseURL: "/api",
 
   headers: {
+
     "x-auth-user": xAuthUser,
     "x-auth-token": xAuthToken,
     "Content-Type": "application/json",
+
   },
   mode: 'cors',
 });
@@ -32,6 +34,7 @@ export const getUserByEmail = async () => {
     params: { email: "persichek5@gmail.com" },
     // params: { email: xAuthUser },
   });
+  console.log(data);
   return userNormalize(data);
 };
 
