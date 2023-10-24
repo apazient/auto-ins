@@ -52,8 +52,6 @@ export const GridContainerImg = styled(Grid)(({ theme }) => ({
 
     "& img": {
       width: "125px!important",
-      padding: "7px",
-      borderRadius: "16px",
     },
   },
   [theme.breakpoints.up("sm")]: {

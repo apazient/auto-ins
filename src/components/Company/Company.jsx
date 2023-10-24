@@ -21,6 +21,7 @@ import { CompanyExpandMore } from "../CompanyExpandMore/CompanyExpandMore";
 import GeneralSelect from "../GeneralSelect/GeneralSelect";
 import Box from "@mui/material/Box";
 import ModalError from "../ModalError/ModalError";
+import { CardMedia } from "@mui/material";
 
 const Company = ({ companyObject }) => {
   const { nameCompany, idCompany, raitingCompany, fransizes } = companyObject;
@@ -70,8 +71,10 @@ const Company = ({ companyObject }) => {
               </Typography>
             </GridContainer>
             <GridContainerImg item xs={6} sm={12}>
-              <PartnersImgs
-                data={{ id: String(idCompany), imgAlt: nameCompany || "ОСЦП" }}
+              <CardMedia
+                component="img"
+                image={`https://web.eua.in.ua/eua/api/binary/companyLogo?id=${insurerId}`}
+                title={insurerName}
               />
             </GridContainerImg>
             <GridContainer item xs={6} sm={12}>
