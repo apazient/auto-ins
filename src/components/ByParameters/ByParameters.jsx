@@ -76,7 +76,9 @@ const ByParameters = () => {
         salePoint: 40629,
       };
       console.log(sendObj);
-      // navigate("/prices", { state: { from: locationPath.pathname } });
+      navigate("/prices", {
+        state: { from: locationPath.pathname, data: sendObj },
+      });
     },
   });
 
