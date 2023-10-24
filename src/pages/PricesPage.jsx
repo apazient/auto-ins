@@ -10,12 +10,27 @@ import { useState } from "react";
 
 import PricePageWrapper from "../components/PricePageWrapper/PricePageWrapper";
 import LineSection from "../components/LineSection/LineSection";
+import { usePolicyByParams } from "../services/hooks/usePolicyByParams";
+import { useChooseDgo } from "../services/hooks/useChooseDgo";
+import { responseOSAGONormalize } from "../helpers/dataNormalize/responseOSAGONormalize";
+import { mergeObjectsById } from "../helpers/mergeObjectsById";
+import { responseDGONormalize } from "../helpers/dataNormalize/responseDGONormalize";
 
 const PricesPage = () => {
   const location = useLocation();
 
   const [companies, setCompanies] = useState(companiesData);
 
+  const proposalPolicyQuery = usePolicyByParams(location.state?.data);
+  const chooseDgoQuery = useChooseDgo(location.state?.data);
+
+  const proposalPolicy = mergeObjectsById(
+    proposalPolicyQuery.data,
+    responseOSAGONormalize
+  );
+  const chooseDgo = mergeObjectsById(chooseDgoQuery.data, responseDGONormalize);
+  console.log(chooseDgo);
+  console.log(proposalPolicy);
   return (
     <PricePageWrapper>
       <OutletNavaigation locationPath={location} />
