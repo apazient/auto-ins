@@ -2,8 +2,8 @@ import { Suspense, lazy } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
 import Loader from "./components/Loader/Loader";
-import { ReactQueryDevtools } from "react-query/devtools";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const HomePage = lazy(() => import("./pages/HomePage.jsx"));
 const PricesPage = lazy(() => import("./pages/PricesPage.jsx"));
