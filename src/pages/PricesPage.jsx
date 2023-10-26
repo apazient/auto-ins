@@ -3,10 +3,7 @@ import CompanyList from "../components/CompanyList/CompanyList";
 import OutletNavaigation from "../components/OutletNavigation/OutletNavigation";
 import { CostCalculation } from "../components/CostCalculation/CostCalculation";
 import ProposalsFilter from "../components/ProposalsFilter/ProposalsFilter";
-
-import companiesData from "../assets/mocapi/companyDataList.json";
 import { useState } from "react";
-
 import PricePageWrapper from "../components/PricePageWrapper/PricePageWrapper";
 import LineSection from "../components/LineSection/LineSection";
 import { usePolicyByParams } from "../services/hooks/usePolicyByParams";
@@ -20,8 +17,6 @@ import { SkeletonStyled } from "../components/Skeleton/Skeleton";
 const PricesPage = () => {
   const location = useLocation();
 
-  const [companies, setCompanies] = useState(companiesData);
-
   const proposalPolicyQuery = usePolicyByParams(location.state?.data);
   const chooseDgoQuery = useChooseDgo(location.state?.data);
 
@@ -29,7 +24,9 @@ const PricesPage = () => {
     proposalPolicyQuery.data,
     responseOSAGONormalize
   );
-  console.log(proposalPolicy);
+
+  const [companies, setCompanies] = useState(proposalPolicy);
+
   const chooseDgo = mergeObjectsById(chooseDgoQuery.data, responseDGONormalize);
 
   return (
@@ -39,10 +36,7 @@ const PricesPage = () => {
       <ProposalsFilter companies={companies} setCompanies={setCompanies} />
       {proposalPolicyQuery.isLoading && <SkeletonStyled />}
       {proposalPolicyQuery.data && chooseDgoQuery.data && (
-        <>
-          <LineSection props={proposalPolicy} />
-          <CompanyList proposals={proposalPolicy} dgos={chooseDgo} />
-        </>
+        <CompanyList proposals={companies} dgos={chooseDgo} />
       )}
     </PricePageWrapper>
   );

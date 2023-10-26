@@ -4,20 +4,19 @@ export const priceSortOptionsGeneral = [
     label: "Не важливо",
   },
   {
-    value: "Від низької до високої",
+    value: "fromLowToHigh",
     label: "Від низької до високої",
   },
   {
-    value: "Від високої до низької",
+    value: "fromHighToLow",
     label: "Від високої до низької",
   },
 ];
 
 export const createSelectOptionsByCompaniName = (arr) => {
   const companiesNames = [
-    ...new Set(arr.map((compani) => compani.nameCompany)),
+    ...new Set(arr.map((compani) => compani.insurerName)),
   ];
-  // console.log(companiesNames);
 
   // const newArr = companiesNames.map((el) => ({
   //   value: el,
@@ -30,4 +29,26 @@ export const createSelectOptionsByCompaniName = (arr) => {
   // });
 
   return companiesNames;
+};
+export const filteredByPrice = (arr, sortFrom) => {
+  switch (sortFrom) {
+    case "fromLowToHigh":
+      arr.sort(
+        (companiA, companiB) =>
+          companiA.tariff[0].discountedPayment -
+          companiB.tariff[0].discountedPayment
+      );
+      break;
+    case "fromHighToLow":
+      arr.sort(
+        (companiA, companiB) =>
+          companiB.tariff[0].discountedPayment -
+          companiA.tariff[0].discountedPayment
+      );
+      break;
+
+    default:
+      console.log("Oops we have some problem!!!");
+      break;
+  }
 };
