@@ -23,15 +23,22 @@ import Box from "@mui/material/Box";
 import ModalError from "../ModalError/ModalError";
 import { CardMedia } from "@mui/material";
 
-const Company = ({ companyObject }) => {
-  const { nameCompany, idCompany, raitingCompany, fransizes } = companyObject;
-  const fransizeSelect = fransizes?.map(({ sum, idFransize, nameFransize }) => {
-    return { value: sum, label: nameFransize };
-  });
-
+const Company = ({ proposal, dgo }) => {
   const location = useLocation();
-
   const theme = useTheme();
+  const { insurerId, insurerName, tariff } = proposal;
+
+  let dgoSelect = null;
+
+  if (dgo) {
+    dgoSelect = dgo.tariff.map(({ limit, discountedPayment }) => {
+      return { value: discountedPayment, label: limit };
+    });
+  }
+
+  const fransizeSelect = tariff?.map(({ franchise, discountedPayment }) => {
+    return { value: discountedPayment, label: franchise };
+  });
 
   const [checkSavety, setCheckSavety] = useState(false);
   const [franchise, setFranchise] = useState(null);
@@ -67,7 +74,7 @@ const Company = ({ companyObject }) => {
               }}
             >
               <Typography variant="subtitle1" component="h3">
-                ОСЦПВ від {nameCompany}
+                ОСЦПВ від {insurerName}
               </Typography>
             </GridContainer>
             <GridContainerImg item xs={6} sm={12}>
@@ -88,9 +95,9 @@ const Company = ({ companyObject }) => {
                 Рейтинг МТСБУ
               </Typography>
             </GridContainer>
-            <GridContainerRaiting item xs={6} sm={12}>
+            {/* <GridContainerRaiting item xs={6} sm={12}>
               <RaitingStyled name="read-only" value={raitingCompany} readOnly />
-            </GridContainerRaiting>
+            </GridContainerRaiting> */}
           </Grid>
         </WrapperStyled>
         <BoxContent>
@@ -104,7 +111,7 @@ const Company = ({ companyObject }) => {
               fontSize: { lg: "22px" },
             }}
           >
-            ОСЦПВ від {nameCompany}
+            ОСЦПВ від {insurerName}
           </Typography>
           <Box sx={{ display: { lg: "flex" } }}>
             <BoxSelect sx={{ marginBottom: { xs: "8px", sm: "12px" } }}>
@@ -117,17 +124,18 @@ const Company = ({ companyObject }) => {
                 changeCB={handleChangeSelect}
               />
             </BoxSelect>
-            <BoxSelect>
-              <GeneralSelect
-                id="2"
-                lableText="Додаткове покриття"
-                helper="Пояснення до додаткове покриття"
-                color={theme.palette.primary.main}
-                optionsArr={fransizeSelect}
-              />
-            </BoxSelect>
+            {dgo && (
+              <BoxSelect>
+                <GeneralSelect
+                  id="2"
+                  lableText="Додаткове покриття"
+                  helper="Пояснення до додаткове покриття"
+                  color={theme.palette.primary.main}
+                  optionsArr={dgoSelect}
+                />
+              </BoxSelect>
+            )}
           </Box>
-
           <GeneralCheckbox
             lableText="Свідомий захист"
             name="check"

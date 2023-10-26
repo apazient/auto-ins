@@ -1,10 +1,13 @@
 import Company from "../Company/Company";
 
-const CompanyList = ({ companies }) => {
+const CompanyList = ({ proposals, dgos }) => {
+  let dgo = null;
   return (
     <ul>
-      {companies?.map((companyObject, index) => {
-        return <Company key={index} companyObject={companyObject} />;
+      {proposals?.map((companyObject, index) => {
+        dgo =
+          dgos.find((dgo) => dgo.insurerId === companyObject.insurerId) || null;
+        return <Company key={index} proposal={companyObject} dgo={dgo} />;
       })}
     </ul>
   );
