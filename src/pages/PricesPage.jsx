@@ -3,7 +3,7 @@ import CompanyList from "../components/CompanyList/CompanyList";
 import OutletNavaigation from "../components/OutletNavigation/OutletNavigation";
 import { CostCalculation } from "../components/CostCalculation/CostCalculation";
 import ProposalsFilter from "../components/ProposalsFilter/ProposalsFilter";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PricePageWrapper from "../components/PricePageWrapper/PricePageWrapper";
 import LineSection from "../components/LineSection/LineSection";
 import { usePolicyByParams } from "../services/hooks/usePolicyByParams";
@@ -30,15 +30,18 @@ const PricesPage = () => {
   const chooseDgo = mergeObjectsById(chooseDgoQuery.data, responseDGONormalize);
 
   return (
-    <PricePageWrapper>
-      <OutletNavaigation locationPath={location} />
-      <CostCalculation />
-      <ProposalsFilter companies={companies} setCompanies={setCompanies} />
-      {proposalPolicyQuery.isLoading && <SkeletonStyled />}
-      {proposalPolicyQuery.data && chooseDgoQuery.data && (
-        <CompanyList proposals={companies} dgos={chooseDgo} />
-      )}
-    </PricePageWrapper>
+    <>
+      {console.log(companies)}
+      <PricePageWrapper>
+        <OutletNavaigation locationPath={location} />
+        <CostCalculation />
+        <ProposalsFilter companies={companies} setCompanies={setCompanies} />
+        {proposalPolicyQuery.isLoading && <SkeletonStyled />}
+        {proposalPolicyQuery.data && chooseDgoQuery.data && (
+          <CompanyList proposals={proposalPolicy} dgos={chooseDgo} />
+        )}
+      </PricePageWrapper>
+    </>
   );
 };
 export default PricesPage;
