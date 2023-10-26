@@ -3,10 +3,7 @@ import CompanyList from "../components/CompanyList/CompanyList";
 import OutletNavaigation from "../components/OutletNavigation/OutletNavigation";
 import { CostCalculation } from "../components/CostCalculation/CostCalculation";
 import ProposalsFilter from "../components/ProposalsFilter/ProposalsFilter";
-
-import companiesData from "../assets/mocapi/companyDataList.json";
 import { useState } from "react";
-
 import PricePageWrapper from "../components/PricePageWrapper/PricePageWrapper";
 import LineSection from "../components/LineSection/LineSection";
 import { usePolicyByParams } from "../services/hooks/usePolicyByParams";
@@ -18,8 +15,6 @@ import { responseDGONormalize } from "../helpers/dataNormalize/responseDGONormal
 const PricesPage = () => {
   const location = useLocation();
 
-  const [companies, setCompanies] = useState(companiesData);
-
   const proposalPolicyQuery = usePolicyByParams(location.state?.data);
   const chooseDgoQuery = useChooseDgo(location.state?.data);
 
@@ -27,6 +22,9 @@ const PricesPage = () => {
     proposalPolicyQuery.data,
     responseOSAGONormalize
   );
+
+  const [companies, setCompanies] = useState(proposalPolicy);
+
   const chooseDgo = mergeObjectsById(chooseDgoQuery.data, responseDGONormalize);
 
   return (
@@ -36,7 +34,7 @@ const PricesPage = () => {
       <ProposalsFilter companies={companies} setCompanies={setCompanies} />
       <LineSection props />
       {proposalPolicyQuery.data && chooseDgoQuery.data && (
-        <CompanyList proposals={proposalPolicy} dgos={chooseDgo} />
+        <CompanyList proposals={companies} dgos={chooseDgo} />
       )}
     </PricePageWrapper>
   );
