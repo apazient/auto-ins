@@ -23,7 +23,7 @@ const FormPage = () => {
           <CompanySmall company={company} />
 
           <Box sx={{ display: "block" }}>
-            <Stepper />            
+            <Stepper />
           </Box>
         </Wrapper>
       </ContainerSectionPage>

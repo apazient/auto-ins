@@ -1,3 +1,4 @@
+import { CardMedia } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import { PartnersImgs } from "../Partners/PartnersImgs";
 import { ContentBox, FormContainerS } from "./CompanySmallStyled";
@@ -44,8 +45,10 @@ const CompanySmall = ({ company }) => {
         Електронний поліс ОСЦПВ
       </Typography>
       <ContentBox>
-        <PartnersImgs
-          data={{ id: String(idCompany), imgAlt: nameCompany || "ОСЦПВ" }}
+        <CardMedia
+          component="img"
+          image={`https://web.eua.in.ua/eua/api/binary/companyLogo?id=${idCompany}`}
+          title={nameCompany}
         />
         <Typography component="span" className="leightText">
           {nameCompany}

@@ -10,7 +10,7 @@ const FormContacts = ({ formik }) => {
           <GeneralInput
             id="email"
             type="text"
-            lableText="Електронна пошта*:"
+            lableText="Електронна пошта* :"
             formikData={formik}            
           />
           <SpanS variant="inputSpan">
@@ -19,7 +19,7 @@ const FormContacts = ({ formik }) => {
           </SpanS>
           <GeneralInput
             id="phone"
-            lableText="Телефон*:"
+            lableText="Телефон* :"
             type="phone"
             formikData={formik}            
             placeholder="(_ _ _)_ _ _ - _ _ _ _"
