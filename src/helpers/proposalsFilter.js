@@ -17,16 +17,17 @@ export const createSelectOptionsByCompaniName = (arr) => {
   const companiesNames = [
     ...new Set(arr.map((compani) => compani.nameCompany)),
   ];
+  // console.log(companiesNames);
 
-  const newArr = companiesNames.map((el) => ({
-    value: el,
-    label: el,
-  }));
+  // const newArr = companiesNames.map((el) => ({
+  //   value: el,
+  //   label: el,
+  // }));
 
-  newArr.unshift({
-    value: "",
-    label: "Усі компанії",
-  });
+  // newArr.unshift({
+  //   value: "",
+  //   label: "Усі компанії",
+  // });
 
-  return newArr;
+  return companiesNames;
 };
