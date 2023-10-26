@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { QueryClient } from "react-query";
 import { instance } from "../api";
 // повертає масив об'єктів в яких заборонені кросс-продажі
-const getPolicyByParams = async (params) => {
+export const getPolicyByParams = async (params) => {
   //об'єкт, який має поиходити від користувача
   // params = {
   //   autoCategory: "B1",
