@@ -7,6 +7,7 @@ import {
   BoxImgRotate,
   BreadcrumbsStyled,
 } from "./OutletNavigationStyled";
+import { NavLink } from "react-router-dom";
 
 const OutletNavigation = ({ locationPath }) => {
   const [location, _] = useState(locationPath);
@@ -28,9 +29,14 @@ const OutletNavigation = ({ locationPath }) => {
       // currentLink = +`/${crumb}`;
       crumb === "prices" ? (crumb = "Калькулятор") : (crumb = "Ваші дані");
       return (
-        <Typography key={crumb} component="span">
+        <NavLink
+          key={crumb}
+          component="span"
+          className="navLink"
+          to={location.state?.from}
+        >
           {crumb}
-        </Typography>
+        </NavLink>
       );
     });
 
@@ -43,7 +49,7 @@ const OutletNavigation = ({ locationPath }) => {
         </BoxImgRotate>
       }
     >
-      <BoxImg>
+      <BoxImg to="/">
         <SpriteSVG name="icon-home-smaller" />
       </BoxImg>
       {crumbs}

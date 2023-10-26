@@ -14,26 +14,34 @@ import {
 import Grid from "@mui/material/Grid";
 import { useState } from "react";
 import useTheme from "@mui/material/styles/useTheme";
-import { PartnersImgs } from "../Partners/PartnersImgs";
+
 import { GeneralCheckbox } from "../GeneralCheckbox/GeneralCheckbox";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { CompanyExpandMore } from "../CompanyExpandMore/CompanyExpandMore";
 import GeneralSelect from "../GeneralSelect/GeneralSelect";
 import Box from "@mui/material/Box";
 import ModalError from "../ModalError/ModalError";
 import { CardMedia } from "@mui/material";
+import { useEffect } from "react";
+import { useFormik } from "formik";
 
 const Company = ({ proposal, dgo }) => {
   const location = useLocation();
+  const navigate = useNavigate();
   const theme = useTheme();
-  const { insurerId, insurerName, tariff } = proposal;
+  const { insurerId, insurerName, tariff, registrationPlace, autoCategory } =
+    proposal;
 
   let dgoSelect = null;
 
   if (dgo) {
     dgoSelect = dgo.tariff.map(({ limit, discountedPayment }) => {
-      return { value: discountedPayment, label: limit };
+      return {
+        value: discountedPayment,
+        label: `+${limit} за ${discountedPayment}`,
+      };
     });
+    dgoSelect.unshift({ value: 0, label: "0" });
   }
 
   const fransizeSelect = tariff?.map(({ franchise, discountedPayment }) => {
@@ -41,38 +49,53 @@ const Company = ({ proposal, dgo }) => {
   });
 
   const [checkSavety, setCheckSavety] = useState(false);
-  const [franchise, setFranchise] = useState(null);
+  const [franchise, setFranchise] = useState(fransizeSelect[0].value);
+  const [chooseDgo, setChooseDgo] = useState(null);
   const [price, setPrice] = useState(fransizeSelect[0].value);
 
   const handleChangeSelect = (e) => {
-    setFranchise(e.label);
-    setPrice(e.value);
+    setFranchise(e.value);
+  };
+  const handleChangeDgoSelect = (e) => {
+    setChooseDgo(e.value);
   };
 
+  useEffect(() => {
+    setPrice(franchise + chooseDgo);
+  }, [chooseDgo, franchise]);
+
+  const formik = useFormik({
+    initialValues: {
+      benefits: false,
+      foreignNumber: false,
+    },
+    onSubmit: (values) => {
+      console.log(values);
+      const sendObj = {
+        tariff,
+        price,
+        autoCategory,
+        registrationPlace,
+        usageMonths: 0,
+        taxi: false,
+        salePoint: 40629,
+      };
+      console.log(sendObj);
+      navigate("/form", {
+        state: { from: location, data: sendObj },
+      });
+    },
+  });
   return (
     <CardStyled component="li" sx={{ overflow: "visible" }}>
       <WrapperStyled
-        sx={{
-          display: { sm: "flex" },
-          gap: { sm: "16px", lg: "24px" },
-          marginBottom: { xs: "16px", sm: "24px", lg: "40px" },
-        }}
+        className="wrapper"
+        component="form"
+        onSubmit={formik.handleSubmit}
       >
         <WrapperStyled>
-          <Grid
-            container
-            sx={{ width: { xs: "100%", sm: "125px", lg: "256px" } }}
-          >
-            <GridContainer
-              item
-              xs={6}
-              sm={0}
-              sx={{
-                display: { sm: "none" },
-                marginBottom: { xs: "8px" },
-                width: { xs: "100%" },
-              }}
-            >
+          <Grid container className="gridContainer">
+            <GridContainer item xs={6} sm={0}>
               <Typography variant="subtitle1" component="h3">
                 ОСЦПВ від {insurerName}
               </Typography>
@@ -84,6 +107,7 @@ const Company = ({ proposal, dgo }) => {
                 title={insurerName}
               />
             </GridContainerImg>
+            {/*
             <GridContainer item xs={6} sm={12}>
               <Typography
                 variant="subtitle2"
@@ -95,7 +119,7 @@ const Company = ({ proposal, dgo }) => {
                 Рейтинг МТСБУ
               </Typography>
             </GridContainer>
-            {/* <GridContainerRaiting item xs={6} sm={12}>
+            <GridContainerRaiting item xs={6} sm={12}>
               <RaitingStyled name="read-only" value={raitingCompany} readOnly />
             </GridContainerRaiting> */}
           </Grid>
@@ -132,16 +156,17 @@ const Company = ({ proposal, dgo }) => {
                   helper="Пояснення до додаткове покриття"
                   color={theme.palette.primary.main}
                   optionsArr={dgoSelect}
+                  changeCB={handleChangeDgoSelect}
                 />
               </BoxSelect>
             )}
           </Box>
-          <GeneralCheckbox
+          {/* <GeneralCheckbox
             lableText="Свідомий захист"
             name="check"
             val={checkSavety}
             color={theme.palette.primary.main}
-          />
+          /> */}
         </BoxContent>
         <WrapperStyled sx={{ width: "100%" }}>
           <BoxFooter>
@@ -154,9 +179,7 @@ const Company = ({ proposal, dgo }) => {
               {price} грн
             </Typography>
           </BoxFooter>
-          <ButtonStyled state={{ from: location }} to="/form">
-            Придбати
-          </ButtonStyled>
+          <ButtonStyled type="submit">Придбати</ButtonStyled>
           <ModalError />
         </WrapperStyled>
       </WrapperStyled>

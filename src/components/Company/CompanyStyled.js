@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Rating from "@mui/material/Rating";
 import { Link } from "react-router-dom";
+import { Button } from "@mui/material";
 
 export const CardStyled = styled(Card)(({ theme }) => ({
   "&.MuiCard-root": {
@@ -34,6 +35,27 @@ export const WrapperStyled = styled(Box)(({ theme }) => ({
       color: theme.palette.primary.main,
     },
   },
+  "&.wrapper": {
+    marginBottom: "16px",
+    [theme.breakpoints.up("sm")]: {
+      display: "flex",
+      gap: "16px",
+      marginBottom: "24px",
+    },
+    [theme.breakpoints.up("lg")]: {
+      gap: "24px",
+      marginBottom: "40px",
+    },
+  },
+  "& .gridContainer": {
+    width: "100%",
+    [theme.breakpoints.up("sm")]: {
+      width: "125px",
+    },
+    [theme.breakpoints.up("lg")]: {
+      width: "256px",
+    },
+  },
 }));
 
 export const GridContainer = styled(Grid)(({ theme }) => ({
@@ -42,6 +64,11 @@ export const GridContainer = styled(Grid)(({ theme }) => ({
       backgroundColor: theme.palette.primary.white,
       color: theme.palette.primary.main,
     },
+  },
+  marginBottom: "8px",
+  width: "100%",
+  [theme.breakpoints.up("sm")]: {
+    display: "none",
   },
 }));
 
@@ -118,7 +145,7 @@ export const BoxSelect = styled(Box)(({ theme }) => ({
   },
 }));
 
-export const ButtonStyled = styled(Link)(({ theme }) => ({
+export const ButtonStyled = styled(Button)(({ theme }) => ({
   padding: "16px 38px",
   fontSize: "1rem",
   borderRadius: "50px",
