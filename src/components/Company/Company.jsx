@@ -16,18 +16,21 @@ import { useState } from "react";
 import useTheme from "@mui/material/styles/useTheme";
 
 import { GeneralCheckbox } from "../GeneralCheckbox/GeneralCheckbox";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { CompanyExpandMore } from "../CompanyExpandMore/CompanyExpandMore";
 import GeneralSelect from "../GeneralSelect/GeneralSelect";
 import Box from "@mui/material/Box";
 import ModalError from "../ModalError/ModalError";
 import { CardMedia } from "@mui/material";
 import { useEffect } from "react";
+import { useFormik } from "formik";
 
 const Company = ({ proposal, dgo }) => {
   const location = useLocation();
+  const navigate = useNavigate();
   const theme = useTheme();
-  const { insurerId, insurerName, tariff } = proposal;
+  const { insurerId, insurerName, tariff, registrationPlace, autoCategory } =
+    proposal;
 
   let dgoSelect = null;
 
@@ -61,30 +64,38 @@ const Company = ({ proposal, dgo }) => {
     setPrice(franchise + chooseDgo);
   }, [chooseDgo, franchise]);
 
+  const formik = useFormik({
+    initialValues: {
+      benefits: false,
+      foreignNumber: false,
+    },
+    onSubmit: (values) => {
+      console.log(values);
+      const sendObj = {
+        tariff,
+        price,
+        autoCategory,
+        registrationPlace,
+        usageMonths: 0,
+        taxi: false,
+        salePoint: 40629,
+      };
+      console.log(sendObj);
+      navigate("/form", {
+        state: { from: location, data: sendObj },
+      });
+    },
+  });
   return (
     <CardStyled component="li" sx={{ overflow: "visible" }}>
       <WrapperStyled
-        sx={{
-          display: { sm: "flex" },
-          gap: { sm: "16px", lg: "24px" },
-          marginBottom: { xs: "16px", sm: "24px", lg: "40px" },
-        }}
+        className="wrapper"
+        component="form"
+        onSubmit={formik.handleSubmit}
       >
         <WrapperStyled>
-          <Grid
-            container
-            sx={{ width: { xs: "100%", sm: "125px", lg: "256px" } }}
-          >
-            <GridContainer
-              item
-              xs={6}
-              sm={0}
-              sx={{
-                display: { sm: "none" },
-                marginBottom: { xs: "8px" },
-                width: { xs: "100%" },
-              }}
-            >
+          <Grid container className="gridContainer">
+            <GridContainer item xs={6} sm={0}>
               <Typography variant="subtitle1" component="h3">
                 ОСЦПВ від {insurerName}
               </Typography>
@@ -168,9 +179,7 @@ const Company = ({ proposal, dgo }) => {
               {price} грн
             </Typography>
           </BoxFooter>
-          <ButtonStyled state={{ from: location }} to="/form">
-            Придбати
-          </ButtonStyled>
+          <ButtonStyled type="submit">Придбати</ButtonStyled>
           <ModalError />
         </WrapperStyled>
       </WrapperStyled>

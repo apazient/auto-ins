@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { QueryClient } from "react-query";
 import { instance } from "../api";
 // повертає масив об'єктів в яких заборонені кросс-продажі
 const getPolicyByParams = async (params) => {
@@ -31,6 +32,7 @@ export const usePolicyByParams = (policyParams) => {
   return useQuery({
     queryKey: ["calculatorOSAGOByParams"],
     queryFn: () => getPolicyByParams(policyParams),
+
     policyParams,
   });
 };

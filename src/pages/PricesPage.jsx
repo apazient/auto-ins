@@ -29,6 +29,7 @@ const PricesPage = () => {
     proposalPolicyQuery.data,
     responseOSAGONormalize
   );
+  console.log(proposalPolicy);
   const chooseDgo = mergeObjectsById(chooseDgoQuery.data, responseDGONormalize);
 
   return (

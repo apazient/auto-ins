@@ -1,6 +1,7 @@
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import { Breadcrumbs } from "@mui/material";
+import { NavLink } from "react-router-dom";
 
 export const BreadcrumbsStyled = styled(Breadcrumbs)(({ theme }) => ({
   "&.MuiBreadcrumbs-root": {
@@ -25,17 +26,22 @@ export const BreadcrumbsStyled = styled(Breadcrumbs)(({ theme }) => ({
       },
     },
   },
-  "& .MuiTypography-root": {
-    color: theme.palette.primary.secondaryDark,
-    [theme.breakpoints.up("sm")]: {
-      fontSize: "16px",
-    },
-  },
+
   [theme.breakpoints.up("sm")]: {
     padding: "16px 24px 0 24px",
   },
   [theme.breakpoints.up("lg")]: {
     padding: "16px 120px 0 120px",
+  },
+  "& .navLink": {
+    textDecoration: "none",
+    color: theme.palette.primary.secondaryDark,
+    [theme.breakpoints.up("sm")]: {
+      fontSize: "16px",
+    },
+    ":hover": {
+      color: theme.palette.primary.blue,
+    },
   },
 }));
 export const BoxImgRotate = styled(Box)(({ theme }) => ({
@@ -46,6 +52,13 @@ export const BoxImgRotate = styled(Box)(({ theme }) => ({
   stroke: theme.palette.primary.secondaryDark,
 }));
 
-export const BoxImg = styled(BoxImgRotate)(({ theme }) => ({
-  rotate: "none",
+export const BoxImg = styled(NavLink)(({ theme }) => ({
+  width: "24px",
+  height: "24px",
+  display: "block",
+  fill: theme.palette.primary.lightBlue2,
+  stroke: theme.palette.primary.secondaryDark,
+  ":hover": {
+    stroke: theme.palette.primary.blue,
+  },
 }));

@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { QueryClient } from "react-query";
 import { instance } from "../api";
 
 export const chooseVclTariffDGO = async (body) => {
