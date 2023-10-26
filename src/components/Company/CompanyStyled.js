@@ -141,8 +141,8 @@ export const BoxFooter = styled(Box)(({ theme }) => ({
     },
     [theme.breakpoints.up("lg")]: {
       fontSize: "22px",
-    }
-  }
+    },
+  },
 }));
 
 export const BoxSelect = styled(Box)(({ theme }) => ({
@@ -169,10 +169,8 @@ export const BoxSelect = styled(Box)(({ theme }) => ({
     marginBottom: "8px",
     [theme.breakpoints.up("sm")]: {
       marginBottom: "12px",
-    } 
-  }
-}}
-  }
+    },
+  },
 }));
 
 export const ButtonStyled = styled(Button)(({ theme }) => ({
