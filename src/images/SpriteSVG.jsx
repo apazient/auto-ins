@@ -245,6 +245,10 @@ export const SpriteSVG = ({ name }) => {
     case "icon-chevron-down":
       return (
         <svg
+          // width="24"
+          height="24"
+          stroke="black"
+          fill="transparent"
           id="icon-chevron-down"
           viewBox="0 0 32 32"
           xmlns="http://www.w3.org/2000/svg"

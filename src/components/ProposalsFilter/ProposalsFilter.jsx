@@ -14,6 +14,7 @@ import {
   priceSortOptionsGeneral,
 } from "../../helpers/proposalsFilter";
 import PropTypes from "prop-types";
+import FilterByCompany from "../SelectFilterByCompany/FilterByCompany";
 
 const ProposalsFilter = ({ companies, setCompanies }) => {
   const { current } = useRef(companies);
@@ -25,16 +26,24 @@ const ProposalsFilter = ({ companies, setCompanies }) => {
   }, [current]);
 
   const [companiesNameOptions, setCompaniesNameOptions] = useState([]);
-  const [selectedCompanieName, setSelectedCompanieName] = useState({
-    value: "",
-    label: "Усі компанії",
-  });
+  const [selectedCompanieName, setSelectedCompanieName] = useState([]);
   const [selectedPriceSort, setSelectedPriceSort] = useState(
     priceSortOptionsGeneral[0]
   );
   const [selectedSortByReiting, setSelectedSortByReiting] = useState(
     priceSortOptionsGeneral[0]
   );
+  // =============================================================
+
+  const handleChangeByName = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setSelectedCompanieName(
+      typeof value === "string" ? value.split(",") : value
+    );
+  };
+  // =============================================================
 
   useEffect(() => {
     setIsShowFilter(smScreen);
@@ -42,14 +51,14 @@ const ProposalsFilter = ({ companies, setCompanies }) => {
 
   useEffect(() => {
     let filteredCompanies = [...current];
-    if (selectedCompanieName.value) {
-      filteredCompanies = filteredCompanies.filter(
-        (el) => el.nameCompany === selectedCompanieName.value
+    if (selectedCompanieName.length) {
+      filteredCompanies = filteredCompanies.filter((el) =>
+        selectedCompanieName.includes(el.nameCompany)
       );
     }
     // if (selectedPriceSort) {
     // }
-    if (selectedCompanieName.value || selectedPriceSort.value) {
+    if (selectedCompanieName || selectedPriceSort.value) {
       setCompanies(filteredCompanies);
     } else {
       setCompanies(current);
@@ -94,12 +103,13 @@ const ProposalsFilter = ({ companies, setCompanies }) => {
             changeCB={setSelectedSortByReiting} //функція що повертає вибране значення (піднесення)
             currentValue={selectedSortByReiting}
           />
-          <GeneralSelect
-            id="companies"
+
+          <FilterByCompany
+            id="filteredByName"
             lableText="Компанії"
-            optionsArr={companiesNameOptions}
-            changeCB={setSelectedCompanieName} //функція що повертає вибране значення (піднесення)
+            changeCB={handleChangeByName}
             currentValue={selectedCompanieName}
+            optionsArr={companiesNameOptions}
           />
           <TooltipStyled
             title="Очистити фільтр"
