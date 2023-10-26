@@ -23,7 +23,6 @@ export const getUserByEmail = async () => {
     params: { email: "persichek5@gmail.com" },
     // params: { email: xAuthUser },
   });
-  console.log(data);
   return userNormalize(data);
 };
 

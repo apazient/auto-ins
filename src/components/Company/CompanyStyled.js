@@ -109,6 +109,20 @@ export const BoxContent = styled(Box)(({ theme }) => ({
   [theme.breakpoints.up("sm")]: {
     marginBottom: "0px",
   },
+  "& .title": {
+    display: "none",
+    [theme.breakpoints.up("sm")]: {
+      display: "block",
+      marginBottom: "20px",
+      lineHeight: "1.5em",
+    },
+    [theme.breakpoints.up("lg")]: { marginBottom: "32px", fontSize: "22px" },
+  },
+  "& .content": {
+    [theme.breakpoints.up("lg")]: {
+      display: "flex",
+    },
+  },
 }));
 export const BoxFooter = styled(Box)(({ theme }) => ({
   marginBottom: "16px",
@@ -121,6 +135,14 @@ export const BoxFooter = styled(Box)(({ theme }) => ({
     flexDirection: "column",
     gap: "8px",
   },
+  "& .price": {
+    [theme.breakpoints.up("sm")]: {
+      fontSize: "18px",
+    },
+    [theme.breakpoints.up("lg")]: {
+      fontSize: "22px",
+    }
+  }
 }));
 
 export const BoxSelect = styled(Box)(({ theme }) => ({
@@ -143,6 +165,14 @@ export const BoxSelect = styled(Box)(({ theme }) => ({
   [theme.breakpoints.up("sm")]: {
     width: "308px",
   },
+  "& .franchise": {
+    marginBottom: "8px",
+    [theme.breakpoints.up("sm")]: {
+      marginBottom: "12px",
+    } 
+  }
+}}
+  }
 }));
 
 export const ButtonStyled = styled(Button)(({ theme }) => ({

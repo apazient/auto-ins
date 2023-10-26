@@ -1,5 +1,6 @@
 import { CardMedia } from "@mui/material";
 import Typography from "@mui/material/Typography";
+import { useLocation } from "react-router-dom";
 import { PartnersImgs } from "../Partners/PartnersImgs";
 import { ContentBox, FormContainerS } from "./CompanySmallStyled";
 
@@ -33,25 +34,32 @@ const CompanySmall = ({ company }) => {
   //   "city": "Київ",
   //   "nameFransize": "0"
   // }
-  const { idCompany, nameCompany, nameFransize, sum, city } = company[0];
+
+  const {
+    insurerId,
+    price,
+    autoCategory,
+    tariff,
+    dgoTarrif,
+    registrationPlace,
+    usageMonths,
+    taxi,
+    salePoint,
+  } = company;
 
   return (
     <FormContainerS component="article">
-      <Typography
-        variant="subtitle1"
-        component="h3"
-        sx={{ marginBottom: { xs: "8px", sm: "4px", lg: "8px" } }}
-      >
+      <Typography variant="subtitle1" component="h3" className="title">
         Електронний поліс ОСЦПВ
       </Typography>
       <ContentBox>
         <CardMedia
           component="img"
-          image={`https://web.eua.in.ua/eua/api/binary/companyLogo?id=${idCompany}`}
-          title={nameCompany}
+          image={`https://web.eua.in.ua/eua/api/binary/companyLogo?id=${insurerId}`}
+          title={tariff.insurer.name}
         />
         <Typography component="span" className="leightText">
-          {nameCompany}
+          {tariff.insurer.name}
         </Typography>
       </ContentBox>
 
@@ -60,7 +68,7 @@ const CompanySmall = ({ company }) => {
           Франшиза
         </Typography>
         <Typography component="span" variant="body1">
-          {nameFransize} грн
+          {tariff.franchise} грн
         </Typography>
       </ContentBox>
 
@@ -69,7 +77,7 @@ const CompanySmall = ({ company }) => {
           Реєстрація
         </Typography>
         <Typography component="span" variant="body1">
-          {city}
+          {registrationPlace.name}
         </Typography>
       </ContentBox>
       <ContentBox className="line" />
@@ -79,7 +87,7 @@ const CompanySmall = ({ company }) => {
           До сплати:
         </Typography>
         <Typography component="span" variant="subtitle1" className="boldText">
-          {sum} грн
+          {price} грн
         </Typography>
       </ContentBox>
     </FormContainerS>
