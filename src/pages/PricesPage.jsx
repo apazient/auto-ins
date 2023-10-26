@@ -14,6 +14,8 @@ import { useChooseDgo } from "../services/hooks/useChooseDgo";
 import { responseOSAGONormalize } from "../helpers/dataNormalize/responseOSAGONormalize";
 import { mergeObjectsById } from "../helpers/mergeObjectsById";
 import { responseDGONormalize } from "../helpers/dataNormalize/responseDGONormalize";
+import { Skeleton } from "@mui/material";
+import { SkeletonStyled } from "../components/Skeleton/Skeleton";
 
 const PricesPage = () => {
   const location = useLocation();
@@ -34,9 +36,12 @@ const PricesPage = () => {
       <OutletNavaigation locationPath={location} />
       <CostCalculation />
       <ProposalsFilter companies={companies} setCompanies={setCompanies} />
-      <LineSection props />
+      {proposalPolicyQuery.isLoading && <SkeletonStyled />}
       {proposalPolicyQuery.data && chooseDgoQuery.data && (
-        <CompanyList proposals={proposalPolicy} dgos={chooseDgo} />
+        <>
+          <LineSection props={proposalPolicy} />
+          <CompanyList proposals={proposalPolicy} dgos={chooseDgo} />
+        </>
       )}
     </PricePageWrapper>
   );

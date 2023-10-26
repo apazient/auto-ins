@@ -22,6 +22,10 @@ import GeneralSelect from "../GeneralSelect/GeneralSelect";
 import Box from "@mui/material/Box";
 import ModalError from "../ModalError/ModalError";
 import { CardMedia } from "@mui/material";
+import {
+  insurerImgById,
+  useInsurerImg,
+} from "../../services/hooks/useIsurerImg";
 
 const Company = ({ proposal, dgo }) => {
   const location = useLocation();
@@ -32,7 +36,10 @@ const Company = ({ proposal, dgo }) => {
 
   if (dgo) {
     dgoSelect = dgo.tariff.map(({ limit, discountedPayment }) => {
-      return { value: discountedPayment, label: limit };
+      return {
+        value: discountedPayment,
+        label: `+${limit} за ${discountedPayment}`,
+      };
     });
   }
 
@@ -47,6 +54,9 @@ const Company = ({ proposal, dgo }) => {
   const handleChangeSelect = (e) => {
     setFranchise(e.label);
     setPrice(e.value);
+  };
+  const handleChangeDgoSelect = (e) => {
+    setPrice((prev) => prev + e.value);
   };
 
   return (
@@ -84,6 +94,7 @@ const Company = ({ proposal, dgo }) => {
                 title={insurerName}
               />
             </GridContainerImg>
+            {/*
             <GridContainer item xs={6} sm={12}>
               <Typography
                 variant="subtitle2"
@@ -95,7 +106,7 @@ const Company = ({ proposal, dgo }) => {
                 Рейтинг МТСБУ
               </Typography>
             </GridContainer>
-            {/* <GridContainerRaiting item xs={6} sm={12}>
+            <GridContainerRaiting item xs={6} sm={12}>
               <RaitingStyled name="read-only" value={raitingCompany} readOnly />
             </GridContainerRaiting> */}
           </Grid>
@@ -132,16 +143,17 @@ const Company = ({ proposal, dgo }) => {
                   helper="Пояснення до додаткове покриття"
                   color={theme.palette.primary.main}
                   optionsArr={dgoSelect}
+                  changeCB={handleChangeDgoSelect}
                 />
               </BoxSelect>
             )}
           </Box>
-          <GeneralCheckbox
+          {/* <GeneralCheckbox
             lableText="Свідомий захист"
             name="check"
             val={checkSavety}
             color={theme.palette.primary.main}
-          />
+          /> */}
         </BoxContent>
         <WrapperStyled sx={{ width: "100%" }}>
           <BoxFooter>
