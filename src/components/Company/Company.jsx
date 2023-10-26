@@ -7,8 +7,6 @@ import {
   CardStyled,
   GridContainer,
   GridContainerImg,
-  GridContainerRaiting,
-  RaitingStyled,
   WrapperStyled,
 } from "./CompanyStyled";
 import Grid from "@mui/material/Grid";
@@ -50,14 +48,22 @@ const Company = ({ proposal, dgo }) => {
 
   const [checkSavety, setCheckSavety] = useState(false);
   const [franchise, setFranchise] = useState(fransizeSelect[0].value);
+  const [choosenFranchiseTariff, setChoosenFranchiseTariff] = useState(
+    tariff[0]
+  );
   const [chooseDgo, setChooseDgo] = useState(null);
+  const [choosenChooseDgo, setChoosenChooseDgo] = useState(null);
   const [price, setPrice] = useState(fransizeSelect[0].value);
 
   const handleChangeSelect = (e) => {
     setFranchise(e.value);
+    setChoosenFranchiseTariff(tariff.find((el) => el.franchise === e.label));
   };
   const handleChangeDgoSelect = (e) => {
     setChooseDgo(e.value);
+    setChoosenChooseDgo(
+      dgo.tariff.find((el) => el.discountedPayment === e.value)
+    );
   };
 
   useEffect(() => {
@@ -65,22 +71,20 @@ const Company = ({ proposal, dgo }) => {
   }, [chooseDgo, franchise]);
 
   const formik = useFormik({
-    initialValues: {
-      benefits: false,
-      foreignNumber: false,
-    },
+    initialValues: {},
     onSubmit: (values) => {
-      console.log(values);
       const sendObj = {
-        tariff,
+        insurerId,
         price,
         autoCategory,
+        tariff: choosenFranchiseTariff,
+        dgoTarrif: choosenChooseDgo,
         registrationPlace,
         usageMonths: 0,
         taxi: false,
         salePoint: 40629,
       };
-      console.log(sendObj);
+
       navigate("/form", {
         state: { from: location, data: sendObj },
       });
@@ -125,20 +129,11 @@ const Company = ({ proposal, dgo }) => {
           </Grid>
         </WrapperStyled>
         <BoxContent>
-          <Typography
-            variant="subtitle1"
-            component="h3"
-            sx={{
-              display: { xs: "none", sm: "block" },
-              marginBottom: { sm: "20px", lg: "32px" },
-              lineHeight: { sm: "1.5em" },
-              fontSize: { lg: "22px" },
-            }}
-          >
+          <Typography variant="subtitle1" component="h3" className="title">
             ОСЦПВ від {insurerName}
           </Typography>
-          <Box sx={{ display: { lg: "flex" } }}>
-            <BoxSelect sx={{ marginBottom: { xs: "8px", sm: "12px" } }}>
+          <Box className="content">
+            <BoxSelect className="franchise">
               <GeneralSelect
                 id="1"
                 lableText="Франшиза"
@@ -171,11 +166,7 @@ const Company = ({ proposal, dgo }) => {
         <WrapperStyled sx={{ width: "100%" }}>
           <BoxFooter>
             <Typography component="span">Вартість</Typography>
-            <Typography
-              variant="h3"
-              component="span"
-              sx={{ fontSize: { sm: "18px", lg: "22px" } }}
-            >
+            <Typography variant="h3" component="span" className="price">
               {price} грн
             </Typography>
           </BoxFooter>

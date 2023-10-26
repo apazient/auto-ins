@@ -19,6 +19,15 @@ export const FormContainerS = styled(FormContainer)(({ theme }) => ({
     marginBottom: "0",
     width: "371px",
   },
+  "& .title": {
+    marginBottom: "8px",
+    [theme.breakpoints.up("sm")]: {
+      marginBottom: "4px",
+    },
+    [theme.breakpoints.up("lg")]: {
+      marginBottom: "8px",
+    },
+  },
 }));
 
 export const ContentBox = styled(Box)(({ theme }) => ({

@@ -35,6 +35,9 @@ const PricesPage = () => {
 
   const chooseDgo = mergeObjectsById(chooseDgoQuery.data, responseDGONormalize);
 
+  useEffect(() => {
+    setCompanies(proposalPolicy);
+  }, [proposalPolicyQuery.data]);
   return (
     <>
       <PricePageWrapper>
