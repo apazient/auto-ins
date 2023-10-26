@@ -11,16 +11,18 @@ import GeneralSelect from "../GeneralSelect/GeneralSelect";
 import { useTheme } from "@emotion/react";
 import {
   createSelectOptionsByCompaniName,
+  filteredByPrice,
   priceSortOptionsGeneral,
 } from "../../helpers/proposalsFilter";
 import PropTypes from "prop-types";
 import FilterByCompany from "../SelectFilterByCompany/FilterByCompany";
 
-const ProposalsFilter = ({ companies, setCompanies }) => {
+const ProposalsFilter = ({ companies = [], setCompanies }) => {
   const { current } = useRef(companies);
   const theme = useTheme();
   const smScreen = useMediaQuery(theme.breakpoints.up("sm"));
   const [isShowFilter, setIsShowFilter] = useState(false);
+
   useEffect(() => {
     setCompaniesNameOptions(createSelectOptionsByCompaniName(current));
   }, [current]);
@@ -53,11 +55,14 @@ const ProposalsFilter = ({ companies, setCompanies }) => {
     let filteredCompanies = [...current];
     if (selectedCompanieName.length) {
       filteredCompanies = filteredCompanies.filter((el) =>
-        selectedCompanieName.includes(el.nameCompany)
+        selectedCompanieName.includes(el.insurerName)
       );
     }
-    // if (selectedPriceSort) {
-    // }
+
+    if (selectedPriceSort.value) {
+      filteredByPrice(filteredCompanies, selectedPriceSort.value);
+    }
+
     if (selectedCompanieName || selectedPriceSort.value) {
       setCompanies(filteredCompanies);
     } else {
@@ -120,7 +125,7 @@ const ProposalsFilter = ({ companies, setCompanies }) => {
             <ResetFilterButtonStyled
               type="button"
               onClick={() => {
-                setSelectedCompanieName(companiesNameOptions[0]);
+                setSelectedCompanieName([]);
                 setSelectedPriceSort(priceSortOptionsGeneral[0]);
                 setSelectedSortByReiting(priceSortOptionsGeneral[0]);
               }}
