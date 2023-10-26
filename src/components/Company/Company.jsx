@@ -14,7 +14,7 @@ import {
 import Grid from "@mui/material/Grid";
 import { useState } from "react";
 import useTheme from "@mui/material/styles/useTheme";
-import { PartnersImgs } from "../Partners/PartnersImgs";
+
 import { GeneralCheckbox } from "../GeneralCheckbox/GeneralCheckbox";
 import { useLocation } from "react-router-dom";
 import { CompanyExpandMore } from "../CompanyExpandMore/CompanyExpandMore";
@@ -22,10 +22,7 @@ import GeneralSelect from "../GeneralSelect/GeneralSelect";
 import Box from "@mui/material/Box";
 import ModalError from "../ModalError/ModalError";
 import { CardMedia } from "@mui/material";
-import {
-  insurerImgById,
-  useInsurerImg,
-} from "../../services/hooks/useIsurerImg";
+import { useEffect } from "react";
 
 const Company = ({ proposal, dgo }) => {
   const location = useLocation();
@@ -41,6 +38,7 @@ const Company = ({ proposal, dgo }) => {
         label: `+${limit} за ${discountedPayment}`,
       };
     });
+    dgoSelect.unshift({ value: 0, label: "0" });
   }
 
   const fransizeSelect = tariff?.map(({ franchise, discountedPayment }) => {
@@ -48,16 +46,20 @@ const Company = ({ proposal, dgo }) => {
   });
 
   const [checkSavety, setCheckSavety] = useState(false);
-  const [franchise, setFranchise] = useState(null);
+  const [franchise, setFranchise] = useState(fransizeSelect[0].value);
+  const [chooseDgo, setChooseDgo] = useState(null);
   const [price, setPrice] = useState(fransizeSelect[0].value);
 
   const handleChangeSelect = (e) => {
-    setFranchise(e.label);
-    setPrice(e.value);
+    setFranchise(e.value);
   };
   const handleChangeDgoSelect = (e) => {
-    setPrice((prev) => prev + e.value);
+    setChooseDgo(e.value);
   };
+
+  useEffect(() => {
+    setPrice(franchise + chooseDgo);
+  }, [chooseDgo, franchise]);
 
   return (
     <CardStyled component="li" sx={{ overflow: "visible" }}>

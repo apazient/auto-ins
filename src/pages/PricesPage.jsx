@@ -14,7 +14,7 @@ import { useChooseDgo } from "../services/hooks/useChooseDgo";
 import { responseOSAGONormalize } from "../helpers/dataNormalize/responseOSAGONormalize";
 import { mergeObjectsById } from "../helpers/mergeObjectsById";
 import { responseDGONormalize } from "../helpers/dataNormalize/responseDGONormalize";
-import { Skeleton } from "@mui/material";
+
 import { SkeletonStyled } from "../components/Skeleton/Skeleton";
 
 const PricesPage = () => {
