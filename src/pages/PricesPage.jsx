@@ -1,7 +1,6 @@
 import { useLocation } from "react-router-dom";
 import CompanyList from "../components/CompanyList/CompanyList";
 import OutletNavaigation from "../components/OutletNavigation/OutletNavigation";
-import { ContainerSectionPage, PageContainerS } from "../style/Global.styled";
 import { CostCalculation } from "../components/CostCalculation/CostCalculation";
 import ProposalsFilter from "../components/ProposalsFilter/ProposalsFilter";
 
@@ -29,14 +28,16 @@ const PricesPage = () => {
     responseOSAGONormalize
   );
   const chooseDgo = mergeObjectsById(chooseDgoQuery.data, responseDGONormalize);
-  console.log(chooseDgo);
-  console.log(proposalPolicy);
+
   return (
     <PricePageWrapper>
       <OutletNavaigation locationPath={location} />
       <CostCalculation />
       <ProposalsFilter companies={companies} setCompanies={setCompanies} />
-      <LineSection props></LineSection>
+      <LineSection props />
+      {proposalPolicyQuery.data && chooseDgoQuery.data && (
+        <CompanyList proposals={proposalPolicy} dgos={chooseDgo} />
+      )}
     </PricePageWrapper>
   );
 };
