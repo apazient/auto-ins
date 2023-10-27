@@ -10,7 +10,9 @@ const PricesPage = lazy(() => import("./pages/PricesPage.jsx"));
 const FormPage = lazy(() => import("./pages/FormPage.jsx"));
 
 function App() {
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({
+    defaultOptions: { queries: { refetchOnWindowFocus: false } },
+  });
   return (
     <QueryClientProvider client={queryClient}>
       <Suspense fallback={<Loader />}>

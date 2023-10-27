@@ -3,23 +3,16 @@ import CompanyList from "../components/CompanyList/CompanyList";
 import OutletNavaigation from "../components/OutletNavigation/OutletNavigation";
 import { CostCalculation } from "../components/CostCalculation/CostCalculation";
 import ProposalsFilter from "../components/ProposalsFilter/ProposalsFilter";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import PricePageWrapper from "../components/PricePageWrapper/PricePageWrapper";
 import LineSection from "../components/LineSection/LineSection";
-import {
-  getPolicyByParams,
-  usePolicyByParams,
-} from "../services/hooks/usePolicyByParams";
-import {
-  chooseVclTariffDGO,
-  useChooseDgo,
-} from "../services/hooks/useChooseDgo";
+import { usePolicyByParams } from "../services/hooks/usePolicyByParams";
+import { useChooseDgo } from "../services/hooks/useChooseDgo";
 import { responseOSAGONormalize } from "../helpers/dataNormalize/responseOSAGONormalize";
 import { mergeObjectsById } from "../helpers/mergeObjectsById";
 import { responseDGONormalize } from "../helpers/dataNormalize/responseDGONormalize";
 
 import { SkeletonStyled } from "../components/Skeleton/Skeleton";
-import { useQueries } from "@tanstack/react-query";
 
 const PricesPage = () => {
   const location = useLocation();
