@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Link, Typography } from "@mui/material";
 import {
   FormContainerS,
   Item,
@@ -39,7 +39,9 @@ export const CostCalculation = () => {
             );
           })}
         </StackS>
-        <YellowButtonS>Змінити параметри</YellowButtonS>
+        <Link href="/">
+          <YellowButtonS type="submit">Змінити параметри</YellowButtonS>
+        </Link>
       </Box>
     </FormContainerS>
   );
