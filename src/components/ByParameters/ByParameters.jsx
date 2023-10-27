@@ -50,9 +50,6 @@ const ByParameters = () => {
     setVehicle(e);
     setEngineCapacity(selestAutoCategory(e.value)[0]);
   };
-  const handleChangeAddress = (e) => {
-    setAddress(e);
-  };
   const formik = useFormik({
     initialValues: {
       benefits: false,
@@ -104,11 +101,12 @@ const ByParameters = () => {
             id="engineCapacity"
             lableText="Адреса за техпаспортом"
             optionsArr={allAddress}
-            changeCB={handleChangeAddress} //функція що повертає вибране значення (піднесення)
+            changeCB={setAddress} //функція що повертає вибране значення (піднесення)
             currentValue={address}
             inputValue={qweryText}
             inputChangeCB={setQweryText}
             helper={"тут потрібно ввести текст)))"}
+            isDisabled={formik.values.foreignNumber}
           />
         </AllInputContStyled>
 
@@ -125,7 +123,11 @@ const ByParameters = () => {
             lableText="Авто на іноземних номерах"
             name="foreignNumber"
             val={formik.values.foreignNumber}
-            changeCB={formik.handleChange}
+            changeCB={(e) => {
+              setQweryText("");
+              setAddress({ label: "", value: "" });
+              formik.handleChange(e);
+            }}
           />
         </AllCheckboxContStyled>
 
