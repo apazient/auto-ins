@@ -29,6 +29,10 @@ export const SelectStyled = styled(Select)(({ theme, $find }) => ({
           transform: $find ? "rotateX(0deg)" : "rotateX(180deg)",
         },
       },
+      "&--is-disabled": {
+        opacity: 0.4,
+        // backgroundColor: "black",
+      },
       [theme.breakpoints.up("sm")]: {
         fontSize: 18,
       },
