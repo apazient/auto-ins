@@ -18,6 +18,7 @@ const GeneralSelect = ({
   currentValue,
   inputChangeCB,
   inputValue,
+  isDisabled = false,
 }) => {
   return (
     <InputContStyled className="select-container">
@@ -30,6 +31,7 @@ const GeneralSelect = ({
         components={
           inputChangeCB ? { DropdownIndicator: CustomDropdownIndicator } : true
         }
+        isDisabled={isDisabled}
         variant="body1"
         component="label"
         classNamePrefix="customSelect"
@@ -55,6 +57,7 @@ GeneralSelect.propTypes = {
   helper: PropTypes.string,
   inputValue: PropTypes.string,
   color: PropTypes.string,
+  isDisabled: PropTypes.bool,
   optionsArr: PropTypes.array.isRequired,
   changeCB: PropTypes.func,
   inputChangeCB: PropTypes.func,
