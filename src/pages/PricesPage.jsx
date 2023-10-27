@@ -5,7 +5,7 @@ import { CostCalculation } from "../components/CostCalculation/CostCalculation";
 import ProposalsFilter from "../components/ProposalsFilter/ProposalsFilter";
 import { useEffect, useState } from "react";
 import PricePageWrapper from "../components/PricePageWrapper/PricePageWrapper";
-import LineSection from "../components/LineSection/LineSection";
+
 import { usePolicyByParams } from "../services/hooks/usePolicyByParams";
 import { useChooseDgo } from "../services/hooks/useChooseDgo";
 import { responseOSAGONormalize } from "../helpers/dataNormalize/responseOSAGONormalize";
@@ -16,30 +16,44 @@ import { SkeletonStyled } from "../components/Skeleton/Skeleton";
 
 const PricesPage = () => {
   const location = useLocation();
-  const proposalPolicyQuery = usePolicyByParams(location.state?.data);
+  const { data, isSuccess, isLoading } = usePolicyByParams(
+    location.state?.data
+  );
+  const [companies, setCompanies] = useState([]);
+  const [dgo, setDgo] = useState([]);
+
   const chooseDgoQuery = useChooseDgo(location.state?.data);
 
-  const proposalPolicy = mergeObjectsById(
-    proposalPolicyQuery.data,
-    responseOSAGONormalize
-  );
+  if (isSuccess && data !== companies) {
+    setCompanies(data);
+  }
 
-  const [companies, setCompanies] = useState(proposalPolicy);
+  if (chooseDgoQuery.isSuccess && chooseDgoQuery.data !== dgo) {
+    setDgo(chooseDgoQuery.data);
+  }
 
-  const chooseDgo = mergeObjectsById(chooseDgoQuery.data, responseDGONormalize);
+  const proposalPolicy = companies.length
+    ? mergeObjectsById(companies, responseOSAGONormalize)
+    : [];
 
-  useEffect(() => {
-    setCompanies(proposalPolicy);
-  }, [proposalPolicyQuery.data]);
+  const chooseDgo = dgo.length
+    ? mergeObjectsById(dgo, responseDGONormalize)
+    : [];
+
   return (
     <>
       <PricePageWrapper>
         <OutletNavaigation locationPath={location} />
         <CostCalculation />
-        <ProposalsFilter companies={companies} setCompanies={setCompanies} />
-        {proposalPolicyQuery.isLoading && <SkeletonStyled />}
-        {proposalPolicyQuery.data && chooseDgoQuery.data && (
-          <CompanyList proposals={companies} dgos={chooseDgo} />
+        {proposalPolicy.length && (
+          <ProposalsFilter
+            companies={proposalPolicy}
+            setCompanies={setCompanies}
+          />
+        )}
+        {isLoading && <SkeletonStyled />}
+        {proposalPolicy.length && chooseDgo.length && (
+          <CompanyList proposals={proposalPolicy} dgos={chooseDgo} />
         )}
       </PricePageWrapper>
     </>
