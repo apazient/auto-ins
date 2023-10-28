@@ -1,7 +1,7 @@
 import HeroTabs from "../components/HeroTabs/HeroTabs";
 import { AccordionSection } from "../components/AccordionSection/AccordionSection";
 import CheckInsSection from "../components/CheckInsSection/CheckInsSection";
-import InfoSection from "../components/InfoSection/InfoSection";
+import InfoSection from "../components/InfoSection/index";
 
 import { useEffect } from "react";
 import AdvatagesSection from "../components/AdvatagesSection/AdvatagesSection";

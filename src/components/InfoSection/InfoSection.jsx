@@ -1,6 +1,5 @@
 import { useTheme } from "@emotion/react";
 import CardMedia from "@mui/material/CardMedia";
-import FormControlLabel from "@mui/material/FormControlLabel";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useState } from "react";
 
@@ -27,19 +26,29 @@ import Car1400Jpg3x from "../../images/infoCar/carDes3x.jpg";
 
 import { YellowButton } from "../../style/Global.styled";
 import {
+  AbsatzS,
   CollapseContainer,
   InfoSectionContainer,
   SectionS,
   WrapperS,
 } from "./InfoSectionStyle";
 
-import MiddleFirstText from "./MiddleFirstText";
-import MiddleSecondText from "./MiddleSecondText";
-import StartText from "./StartText";
-import EndText from "./EndText";
+import Text from "./Text";
+
+import { infoTextStart } from "../../assets/texts/index";
+import { infoTextMidlFirst } from "../../assets/texts/index";
+import { infoTextMidlSecond } from "../../assets/texts/index";
+import { links } from "../../assets/texts/index";
+import { infoTextEnd } from "../../assets/texts/index";
+import { Link } from "@mui/material";
 
 const InfoSection = () => {
   const [checked, setChecked] = useState(false);
+  const [start, setStart] = useState(infoTextStart);
+  const [middleFirst, setMiddleFirst] = useState(infoTextMidlFirst);
+  const [middleSecond, setMiddleSecond] = useState(infoTextMidlSecond);
+  const [end, setEnd] = useState(infoTextEnd);
+  const [link, _] = useState(links);
 
   const theme = useTheme();
   const MOBILE = useMediaQuery(theme.breakpoints.down("sm"));
@@ -52,7 +61,7 @@ const InfoSection = () => {
 
   const display = () => {
     if (MOBILE) {
-      return "8.54em";
+      return "8.64em";
     }
     if (TABLET) {
       return "200px";
@@ -61,6 +70,21 @@ const InfoSection = () => {
       return "750px";
     }
   };
+
+  const displayLink = link.map(({ href, text }) => {
+    return (
+      <AbsatzS key={text} variant="caption" component="p">
+        <Link
+          href={href}
+          target="_blank"
+          rel="noreferrer noopener"
+          className="link"
+        >
+          {text}
+        </Link>
+      </AbsatzS>
+    );
+  });
 
   return (
     <SectionS>
@@ -71,14 +95,22 @@ const InfoSection = () => {
             orientation="vertical"
             timeout={300}
             collapsedSize={display()}
-            sx={{ width: { lg: "568px" } }}
+            className="container"
           >
-            <StartText />
-            <MiddleFirstText />
+            <Text text={start} />
+            <Text text={middleFirst} />
+
             {MOBILE && (
               <>
-                <MiddleSecondText />
-                <EndText />
+                <Text text={middleSecond} />
+                {displayLink}
+                <Text text={end} />
+              </>
+            )}
+            {DESKTOP && (
+              <>
+                <Text text={middleSecond} />
+                {displayLink}
               </>
             )}
           </CollapseContainer>
@@ -89,24 +121,14 @@ const InfoSection = () => {
               timeout={300}
               collapsedSize={display()}
             >
-              <MiddleSecondText />
-              <EndText />
+              <Text text={middleSecond} />
+              {displayLink}
+              <Text text={end} />
             </CollapseContainer>
           )}
           {DESKTOP && (
             <div>
-              <CardMedia
-                sx={{
-                  "& img": {
-                    borderRadius: "50px 0px 0px 50px",
-                    aspectRatio: "86/79",
-                  },
-                  marginBottom: "24px",
-                  background:
-                    "linear-gradient(0deg, rgba(3, 3, 3, 0.05) 0%, rgba(3, 3, 3, 0.05) 100%)",
-                  borderRadius: "50px 0px 0px 50px",
-                }}
-              >
+              <CardMedia className="cardMedia">
                 <img
                   src={Car1400Jpg}
                   srcSet={`${Car1400Webp} 688w,${Car1400Jpg} 688w,${Car1400Webp2x} 1376w,${Car1400Jpg2x} 1376w,${Car1400Webp3x} 2064w,${Car1400Jpg3x} 2064w`}
@@ -121,41 +143,19 @@ const InfoSection = () => {
                 orientation="vertical"
                 timeout={300}
                 collapsedSize={94}
-                sx={{
-                  width: { lg: "568px" },
-                  "& .MuiCollapse-vertical": { WebkitLineClamp: 4 },
-                }}
+                className="containerRight"
               >
-                <EndText />
+                <Text text={end} />
               </CollapseContainer>
             </div>
           )}
         </WrapperS>
-        <FormControlLabel
-          sx={{
-            display: "block",
-            textAlign: "center",
-            marginTop: { xs: "24px", sm: "32px", lg: "48px" },
-            marginBottom: { xs: "32px", sm: "56px", lg: "0" },
-            marginLeft: "0",
-            marginRight: "0",
-          }}
-          control={
-            <YellowButton onClick={handleChange}>
-              {!checked ? "Читати далі" : "Приховати текст"}
-            </YellowButton>
-          }
-        />
-        <CardMedia
-          sx={{
-            display: { lg: "none" },
-            width: { sm: "680px" },
-            marginTop: "32px",
-            margin: "0 auto",
-            "& img": { borderRadius: "50px" },
-            aspectRatio: "343/240",
-          }}
-        >
+
+        <YellowButton onClick={handleChange} className="button">
+          {!checked ? "Читати далі" : "Приховати текст"}
+        </YellowButton>
+
+        <CardMedia className="cardMediaTablet">
           <img
             src={Car320Jpg}
             srcSet={`${Car320Jpg} 343w,${Car320Webp} 343w,${Car320Webp2x} 686w,${Car320Jpg2x} 686w,${Car320Webp3x} 1029w,${Car320Jpg3x} 1029w,${Car768Jpg} 680w,${Car768Web} 680w,${Car768Web2x} 1360w,${Car768Jpg2x} 1360w,${Car768Web3x} 2040w,${Car768Jpg3x} 2040w`}
