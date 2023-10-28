@@ -2,20 +2,9 @@ import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import { styled } from "@mui/material/styles";
-import Typography from "@mui/material/Typography";
+
 import { ContainerSection } from "../../style/Global.styled";
 
-export const MainText = styled(Typography)(({ theme }) => ({
-  textAlign: "center",
-  marginBottom: "32px",
-
-  [theme.breakpoints.up("sm")]: {
-    marginBottom: "56px",
-  },
-  [theme.breakpoints.up("lg")]: {
-    marginBottom: "72px",
-  },
-}));
 export const Accordions = styled(Accordion)(({ theme }) => ({
   "&.MuiAccordion-root": {
     borderBottom: `1px solid ${theme.palette.primary.white}`,

@@ -1,4 +1,4 @@
-const infoTextMidlSecond = [
+const infoTextMiddleSecond = [
   {
     text: "",
     strongText:
@@ -31,4 +31,4 @@ const infoTextMidlSecond = [
   },
 ];
 
-export default infoTextMidlSecond;
+export default infoTextMiddleSecond;

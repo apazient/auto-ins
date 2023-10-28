@@ -36,19 +36,14 @@ import {
 import Text from "./Text";
 
 import { infoTextStart } from "../../assets/texts/index";
-import { infoTextMidlFirst } from "../../assets/texts/index";
-import { infoTextMidlSecond } from "../../assets/texts/index";
+import { infoTextMiddleFirst } from "../../assets/texts/index";
+import { infoTextMiddleSecond } from "../../assets/texts/index";
 import { links } from "../../assets/texts/index";
 import { infoTextEnd } from "../../assets/texts/index";
 import { Link } from "@mui/material";
 
 const InfoSection = () => {
   const [checked, setChecked] = useState(false);
-  const [start, setStart] = useState(infoTextStart);
-  const [middleFirst, setMiddleFirst] = useState(infoTextMidlFirst);
-  const [middleSecond, setMiddleSecond] = useState(infoTextMidlSecond);
-  const [end, setEnd] = useState(infoTextEnd);
-  const [link, _] = useState(links);
 
   const theme = useTheme();
   const MOBILE = useMediaQuery(theme.breakpoints.down("sm"));
@@ -71,7 +66,7 @@ const InfoSection = () => {
     }
   };
 
-  const displayLink = link.map(({ href, text }) => {
+  const displayLink = links.map(({ href, text }) => {
     return (
       <AbsatzS key={text} variant="caption" component="p">
         <Link
@@ -97,19 +92,19 @@ const InfoSection = () => {
             collapsedSize={display()}
             className="container"
           >
-            <Text text={start} />
-            <Text text={middleFirst} />
+            <Text text={infoTextStart} />
+            <Text text={infoTextMiddleFirst} />
 
             {MOBILE && (
               <>
-                <Text text={middleSecond} />
+                <Text text={infoTextMiddleSecond} />
                 {displayLink}
-                <Text text={end} />
+                <Text text={infoTextEnd} />
               </>
             )}
             {DESKTOP && (
               <>
-                <Text text={middleSecond} />
+                <Text text={infoTextMiddleSecond} />
                 {displayLink}
               </>
             )}
@@ -121,9 +116,9 @@ const InfoSection = () => {
               timeout={300}
               collapsedSize={display()}
             >
-              <Text text={middleSecond} />
+              <Text text={infoTextMiddleSecond} />
               {displayLink}
-              <Text text={end} />
+              <Text text={infoTextEnd} />
             </CollapseContainer>
           )}
           {DESKTOP && (
@@ -145,7 +140,7 @@ const InfoSection = () => {
                 collapsedSize={94}
                 className="containerRight"
               >
-                <Text text={end} />
+                <Text text={infoTextEnd} />
               </CollapseContainer>
             </div>
           )}

@@ -1,4 +1,3 @@
-import { nanoid } from "nanoid";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Unstable_Grid2";
 import { SpriteSVG } from "../../images/SpriteSVG";
@@ -7,18 +6,15 @@ import {
   GridContainer,
   ItemS,
   TextContainerS,
-} from "./AdvatagesSectionStyle";
+} from "./AdvantagesSectionStyle";
 import { ContainerSection } from "../../style/Global.styled";
 import { advantages } from "../../assets/utils/advantages";
 
-const AdvatagesSection = () => {
+const AdvantagesSection = () => {
   return (
     <section>
       <ContainerSection id="переваги">
-        <Typography
-          variant="h2"
-          sx={{ marginBottom: "40px", textAlign: "center " }}
-        >
+        <Typography variant="h2" className="main-title">
           Наші переваги
         </Typography>
         <GridContainer container>
@@ -30,12 +26,7 @@ const AdvatagesSection = () => {
                     <SpriteSVG name={svg}></SpriteSVG>
                   </BoxImgS>
                   <TextContainerS>
-                    <Typography
-                      variant="h3"
-                      sx={{
-                        marginBottom: { xs: "4px", sm: "8px", lg: "0" },
-                      }}
-                    >
+                    <Typography variant="h3" className="title">
                       {title}
                     </Typography>
                     <Typography variant="body1">{text}</Typography>
@@ -50,4 +41,4 @@ const AdvatagesSection = () => {
   );
 };
 
-export default AdvatagesSection;
+export default AdvantagesSection;
