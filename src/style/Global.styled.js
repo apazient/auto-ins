@@ -39,7 +39,7 @@ export const WhiteButton = styled(Link)(({ theme }) => ({
   fontSize: "16px",
   lineHeight: "1.5",
   textTransform: "none",
-  border: `1px solid transparent`,  
+  border: `1px solid transparent`,
   background: theme.palette.primary.white,
   color: theme.palette.primary.main,
   transition: "background 350ms linear",
@@ -52,16 +52,16 @@ export const WhiteButton = styled(Link)(({ theme }) => ({
     "& div": {
       fill: theme.palette.primary.yellow,
     },
-    background: theme.palette.primary.yellow,    
+    background: theme.palette.primary.yellow,
   },
   "&:active": {
-    background: theme.palette.primary.tertiaryYellow,    
+    background: theme.palette.primary.tertiaryYellow,
   },
   "&.Mui-disabled": {
     background: theme.palette.primary.white,
     color: theme.palette.primary.tertiaryDark,
     border: `1px solid ${theme.palette.primary.tertiaryDark}`,
-    cursor: 'default',
+    cursor: "default",
     "& div": {
       fill: theme.palette.primary.white,
     },
@@ -92,7 +92,7 @@ export const YellowButton = styled(Button)(({ theme }) => ({
 
 export const ContainerSection = styled(Container)(({ theme }) => ({
   width: "100%",
-  oveflow: "hidden",
+  overflow: "hidden",
   [theme.breakpoints.up("xs")]: {
     padding: "56px 16px",
   },
@@ -103,6 +103,14 @@ export const ContainerSection = styled(Container)(({ theme }) => ({
   [theme.breakpoints.up("lg")]: {
     padding: "120px 120px",
     width: "1400px",
+  },
+  "& .main-title": {
+    marginBottom: "32px",
+    textAlign: "center ",
+    [theme.breakpoints.up("sm")]: { marginBottom: "56px" },
+    [theme.breakpoints.up("lg")]: {
+      marginBottom: "72px",
+    },
   },
 }));
 
@@ -115,7 +123,7 @@ export const PageContainerS = styled("main")(({ theme }) => ({
 }));
 export const FormContainer = styled(Container)(({ theme }) => ({
   width: "100%",
-  oveflow: "hidden",
+  overflow: "hidden",
   backgroundColor: theme.palette.primary.white,
   padding: "16px",
   borderRadius: "35px",
@@ -144,7 +152,7 @@ export const InputS = styled("input")(({ theme }) => ({
   [theme.breakpoints.up("md")]: {
     fontSize: "18px",
   },
-  "&::placeholder":{
+  "&::placeholder": {
     color: theme.palette.primary.main,
   },
   "&:hover": {
@@ -165,6 +173,6 @@ export const InputS = styled("input")(({ theme }) => ({
     },
   },
   "&.disabled": {
-    borderColor: `${theme.palette.primary.tertiaryDark}`,   
+    borderColor: `${theme.palette.primary.tertiaryDark}`,
   },
 }));

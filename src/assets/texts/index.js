@@ -1,8 +1,8 @@
 export { default as infoTextStart } from "./infoTextStart";
 
-export { default as infoTextMidlFirst } from "./infoTextMidlFirst";
+export { default as infoTextMiddleFirst } from "./infoTextMiddleFirst";
 
-export { default as infoTextMidlSecond } from "./infoTextMidlSecond";
+export { default as infoTextMiddleSecond } from "./infoTextMiddleSecond";
 
 export { default as links } from "./links";
 

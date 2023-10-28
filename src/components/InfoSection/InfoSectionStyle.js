@@ -32,7 +32,7 @@ export const CollapseContainer = styled(Collapse)(({ theme }) => ({
   "& .MuiCollapse-vertical": {
     display: "-webkit-box",
     WebkitBoxOrient: "vertical",
-    WebkitLineClamp: 3,
+    WebkitLineClamp: 5,
     whiteSpace: "normal",
     // whiteSpace: "pre-wrap",
     overflow: "hidden",

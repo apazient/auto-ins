@@ -1,4 +1,4 @@
-const infoTextMidlFirsrt = [
+const infoTextMiddleFirst = [
   {
     text:
       "Електронний поліс страхування має таку ж юридичну силу, як і" +
@@ -27,4 +27,4 @@ const infoTextMidlFirsrt = [
       "«При наявності е-поліса водій може підтвердити його на електронному або паперовому носії.»",
   },
 ];
-export default infoTextMidlFirsrt;
+export default infoTextMiddleFirst;
