@@ -33,7 +33,8 @@ export const CollapseContainer = styled(Collapse)(({ theme }) => ({
     display: "-webkit-box",
     WebkitBoxOrient: "vertical",
     WebkitLineClamp: 3,
-    whiteSpace: "pre-wrap",
+    whiteSpace: "normal",
+    // whiteSpace: "pre-wrap",
     overflow: "hidden",
     [theme.breakpoints.up("sm")]: {
       WebkitLineClamp: 6,
@@ -45,7 +46,7 @@ export const CollapseContainer = styled(Collapse)(({ theme }) => ({
   "&.MuiCollapse-entered": {
     "& .MuiCollapse-vertical": {
       display: "block",
-      whiteSpace: "normal",
+      // whiteSpace: "normal",
     },
   },
   "&.container": {
