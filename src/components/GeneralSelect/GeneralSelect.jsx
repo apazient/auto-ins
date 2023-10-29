@@ -19,6 +19,9 @@ const GeneralSelect = ({
   inputChangeCB,
   inputValue,
   isDisabled = false,
+  defaultValue,
+  getOptionLabel,
+  getOptionValue,
 }) => {
   return (
     <InputContStyled className="select-container">
@@ -38,13 +41,16 @@ const GeneralSelect = ({
         id={id}
         placeholder="Enter the text"
         options={optionsArr}
-        defaultValue={optionsArr[0]}
+        defaultValue={defaultValue}
+        // defaultValue={optionsArr[0]}
         value={currentValue}
         inputValue={inputValue}
         onInputChange={inputChangeCB}
         onChange={(e) => {
           changeCB(e);
         }}
+        getOptionLabel={getOptionLabel}
+        getOptionValue={getOptionValue}
       />
     </InputContStyled>
   );
