@@ -1,9 +1,9 @@
 import { useLocation } from "react-router-dom";
 import CompanyList from "../components/CompanyList/CompanyList";
-import OutletNavaigation from "../components/OutletNavigation/OutletNavigation";
+import OutletNavigation from "../components/OutletNavigation/OutletNavigation";
 import { CostCalculation } from "../components/CostCalculation/CostCalculation";
 import ProposalsFilter from "../components/ProposalsFilter/ProposalsFilter";
-import { useEffect, useState } from "react";
+import { useRef, useState } from "react";
 import PricePageWrapper from "../components/PricePageWrapper/PricePageWrapper";
 
 import { usePolicyByParams } from "../services/hooks/usePolicyByParams";
@@ -16,9 +16,12 @@ import { SkeletonStyled } from "../components/Skeleton/Skeleton";
 
 const PricesPage = () => {
   const location = useLocation();
-  const { data, isSuccess, isLoading } = usePolicyByParams(
-    location.state?.data
-  );
+  const { current } = useRef(location.state?.data);
+
+  // const { data, isSuccess, isLoading } = usePolicyByParams(
+  //   location.state?.data
+  // );
+  const { data, isSuccess, isLoading } = usePolicyByParams(current);
   const [companies, setCompanies] = useState([]);
   const [dgo, setDgo] = useState([]);
 
@@ -43,7 +46,7 @@ const PricesPage = () => {
   return (
     <>
       <PricePageWrapper>
-        <OutletNavaigation locationPath={location} />
+        <OutletNavigation locationPath={location} />
         <CostCalculation />
         {proposalPolicy.length && (
           <ProposalsFilter
