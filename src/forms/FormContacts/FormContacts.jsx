@@ -22,7 +22,7 @@ const FormContacts = ({ formik }) => {
             lableText="Телефон* :"
             type="phone"
             formikData={formik}            
-            placeholder="(_ _ _)_ _ _ - _ _ _ _"
+            placeholder="+38(_ _ _)_ _ _ - _ _ _ _"
           />
         </InputBoxS>
        
