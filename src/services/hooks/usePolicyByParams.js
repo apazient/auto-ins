@@ -1,4 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
+import { responseOSAGONormalize } from "../../helpers/dataNormalize/responseOSAGONormalize";
+import { mergeObjectsById } from "../../helpers/mergeObjectsById";
 
 import { instance } from "../api";
 // повертає масив об'єктів в яких заборонені кросс-продажі
@@ -22,10 +24,10 @@ const getPolicyByParams = async (params) => {
       // customerCategory: "NATURAL",
     },
   });
-
-  return data.filter((el) => {
+  const newData = data.filter((el) => {
     return el.crossSell === false;
   });
+  return mergeObjectsById(newData, responseOSAGONormalize);
 };
 
 export const usePolicyByParams = (policyParams) => {

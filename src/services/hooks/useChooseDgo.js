@@ -1,4 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
+import { responseDGONormalize } from "../../helpers/dataNormalize/responseDGONormalize";
+import { mergeObjectsById } from "../../helpers/mergeObjectsById";
 import { instance } from "../api";
 
 const chooseVclTariffDGO = async (body) => {
@@ -26,9 +28,10 @@ const chooseVclTariffDGO = async (body) => {
     // taxi: false,
     // customerCategory: "NATURAL",
   });
-  return data.filter((el) => {
+  const newData = data.filter((el) => {
     return el.crossSell === false;
   });
+  return mergeObjectsById(newData, responseDGONormalize);
 };
 
 export const useChooseDgo = (policyParams) => {
