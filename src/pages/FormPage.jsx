@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { ContainerSectionPage, PageContainerS } from "../style/Global.styled";
-import OutletNavaigation from "../components/OutletNavigation/OutletNavigation";
+import OutletNavigation from "../components/OutletNavigation/OutletNavigation";
 
 import CompanySmall from "../components/CompanySmall/CompanySmall";
 import { Wrapper } from "./FormPageStyled";
@@ -13,7 +13,7 @@ const FormPage = () => {
   return (
     <PageContainerS>
       <ContainerSectionPage component="div">
-        <OutletNavaigation locationPath={location} />
+        <OutletNavigation locationPath={location} />
         <Wrapper>
           <CompanySmall company={location.state?.data} />
 

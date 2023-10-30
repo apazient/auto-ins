@@ -33,6 +33,15 @@ export const AccordionsSummary = styled(AccordionSummary)(({ theme }) => ({
   "&.MuiAccordionSummary-root": {
     padding: 0,
   },
+
+  "& .subtitle": {
+    [theme.breakpoints.up("sm")]: {
+      fontFamily: "OpenSans-Bold",
+      fontSize: "18px",
+      lineHeight: "1.5",
+      fontWeight: "bold",
+    },
+  },
 }));
 
 export const AccordionsDetails = styled(AccordionDetails)(({ theme }) => ({
@@ -46,7 +55,7 @@ export const AccordionsDetails = styled(AccordionDetails)(({ theme }) => ({
 
 export const ContAccordion = styled(ContainerSection)(({ theme }) => ({
   backgroundColor: theme.palette.primary.main,
-  // [theme.breakpoints.up("lg")]: {
-  //   maxWidth: "1006px",
-  // },
+  [theme.breakpoints.up("lg")]: {
+    padding: "120px 317px",
+  },
 }));

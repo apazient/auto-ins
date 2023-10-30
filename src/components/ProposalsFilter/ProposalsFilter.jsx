@@ -16,9 +16,11 @@ import {
 } from "../../helpers/proposalsFilter";
 import PropTypes from "prop-types";
 import FilterByCompany from "../SelectFilterByCompany/FilterByCompany";
+import CompanyList from "../CompanyList/CompanyList";
 
-const ProposalsFilter = ({ companies = [], setCompanies }) => {
-  const { current } = useRef(companies);
+const ProposalsFilter = ({ insurers = [], dgos }) => {
+  const { current } = useRef(insurers);
+  const [companies, setCompanies] = useState(current);
   const theme = useTheme();
   const smScreen = useMediaQuery(theme.breakpoints.up("sm"));
   const [isShowFilter, setIsShowFilter] = useState(false);
@@ -75,67 +77,72 @@ const ProposalsFilter = ({ companies = [], setCompanies }) => {
   };
 
   return (
-    <Box sx={{ backgroundColor: "#BCC3E7", padding: "20px 0", color: "black" }}>
-      {!smScreen && (
-        <FilterButtonStyled aria-label="showFilter" onClick={handleChange}>
-          <Box
-            sx={{
-              width: 24,
-              height: 24,
-              fill: "transparent",
-              stroke: "black",
-              marginRight: 0.5,
-            }}
-          >
-            <SpriteSVG name="icon-filter-smaller" />
-          </Box>
-          Фільтри
-        </FilterButtonStyled>
-      )}
-      <Collapse in={isShowFilter}>
-        <SelectsContStyled>
-          <GeneralSelect
-            id="price"
-            lableText="Ціна"
-            optionsArr={priceSortOptionsGeneral}
-            changeCB={setSelectedPriceSort} //функція що повертає вибране значення (піднесення)
-            currentValue={selectedPriceSort}
-          />
-          <GeneralSelect
-            id="popularity"
-            lableText="Популярність"
-            optionsArr={priceSortOptionsGeneral}
-            changeCB={setSelectedSortByReiting} //функція що повертає вибране значення (піднесення)
-            currentValue={selectedSortByReiting}
-          />
-
-          <FilterByCompany
-            id="filteredByName"
-            lableText="Компанії"
-            changeCB={handleChangeByName}
-            currentValue={selectedCompanieName}
-            optionsArr={companiesNameOptions}
-          />
-          <TooltipStyled
-            title="Очистити фільтр"
-            arrow
-            placement="top"
-            TransitionComponent={Zoom}
-          >
-            <ResetFilterButtonStyled
-              type="button"
-              onClick={() => {
-                setSelectedCompanieName([]);
-                setSelectedPriceSort(priceSortOptionsGeneral[0]);
-                setSelectedSortByReiting(priceSortOptionsGeneral[0]);
+    <>
+      <Box
+        sx={{ backgroundColor: "#BCC3E7", padding: "20px 0", color: "black" }}
+      >
+        {!smScreen && (
+          <FilterButtonStyled aria-label="showFilter" onClick={handleChange}>
+            <Box
+              sx={{
+                width: 24,
+                height: 24,
+                fill: "transparent",
+                stroke: "black",
+                marginRight: 0.5,
               }}
             >
-              <SpriteSVG name="icon-filter-desktop-tablet" />
-            </ResetFilterButtonStyled>
-          </TooltipStyled>
-        </SelectsContStyled>
-      </Collapse>
-    </Box>
+              <SpriteSVG name="icon-filter-smaller" />
+            </Box>
+            Фільтри
+          </FilterButtonStyled>
+        )}
+        <Collapse in={isShowFilter}>
+          <SelectsContStyled>
+            <GeneralSelect
+              id="price"
+              lableText="Ціна"
+              optionsArr={priceSortOptionsGeneral}
+              changeCB={setSelectedPriceSort} //функція що повертає вибране значення (піднесення)
+              currentValue={selectedPriceSort}
+            />
+            <GeneralSelect
+              id="popularity"
+              lableText="Популярність"
+              optionsArr={priceSortOptionsGeneral}
+              changeCB={setSelectedSortByReiting} //функція що повертає вибране значення (піднесення)
+              currentValue={selectedSortByReiting}
+            />
+
+            <FilterByCompany
+              id="filteredByName"
+              lableText="Компанії"
+              changeCB={handleChangeByName}
+              currentValue={selectedCompanieName}
+              optionsArr={companiesNameOptions}
+            />
+            <TooltipStyled
+              title="Очистити фільтр"
+              arrow
+              placement="top"
+              TransitionComponent={Zoom}
+            >
+              <ResetFilterButtonStyled
+                type="button"
+                onClick={() => {
+                  setSelectedCompanieName([]);
+                  setSelectedPriceSort(priceSortOptionsGeneral[0]);
+                  setSelectedSortByReiting(priceSortOptionsGeneral[0]);
+                }}
+              >
+                <SpriteSVG name="icon-filter-desktop-tablet" />
+              </ResetFilterButtonStyled>
+            </TooltipStyled>
+          </SelectsContStyled>
+        </Collapse>
+      </Box>
+      <CompanyList proposals={companies} dgos={dgos} />;
+    </>
   );
 };
 

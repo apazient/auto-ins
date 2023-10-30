@@ -13,62 +13,40 @@ import Grid from "@mui/material/Grid";
 import { useState } from "react";
 import useTheme from "@mui/material/styles/useTheme";
 
-import { GeneralCheckbox } from "../GeneralCheckbox/GeneralCheckbox";
 import { useLocation, useNavigate } from "react-router-dom";
 import { CompanyExpandMore } from "../CompanyExpandMore/CompanyExpandMore";
 import GeneralSelect from "../GeneralSelect/GeneralSelect";
 import Box from "@mui/material/Box";
-import ModalError from "../ModalError/ModalError";
-import { CardMedia } from "@mui/material";
 import { useEffect } from "react";
 import { useFormik } from "formik";
+import CompanyCardMedia from "../CompanyCardMedia/index";
 
-const Company = ({ proposal, dgo }) => {
+const Company = ({ proposal, dgo = [] }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const theme = useTheme();
   const { insurerId, insurerName, tariff, registrationPlace, autoCategory } =
     proposal;
-
-  let dgoSelect = null;
-
-  if (dgo) {
-    dgoSelect = dgo.tariff.map(({ limit, discountedPayment }) => {
-      return {
-        value: discountedPayment,
-        label: `+${limit} за ${discountedPayment}`,
-      };
-    });
-    dgoSelect.unshift({ value: 0, label: "0" });
-  }
-
-  const fransizeSelect = tariff?.map(({ franchise, discountedPayment }) => {
-    return { value: discountedPayment, label: franchise };
-  });
+  // const franchizeSelect = useMemo(() => tariff.map((el) => el), [tariff]);
 
   const [checkSavety, setCheckSavety] = useState(false);
-  const [franchise, setFranchise] = useState(fransizeSelect[0].value);
-  const [choosenFranchiseTariff, setChoosenFranchiseTariff] = useState(
-    tariff[0]
-  );
-  const [chooseDgo, setChooseDgo] = useState(null);
-  const [choosenChooseDgo, setChoosenChooseDgo] = useState(null);
-  const [price, setPrice] = useState(fransizeSelect[0].value);
-
-  const handleChangeSelect = (e) => {
-    setFranchise(e.value);
-    setChoosenFranchiseTariff(tariff.find((el) => el.franchise === e.label));
-  };
-  const handleChangeDgoSelect = (e) => {
-    setChooseDgo(e.value);
-    setChoosenChooseDgo(
-      dgo.tariff.find((el) => el.discountedPayment === e.value)
-    );
-  };
+  const [franchise, setFranchise] = useState(tariff[0]);
+  const [chooseDgo, setChooseDgo] = useState({
+    limit: 0,
+    discountedPayment: 0,
+  });
+  const [price, setPrice] = useState([]);
 
   useEffect(() => {
-    setPrice(franchise + chooseDgo);
-  }, [chooseDgo, franchise]);
+    setPrice(franchise.discountedPayment + chooseDgo.discountedPayment);
+  }, [tariff, chooseDgo, franchise.discountedPayment]);
+
+  const handleChangeSelect = (e) => {
+    setFranchise(e);
+  };
+  const handleChangeDgoSelect = (e) => {
+    setChooseDgo(e);
+  };
 
   const formik = useFormik({
     initialValues: {},
@@ -77,8 +55,8 @@ const Company = ({ proposal, dgo }) => {
         insurerId,
         price,
         autoCategory,
-        tariff: choosenFranchiseTariff,
-        dgoTarrif: choosenChooseDgo,
+        tariff: franchise,
+        dgoTarrif: chooseDgo,
         registrationPlace,
         usageMonths: 0,
         taxi: false,
@@ -90,6 +68,7 @@ const Company = ({ proposal, dgo }) => {
       });
     },
   });
+
   return (
     <CardStyled component="li" sx={{ overflow: "visible" }}>
       <WrapperStyled
@@ -105,11 +84,7 @@ const Company = ({ proposal, dgo }) => {
               </Typography>
             </GridContainer>
             <GridContainerImg item xs={6} sm={12}>
-              <CardMedia
-                component="img"
-                image={`https://web.eua.in.ua/eua/api/binary/companyLogo?id=${insurerId}`}
-                title={insurerName}
-              />
+              <CompanyCardMedia id={insurerId} alt={insurerName} />
             </GridContainerImg>
             {/*
             <GridContainer item xs={6} sm={12}>
@@ -135,27 +110,36 @@ const Company = ({ proposal, dgo }) => {
           <Box className="content">
             <BoxSelect className="franchise">
               <GeneralSelect
-                id="1"
+                id="franchise"
                 lableText="Франшиза"
                 helper="Пояснення до франчизи"
                 color={theme.palette.primary.main}
-                optionsArr={fransizeSelect}
+                optionsArr={tariff}
                 changeCB={handleChangeSelect}
+                currentValue={franchise}
+                getOptionLabel={(option) => `${option.franchise} грн`}
+                getOptionValue={(option) => option.discountedPayment}
               />
             </BoxSelect>
-            {dgo && (
-              <BoxSelect>
-                <GeneralSelect
-                  id="2"
-                  lableText="Додаткове покриття"
-                  helper="Пояснення до додаткове покриття"
-                  color={theme.palette.primary.main}
-                  optionsArr={dgoSelect}
-                  changeCB={handleChangeDgoSelect}
-                />
-              </BoxSelect>
-            )}
+            <BoxSelect>
+              <GeneralSelect
+                id="2"
+                lableText="Додаткове покриття"
+                helper="Пояснення до додаткове покриття"
+                color={theme.palette.primary.main}
+                optionsArr={dgo?.tariff || []}
+                changeCB={handleChangeDgoSelect}
+                defaultValue={{ limit: 0, discountedPayment: 0 }}
+                getOptionLabel={(option) =>
+                  `+${option.limit} за ${option.discountedPayment} грн`
+                }
+                getOptionValue={(option) => option.discountedPayment}
+                currentValue={chooseDgo}
+                isDisabled={!dgo ? true : false}
+              />
+            </BoxSelect>
           </Box>
+
           {/* <GeneralCheckbox
             lableText="Свідомий захист"
             name="check"
@@ -163,7 +147,7 @@ const Company = ({ proposal, dgo }) => {
             color={theme.palette.primary.main}
           /> */}
         </BoxContent>
-        <WrapperStyled sx={{ width: "100%" }}>
+        <WrapperStyled className="footer">
           <BoxFooter>
             <Typography component="span">Вартість</Typography>
             <Typography variant="h3" component="span" className="price">
@@ -171,7 +155,6 @@ const Company = ({ proposal, dgo }) => {
             </Typography>
           </BoxFooter>
           <ButtonStyled type="submit">Придбати</ButtonStyled>
-          <ModalError />
         </WrapperStyled>
       </WrapperStyled>
       <WrapperStyled>
