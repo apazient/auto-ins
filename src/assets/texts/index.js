@@ -1,3 +1,5 @@
+export { default as infoTextTitle } from "./infoTextTitle";
+
 export { default as infoTextStart } from "./infoTextStart";
 
 export { default as infoTextMiddleFirst } from "./infoTextMiddleFirst";

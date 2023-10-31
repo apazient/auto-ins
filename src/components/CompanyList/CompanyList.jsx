@@ -2,7 +2,6 @@ import Company from "../Company/Company";
 
 const CompanyList = ({ proposals, dgos }) => {
   let dgo = null;
-  console.log(dgos);
   return (
     <ul>
       {proposals?.map((companyObject, index) => {
