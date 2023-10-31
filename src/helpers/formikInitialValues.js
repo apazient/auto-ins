@@ -5,9 +5,10 @@ export const insuredDataInitialValues = {
   birthDate: "",
   taxNumber: "",
   series: "",
-  docNumber: "",
-  docIssuedBy: "",
-  issueDate: "",
+  number: "",
+  issuedBy: "",
+  date: "",
+  record: "",
 };
 
 export const carDataFormikInitialValues = {
@@ -16,7 +17,7 @@ export const carDataFormikInitialValues = {
   graduationYear: "",
   brand: "",
   model: "",
-  vinCode: "",
+  bodyNumber: "",
 };
 
 export const homeAddressInitialValues = {

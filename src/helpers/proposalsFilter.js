@@ -18,16 +18,6 @@ export const createSelectOptionsByCompaniName = (arr) => {
     ...new Set(arr.map((compani) => compani.insurerName)),
   ];
 
-  // const newArr = companiesNames.map((el) => ({
-  //   value: el,
-  //   label: el,
-  // }));
-
-  // newArr.unshift({
-  //   value: "",
-  //   label: "Усі компанії",
-  // });
-
   return companiesNames;
 };
 export const filteredByPrice = (arr, sortFrom) => {

@@ -15,7 +15,8 @@ const FormPage = () => {
       <ContainerSectionPage component="div">
         <OutletNavaigation locationPath={location} />
         <Wrapper>
-          <CompanySmall company={location.state?.data} />
+          {/* {console.log(location.state?.data)} */}
+          {/* <CompanySmall company={location.state?.data} /> */}
 
           <Box sx={{ display: "block" }}>
             <Stepper />
