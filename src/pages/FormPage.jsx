@@ -6,9 +6,11 @@ import CompanySmall from "../components/CompanySmall/CompanySmall";
 import { Wrapper } from "./FormPageStyled";
 import Stepper from "../components/Stepper/Stepper";
 import { Box } from "@mui/material";
+import { useRef } from "react";
 
 const FormPage = () => {
-  const location = useLocation();
+  const location = useLocation();  
+  const backLinkRef = useRef(location.state?.from);  
 
   return (
     <PageContainerS>
@@ -18,7 +20,7 @@ const FormPage = () => {
           <CompanySmall company={location.state?.data} />
 
           <Box sx={{ display: "block" }}>
-            <Stepper />
+            <Stepper backLinkRef={backLinkRef}/>
           </Box>
         </Wrapper>
       </ContainerSectionPage>

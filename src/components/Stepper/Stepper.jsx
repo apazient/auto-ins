@@ -1,6 +1,7 @@
+import PropTypes from "prop-types";
 import Stack from "@mui/material/Stack";
 import Step from "@mui/material/Step";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { SpriteSVG } from "../../images/SpriteSVG";
 import { Connector, Lable, LableIcon, StepperStyled } from "./StepperStyled";
 import StepIcon from "./StepIcon";
@@ -30,7 +31,6 @@ import {
 } from "../../forms/InsuredDataForm/InsuredDataForm.styled";
 import { Typography } from "@mui/material";
 import BtnBack from "../../forms/Buttons/BtnBack";
-import { useLocation } from "react-router-dom";
 
 const steps = [
   { "Контакти": "icon-email" },
@@ -69,14 +69,13 @@ const InsuredDataSelectOptions = [
   },
 ];
 
-const Stepper = () => {
+const Stepper = ({backLinkRef}) => {
   const [activeStep, setActiveStep] = useState(0);
   const [identityCard, setIdentityCard] = useState({
     value: "Паспорт",
     label: "Паспорт",
   });
-  const location = useLocation();
-  let backLinkRef = useRef(location.state?.from);  
+    
 
   // =======================Formik======================================
   const contactsFormik = useFormik({
@@ -221,5 +220,9 @@ const Stepper = () => {
     </Stack>
   );
 };
+
+Stepper.propTypes = {  
+  backLinkRef: PropTypes.object,}
+
 
 export default Stepper;
