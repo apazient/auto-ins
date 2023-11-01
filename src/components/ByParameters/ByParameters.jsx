@@ -50,6 +50,7 @@ const ByParameters = () => {
     setVehicle(e);
     setEngineCapacity(selestAutoCategory(e.value)[0]);
   };
+
   const formik = useFormik({
     initialValues: {
       benefits: false,
@@ -61,18 +62,19 @@ const ByParameters = () => {
       const dateFrom = dateF.toISOString().substring(0, 10);
       const dateTo =
         date.getFullYear() + 1 + date.toISOString().substring(4, 10);
-      const sendObj = {
+      let sendObj = {
         customerCategory: values.benefits ? "PRIVILEGED" : "NATURAL",
         autoCategory: engineCapacity.value,
         outsideUkraine: values.foreignNumber,
-        registrationPlace: address.value,
         usageMonths: 0,
         taxi: false,
         dateFrom,
         dateTo,
         salePoint: 40629,
       };
-      console.log(sendObj);
+
+      address.value ? (sendObj.registrationPlace = address.value) : null;
+
       navigate("/prices", {
         state: { from: locationPath.pathname, data: sendObj },
       });

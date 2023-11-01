@@ -29,10 +29,12 @@ export const carDataFormValidationSchema = () =>
       ),
     brand: validationName(),
     model: Yup.string().required("Обов’язкове поле!"),
-    vinCode: Yup.string()
+    bodyNumber: Yup.string()
+      .min(5, "VIN повинен містити не менше 5 символів")
+      .max(17, "VIN повинен містити не більше 17 символів")
       .required("Обов’язкове поле!")
       .matches(
-        /^[A-HJ-NPR-Z0-9a-hj-npr-z]{17}$/,
+        /^[A-HJ-NPR-Z0-9a-hj-npr-z]{5,17}$/,
         "VIN повинен містити 17 літер або цифр і відсутній символ I, O, Q"
       ),
   });
@@ -59,12 +61,13 @@ export const insuredDataFormValidationSchema = () =>
       .matches(/^[0-9\s]*$/, "Введіть лише числа")
       .min(10, "Занадто мало чисел")
       .max(13, "Занадто багато чисел"),
-    series: Yup.string().required("Обов’язкове поле!"),
-    docNumber: Yup.string().required("Обов’язкове поле!"),
-    docIssuedBy: Yup.string().required("Обов’язкове поле!"),
-    issueDate: Yup.date()
+    series: Yup.string(),
+    number: Yup.string().required("Обов’язкове поле!"),
+    issuedBy: Yup.string().required("Обов’язкове поле!"),
+    date: Yup.date()
       .required("Обов’язкове поле!")
       .max(new Date(), "Ви не можете вибрати дату в майбутньому"),
+    record: Yup.string(),
   });
 // ===========================================================================
 export const contactsValidationSchema = () =>

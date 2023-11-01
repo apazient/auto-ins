@@ -1,7 +1,8 @@
 import PropTypes from "prop-types";
 import Stack from "@mui/material/Stack";
 import Step from "@mui/material/Step";
-import { useState } from "react";
+
+import { useEffect, useState } from "react";
 import { SpriteSVG } from "../../images/SpriteSVG";
 import { Connector, Lable, LableIcon, StepperStyled } from "./StepperStyled";
 import StepIcon from "./StepIcon";
@@ -32,50 +33,70 @@ import {
 import { Typography } from "@mui/material";
 import BtnBack from "../../forms/Buttons/BtnBack";
 
+import { useLocation } from "react-router-dom";
+import {
+  NATURALSelectOptions,
+  PRIVILEGEDSelectOptions,
+} from "../../assets/utils/isPrivilegedOptions";
+import { getCarModel } from "../../services/api";
+
 const steps = [
-  { "Контакти": "icon-email" },
+  { Контакти: "icon-email" },
   { "Дані страхувальника": "icon-passport" },
   { "Домашня адреса": "icon-home" },
   { "Дані авто": "icon-car-little" },
 ];
-const InsuredDataSelectOptions = [
-  {
-    value: "Паспорт",
-    label: "Паспорт",
-  },
-  {
-    value: "ID карта",
-    label: "ID карта",
-  },
-  {
-    value: "Посвідчення водія",
-    label: "Посвідчення водія",
-  },
-  {
-    value: "Пенсійне посвідчення",
-    label: "Пенсійне посвідчення",
-  },
-  {
-    value: "Посвідчення учасника війни",
-    label: "Посвідчення учасника війни",
-  },
-  {
-    value: "Посвідчення інваліда 2гр.",
-    label: "Посвідчення інваліда 2гр.",
-  },
-  {
-    value: "Посвідчення постраждалого на ЧАЕС (1,2 кат.)",
-    label: "Посвідчення постраждалого на ЧАЕС (1,2 кат.)",
-  },
-];
+// const NATURALSelectOptions = [
+//   {
+//     value: "Паспорт",
+//     label: "Паспорт",
+//   },
+//   {
+//     value: "ID карта",
+//     label: "ID карта",
+//   },
+//   {
+//     value: "Посвідчення водія",
+//     label: "Посвідчення водія",
+//   },
+// ];
+// const PRIVILEGEDSelectOptions = [
+//   {
+//     value: "Пенсійне посвідчення",
+//     label: "Пенсійне посвідчення",
+//   },
+//   {
+//     value: "Посвідчення учасника війни",
+//     label: "Посвідчення учасника війни",
+//   },
+//   {
+//     value: "Посвідчення інваліда 2гр.",
+//     label: "Посвідчення інваліда 2гр.",
+//   },
+//   {
+//     value: "Посвідчення постраждалого на ЧАЕС (1,2 кат.)",
+//     label: "Посвідчення постраждалого на ЧАЕС (1,2 кат.)",
+//   },
+// ];
 
-const Stepper = ({backLinkRef}) => {
+const Stepper = ({ backLinkRef }) => {
   const [activeStep, setActiveStep] = useState(0);
-  const [identityCard, setIdentityCard] = useState({
-    value: "Паспорт",
-    label: "Паспорт",
-  });
-    
+
+  const [identityCard, setIdentityCard] = useState([]);
+  const location = useLocation();
+
+  let InsuredDataSelectOptions =
+    location.state.data.customerCategory === "NATURAL"
+      ? NATURALSelectOptions
+      : PRIVILEGEDSelectOptions;
+  useEffect(() => {
+    setIdentityCard(InsuredDataSelectOptions[0]);
+  }, [InsuredDataSelectOptions]);
+
+  // const [identityCard, setIdentityCard] = useState({
+  //   value: "Паспорт",
+  //   label: "Паспорт",
+  // });
 
   // =======================Formik======================================
   const contactsFormik = useFormik({
@@ -83,17 +104,17 @@ const Stepper = ({backLinkRef}) => {
     validationSchema: contactsValidationSchema(),
     onSubmit: (values) => {
       console.log("onSubmit", values);
-      handleNext();      
+      handleNext();
     },
   });
 
   const insuredDataFormik = useFormik({
     initialValues: insuredDataInitialValues,
+    validationSchema: insuredDataFormValidationSchema(),
     onSubmit: (values) => {
       handleNext();
       console.log(values);
     },
-    validationSchema: insuredDataFormValidationSchema(),
   });
 
   const homeAddressFormik = useFormik({
@@ -108,6 +129,7 @@ const Stepper = ({backLinkRef}) => {
   const carDataFormik = useFormik({
     initialValues: carDataFormikInitialValues,
     onSubmit: (values) => {
+      getCarModel("bmw e65");
       const allValues = {
         ...contactsFormik.values,
         ...insuredDataFormik.values,
@@ -119,8 +141,6 @@ const Stepper = ({backLinkRef}) => {
     },
     validationSchema: carDataFormValidationSchema(),
   });
-
-  // ===================================================================
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -205,24 +225,24 @@ const Stepper = ({backLinkRef}) => {
           <YellowButtonStyled onClick={handleSubmit}>
             Підтвердити
           </YellowButtonStyled>
-          {activeStep === 0 ?
-           (<BtnBack backLinkRef={backLinkRef} />)
-            :
-            (<WhiteButtonStyled onClick={handleBack}>
+          {activeStep === 0 ? (
+            <BtnBack backLinkRef={location.state?.from} />
+          ) : (
+            <WhiteButtonStyled onClick={handleBack}>
               <WhiteButtonSVGStyled component="span">
-              <SpriteSVG name="icon-arrow-left" />
-            </WhiteButtonSVGStyled>
-            Назад
-          </WhiteButtonStyled>)
-            }         
+                <SpriteSVG name="icon-arrow-left" />
+              </WhiteButtonSVGStyled>
+              Назад
+            </WhiteButtonStyled>
+          )}
         </ButtonContainerStyled>
       </FormStyled>
     </Stack>
   );
 };
 
-Stepper.propTypes = {  
-  backLinkRef: PropTypes.object,}
-
+Stepper.propTypes = {
+  backLinkRef: PropTypes.object,
+};
 
 export default Stepper;

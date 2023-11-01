@@ -35,7 +35,7 @@ import {
 
 import Text from "./Text";
 
-import { infoTextStart } from "../../assets/texts/index";
+import { infoTextStart, infoTextTitle } from "../../assets/texts/index";
 import { infoTextMiddleFirst } from "../../assets/texts/index";
 import { infoTextMiddleSecond } from "../../assets/texts/index";
 import { links } from "../../assets/texts/index";
@@ -92,9 +92,9 @@ const InfoSection = () => {
             collapsedSize={display()}
             className="container"
           >
+            <Text text={infoTextTitle} />
             <Text text={infoTextStart} />
             <Text text={infoTextMiddleFirst} />
-
             {MOBILE && (
               <>
                 <Text text={infoTextMiddleSecond} />

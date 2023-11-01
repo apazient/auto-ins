@@ -28,6 +28,7 @@ const OutletNavigation = ({ locationPath }) => {
     .map((crumb) => {
       // currentLink = +`/${crumb}`;
       crumb === "prices" ? (crumb = "Калькулятор") : (crumb = "Ваші дані");
+
       return (
         <NavLink
           key={crumb}

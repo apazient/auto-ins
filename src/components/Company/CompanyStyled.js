@@ -56,6 +56,9 @@ export const WrapperStyled = styled(Box)(({ theme }) => ({
       width: "256px",
     },
   },
+  // "& .footer": {
+  //   width: "100%",
+  // },
 }));
 
 export const GridContainer = styled(Grid)(({ theme }) => ({

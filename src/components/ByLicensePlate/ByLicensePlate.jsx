@@ -20,7 +20,6 @@ const ByLicensePlate = () => {
       benefits: false,
     },
     onSubmit: (values) => {
-      console.log(values);
       navigate("/prices", { state: { from: locationPath.pathname } });
     },
     validationSchema: Yup.object().shape({

@@ -1,5 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import { QueryClient } from "react-query";
+import { responseOSAGONormalize } from "../../helpers/dataNormalize/responseOSAGONormalize";
+import { mergeObjectsById } from "../../helpers/mergeObjectsById";
+
 import { instance } from "../api";
 // повертає масив об'єктів в яких заборонені кросс-продажі
 const getPolicyByParams = async (params) => {
@@ -22,10 +24,10 @@ const getPolicyByParams = async (params) => {
       // customerCategory: "NATURAL",
     },
   });
-
-  return data.filter((el) => {
-    return el.crossSell === false;
-  });
+  const newData = data
+    .filter((el) => el.crossSell === false)
+    .filter((el) => el.discountedPayment !== 0);
+  return mergeObjectsById(newData, responseOSAGONormalize);
 };
 
 export const usePolicyByParams = (policyParams) => {

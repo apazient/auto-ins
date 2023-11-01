@@ -40,7 +40,11 @@ const AccordionSection = () => {
                   </Box>
                 }
               >
-                <Typography variant="subtitle1" component="h3">
+                <Typography
+                  variant="subtitle1"
+                  component="h3"
+                  className="subtitle"
+                >
                   {question}
                 </Typography>
               </AccordionsSummary>
