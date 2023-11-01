@@ -27,6 +27,7 @@ const Company = ({ proposal, dgo = [] }) => {
   const theme = useTheme();
   const { insurerId, insurerName, tariff, registrationPlace, autoCategory } =
     proposal;
+  // console.log(tariff);
   // const franchizeSelect = useMemo(() => tariff.map((el) => el), [tariff]);
 
   const [checkSavety, setCheckSavety] = useState(false);

@@ -5,7 +5,7 @@ import ProposalsFilter from "../ProposalsFilter/ProposalsFilter";
 import { SkeletonStyled } from "../Skeleton/Skeleton";
 export const PricePageContent = ({ proposal }) => {
   const { data, isSuccess, isLoading } = usePolicyByParams(proposal);
-
+  console.log(data);
   const [companies, setCompanies] = useState([]);
   const [dgo, setDgo] = useState([]);
 

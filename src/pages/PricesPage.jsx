@@ -4,23 +4,19 @@ import OutletNavigation from "../components/OutletNavigation/OutletNavigation";
 import { CostCalculation } from "../components/CostCalculation/CostCalculation";
 
 import { useRef } from "react";
-import PricePageWrapper from "../components/PricePageWrapper/PricePageWrapper";
+import OutletPageWrapper from "../components/OutletPageWrapper";
 
 import PricePageContent from "../components/PricePageContent";
 
 const PricesPage = () => {
   const location = useLocation();
   const { current } = useRef(location.state?.data);
-  console.log(location);
 
   return (
-    <>
-      <PricePageWrapper>
-        <OutletNavigation locationPath={location} />
-        <CostCalculation />
-        <PricePageContent proposal={current} />
-      </PricePageWrapper>
-    </>
+    <OutletPageWrapper>
+      <CostCalculation />
+      <PricePageContent proposal={current} />
+    </OutletPageWrapper>
   );
 };
 export default PricesPage;

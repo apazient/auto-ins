@@ -14,7 +14,7 @@
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.14.10",
-    "@tanstack/react-query": "^5.0.5",   
+    "@tanstack/react-query": "^5.0.5",
     "axios": "^1.5.0",
     "dotenv": "^16.3.1",
     "formik": "^2.4.5",
@@ -31,10 +31,11 @@
     "react-scroll": "^1.8.9",
     "react-select": "^5.7.5",
     "react-spinner": "^0.2.7",
-    "yup": "^1.2.0"
+    "yup": "^1.2.0",
+    "zustand": "^4.4.5"
   },
   "devDependencies": {
-     "@tanstack/react-query-devtools": "^5.1.0",
+    "@tanstack/react-query-devtools": "^5.1.0",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@vitejs/plugin-react": "^4.0.3",
