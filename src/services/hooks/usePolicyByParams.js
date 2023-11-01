@@ -24,9 +24,9 @@ const getPolicyByParams = async (params) => {
       // customerCategory: "NATURAL",
     },
   });
-  const newData = data.filter((el) => {
-    return el.crossSell === false;
-  });
+  const newData = data
+    .filter((el) => el.crossSell === false)
+    .filter((el) => el.discountedPayment !== 0);
   return mergeObjectsById(newData, responseOSAGONormalize);
 };
 

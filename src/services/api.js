@@ -42,6 +42,6 @@ export const getCarModel = async (carModel) => {
       query: carModel,
     },
   });
-  console.log(data);
+
   // return data;
 };

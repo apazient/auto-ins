@@ -74,7 +74,6 @@ const ByParameters = () => {
       };
 
       address.value ? (sendObj.registrationPlace = address.value) : null;
-      console.log(sendObj);
 
       navigate("/prices", {
         state: { from: locationPath.pathname, data: sendObj },
