@@ -4,7 +4,7 @@ import { BoxIconS } from "./BtnBackStyled";
 import { WhiteButton } from "../../style/Global.styled";
 
 const BtnBack = ({backLinkRef}) => {
-  
+    
   return (
     <>
       {backLinkRef?.current ? (          

@@ -16,6 +16,7 @@ export const FormContainerS = styled(FormContainer)(({ theme }) => ({
     [theme.breakpoints.up("sm")]: {
       display: "flex",
       justifyContent: "space-between",
+      alignItems: "center",
     },
   },
 }));
@@ -49,8 +50,10 @@ export const Item = styled(Paper)(({ theme }) => ({
 
 export const YellowButtonS = styled(YellowButton)(({ theme }) => ({
   width: "100%",
+  height: "56px",
   [theme.breakpoints.up("sm")]: {
     width: "236px",
+    height: "59px",
     padding: "16px 0",
     fontSize: "18px",
   },

@@ -5,8 +5,10 @@ import {
   StackS,
   YellowButtonS,
 } from "./CostCalculationStyled";
+import { useNavigate } from "react-router-dom";
 
 export const CostCalculation = () => {
+  const navigate = useNavigate();
   const arr = ["Легкове авто", "до 1600 см3", "м. Київ"];
   return (
     <FormContainerS>
@@ -39,7 +41,9 @@ export const CostCalculation = () => {
             );
           })}
         </StackS>
-        <YellowButtonS>Змінити параметри</YellowButtonS>
+        <YellowButtonS type="submit" onClick={() => navigate("/")}>
+          Змінити параметри
+        </YellowButtonS>
       </Box>
     </FormContainerS>
   );

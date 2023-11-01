@@ -72,8 +72,10 @@ const ByParameters = () => {
         dateTo,
         salePoint: 40629,
       };
+
       address.value ? (sendObj.registrationPlace = address.value) : null;
       console.log(sendObj);
+
       navigate("/prices", {
         state: { from: locationPath.pathname, data: sendObj },
       });

@@ -1,5 +1,7 @@
+import PropTypes from "prop-types";
 import Stack from "@mui/material/Stack";
 import Step from "@mui/material/Step";
+
 import { useEffect, useState } from "react";
 import { SpriteSVG } from "../../images/SpriteSVG";
 import { Connector, Lable, LableIcon, StepperStyled } from "./StepperStyled";
@@ -30,12 +32,14 @@ import {
 } from "../../forms/InsuredDataForm/InsuredDataForm.styled";
 import { Typography } from "@mui/material";
 import BtnBack from "../../forms/Buttons/BtnBack";
+
 import { useLocation } from "react-router-dom";
 import {
   NATURALSelectOptions,
   PRIVILEGEDSelectOptions,
 } from "../../assets/utils/isPrivilegedOptions";
 import { getCarModel } from "../../services/api";
+
 
 const steps = [
   { Контакти: "icon-email" },
@@ -76,8 +80,9 @@ const steps = [
 //   },
 // ];
 
-const Stepper = () => {
+const Stepper = ({backLinkRef}) => {
   const [activeStep, setActiveStep] = useState(0);
+
   const [identityCard, setIdentityCard] = useState([]);
   const location = useLocation();
 
@@ -88,6 +93,13 @@ const Stepper = () => {
   useEffect(() => {
     setIdentityCard(InsuredDataSelectOptions[0]);
   }, [InsuredDataSelectOptions]);
+
+  const [identityCard, setIdentityCard] = useState({
+    value: "Паспорт",
+    label: "Паспорт",
+  });
+    
+
 
   // =======================Formik======================================
   const contactsFormik = useFormik({
@@ -133,7 +145,7 @@ const Stepper = () => {
     validationSchema: carDataFormValidationSchema(),
   });
 
-  // ===================================================================
+
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -233,5 +245,9 @@ const Stepper = () => {
     </Stack>
   );
 };
+
+Stepper.propTypes = {  
+  backLinkRef: PropTypes.object,}
+
 
 export default Stepper;

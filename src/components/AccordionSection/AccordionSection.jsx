@@ -7,10 +7,10 @@ import {
   AccordionsDetails,
   AccordionsSummary,
   ContAccordion,
-  MainText,
 } from "./AccordionSectionStyle";
 import { faq } from "../../assets/utils/faq";
-export const AccordionSection = () => {
+
+const AccordionSection = () => {
   const [expanded, setExpanded] = useState(false);
 
   const handleChange = (panel) => (event, isExpanded) => {
@@ -20,7 +20,9 @@ export const AccordionSection = () => {
   return (
     <section>
       <ContAccordion id="питання-відповіді">
-        <MainText variant="h2">Питання - Відповіді</MainText>
+        <Typography variant="h2" className="main-title">
+          Питання - Відповіді
+        </Typography>
         {faq.map(({ question, answer }, index) => {
           return (
             <Accordions
@@ -38,7 +40,11 @@ export const AccordionSection = () => {
                   </Box>
                 }
               >
-                <Typography variant="subtitle1" component="h3">
+                <Typography
+                  variant="subtitle1"
+                  component="h3"
+                  className="subtitle"
+                >
                   {question}
                 </Typography>
               </AccordionsSummary>
@@ -52,3 +58,5 @@ export const AccordionSection = () => {
     </section>
   );
 };
+
+export default AccordionSection;

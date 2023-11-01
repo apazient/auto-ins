@@ -17,12 +17,10 @@ import BurgerMenu from "../BurgerMenu/BurgerMenu";
 import { useNavigate } from "react-router-dom";
 
 const Header = () => {
-  const theme = useTheme();
-  // const isLargeScreen = useMediaQuery(`${theme.breakpoints.up("ml")}`);
-  const isLargeScreen = useMediaQuery(`${theme.breakpoints.up("lg")}`);
-  // const isLargeScreen = useMediaQuery(`(min-width: 1160px)`);
+  const theme = useTheme();  
+  const isLargeScreen = useMediaQuery(`${theme.breakpoints.up("lg")}`);  
   const navigate = useNavigate();
-  const handleScrollToSection = (chapter) => {
+  const handleScrollToSection = (chapter) => {    
     navigate("/", { state: { id: chapter } });
   };
 
@@ -40,8 +38,7 @@ const Header = () => {
             <>
               <UlListHS>
                 <LiItemHS
-                  disablePadding={true}
-                  onClick={() => handleScrollToSection("переваги")}
+                  disablePadding={true}                  
                 >
                   <ScrollLink
                     to="переваги"
@@ -49,6 +46,7 @@ const Header = () => {
                     duration={700}
                     style={{ cursor: "pointer" }}
                     activeClass="active"
+                    onClick={() => handleScrollToSection("переваги")}
                   >
                     <ChapterSpanHS className="chapterSpan">
                       Переваги
@@ -56,8 +54,7 @@ const Header = () => {
                   </ScrollLink>
                 </LiItemHS>
                 <LiItemHS
-                  disablePadding={true}
-                  onClick={() => handleScrollToSection("партнери")}
+                  disablePadding={true}                  
                 >
                   <ScrollLink
                     to="партнери"
@@ -65,6 +62,7 @@ const Header = () => {
                     duration={700}
                     style={{ cursor: "pointer" }}
                     activeClass="active"
+                    onClick={() => handleScrollToSection("партнери")}
                   >
                     <ChapterSpanHS className="chapterSpan">
                       Партнери
@@ -72,8 +70,7 @@ const Header = () => {
                   </ScrollLink>
                 </LiItemHS>
                 <LiItemHS
-                  disablePadding={true}
-                  onClick={() => handleScrollToSection("питання-відповіді")}
+                  disablePadding={true}                  
                 >
                   <ScrollLink
                     to="питання-відповіді"
@@ -81,6 +78,7 @@ const Header = () => {
                     duration={700}
                     style={{ cursor: "pointer" }}
                     activeClass="active"
+                    onClick={() => handleScrollToSection("питання-відповіді")}
                   >
                     <ChapterSpanHS className="chapterSpan">
                       Питання-відповіді
