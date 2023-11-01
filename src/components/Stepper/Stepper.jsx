@@ -40,7 +40,6 @@ import {
 } from "../../assets/utils/isPrivilegedOptions";
 import { getCarModel } from "../../services/api";
 
-
 const steps = [
   { Контакти: "icon-email" },
   { "Дані страхувальника": "icon-passport" },
@@ -80,7 +79,7 @@ const steps = [
 //   },
 // ];
 
-const Stepper = ({backLinkRef}) => {
+const Stepper = ({ backLinkRef }) => {
   const [activeStep, setActiveStep] = useState(0);
 
   const [identityCard, setIdentityCard] = useState([]);
@@ -94,12 +93,10 @@ const Stepper = ({backLinkRef}) => {
     setIdentityCard(InsuredDataSelectOptions[0]);
   }, [InsuredDataSelectOptions]);
 
-  const [identityCard, setIdentityCard] = useState({
-    value: "Паспорт",
-    label: "Паспорт",
-  });
-    
-
+  // const [identityCard, setIdentityCard] = useState({
+  //   value: "Паспорт",
+  //   label: "Паспорт",
+  // });
 
   // =======================Formik======================================
   const contactsFormik = useFormik({
@@ -144,8 +141,6 @@ const Stepper = ({backLinkRef}) => {
     },
     validationSchema: carDataFormValidationSchema(),
   });
-
-
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -246,8 +241,8 @@ const Stepper = ({backLinkRef}) => {
   );
 };
 
-Stepper.propTypes = {  
-  backLinkRef: PropTypes.object,}
-
+Stepper.propTypes = {
+  backLinkRef: PropTypes.object,
+};
 
 export default Stepper;
