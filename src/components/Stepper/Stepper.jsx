@@ -226,7 +226,7 @@ const Stepper = ({ backLinkRef }) => {
             Підтвердити
           </YellowButtonStyled>
           {activeStep === 0 ? (
-            <BtnBack backLinkRef={location.state?.from} />
+            <BtnBack backLinkRef={backLinkRef} />
           ) : (
             <WhiteButtonStyled onClick={handleBack}>
               <WhiteButtonSVGStyled component="span">
