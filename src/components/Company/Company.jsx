@@ -64,7 +64,7 @@ const Company = ({ proposal, dgo = [] }) => {
       };
 
       navigate("/form", {
-        state: { from: location, data: sendObj },
+        state: { from: location, data: { ...location.state.data, ...sendObj } },
       });
     },
   });

@@ -24,7 +24,7 @@ const CarDataForm = ({ formik }) => {
         />
         <GeneralInput id="brand" lableText="Марка*:" formikData={formik} />
         <GeneralInput id="model" lableText="Модель*:" formikData={formik} />
-        <GeneralInput id="vinCode" lableText="VIN*:" formikData={formik} />
+        <GeneralInput id="bodyNumber" lableText="VIN*:" formikData={formik} />
       </InputContBoxStyled>
     </>
   );

@@ -6,6 +6,8 @@ import PropTypes from "prop-types";
 const InsuredDataForm = ({ formik, selectData }) => {
   const { InsuredDataSelectOptions, identityCard, setIdentityCard } =
     selectData;
+  const isID_PASSPORT = identityCard.value === "ID_PASSPORT";
+
   return (
     <>
       <InputContBoxStyled>
@@ -31,19 +33,20 @@ const InsuredDataForm = ({ formik, selectData }) => {
           currentValue={identityCard}
         />
         <DocInputsStyled>
-          <GeneralInput id="series" lableText="Серія*:" formikData={formik} />
+          {!isID_PASSPORT && (
+            <GeneralInput id="series" lableText="Серія*:" formikData={formik} />
+          )}
+          <GeneralInput id="number" lableText="Номер*:" formikData={formik} />
+          {isID_PASSPORT && (
+            <GeneralInput id="record" lableText="УНЗР*:" formikData={formik} />
+          )}
           <GeneralInput
-            id="docNumber"
-            lableText="Номер*:"
-            formikData={formik}
-          />
-          <GeneralInput
-            id="docIssuedBy"
+            id="issuedBy"
             lableText="Ким виданий*:"
             formikData={formik}
           />
           <GeneralInput
-            id="issueDate"
+            id="date"
             lableText="Дата видачі*:"
             formikData={formik}
             type="date"

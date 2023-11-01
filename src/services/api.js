@@ -36,3 +36,12 @@ export const getCityByName = async (cityName) => {
   });
   return data;
 };
+export const getCarModel = async (carModel) => {
+  const { data } = await instance.get("/auto_model/maker_and_model", {
+    params: {
+      query: carModel,
+    },
+  });
+  console.log(data);
+  // return data;
+};
