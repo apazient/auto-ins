@@ -101,7 +101,7 @@ const Stepper = ({ backLinkRef }) => {
   // =======================Formik======================================
   const contactsFormik = useFormik({
     initialValues: contactsInitialValues,
-    validationSchema: contactsValidationSchema(),
+    // validationSchema: contactsValidationSchema(),
     onSubmit: (values) => {
       console.log("onSubmit", values);
       handleNext();
@@ -110,7 +110,7 @@ const Stepper = ({ backLinkRef }) => {
 
   const insuredDataFormik = useFormik({
     initialValues: insuredDataInitialValues,
-    validationSchema: insuredDataFormValidationSchema(),
+    // validationSchema: insuredDataFormValidationSchema(),
     onSubmit: (values) => {
       handleNext();
       console.log(values);
@@ -123,11 +123,11 @@ const Stepper = ({ backLinkRef }) => {
       handleNext();
       console.log(values);
     },
-    validationSchema: HomeAddressFormValidationSchema(),
+    // validationSchema: HomeAddressFormValidationSchema(),
   });
 
   const carDataFormik = useFormik({
-    initialValues: carDataFormikInitialValues,
+    // initialValues: carDataFormikInitialValues,
     onSubmit: (values) => {
       getCarModel("bmw e65");
       const allValues = {
@@ -139,7 +139,7 @@ const Stepper = ({ backLinkRef }) => {
       console.log(allValues);
       alert(JSON.stringify(allValues, null, 2));
     },
-    validationSchema: carDataFormValidationSchema(),
+    // validationSchema: carDataFormValidationSchema(),
   });
 
   const handleNext = () => {
