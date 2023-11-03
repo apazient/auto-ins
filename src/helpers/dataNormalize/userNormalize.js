@@ -1,8 +1,12 @@
 export const userNormalize = (user) => {
   return {
-    userId: user.id,
-    salePoint: user.salePoint.id,
-    companyId: user.salePoint.company.id,
-    companyType: user.salePoint.company.type,
+    user: { id: user.id },
+    salePoint: {
+      id: user.salePoint.id,
+      company: {
+        id: user.salePoint.company.id,
+        type: user.salePoint.company.type,
+      },
+    },
   };
 };

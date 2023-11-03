@@ -15,6 +15,8 @@ import {
   selectCategoryOptions,
   selestAutoCategory,
 } from "../../helpers/ByParameters/selectOptions";
+import { useDispatch } from "react-redux";
+import { osagoByParams } from "../../redux/Calculator/operations";
 
 const ByParameters = () => {
   const navigate = useNavigate();
@@ -27,6 +29,7 @@ const ByParameters = () => {
   const [allAddress, setAllAddress] = useState([]);
   const [address, setAddress] = useState({ label: "", value: "" });
   const [qweryText, setQweryText] = useState("");
+  const dispatch = useDispatch();
 
   useEffect(
     () => async () => {
@@ -78,6 +81,15 @@ const ByParameters = () => {
       navigate("/prices", {
         state: { from: locationPath.pathname, data: sendObj },
       });
+
+      dispatch(osagoByParams(sendObj))
+        .unwrap()
+        .catch((error) => {
+          const { message } = error.response.data;
+          if (message) {
+            console.log(message);
+          }
+        });
     },
   });
 
