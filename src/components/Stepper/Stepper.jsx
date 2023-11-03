@@ -127,7 +127,7 @@ const Stepper = ({ backLinkRef }) => {
   });
 
   const carDataFormik = useFormik({
-    // initialValues: carDataFormikInitialValues,
+    initialValues: carDataFormikInitialValues,
     onSubmit: (values) => {
       getCarModel("bmw e65");
       const allValues = {
