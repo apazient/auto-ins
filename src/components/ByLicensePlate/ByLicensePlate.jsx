@@ -10,22 +10,59 @@ import {
 import HelpCircle from "../HelpCircle/HelpCircle";
 import { GeneralCheckbox } from "../GeneralCheckbox/GeneralCheckbox";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { osagoByDn } from "../../redux/Calculator/operations";
+
+import { setIsLoading } from "../../redux/Global/globalSlice";
+import { getIsLoading } from "../../redux/Global/selectors";
+import { getTariffPolicyChoose } from "../../redux/Calculator/selectors";
+import { useEffect } from "react";
 
 const ByLicensePlate = () => {
   const navigate = useNavigate();
   const locationPath = useLocation();
+  const dispatch = useDispatch();
+  const isLoading = useSelector(getIsLoading);
+  const getData = useSelector(getTariffPolicyChoose);
+
+  useEffect(() => {
+    if (getData) {
+      navigate("/prices", { state: { from: locationPath.pathname } });
+    }
+  }, [getData, locationPath.pathname, navigate]);
+
   const formik = useFormik({
     initialValues: {
       licensePlate: "",
       benefits: false,
     },
     onSubmit: (values) => {
-      navigate("/prices", { state: { from: locationPath.pathname } });
+      const dateF = new Date(Date.now() + 86400000);
+      const date = new Date();
+      const dateFrom = dateF.toISOString().substring(0, 10);
+      const dateTo =
+        date.getFullYear() + 1 + date.toISOString().substring(4, 10);
+      let sendObj = {
+        customerCategory: values.benefits ? "PRIVILEGED" : "NATURAL",
+        stateNumber: decodeURIComponent(values.licensePlate),
+        dateFrom,
+        dateTo,
+      };
+
+      dispatch(setIsLoading(true));
+      dispatch(osagoByDn(sendObj))
+        .then(() => {
+          dispatch(setIsLoading(false));
+        })
+        .catch(() => {
+          dispatch(setIsLoading(false));
+        });
     },
     validationSchema: Yup.object().shape({
       licensePlate: Yup.string().required("Required field!"),
     }),
   });
+
   return (
     <div>
       <FormStyled onSubmit={formik.handleSubmit}>
@@ -50,7 +87,9 @@ const ByLicensePlate = () => {
           helper="Учасники війни; Інваліди II групи; Громадяни України, які постраждали внаслідок Чорнобильської катастрофи, віднесені до I та II категорії; 
           Пенсіонери"
         />
-        <SubmitButton type="submit">Розрахувати вартість</SubmitButton>
+        <SubmitButton type="submit" disabled={isLoading}>
+          Розрахувати вартість
+        </SubmitButton>
       </FormStyled>
     </div>
   );

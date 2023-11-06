@@ -3,10 +3,11 @@ import { loginThunk } from "./operations";
 
 const initialState = {
   isLoading: false,
-  selected: null,
+  isModalErrorOpen: false,
   user: null,
-  globalUserData: null,
+  globalCustomerData: null,
 };
+
 export const globalSlice = createSlice({
   name: "global",
   initialState,
@@ -17,6 +18,9 @@ export const globalSlice = createSlice({
     setGlobalUserData: (state, { payload }) => {
       state.globalUserData = payload;
     },
+    setIsModalErrorOpen: (state, { payload }) => {
+      state.isModalErrorOpen = payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(loginThunk.fulfilled, (state, { payload }) => {
@@ -26,5 +30,5 @@ export const globalSlice = createSlice({
   },
 });
 
-export const { setIsLoading } = globalSlice.actions;
+export const { setIsModalErrorOpen, setIsLoading } = globalSlice.actions;
 export const globalReducer = globalSlice.reducer;

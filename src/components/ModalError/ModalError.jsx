@@ -4,7 +4,14 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { SpriteSVG } from "../../images/SpriteSVG";
+import { setIsModalErrorOpen } from "../../redux/Global/globalSlice";
+import {
+  getIsLoading,
+  getIsModalErrorOpen,
+} from "../../redux/Global/selectors";
+
 import { BlueButton } from "../../style/Global.styled";
 import {
   BoxImgYellow,
@@ -14,10 +21,13 @@ import {
 } from "./ModalErrorStyled";
 
 const ModalError = () => {
-  const [open, setOpen] = useState(false);
+  const isError = useSelector(getIsModalErrorOpen);
+  const [open, setOpen] = useState(isError);
+  const dispatch = useDispatch();
 
   const handleClose = () => {
     setOpen(false);
+    dispatch(setIsModalErrorOpen(false));
   };
 
   return (

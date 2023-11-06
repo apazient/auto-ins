@@ -9,7 +9,8 @@ import { useLocation } from "react-router-dom";
 import Partners from "../components/Partners/Partners";
 import { useDispatch, useSelector } from "react-redux";
 import { loginThunk } from "../redux/Global/operations";
-import { getUser } from "../redux/Global/selectors";
+import { getIsModalErrorOpen, getUser } from "../redux/Global/selectors";
+import ModalError from "../components/ModalError/ModalError";
 //import { getPolicyByParamsInUa } from "../services/api";
 
 const HomePage = () => {
@@ -17,6 +18,8 @@ const HomePage = () => {
   const { id } = state || {};
   const dispatch = useDispatch();
   const user = useSelector(getUser);
+  const isError = useSelector(getIsModalErrorOpen);
+
   useEffect(() => {
     let element = document.getElementById(id);
     if (element) {
@@ -37,14 +40,17 @@ const HomePage = () => {
   }, [dispatch]);
 
   return (
-    <main>
-      <HeroTabs />
-      <AdvatagesSection />
-      <CheckInsSection />
-      <Partners />
-      <AccordionSection />
-      <InfoSection />
-    </main>
+    <>
+      <main>
+        <HeroTabs />
+        <AdvatagesSection />
+        <CheckInsSection />
+        <Partners />
+        <AccordionSection />
+        <InfoSection />
+      </main>
+      {isError && <ModalError />}
+    </>
   );
 };
 
