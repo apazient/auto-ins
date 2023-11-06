@@ -1,5 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { autoByNumber, osagoByDn, osagoByParams } from "./operations";
+import {
+  autoByNumber,
+  chooseVclTariffDGO,
+  osagoByDn,
+  osagoByParams,
+} from "./operations";
 
 const initialState = {
   tariffPolicyChoose: null,
@@ -26,6 +31,9 @@ export const globalSlice = createSlice({
       })
       .addCase(autoByNumber.fulfilled, (state, { payload }) => {
         state.autoByNumber = payload;
+      })
+      .addCase(chooseVclTariffDGO.fulfilled, (state, { payload }) => {
+        state.tariffVcl = payload;
       });
   },
 });

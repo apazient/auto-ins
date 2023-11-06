@@ -19,8 +19,7 @@ export const CostCalculation = () => {
   const dispatch = useDispatch();
   const stateNumber = useSelector(getStateNumber);
   const [autoByNumberRes] = useSelector(getAutoByNumber);
-  console.log(autoByNumberRes);
-  console.log(stateNumber);
+
   useEffect(() => {
     dispatch(autoByNumber(stateNumber));
   }, [dispatch, stateNumber]);

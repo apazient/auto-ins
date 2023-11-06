@@ -1,7 +1,14 @@
+import { useSelector } from "react-redux";
+import {
+  getTariffPolicyChoose,
+  getTariffVcl,
+} from "../../redux/Calculator/selectors";
 import Company from "../Company/Company";
 
-const CompanyList = ({ proposals, dgos }) => {
+const CompanyList = () => {
   let dgo = null;
+  const proposals = useSelector(getTariffPolicyChoose);
+  const dgos = useSelector(getTariffVcl);
   return (
     <ul>
       {proposals?.map((companyObject, index) => {

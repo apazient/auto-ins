@@ -1,5 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { forEach } from "lodash";
+import { responseDGONormalize } from "../../helpers/dataNormalize/responseDGONormalize";
 import { responseOSAGONormalize } from "../../helpers/dataNormalize/responseOSAGONormalize";
+import { getAutoKindAndLimit } from "../../helpers/getautoKindAndLimit";
 import { mergeObjectsById } from "../../helpers/mergeObjectsById";
 import { instance } from "../../services/api";
 import { setIsModalErrorOpen } from "../Global/globalSlice";
@@ -46,6 +49,24 @@ export const osagoByDn = createAsyncThunk(
   }
 );
 
+export const chooseVclTariffDGO = createAsyncThunk(
+  "calculator/tariffDGO",
+  async (body, { rejectWithValue }) => {
+    try {
+      const { autoCategory, ...rest } = body;
+      const cat = getAutoKindAndLimit(autoCategory);
+      const { data } = await instance.post("/tariff/choose/vcl", {
+        ...rest,
+        ...cat,
+      });
+      const newData = data.filter((el) => el.crossSell === false);
+      return mergeObjectsById(newData, responseDGONormalize);
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
 export const autoByNumber = createAsyncThunk(
   "calculator/autoByNumber",
   async (body, { rejectWithValue }) => {
@@ -55,7 +76,6 @@ export const autoByNumber = createAsyncThunk(
           query: body,
         },
       });
-      console.log(data);
       return data;
     } catch (error) {
       return rejectWithValue(error.response.data);
