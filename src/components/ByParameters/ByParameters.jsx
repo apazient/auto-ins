@@ -8,31 +8,31 @@ import {
 import GeneralSelect from "../GeneralSelect/GeneralSelect";
 import { GeneralCheckbox } from "../GeneralCheckbox/GeneralCheckbox";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { getCityByName } from "../../services/api";
 // import debounce from "lodash.debounce";
 import {
-  selectAddressOptions,
   selectCategoryOptions,
-  selestAutoCategory,
+  selectAutoCategory,
 } from "../../helpers/ByParameters/selectOptions";
 import { useDispatch, useSelector } from "react-redux";
-import { osagoByParams } from "../../redux/Calculator/operations";
 import { getAddress } from "../../redux/byParameters/operations";
-import { setAddress, setQueryText, setSubmitObj } from "../../redux/byParameters/byParametersSlice";
+import { setAddress, setAddressOptions, setEngineCapacity, setQueryText, setSubmitObj, setVehicle } from "../../redux/byParameters/byParametersSlice";
+import { setStateNumber } from "../../redux/Calculator/calculatorSlice";
 
 const ByParameters = () => {
   const navigate = useNavigate();
   const locationPath = useLocation();
   const dispatch = useDispatch();
-  const queryText = useSelector(state=>state.byParameters.queryText)
-  const allAddress = useSelector(state=>state.byParameters.addressOptions)
-  const address = useSelector(state=>state.byParameters.address)
+  const {
+    queryText, addressOptions: allAddress, address, vehicle, engineCapacity, foreignNumber, benefits
+  } = useSelector(state => state.byParameters)
+  // const queryText = useSelector(state=>state.byParameters.queryText)
+  // const allAddress = useSelector(state=>state.byParameters.addressOptions)
+  // const address = useSelector(state=>state.byParameters.address)
   
-  const [vehicle, setVehicle] = useState(selectCategoryOptions[0]);
-  const [engineCapacity, setEngineCapacity] = useState(
-    selestAutoCategory(vehicle.value)[0]
-  );
+  // const [vehicle, setVehicle] = useState(selectCategoryOptions[0]);
+  // const [engineCapacity, setEngineCapacity] = useState(
+  //   selectAutoCategory(vehicle.value)[0]
+  // );
   // const [allAddress, setAllAddress] = useState([]);
   // const [address, setAddress] = useState({ label: "", value: "" });
   // const [qweryText, setQweryText] = useState("");
@@ -52,22 +52,32 @@ const ByParameters = () => {
   //   [qweryText]
   // );
 
+  const handleChangeengineCapacity = (e) => {
+    dispatch(setEngineCapacity(e));
+  };
   const handleChangeVehicle = (e) => {
-    setVehicle(e);
-    setEngineCapacity(selestAutoCategory(e.value)[0]);
+    dispatch(setVehicle(e));
+    dispatch(setEngineCapacity(selectAutoCategory(e.value)[0]));
   };
   const handleChangeQueryText = (e) => {
-    dispatch(setQueryText(e));
-    dispatch(getAddress(e));
+    dispatch(setQueryText(e.trim()));
+    if (e) {
+      dispatch(getAddress(e));
+    }
+    if (!e) {
+      dispatch(setAddressOptions([]));
+    }
   };
   const changeAddress = (e) => {
-    dispatch(setAddress(e))
+    if (queryText) {
+      dispatch(setAddress(e))
+    }
   };
 
   const formik = useFormik({
     initialValues: {
-      benefits: false,
-      foreignNumber: false,
+      benefits,
+      foreignNumber,
     },
     onSubmit: (values) => {
       const dateF = new Date(Date.now() + 86400000);
@@ -86,19 +96,14 @@ const ByParameters = () => {
         salePoint: 40629,
       };
       address.value ? (sendObj.registrationPlace = address.value) : null;
+
       console.log(sendObj);
       dispatch(setSubmitObj(sendObj))
+      dispatch(setStateNumber(""))
+
       navigate("/prices", {
         state: { from: locationPath.pathname, data: sendObj },
       });
-      // dispatch(osagoByParams(sendObj))
-      //   .unwrap()
-      //   .catch((error) => {
-      //     const { message } = error.response.data;
-      //     if (message) {
-      //       console.log(message);
-      //     }
-      //   });
     },
   });
 
@@ -116,8 +121,8 @@ const ByParameters = () => {
           <GeneralSelect
             id="address"
             lableText="Об’єм двигуна"
-            optionsArr={selestAutoCategory(vehicle.value)}
-            changeCB={setEngineCapacity} 
+            optionsArr={selectAutoCategory(vehicle.value)}
+            changeCB={handleChangeengineCapacity} 
             currentValue={engineCapacity}
           />
           <GeneralSelect
@@ -139,6 +144,7 @@ const ByParameters = () => {
             name="benefits"
             val={formik.values.benefits}
             changeCB={formik.handleChange}
+            isChecked={benefits}
             helper="Учасники війни; Інваліди II групи; Громадяни України, які постраждали внаслідок Чорнобильської катастрофи, віднесені до I та II категорії; 
           Пенсіонери"
           />
@@ -146,6 +152,7 @@ const ByParameters = () => {
             lableText="Авто на іноземних номерах"
             name="foreignNumber"
             val={formik.values.foreignNumber}
+            isChecked={foreignNumber}
             changeCB={(e) => {
               dispatch(setQueryText(""));
               dispatch(setAddress({ label: "", value: "" }));
@@ -154,7 +161,10 @@ const ByParameters = () => {
           />
         </AllCheckboxContStyled>
 
-        <SubmitButton type="submit">Розрахувати вартість</SubmitButton>
+        <SubmitButton
+          type="submit"
+          disabled={!address.value && !formik.values.foreignNumber?true:false}
+        >Розрахувати вартість</SubmitButton>
       </FormStyled>
     </div>
   );

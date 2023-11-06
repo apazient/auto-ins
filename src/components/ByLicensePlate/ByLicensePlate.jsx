@@ -48,7 +48,6 @@ const ByLicensePlate = () => {
         dateFrom,
         dateTo,
       };
-
       dispatch(setIsLoading(true));
       dispatch(osagoByDn(sendObj))
         .then(() => {
@@ -58,6 +57,8 @@ const ByLicensePlate = () => {
         .catch(() => {
           dispatch(setIsLoading(false));
         });
+      
+      console.log(dispatch(osagoByDn(sendObj)));
     },
     validationSchema: Yup.object().shape({
       licensePlate: Yup.string().required("Required field!"),

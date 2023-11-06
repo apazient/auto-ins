@@ -15,6 +15,7 @@ export const GeneralCheckbox = ({
   changeCB, //функція що повертає вибране значення (піднесення)
   helper = "", //якщо текст присутній то показується елемент <HelpCircle/>
   color = "", //базовий колір для елемента
+  isChecked=false
 }) => {
   const theme = useTheme();
   return (
@@ -42,6 +43,7 @@ export const GeneralCheckbox = ({
             name={name}
             icon={<SpriteSVG name="icon-square" />}
             checkedIcon={<SpriteSVG name="icon-square-checked" />}
+            defaultChecked={isChecked}
           />
         }
         label={lableText}
@@ -56,6 +58,7 @@ GeneralCheckbox.propTypes = {
   lableText: PropTypes.string,
   color: PropTypes.string,
   val: PropTypes.bool,
+  isChecked: PropTypes.bool,
   helper: PropTypes.string,
   changeCB: PropTypes.func,
 };
