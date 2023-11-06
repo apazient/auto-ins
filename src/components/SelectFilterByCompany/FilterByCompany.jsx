@@ -26,6 +26,7 @@ const FilterByCompany = (props) => {
           labelId={id}
           id="demo-multiple-checkbox"
           multiple
+          displayEmpty
           value={currentValue}
           onChange={changeCB}
           input={<InputStyled sx={{ color: "black" }} />}
@@ -33,7 +34,7 @@ const FilterByCompany = (props) => {
             if (selected.length === 0) {
               return <em>Усі компанії</em>;
             }
-            return selected.join(", ");
+            return selected.join(" | ");
           }}
           MenuProps={MenuProps}
           IconComponent={() => (

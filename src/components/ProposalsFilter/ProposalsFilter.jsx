@@ -18,25 +18,23 @@ import PropTypes from "prop-types";
 import FilterByCompany from "../SelectFilterByCompany/FilterByCompany";
 import CompanyList from "../CompanyList/CompanyList";
 
-const ProposalsFilter = ({ insurers = [], dgos }) => {
-  const { current } = useRef(insurers);
-  const [companies, setCompanies] = useState(current);
+const ProposalsFilter = ({ companies = [], dgos }) => {
+  // const { companies } = useRef(companies);
+  const [filteredCompanies, setFilteredCompanies] = useState(companies);
   const theme = useTheme();
   const smScreen = useMediaQuery(theme.breakpoints.up("sm"));
   const [isShowFilter, setIsShowFilter] = useState(false);
-
-  useEffect(() => {
-    setCompaniesNameOptions(createSelectOptionsByCompaniName(current));
-  }, [current]);
-
   const [companiesNameOptions, setCompaniesNameOptions] = useState([]);
   const [selectedCompanieName, setSelectedCompanieName] = useState([]);
   const [selectedPriceSort, setSelectedPriceSort] = useState(
     priceSortOptionsGeneral[0]
   );
-  const [selectedSortByReiting, setSelectedSortByReiting] = useState(
-    priceSortOptionsGeneral[0]
-  );
+  useEffect(() => {
+    setCompaniesNameOptions(createSelectOptionsByCompaniName(companies));
+  }, []);
+  // const [selectedSortByReiting, setSelectedSortByReiting] = useState(
+  //   priceSortOptionsGeneral[0]
+  // );
   // =============================================================
 
   const handleChangeByName = (event) => {
@@ -54,23 +52,21 @@ const ProposalsFilter = ({ insurers = [], dgos }) => {
   }, [smScreen]);
 
   useEffect(() => {
-    let filteredCompanies = [...current];
+    let filteredCompanies = [...companies];
     if (selectedCompanieName.length) {
       filteredCompanies = filteredCompanies.filter((el) =>
         selectedCompanieName.includes(el.insurerName)
       );
     }
-
     if (selectedPriceSort.value) {
       filteredByPrice(filteredCompanies, selectedPriceSort.value);
     }
-
     if (selectedCompanieName || selectedPriceSort.value) {
-      setCompanies(filteredCompanies);
+      setFilteredCompanies(filteredCompanies);
     } else {
-      setCompanies(current);
+      setFilteredCompanies(companies);
     }
-  }, [selectedCompanieName, current, setCompanies, selectedPriceSort]);
+  }, [selectedCompanieName, companies, setFilteredCompanies, selectedPriceSort]);
 
   const handleChange = () => {
     setIsShowFilter((prev) => !prev);
@@ -103,16 +99,16 @@ const ProposalsFilter = ({ insurers = [], dgos }) => {
               id="price"
               lableText="Ціна"
               optionsArr={priceSortOptionsGeneral}
-              changeCB={setSelectedPriceSort} //функція що повертає вибране значення (піднесення)
+              changeCB={setSelectedPriceSort} 
               currentValue={selectedPriceSort}
             />
-            <GeneralSelect
+            {/* <GeneralSelect
               id="popularity"
               lableText="Популярність"
               optionsArr={priceSortOptionsGeneral}
               changeCB={setSelectedSortByReiting} //функція що повертає вибране значення (піднесення)
               currentValue={selectedSortByReiting}
-            />
+            /> */}
 
             <FilterByCompany
               id="filteredByName"
@@ -132,7 +128,7 @@ const ProposalsFilter = ({ insurers = [], dgos }) => {
                 onClick={() => {
                   setSelectedCompanieName([]);
                   setSelectedPriceSort(priceSortOptionsGeneral[0]);
-                  setSelectedSortByReiting(priceSortOptionsGeneral[0]);
+                  // setSelectedSortByReiting(priceSortOptionsGeneral[0]);
                 }}
               >
                 <SpriteSVG name="icon-filter-desktop-tablet" />
@@ -141,7 +137,7 @@ const ProposalsFilter = ({ insurers = [], dgos }) => {
           </SelectsContStyled>
         </Collapse>
       </Box>
-      <CompanyList proposals={companies} dgos={dgos} />;
+      <CompanyList proposals={filteredCompanies} dgos={dgos} />;
     </>
   );
 };

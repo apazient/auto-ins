@@ -10,48 +10,58 @@ import { GeneralCheckbox } from "../GeneralCheckbox/GeneralCheckbox";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getCityByName } from "../../services/api";
-import debounce from "lodash.debounce";
+// import debounce from "lodash.debounce";
 import {
+  selectAddressOptions,
   selectCategoryOptions,
   selestAutoCategory,
 } from "../../helpers/ByParameters/selectOptions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { osagoByParams } from "../../redux/Calculator/operations";
+import { getAddress } from "../../redux/byParameters/operations";
+import { setAddress, setQueryText, setSubmitObj } from "../../redux/byParameters/byParametersSlice";
 
 const ByParameters = () => {
   const navigate = useNavigate();
   const locationPath = useLocation();
-
+  const dispatch = useDispatch();
+  const queryText = useSelector(state=>state.byParameters.queryText)
+  const allAddress = useSelector(state=>state.byParameters.addressOptions)
+  const address = useSelector(state=>state.byParameters.address)
+  
   const [vehicle, setVehicle] = useState(selectCategoryOptions[0]);
   const [engineCapacity, setEngineCapacity] = useState(
     selestAutoCategory(vehicle.value)[0]
   );
-  const [allAddress, setAllAddress] = useState([]);
-  const [address, setAddress] = useState({ label: "", value: "" });
-  const [qweryText, setQweryText] = useState("");
-  const dispatch = useDispatch();
+  // const [allAddress, setAllAddress] = useState([]);
+  // const [address, setAddress] = useState({ label: "", value: "" });
+  // const [qweryText, setQweryText] = useState("");
+  
 
-  useEffect(
-    () => async () => {
-      try {
-        if (qweryText) {
-          const addressVariants = await getCityByName(qweryText);
-          const addressSelectOptions = addressVariants.map((address) => ({
-            label: address.nameFull,
-            value: address.id,
-          }));
-          setAllAddress(addressSelectOptions);
-        }
-      } catch (error) {
-        console.log(error.message);
-      }
-    },
-    [qweryText]
-  );
+  // useEffect(
+  //   () => async () => {
+  //     try {
+  //       if (qweryText) {
+  //         const addressVariants = await getCityByName(qweryText);
+  //         setAllAddress(selectAddressOptions(addressVariants));
+  //       }
+  //     } catch (error) {
+  //       console.log(error.message);
+  //     }
+  //   },
+  //   [qweryText]
+  // );
 
   const handleChangeVehicle = (e) => {
     setVehicle(e);
     setEngineCapacity(selestAutoCategory(e.value)[0]);
+  };
+  const handleChangeQueryText = (e) => {
+    dispatch(setQueryText(e));
+    dispatch(getAddress(e));
+  };
+  const changeAddress = (e) => {
+    dispatch(setAddress(e))
   };
 
   const formik = useFormik({
@@ -75,21 +85,20 @@ const ByParameters = () => {
         dateTo,
         salePoint: 40629,
       };
-
       address.value ? (sendObj.registrationPlace = address.value) : null;
-
+      console.log(sendObj);
+      dispatch(setSubmitObj(sendObj))
       navigate("/prices", {
         state: { from: locationPath.pathname, data: sendObj },
       });
-
-      dispatch(osagoByParams(sendObj))
-        .unwrap()
-        .catch((error) => {
-          const { message } = error.response.data;
-          if (message) {
-            console.log(message);
-          }
-        });
+      // dispatch(osagoByParams(sendObj))
+      //   .unwrap()
+      //   .catch((error) => {
+      //     const { message } = error.response.data;
+      //     if (message) {
+      //       console.log(message);
+      //     }
+      //   });
     },
   });
 
@@ -101,24 +110,24 @@ const ByParameters = () => {
             id="vehicle"
             lableText="Транспортний засіб"
             optionsArr={selectCategoryOptions}
-            changeCB={handleChangeVehicle} //функція що повертає вибране значення (піднесення)
+            changeCB={handleChangeVehicle} 
             currentValue={vehicle}
           />
           <GeneralSelect
             id="address"
             lableText="Об’єм двигуна"
             optionsArr={selestAutoCategory(vehicle.value)}
-            changeCB={setEngineCapacity} //функція що повертає вибране значення (піднесення)
+            changeCB={setEngineCapacity} 
             currentValue={engineCapacity}
           />
           <GeneralSelect
             id="engineCapacity"
             lableText="Адреса за техпаспортом"
             optionsArr={allAddress}
-            changeCB={setAddress} //функція що повертає вибране значення (піднесення)
+            changeCB={changeAddress} 
             currentValue={address}
-            inputValue={qweryText}
-            inputChangeCB={setQweryText}
+            inputValue={queryText}
+            inputChangeCB={handleChangeQueryText}
             helper={"тут потрібно ввести текст)))"}
             isDisabled={formik.values.foreignNumber}
           />
@@ -138,8 +147,8 @@ const ByParameters = () => {
             name="foreignNumber"
             val={formik.values.foreignNumber}
             changeCB={(e) => {
-              setQweryText("");
-              setAddress({ label: "", value: "" });
+              dispatch(setQueryText(""));
+              dispatch(setAddress({ label: "", value: "" }));
               formik.handleChange(e);
             }}
           />
