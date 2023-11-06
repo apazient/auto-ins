@@ -93,3 +93,9 @@ export function selestAutoCategory(category) {
     categ.value.includes(category)
   );
 }
+export function selectAddressOptions(arr) {
+ return arr.map((address) => ({
+            label: address.nameFull,
+            value: address.id,
+          }));
+}

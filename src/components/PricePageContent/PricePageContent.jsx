@@ -1,12 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useChooseDgo } from "../../services/hooks/useChooseDgo";
 import { usePolicyByParams } from "../../services/hooks/usePolicyByParams";
 import ProposalsFilter from "../ProposalsFilter/ProposalsFilter";
 import { SkeletonStyled } from "../Skeleton/Skeleton";
+import { useDispatch, useSelector } from "react-redux";
+import { osagoByParams } from "../../redux/Calculator/operations";
+
 export const PricePageContent = ({ proposal }) => {
   const { data, isSuccess, isLoading } = usePolicyByParams(proposal);
-  console.log(data);
-  const [companies, setCompanies] = useState([]);
+  const dispatch = useDispatch();
+  const searchObj = useSelector(state => state.byParameters.submitObj)
+  const companies = useSelector(state => state.calculator.tariffPolicyChoose)
+
+  useEffect(() => {
+    dispatch(osagoByParams(searchObj))
+  },[searchObj, dispatch])
+  // console.log(data);
+  // const [companies, setCompanies] = useState([]);
   const [dgo, setDgo] = useState([]);
 
   const chooseDgoQuery = useChooseDgo(proposal);
@@ -15,21 +25,21 @@ export const PricePageContent = ({ proposal }) => {
     return <SkeletonStyled />;
   }
 
-  if (isSuccess && data !== companies) {
-    setCompanies(data);
-  }
+  // if (isSuccess && data !== companies) {
+  //   setCompanies(data);
+  // }
 
   if (chooseDgoQuery.isSuccess && chooseDgoQuery.data !== dgo) {
     setDgo(chooseDgoQuery.data);
   }
-
-  if (companies.length && dgo.length) {
+  // console.log(companies);
+  // if (companies.length && dgo.length) {
     return (
       <>
-        <ProposalsFilter insurers={companies} dgos={dgo} />
+        <ProposalsFilter companies={companies} dgos={dgo} />
       </>
     );
-  }
+  // }
 
   //   const { data, isSuccess, isLoading } = usePolicyByParams(proposal);
   //   console.log(usePolicyByParams(proposal));
