@@ -6,10 +6,26 @@ import {
   YellowButtonS,
 } from "./CostCalculationStyled";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getAutoByNumber,
+  getStateNumber,
+} from "../../redux/Calculator/selectors";
+import { useEffect } from "react";
+import { autoByNumber } from "../../redux/Calculator/operations";
 
 export const CostCalculation = () => {
   const navigate = useNavigate();
-  const arr = ["Легкове авто", "до 1600 см3", "м. Київ"];
+  const dispatch = useDispatch();
+  const stateNumber = useSelector(getStateNumber);
+  const [autoByNumberRes] = useSelector(getAutoByNumber);
+  console.log(autoByNumberRes);
+  console.log(stateNumber);
+  useEffect(() => {
+    dispatch(autoByNumber(stateNumber));
+  }, [dispatch, stateNumber]);
+
+  const { bodyNumber, year, modelText } = autoByNumberRes;
   return (
     <FormContainerS>
       <Typography
@@ -24,7 +40,7 @@ export const CostCalculation = () => {
       </Typography>
       <Box className="wrapContent">
         <StackS direction="row">
-          {arr.map((el, index) => {
+          {[bodyNumber, year, modelText].map((el, index) => {
             return (
               <Item key={index}>
                 <Typography

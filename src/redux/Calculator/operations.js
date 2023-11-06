@@ -45,3 +45,20 @@ export const osagoByDn = createAsyncThunk(
     }
   }
 );
+
+export const autoByNumber = createAsyncThunk(
+  "calculator/autoByNumber",
+  async (body, { rejectWithValue }) => {
+    try {
+      const { data } = await instance.get("/auto/mtibu/number", {
+        params: {
+          query: body,
+        },
+      });
+      console.log(data);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);

@@ -1,15 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { osagoByDn, osagoByParams } from "./operations";
+import { autoByNumber, osagoByDn, osagoByParams } from "./operations";
 
 const initialState = {
   tariffPolicyChoose: null,
   tariffVcl: null,
+  autoByNumber: [],
+  stateNumber: "",
 };
 
 export const globalSlice = createSlice({
   name: "calculator",
   initialState,
-  reducers: {},
+  reducers: {
+    setStateNumber: (state, { payload }) => {
+      state.stateNumber = payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(osagoByParams.fulfilled, (state, { payload }) => {
@@ -17,8 +23,12 @@ export const globalSlice = createSlice({
       })
       .addCase(osagoByDn.fulfilled, (state, { payload }) => {
         state.tariffPolicyChoose = payload;
+      })
+      .addCase(autoByNumber.fulfilled, (state, { payload }) => {
+        state.autoByNumber = payload;
       });
   },
 });
 
+export const { setStateNumber } = globalSlice.actions;
 export const calculatorReducer = globalSlice.reducer;

@@ -17,7 +17,7 @@ import { setIsLoading } from "../../redux/Global/globalSlice";
 import { getIsLoading } from "../../redux/Global/selectors";
 import { getTariffPolicyChoose } from "../../redux/Calculator/selectors";
 import { useEffect } from "react";
-
+import { setStateNumber } from "../../redux/Calculator/calculatorSlice";
 const ByLicensePlate = () => {
   const navigate = useNavigate();
   const locationPath = useLocation();
@@ -53,6 +53,7 @@ const ByLicensePlate = () => {
       dispatch(osagoByDn(sendObj))
         .then(() => {
           dispatch(setIsLoading(false));
+          dispatch(setStateNumber(decodeURIComponent(values.licensePlate)));
         })
         .catch(() => {
           dispatch(setIsLoading(false));
