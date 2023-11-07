@@ -13,18 +13,23 @@ import {
 } from "../../redux/Calculator/selectors";
 import { useEffect } from "react";
 import { autoByNumber } from "../../redux/Calculator/operations";
+import { setAutoByNumber } from "../../redux/Calculator/calculatorSlice";
 
 export const CostCalculation = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const stateNumber = useSelector(getStateNumber);
-  const [autoByNumberRes] = useSelector(getAutoByNumber);
-
+  const autoByNumberRes = useSelector(getAutoByNumber);
+  const { address: { label: address }, engineCapacity: { label: params } } = useSelector(state => state.byParameters);
+  
   useEffect(() => {
-    dispatch(autoByNumber(stateNumber));
-  }, [dispatch, stateNumber]);
-
-  const { bodyNumber, year, modelText } = autoByNumberRes;
+    if (stateNumber) {
+      dispatch(autoByNumber(stateNumber));
+    } else {
+      dispatch(setAutoByNumber([...params.split(' - '), address.split(',')[0]]))
+    }
+  }, [dispatch, stateNumber, params, address]);
+  
   return (
     <FormContainerS>
       <Typography
@@ -39,9 +44,13 @@ export const CostCalculation = () => {
       </Typography>
       <Box className="wrapContent">
         <StackS direction="row">
-          {[bodyNumber, year, modelText].map((el, index) => {
+
+          {
+            // [bodyNumber, year, modelText].map((el, index) => {
+            autoByNumberRes.map((el, index) => {
             return (
-              <Item key={index}>
+              el
+              ? <Item key={index}>
                 <Typography
                   component="span"
                   variant="inputLable"
@@ -53,6 +62,7 @@ export const CostCalculation = () => {
                   {el}
                 </Typography>
               </Item>
+              : null
             );
           })}
         </StackS>

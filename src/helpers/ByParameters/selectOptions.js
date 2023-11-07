@@ -80,7 +80,7 @@ export const selectAllCategoryOptions = [
   },
 ];
 
-export function selestAutoCategory(category) {
+export function selectAutoCategory(category) {
   if (!category) {
     return selectAllCategoryOptions;
   }

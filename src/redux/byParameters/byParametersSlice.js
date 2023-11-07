@@ -1,13 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getAddress } from "./operations";
+import { selectAutoCategory, selectCategoryOptions } from "../../helpers/ByParameters/selectOptions";
 
 
 const initialState = {
     queryText: '',
     address: { label: "", value: "" },
-    vehicle: {},
-    engineCapacity:{},
+    vehicle: selectCategoryOptions[0],
+    engineCapacity:selectAutoCategory(selectCategoryOptions[0].value)[0],
     addressOptions: [],
+    benefits: false,
+    foreignNumber: false,
     submitObj:{}
 };
 export const byParameters = createSlice({
@@ -19,10 +22,21 @@ export const byParameters = createSlice({
         },
     setSubmitObj: (state, { payload }) => {
         state.submitObj = payload;
+        state.benefits = payload.customerCategory === "PRIVILEGED" ? true : false;
+        state.foreignNumber = payload.outsideUkraine;
         },
     setAddress: (state, { payload }) => {
         state.address = payload;
-        }
+        },
+    setVehicle: (state, { payload }) => {
+        state.vehicle = payload;
+        },
+    setEngineCapacity: (state, { payload }) => {
+        state.engineCapacity = payload;
+      },
+      setAddressOptions: (state, { payload }) => {
+        state.addressOptions = payload;
+        },
     },
   extraReducers: (builder) => {
       builder
@@ -34,4 +48,4 @@ export const byParameters = createSlice({
 });
 
 export const byParametersReducer = byParameters.reducer;
-export const { setQueryText, setSubmitObj, setAddress } = byParameters.actions;
+export const { setAddressOptions, setQueryText, setSubmitObj, setAddress, setVehicle, setEngineCapacity } = byParameters.actions;

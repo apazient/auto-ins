@@ -31,9 +31,9 @@ const PricesPage = () => {
 
   return (
     <OutletPageWrapper>
-      {/* <CostCalculation /> */}
+      <CostCalculation />
       {/* <ProposalsFilter companies={companies} dgos={dgo} /> */}
-      <CompanyList />;
+      {/* <CompanyList />; */}
     </OutletPageWrapper>
   );
 };

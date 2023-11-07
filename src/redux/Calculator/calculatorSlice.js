@@ -10,6 +10,7 @@ const initialState = {
   tariffPolicyChoose: null,
   tariffVcl: null,
   autoByNumber: [],
+  allAutoByNumber:{},
   stateNumber: "",
 };
 
@@ -19,6 +20,9 @@ export const globalSlice = createSlice({
   reducers: {
     setStateNumber: (state, { payload }) => {
       state.stateNumber = payload;
+    },
+    setAutoByNumber: (state, { payload }) => {
+      state.autoByNumber = payload;
     },
   },
   extraReducers: (builder) => {
@@ -30,7 +34,9 @@ export const globalSlice = createSlice({
         state.tariffPolicyChoose = payload;
       })
       .addCase(autoByNumber.fulfilled, (state, { payload }) => {
-        state.autoByNumber = payload;
+        const { bodyNumber, year, modelText } = payload;
+        state.autoByNumber = [bodyNumber, year, modelText];
+        state.allAutoByNumber = payload;
       })
       .addCase(chooseVclTariffDGO.fulfilled, (state, { payload }) => {
         state.tariffVcl = payload;
@@ -38,5 +44,5 @@ export const globalSlice = createSlice({
   },
 });
 
-export const { setStateNumber } = globalSlice.actions;
+export const { setStateNumber, setAutoByNumber } = globalSlice.actions;
 export const calculatorReducer = globalSlice.reducer;
