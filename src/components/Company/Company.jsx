@@ -33,8 +33,7 @@ const Company = ({ proposal, dgo = [] }) => {
   const theme = useTheme();
   const { insurerId, insurerName, tariff, registrationPlace, autoCategory } =
     proposal;
-  console.log(proposal);
-  console.log(dgo);
+
   const [checkSavety, setCheckSavety] = useState(false);
   const [franchise, setFranchise] = useState(tariff[0]);
   const [chooseDgo, setChooseDgo] = useState({
@@ -75,7 +74,10 @@ const Company = ({ proposal, dgo = [] }) => {
 
       dispatch(setGlobalCustomerData(user));
       navigate("/form", {
-        state: { from: location, data: { ...location.state.data, ...sendObj } },
+        state: {
+          from: location,
+          data: { ...location.state?.data, ...sendObj },
+        },
       });
     },
   });

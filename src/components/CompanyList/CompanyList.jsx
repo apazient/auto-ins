@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux";
 import {
   getFilteredCompanies,
-  getTariffPolicyChoose,
   getTariffVcl,
 } from "../../redux/Calculator/selectors";
 
@@ -9,12 +8,11 @@ import Company from "../Company/Company";
 
 const CompanyList = () => {
   let dgo = null;
-  // const proposals = useSelector(getTariffPolicyChoose);
+
   const proposals = useSelector(getFilteredCompanies);
   const dgos = useSelector(getTariffVcl);
 
   if (proposals && dgos) {
-    console.log(proposals, dgos);
     const ViewData = () =>
       proposals?.map((companyObject) => {
         dgo =
