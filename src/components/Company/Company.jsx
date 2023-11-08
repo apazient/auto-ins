@@ -56,6 +56,7 @@ const Company = ({ proposal, dgo = [] }) => {
   const handleChangeDgoSelect = (e) => {
     setChooseDgo(e);
   };
+
   const formik = useFormik({
     initialValues: {},
     onSubmit: (values) => {
@@ -73,7 +74,10 @@ const Company = ({ proposal, dgo = [] }) => {
 
       dispatch(setGlobalCustomerData(user));
       navigate("/form", {
-        state: { from: location, data: { ...location.state.data, ...sendObj } },
+        state: {
+          from: location,
+          data: { ...location.state?.data, ...sendObj },
+        },
       });
     },
   });

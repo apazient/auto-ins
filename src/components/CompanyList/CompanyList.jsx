@@ -1,18 +1,16 @@
 import { useSelector } from "react-redux";
 import {
   getFilteredCompanies,
-  getTariffPolicyChoose,
   getTariffVcl,
 } from "../../redux/Calculator/selectors";
-import { getIsLoading } from "../../redux/Global/selectors";
+
 import Company from "../Company/Company";
 
 const CompanyList = () => {
   let dgo = null;
-  // const proposals = useSelector(getTariffPolicyChoose);
+
   const proposals = useSelector(getFilteredCompanies);
   const dgos = useSelector(getTariffVcl);
-  const isLoading = useSelector(getIsLoading);
 
   if (proposals && dgos) {
     const ViewData = () =>
@@ -28,7 +26,7 @@ const CompanyList = () => {
           />
         );
       });
-    return <ul>{!isLoading && ViewData()}</ul>;
+    return <ul>{ViewData()}</ul>;
   }
 };
 
