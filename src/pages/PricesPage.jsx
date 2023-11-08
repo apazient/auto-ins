@@ -51,7 +51,7 @@ const PricesPage = () => {
     <>
       <OutletPageWrapper>
         <CostCalculation />
-        {/* <ProposalsFilter /> */}
+        <ProposalsFilter />
         <CompanyList />
       </OutletPageWrapper>
       {isError && <ModalError />}
