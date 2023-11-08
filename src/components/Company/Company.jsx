@@ -20,15 +20,19 @@ import Box from "@mui/material/Box";
 import { useEffect } from "react";
 import { useFormik } from "formik";
 import CompanyCardMedia from "../CompanyCardMedia/index";
+import { useDispatch, useSelector } from "react-redux";
+import { setGlobalCustomerData } from "../../redux/Global/globalSlice";
+import { getUser } from "../../redux/Calculator/selectors";
+import { cardActionAreaClasses } from "@mui/material";
 
 const Company = ({ proposal, dgo = [] }) => {
   const location = useLocation();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const user = useSelector(getUser);
   const theme = useTheme();
   const { insurerId, insurerName, tariff, registrationPlace, autoCategory } =
     proposal;
-  // console.log(tariff);
-  // const franchizeSelect = useMemo(() => tariff.map((el) => el), [tariff]);
 
   const [checkSavety, setCheckSavety] = useState(false);
   const [franchise, setFranchise] = useState(tariff[0]);
@@ -37,8 +41,12 @@ const Company = ({ proposal, dgo = [] }) => {
     discountedPayment: 0,
   });
   const [price, setPrice] = useState([]);
+  useEffect(() => {
+    if (!proposal) return;
+  }, []);
 
   useEffect(() => {
+    if (!proposal) return;
     setPrice(franchise.discountedPayment + chooseDgo.discountedPayment);
   }, [tariff, chooseDgo, franchise.discountedPayment]);
 
@@ -64,6 +72,7 @@ const Company = ({ proposal, dgo = [] }) => {
         salePoint: 40629,
       };
 
+      dispatch(setGlobalCustomerData(user));
       navigate("/form", {
         state: { from: location, data: { ...location.state.data, ...sendObj } },
       });

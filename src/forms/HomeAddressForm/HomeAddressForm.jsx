@@ -6,30 +6,30 @@ import GeneralInput from "../../components/GeneralInput/GeneralInput";
 import PropTypes from "prop-types";
 import GeneralSelect from "../../components/GeneralSelect/GeneralSelect";
 import { useEffect, useState } from "react";
-import { getCityByName } from "../../services/api";
+// import { getCityByName } from "../../services/api";
 
 const HomeAddressForm = ({ formik }) => {
   const [allAddress, setAllAddress] = useState([]);
   const [address, setAddress] = useState({ label: "", value: "" });
   const [qweryText, setQweryText] = useState("");
 
-  useEffect(
-    () => async () => {
-      try {
-        if (qweryText) {
-          const addressVariants = await getCityByName(qweryText);
-          const addressSelectOptions = addressVariants.map((address) => ({
-            label: address.nameFull,
-            value: address.id,
-          }));
-          setAllAddress(addressSelectOptions);
-        }
-      } catch (error) {
-        console.log(error.message);
-      }
-    },
-    [qweryText]
-  );
+  // useEffect(
+  //   () => async () => {
+  //     try {
+  //       if (qweryText) {
+  //         const addressVariants = await getCityByName(qweryText);
+  //         const addressSelectOptions = addressVariants.map((address) => ({
+  //           label: address.nameFull,
+  //           value: address.id,
+  //         }));
+  //         setAllAddress(addressSelectOptions);
+  //       }
+  //     } catch (error) {
+  //       console.log(error.message);
+  //     }
+  //   },
+  //   [qweryText]
+  // );
   return (
     <>
       <InputContBoxStyled>

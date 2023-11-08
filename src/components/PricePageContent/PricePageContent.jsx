@@ -4,22 +4,22 @@ import { usePolicyByParams } from "../../services/hooks/usePolicyByParams";
 import ProposalsFilter from "../ProposalsFilter/ProposalsFilter";
 import { SkeletonStyled } from "../Skeleton/Skeleton";
 import { useDispatch, useSelector } from "react-redux";
-import { osagoByParams } from "../../redux/Calculator/operations";
+// import { osagoByParams } from "../../redux/Calculator/operations";
 
 export const PricePageContent = ({ proposal }) => {
   const { data, isSuccess, isLoading } = usePolicyByParams(proposal);
   const dispatch = useDispatch();
-  const searchObj = useSelector(state => state.byParameters.submitObj)
-  const companies = useSelector(state => state.calculator.tariffPolicyChoose)
+  const searchObj = useSelector((state) => state.byParameters.submitObj);
+  const companies = useSelector((state) => state.calculator.tariffPolicyChoose);
 
-  useEffect(() => {
-    dispatch(osagoByParams(searchObj))
-  },[searchObj, dispatch])
-  // console.log(data);
-  // const [companies, setCompanies] = useState([]);
-  const [dgo, setDgo] = useState([]);
+  // useEffect(() => {
+  //   dispatch(osagoByParams(searchObj))
+  // },[searchObj, dispatch])
+  // // console.log(data);
+  // // const [companies, setCompanies] = useState([]);
+  // const [dgo, setDgo] = useState([]);
 
-  const chooseDgoQuery = useChooseDgo(proposal);
+  // const chooseDgoQuery = useChooseDgo(proposal);
 
   if (isLoading) {
     return <SkeletonStyled />;
@@ -29,16 +29,16 @@ export const PricePageContent = ({ proposal }) => {
   //   setCompanies(data);
   // }
 
-  if (chooseDgoQuery.isSuccess && chooseDgoQuery.data !== dgo) {
-    setDgo(chooseDgoQuery.data);
-  }
+  // if (chooseDgoQuery.isSuccess && chooseDgoQuery.data !== dgo) {
+  //   setDgo(chooseDgoQuery.data);
+  // }
   // console.log(companies);
   // if (companies.length && dgo.length) {
-    return (
-      <>
-        <ProposalsFilter companies={companies} dgos={dgo} />
-      </>
-    );
+  return (
+    <>
+      <ProposalsFilter companies={companies} dgos={dgo} />
+    </>
+  );
   // }
 
   //   const { data, isSuccess, isLoading } = usePolicyByParams(proposal);

@@ -13,7 +13,7 @@ const FormPage = () => {
   return (
     <OutletPageWrapper>
       <Wrapper>
-        <CompanySmall company={location.state?.data} />
+        <CompanySmall />
         <Box sx={{ display: "block" }}>
           <Stepper backLinkRef={backLinkRef} />
         </Box>

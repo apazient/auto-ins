@@ -15,7 +15,14 @@ import {
 } from "../../helpers/ByParameters/selectOptions";
 import { useDispatch, useSelector } from "react-redux";
 import { getAddress } from "../../redux/byParameters/operations";
-import { setAddress, setAddressOptions, setEngineCapacity, setQueryText, setSubmitObj, setVehicle } from "../../redux/byParameters/byParametersSlice";
+import {
+  setAddress,
+  setAddressOptions,
+  setEngineCapacity,
+  setQueryText,
+  setSubmitObj,
+  setVehicle,
+} from "../../redux/byParameters/byParametersSlice";
 import { setStateNumber } from "../../redux/Calculator/calculatorSlice";
 
 const ByParameters = () => {
@@ -23,12 +30,18 @@ const ByParameters = () => {
   const locationPath = useLocation();
   const dispatch = useDispatch();
   const {
-    queryText, addressOptions: allAddress, address, vehicle, engineCapacity, foreignNumber, benefits
-  } = useSelector(state => state.byParameters)
+    queryText,
+    addressOptions: allAddress,
+    address,
+    vehicle,
+    engineCapacity,
+    foreignNumber,
+    benefits,
+  } = useSelector((state) => state.byParameters);
   // const queryText = useSelector(state=>state.byParameters.queryText)
   // const allAddress = useSelector(state=>state.byParameters.addressOptions)
   // const address = useSelector(state=>state.byParameters.address)
-  
+
   // const [vehicle, setVehicle] = useState(selectCategoryOptions[0]);
   // const [engineCapacity, setEngineCapacity] = useState(
   //   selectAutoCategory(vehicle.value)[0]
@@ -36,7 +49,6 @@ const ByParameters = () => {
   // const [allAddress, setAllAddress] = useState([]);
   // const [address, setAddress] = useState({ label: "", value: "" });
   // const [qweryText, setQweryText] = useState("");
-  
 
   // useEffect(
   //   () => async () => {
@@ -70,7 +82,7 @@ const ByParameters = () => {
   };
   const changeAddress = (e) => {
     if (queryText) {
-      dispatch(setAddress(e))
+      dispatch(setAddress(e));
     }
   };
 
@@ -83,8 +95,7 @@ const ByParameters = () => {
       const dateF = new Date(Date.now() + 86400000);
       const date = new Date();
       const dateFrom = dateF.toISOString().substring(0, 10);
-      const dateTo =
-        date.getFullYear() + 1 + date.toISOString().substring(4, 10);
+
       let sendObj = {
         customerCategory: values.benefits ? "PRIVILEGED" : "NATURAL",
         autoCategory: engineCapacity.value,
@@ -92,14 +103,11 @@ const ByParameters = () => {
         usageMonths: 0,
         taxi: false,
         dateFrom,
-        dateTo,
-        salePoint: 40629,
       };
       address.value ? (sendObj.registrationPlace = address.value) : null;
 
-      console.log(sendObj);
-      dispatch(setSubmitObj(sendObj))
-      dispatch(setStateNumber(""))
+      dispatch(setSubmitObj(sendObj));
+      dispatch(setStateNumber(""));
 
       navigate("/prices", {
         state: { from: locationPath.pathname, data: sendObj },
@@ -115,21 +123,21 @@ const ByParameters = () => {
             id="vehicle"
             lableText="Транспортний засіб"
             optionsArr={selectCategoryOptions}
-            changeCB={handleChangeVehicle} 
+            changeCB={handleChangeVehicle}
             currentValue={vehicle}
           />
           <GeneralSelect
             id="address"
             lableText="Об’єм двигуна"
             optionsArr={selectAutoCategory(vehicle.value)}
-            changeCB={handleChangeengineCapacity} 
+            changeCB={handleChangeengineCapacity}
             currentValue={engineCapacity}
           />
           <GeneralSelect
             id="engineCapacity"
             lableText="Адреса за техпаспортом"
             optionsArr={allAddress}
-            changeCB={changeAddress} 
+            changeCB={changeAddress}
             currentValue={address}
             inputValue={queryText}
             inputChangeCB={handleChangeQueryText}
@@ -163,8 +171,12 @@ const ByParameters = () => {
 
         <SubmitButton
           type="submit"
-          disabled={!address.value && !formik.values.foreignNumber?true:false}
-        >Розрахувати вартість</SubmitButton>
+          disabled={
+            !address.value && !formik.values.foreignNumber ? true : false
+          }
+        >
+          Розрахувати вартість
+        </SubmitButton>
       </FormStyled>
     </div>
   );

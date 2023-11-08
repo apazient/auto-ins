@@ -1,30 +1,17 @@
-import { CardMedia } from "@mui/material";
 import Typography from "@mui/material/Typography";
-import { useLocation } from "react-router-dom";
+
 import CompanyCardMedia from "../CompanyCardMedia/index";
-import { PartnersImgs } from "../Partners/PartnersImgs";
+
 import { ContentBox, FormContainerS } from "./CompanySmallStyled";
 
-const CompanySmall = ({ company }) => {
-  const {
-    insurerId,
-    price,
-    autoCategory,
-    tariff,
-    dgoTarrif,
-    registrationPlace,
-    usageMonths,
-    taxi,
-    salePoint,
-  } = company;
-
+const CompanySmall = () => {
   return (
     <FormContainerS component="article">
       <Typography variant="subtitle1" component="h3" className="title">
         Електронний поліс ОСЦПВ
       </Typography>
       <ContentBox>
-        <CompanyCardMedia id={insurerId} alt={tariff.insurer.name} />
+        {/* <CompanyCardMedia id={insurerId} alt={tariff.insurer.name} />
         <Typography component="span" className="leightText">
           {tariff.insurer.name}
         </Typography>
@@ -55,7 +42,7 @@ const CompanySmall = ({ company }) => {
         </Typography>
         <Typography component="span" variant="subtitle1" className="boldText">
           {price} грн
-        </Typography>
+        </Typography> */}
       </ContentBox>
     </FormContainerS>
   );

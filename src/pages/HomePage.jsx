@@ -8,17 +8,14 @@ import AdvatagesSection from "../components/AdvantagesSection/index";
 import { useLocation } from "react-router-dom";
 import Partners from "../components/Partners/Partners";
 import { useDispatch, useSelector } from "react-redux";
-import { loginThunk } from "../redux/Global/operations";
-import { getIsModalErrorOpen, getUser } from "../redux/Global/selectors";
-import ModalError from "../components/ModalError/ModalError";
-//import { getPolicyByParamsInUa } from "../services/api";
+import { loginThunk } from "../redux/Calculator/operations";
+import { getUser } from "../redux/Calculator/selectors";
 
 const HomePage = () => {
   const { state } = useLocation();
   const { id } = state || {};
   const dispatch = useDispatch();
   const user = useSelector(getUser);
-  const isError = useSelector(getIsModalErrorOpen);
 
   useEffect(() => {
     let element = document.getElementById(id);
@@ -37,7 +34,7 @@ const HomePage = () => {
           console.log(message);
         }
       });
-  }, [dispatch]);
+  }, [dispatch, user]);
 
   return (
     <>
@@ -49,7 +46,6 @@ const HomePage = () => {
         <AccordionSection />
         <InfoSection />
       </main>
-      {isError && <ModalError />}
     </>
   );
 };

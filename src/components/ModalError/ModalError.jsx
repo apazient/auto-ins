@@ -5,12 +5,11 @@ import DialogContentText from "@mui/material/DialogContentText";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { SpriteSVG } from "../../images/SpriteSVG";
+import { setStateNumber } from "../../redux/Calculator/calculatorSlice";
 import { setIsModalErrorOpen } from "../../redux/Global/globalSlice";
-import {
-  getIsLoading,
-  getIsModalErrorOpen,
-} from "../../redux/Global/selectors";
+import { getIsModalErrorOpen } from "../../redux/Global/selectors";
 
 import { BlueButton } from "../../style/Global.styled";
 import {
@@ -24,10 +23,13 @@ const ModalError = () => {
   const isError = useSelector(getIsModalErrorOpen);
   const [open, setOpen] = useState(isError);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleClose = () => {
     setOpen(false);
+    navigate("/");
     dispatch(setIsModalErrorOpen(false));
+    dispatch(setStateNumber(""));
   };
 
   return (

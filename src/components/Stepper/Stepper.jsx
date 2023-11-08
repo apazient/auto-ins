@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import Stack from "@mui/material/Stack";
 import Step from "@mui/material/Step";
 
+import { lazy } from "react";
 import { useEffect, useState } from "react";
 import { SpriteSVG } from "../../images/SpriteSVG";
 import { Connector, Lable, LableIcon, StepperStyled } from "./StepperStyled";
@@ -19,10 +20,7 @@ import {
   contactsValidationSchema,
   insuredDataFormValidationSchema,
 } from "../../helpers/formValidationSchema";
-import FormContacts from "../../forms/FormContacts/FormContacts";
-import InsuredDataForm from "../../forms/InsuredDataForm/InsuredDataForm";
-import HomeAddressForm from "../../forms/HomeAddressForm/HomeAddressForm";
-import CarDataForm from "../../forms/CarDataForm/CarDataForm";
+
 import {
   ButtonContainerStyled,
   FormStyled,
@@ -38,7 +36,7 @@ import {
   NATURALSelectOptions,
   PRIVILEGEDSelectOptions,
 } from "../../assets/utils/isPrivilegedOptions";
-import { getCarModel } from "../../services/api";
+// import { getCarModel } from "../../services/api";
 
 const steps = [
   { Контакти: "icon-email" },
@@ -46,6 +44,17 @@ const steps = [
   { "Домашня адреса": "icon-home" },
   { "Дані авто": "icon-car-little" },
 ];
+const FormContacts = lazy(() =>
+  import("../../forms/FormContacts/FormContacts")
+);
+const InsuredDataForm = lazy(() =>
+  import("../../forms/InsuredDataForm/InsuredDataForm")
+);
+const HomeAddressForm = lazy(() =>
+  import("../../forms/HomeAddressForm/HomeAddressForm")
+);
+const CarDataForm = lazy(() => import("../../forms/CarDataForm/CarDataForm"));
+
 // const NATURALSelectOptions = [
 //   {
 //     value: "Паспорт",
