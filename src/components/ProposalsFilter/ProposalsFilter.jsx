@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Box, Collapse, Zoom, useMediaQuery } from "@mui/material";
 import { SpriteSVG } from "../../images/SpriteSVG";
 import {
@@ -16,11 +16,13 @@ import {
 } from "../../helpers/proposalsFilter";
 import PropTypes from "prop-types";
 import FilterByCompany from "../SelectFilterByCompany/FilterByCompany";
-import CompanyList from "../CompanyList/CompanyList";
+import { useDispatch, useSelector } from "react-redux";
+import { getTariffPolicyChoose } from "../../redux/Calculator/selectors";
+import { setFilteredCompanies } from "../../redux/Calculator/calculatorSlice";
 
-const ProposalsFilter = ({ companies = [], dgos }) => {
-  // const { companies } = useRef(companies);
-  const [filteredCompanies, setFilteredCompanies] = useState(companies);
+const ProposalsFilter = () => {
+  const companies = useSelector(getTariffPolicyChoose);
+  const dispatch = useDispatch();
   const theme = useTheme();
   const smScreen = useMediaQuery(theme.breakpoints.up("sm"));
   const [isShowFilter, setIsShowFilter] = useState(false);
@@ -29,13 +31,10 @@ const ProposalsFilter = ({ companies = [], dgos }) => {
   const [selectedPriceSort, setSelectedPriceSort] = useState(
     priceSortOptionsGeneral[0]
   );
+
   useEffect(() => {
     setCompaniesNameOptions(createSelectOptionsByCompaniName(companies));
-  }, []);
-  // const [selectedSortByReiting, setSelectedSortByReiting] = useState(
-  //   priceSortOptionsGeneral[0]
-  // );
-  // =============================================================
+  }, [companies]);
 
   const handleChangeByName = (event) => {
     const {
@@ -45,7 +44,6 @@ const ProposalsFilter = ({ companies = [], dgos }) => {
       typeof value === "string" ? value.split(",") : value
     );
   };
-  // =============================================================
 
   useEffect(() => {
     setIsShowFilter(smScreen);
@@ -62,11 +60,11 @@ const ProposalsFilter = ({ companies = [], dgos }) => {
       filteredByPrice(filteredCompanies, selectedPriceSort.value);
     }
     if (selectedCompanieName || selectedPriceSort.value) {
-      setFilteredCompanies(filteredCompanies);
+      dispatch(setFilteredCompanies(filteredCompanies));
     } else {
-      setFilteredCompanies(companies);
+      dispatch(setFilteredCompanies(companies));
     }
-  }, [selectedCompanieName, companies, setFilteredCompanies, selectedPriceSort]);
+  }, [selectedCompanieName, companies, selectedPriceSort, dispatch ]);
 
   const handleChange = () => {
     setIsShowFilter((prev) => !prev);
@@ -137,7 +135,6 @@ const ProposalsFilter = ({ companies = [], dgos }) => {
           </SelectsContStyled>
         </Collapse>
       </Box>
-      <CompanyList proposals={filteredCompanies} dgos={dgos} />;
     </>
   );
 };
