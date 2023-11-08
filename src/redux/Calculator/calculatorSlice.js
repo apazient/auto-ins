@@ -8,7 +8,8 @@ import {
 } from "./operations";
 
 const initialState = {
-  tariffPolicyChoose: null,
+  filteredCompanies:[],
+  tariffPolicyChoose: [],
   tariffVcl: null,
   autoByNumber: [],
   allAutoByNumber: {},
@@ -29,6 +30,9 @@ export const calculatorSlice = createSlice({
     },
     setTariffPolicyDn: (state, { payload }) => {
       state.tariffPolicyDn = payload;
+    },
+    setFilteredCompanies: (state, { payload }) => {
+      state.filteredCompanies = payload;
     },
   },
   extraReducers: (builder) => {
@@ -74,6 +78,6 @@ export const calculatorSlice = createSlice({
   },
 });
 
-export const { setStateNumber, setAutoByNumber, setTariffPolicyDn } =
+export const { setStateNumber, setAutoByNumber, setTariffPolicyDn, setFilteredCompanies } =
   calculatorSlice.actions;
 export const calculatorReducer = calculatorSlice.reducer;
