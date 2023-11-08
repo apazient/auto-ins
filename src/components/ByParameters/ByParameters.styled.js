@@ -5,35 +5,10 @@ import {
   OutlinedInput,
   styled,
 } from "@mui/material";
-import { DatePicker } from "@mui/x-date-pickers";
+
 import { BlueButton } from "../../style/Global.styled";
 
 export const InputStyled = styled(OutlinedInput)(({ theme }) => ({
-  width: "100%",
-  height: 56,
-  padding: 16,
-  borderRadius: 50,
-  backgroundColor: `${theme.palette.primary.white}`,
-  outline: `none`,
-  "& .MuiInputBase-input.MuiOutlinedInput-input": {
-    color: `${theme.palette.primary.main}`,
-    fontWeight: 600,
-    fontFamily: "OpenSans-SemiBold",
-    fontSize: 16,
-    lineHeight: "150%" /* 24px */,
-    [theme.breakpoints.up("sm")]: {
-      fontSize: 18,
-    },
-  },
-  [theme.breakpoints.up("sm")]: {
-    height: 59,
-  },
-  [theme.breakpoints.up("lg")]: {
-    width: 272,
-  },
-}));
-
-export const DateInputS = styled(DatePicker)(({ theme }) => ({
   width: "100%",
   height: 56,
   padding: 16,
