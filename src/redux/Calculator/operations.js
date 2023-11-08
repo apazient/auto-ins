@@ -30,20 +30,21 @@ export const osagoByParams = createAsyncThunk(
   async (body, { rejectWithValue, dispatch, getState }) => {
     try {
       const { calculator } = getState();
-      const salePoint = { salePoint: calculator.user.salePoint.id };
       const { dateFrom } = body;
+      const salePoint = calculator.user.salePoint.id;
+
       const dateTo = addYearToDate(dateFrom);
       const { data } = await instance.get("/tariff/choose/policy", {
         params: {
           ...body,
           usageMonths: 0,
           taxi: false,
-          ...salePoint,
+          salePoint,
           dateTo,
         },
       });
 
-      dispatch(chooseVclTariffDGO(body));
+      dispatch(chooseVclTariffDGO({ ...body, salePoint }));
       const newData = data
         .filter((el) => el.crossSell === false)
         .filter((el) => el.discountedPayment !== 0);
@@ -111,14 +112,15 @@ export const chooseVclTariffDGO = createAsyncThunk(
       const { autoCategory, dateFrom, ...rest } = body;
       const dateTo = addYearToDate(dateFrom);
       const cat = getAutoKindAndLimit(autoCategory);
+
       const { data } = await instance.post("/tariff/choose/vcl", {
         ...rest,
         ...cat,
         dateFrom,
         dateTo,
       });
-
       const newData = data.filter((el) => el.crossSell === false);
+
       return mergeObjectsById(newData, responseDGONormalize);
     } catch (error) {
       return rejectWithValue(error.response.data);

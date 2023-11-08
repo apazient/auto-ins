@@ -47,8 +47,9 @@ const Company = ({ proposal, dgo = [] }) => {
 
   useEffect(() => {
     if (!proposal) return;
+    console.log("sdfsfsf");
     setPrice(franchise.discountedPayment + chooseDgo.discountedPayment);
-  }, [tariff, chooseDgo, franchise.discountedPayment]);
+  }, [tariff, chooseDgo, franchise.discountedPayment, proposal]);
 
   const handleChangeSelect = (e) => {
     setFranchise(e);
@@ -56,7 +57,7 @@ const Company = ({ proposal, dgo = [] }) => {
   const handleChangeDgoSelect = (e) => {
     setChooseDgo(e);
   };
-
+  console.log("company");
   const formik = useFormik({
     initialValues: {},
     onSubmit: (values) => {
