@@ -33,7 +33,8 @@ const Company = ({ proposal, dgo = [] }) => {
   const theme = useTheme();
   const { insurerId, insurerName, tariff, registrationPlace, autoCategory } =
     proposal;
-
+  console.log(proposal);
+  console.log(dgo);
   const [checkSavety, setCheckSavety] = useState(false);
   const [franchise, setFranchise] = useState(tariff[0]);
   const [chooseDgo, setChooseDgo] = useState({
@@ -47,7 +48,6 @@ const Company = ({ proposal, dgo = [] }) => {
 
   useEffect(() => {
     if (!proposal) return;
-    console.log("sdfsfsf");
     setPrice(franchise.discountedPayment + chooseDgo.discountedPayment);
   }, [tariff, chooseDgo, franchise.discountedPayment, proposal]);
 
@@ -57,7 +57,7 @@ const Company = ({ proposal, dgo = [] }) => {
   const handleChangeDgoSelect = (e) => {
     setChooseDgo(e);
   };
-  console.log("company");
+
   const formik = useFormik({
     initialValues: {},
     onSubmit: (values) => {

@@ -3,16 +3,16 @@ import {
   getTariffPolicyChoose,
   getTariffVcl,
 } from "../../redux/Calculator/selectors";
-import { getIsLoading } from "../../redux/Global/selectors";
+
 import Company from "../Company/Company";
 
 const CompanyList = () => {
   let dgo = null;
   const proposals = useSelector(getTariffPolicyChoose);
   const dgos = useSelector(getTariffVcl);
-  const isLoading = useSelector(getIsLoading);
 
   if (proposals && dgos) {
+    console.log(proposals, dgos);
     const ViewData = () =>
       proposals?.map((companyObject) => {
         dgo =
@@ -26,7 +26,7 @@ const CompanyList = () => {
           />
         );
       });
-    return <ul>{!isLoading && ViewData()}</ul>;
+    return <ul>{ViewData()}</ul>;
   }
 };
 
