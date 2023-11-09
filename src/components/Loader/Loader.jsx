@@ -7,8 +7,8 @@ const Loader = () => {
       <BallTriangle
         height={100}
         width={100}
-        radius={5}
-        color="#4fa94d"
+        radius={7}
+        color="#1547F8"
         ariaLabel="ball-triangle-loading"
         wrapperClass={{}}
         wrapperStyle=""
