@@ -17,10 +17,10 @@ import BurgerMenu from "../BurgerMenu/BurgerMenu";
 import { useNavigate } from "react-router-dom";
 
 const Header = () => {
-  const theme = useTheme();  
-  const isLargeScreen = useMediaQuery(`${theme.breakpoints.up("lg")}`);  
+  const theme = useTheme();
+  const isLargeScreen = useMediaQuery(`${theme.breakpoints.up("lg")}`);
   const navigate = useNavigate();
-  const handleScrollToSection = (chapter) => {    
+  const handleScrollToSection = (chapter) => {
     navigate("/", { state: { id: chapter } });
   };
 
@@ -28,7 +28,7 @@ const Header = () => {
     <header>
       <HeaderS disableGutters={true} maxWidth={false}>
         <HeaderBoxS>
-          <LogoBoxS>
+          <LogoBoxS href="/" rel="noreferrer noopener">
             <BoxIconHS className="logoIcon">
               <SpriteSVG name={"icon-logo"} />
             </BoxIconHS>
@@ -37,9 +37,7 @@ const Header = () => {
           {isLargeScreen ? (
             <>
               <UlListHS>
-                <LiItemHS
-                  disablePadding={true}                  
-                >
+                <LiItemHS disablePadding={true}>
                   <ScrollLink
                     to="переваги"
                     smooth={true}
@@ -53,9 +51,7 @@ const Header = () => {
                     </ChapterSpanHS>
                   </ScrollLink>
                 </LiItemHS>
-                <LiItemHS
-                  disablePadding={true}                  
-                >
+                <LiItemHS disablePadding={true}>
                   <ScrollLink
                     to="партнери"
                     smooth={true}
@@ -69,9 +65,7 @@ const Header = () => {
                     </ChapterSpanHS>
                   </ScrollLink>
                 </LiItemHS>
-                <LiItemHS
-                  disablePadding={true}                  
-                >
+                <LiItemHS disablePadding={true}>
                   <ScrollLink
                     to="питання-відповіді"
                     smooth={true}

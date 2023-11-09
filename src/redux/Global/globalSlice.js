@@ -3,7 +3,10 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   isLoading: false,
   isModalErrorOpen: false,
-  globalCustomerData: null,
+  // globalCustomerData: null,
+  globalCustomerData: {    
+    customer: {},
+  },
 };
 
 export const globalSlice = createSlice({

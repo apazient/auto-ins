@@ -36,13 +36,14 @@ export const HeaderBoxS = styled(Container)(({ theme }) => ({
   },
 }));
 
-export const LogoBoxS = styled(Box)(({ theme }) => ({
+export const LogoBoxS = styled(Link)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "center",
   width: "70px",
   height: "42px",
+  cursor: "pointer",
 
   [theme.breakpoints.up("sm")]: {
     width: "80px",
