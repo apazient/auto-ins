@@ -113,6 +113,7 @@ const Stepper = ({ backLinkRef }) => {
     // validationSchema: contactsValidationSchema(),
     onSubmit: (values) => {
       console.log("onSubmit", values);
+      //dispatch(action())
       handleNext();
     },
   });
@@ -138,7 +139,7 @@ const Stepper = ({ backLinkRef }) => {
   const carDataFormik = useFormik({
     initialValues: carDataFormikInitialValues,
     onSubmit: (values) => {
-      getCarModel("bmw e65");
+      //getCarModel("bmw e65");
       const allValues = {
         ...contactsFormik.values,
         ...insuredDataFormik.values,

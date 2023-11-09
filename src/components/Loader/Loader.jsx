@@ -5,9 +5,9 @@ const Loader = () => {
   return (
     <LoaderBox>
       <BallTriangle
-        height={100}
-        width={100}
-        radius={7}
+        height={200}
+        width={200}
+        radius={5.1}
         color="#1547F8"
         ariaLabel="ball-triangle-loading"
         wrapperClass={{}}
