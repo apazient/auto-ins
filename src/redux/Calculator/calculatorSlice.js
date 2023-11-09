@@ -8,9 +8,9 @@ import {
 } from "./operations";
 
 const initialState = {
-  filteredCompanies:[],
+  filteredCompanies: [],
   tariffPolicyChoose: [],
-  tariffVcl: null,
+  tariffVcl: [],
   autoByNumber: [],
   allAutoByNumber: {},
   stateNumber: "",
@@ -78,6 +78,10 @@ export const calculatorSlice = createSlice({
   },
 });
 
-export const { setStateNumber, setAutoByNumber, setTariffPolicyDn, setFilteredCompanies } =
-  calculatorSlice.actions;
+export const {
+  setStateNumber,
+  setAutoByNumber,
+  setTariffPolicyDn,
+  setFilteredCompanies,
+} = calculatorSlice.actions;
 export const calculatorReducer = calculatorSlice.reducer;

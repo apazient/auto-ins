@@ -23,9 +23,8 @@ import CompanyCardMedia from "../CompanyCardMedia/index";
 import { useDispatch, useSelector } from "react-redux";
 import { setGlobalCustomerData } from "../../redux/Global/globalSlice";
 import { getUser } from "../../redux/Calculator/selectors";
-import { cardActionAreaClasses } from "@mui/material";
 
-const Company = ({ proposal, dgo = [] }) => {
+const Company = ({ proposal, dgo }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();

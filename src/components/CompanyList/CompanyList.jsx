@@ -12,7 +12,7 @@ const CompanyList = () => {
   const proposals = useSelector(getFilteredCompanies);
   const dgos = useSelector(getTariffVcl);
 
-  if (proposals && dgos) {
+  if (proposals.length > 0 && dgos.length > 0) {
     const ViewData = () =>
       proposals?.map((companyObject) => {
         dgo =
