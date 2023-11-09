@@ -5,12 +5,12 @@ import { useSelector } from "react-redux";
 import { getGlobalCustomerData, selectGlobalCustomerDataCustomer } from "../../redux/Global/selectors";
 import { contactsInitialValues } from "../../helpers/formikInitialValues";
 
-const FormContacts = ({ formik }) => {    
+const FormContacts = ({ formik }) => {
+
 const customerContacts = useSelector(selectGlobalCustomerDataCustomer)
 const contacts = contactsInitialValues
 const globalData = useSelector(getGlobalCustomerData)
 console.log('globalData: ', globalData);
-
 
   return (
     <>
@@ -19,7 +19,7 @@ console.log('globalData: ', globalData);
             id="email"
             type="text"
             lableText="Електронна пошта* :"
-            value={customerContacts.email ? customerContacts.email : contacts.email}            
+            value={customerContacts.email ? customerContacts.email : contacts.email}
             formikData={formik}            
           />
           <SpanS variant="inputSpan">

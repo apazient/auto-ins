@@ -5,7 +5,9 @@ const initialState = {
   isModalErrorOpen: false,
   // globalCustomerData: null,
   globalCustomerData: {    
-    customer: {},
+    customer: {
+      email: "test@test.ua"
+    },
 //   "customer": {
 //     "code": "1234567890",
 //     "nameLast": "Тест",

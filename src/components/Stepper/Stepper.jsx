@@ -9,8 +9,8 @@ import { Connector, Lable, LableIcon, StepperStyled } from "./StepperStyled";
 import StepIcon from "./StepIcon";
 import { useFormik } from "formik";
 import {
-  carDataFormikInitialValues,
   contactsInitialValues,
+  carDataFormikInitialValues,
   homeAddressInitialValues,
   insuredDataInitialValues,
 } from "../../helpers/formikInitialValues";
@@ -116,6 +116,7 @@ const Stepper = ({ backLinkRef }) => {
     // validationSchema: contactsValidationSchema(),
     onSubmit: (values) => {
       console.log("onSubmit", values);
+      dispatch(setGlobalCustomerDataCustomer(contactsInitialValues))
       dispatch(setGlobalCustomerDataCustomer(values))
       handleNext();
     },
