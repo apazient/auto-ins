@@ -2,11 +2,16 @@ import PropTypes from "prop-types";
 import { InputBoxS, SpanS } from "./FormContactsStyled";
 import GeneralInput from "../../components/GeneralInput/GeneralInput";
 import { useSelector } from "react-redux";
-import { selectGlobalCustomerDataCustomer } from "../../redux/Global/selectors";
+import { getGlobalCustomerData, selectGlobalCustomerDataCustomer } from "../../redux/Global/selectors";
+import { contactsInitialValues } from "../../helpers/formikInitialValues";
 
-const FormContacts = ({ formik }) => {  
+const FormContacts = ({ formik }) => {    
 const customerContacts = useSelector(selectGlobalCustomerDataCustomer)
-console.log('customerContacts: ', customerContacts);
+const contacts = contactsInitialValues
+const globalData = useSelector(getGlobalCustomerData)
+console.log('globalData: ', globalData);
+
+
   return (
     <>
         <InputBoxS>
@@ -14,6 +19,7 @@ console.log('customerContacts: ', customerContacts);
             id="email"
             type="text"
             lableText="Електронна пошта* :"
+            value={customerContacts.email ? customerContacts.email : contacts.email}            
             formikData={formik}            
           />
           <SpanS variant="inputSpan">
@@ -23,6 +29,7 @@ console.log('customerContacts: ', customerContacts);
           <GeneralInput
             id="phone"
             lableText="Телефон* :"
+            value={customerContacts.phone ? customerContacts.phone : contacts.phone}
             type="phone"
             formikData={formik}            
             placeholder="+38(_ _ _)_ _ _ - _ _ _ _"

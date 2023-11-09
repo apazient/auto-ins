@@ -6,6 +6,23 @@ const initialState = {
   // globalCustomerData: null,
   globalCustomerData: {    
     customer: {},
+//   "customer": {
+//     "code": "1234567890",
+//     "nameLast": "Тест",
+//     "nameFirst": "Тест",
+//     "address": "Киев",
+//     "phone": "+380111111111",//ok
+//     "email": "test@test.ua",//ok
+//     "birthDate": "1987-01-01",
+//     "document": {
+//       "type": "PASSPORT",
+//       "series": "аа",
+//       "number": "12345",
+//       "date": "2003-01-01",
+//       "issuedBy": "Солом'янським РУ ГУ МВС України в місті Києві"
+//     }
+//   }, 
+    
   },
 };
 
@@ -22,10 +39,13 @@ export const globalSlice = createSlice({
     setIsModalErrorOpen: (state, { payload }) => {
       state.isModalErrorOpen = payload;
     },
+    setGlobalCustomerDataCustomer: (state, { payload }) => {      
+      state.globalCustomerData.customer = { ...state.globalCustomerData.customer, ...payload };
+    }
   },
 });
 
-export const { setIsModalErrorOpen, setIsLoading, setGlobalCustomerData } =
+export const { setIsModalErrorOpen, setIsLoading, setGlobalCustomerData, setGlobalCustomerDataCustomer } =
   globalSlice.actions;
 export const globalReducer = globalSlice.reducer;
 

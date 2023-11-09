@@ -36,6 +36,8 @@ import {
   NATURALSelectOptions,
   PRIVILEGEDSelectOptions,
 } from "../../assets/utils/isPrivilegedOptions";
+import { useDispatch } from "react-redux";
+import { setGlobalCustomerDataCustomer } from "../../redux/Global/globalSlice";
 // import { getCarModel } from "../../services/api";
 
 const steps = [
@@ -89,6 +91,7 @@ const CarDataForm = lazy(() => import("../../forms/CarDataForm/CarDataForm"));
 // ];
 
 const Stepper = ({ backLinkRef }) => {
+  const dispatch = useDispatch()
   const [activeStep, setActiveStep] = useState(0);
 
   const [identityCard, setIdentityCard] = useState([]);
@@ -113,7 +116,7 @@ const Stepper = ({ backLinkRef }) => {
     // validationSchema: contactsValidationSchema(),
     onSubmit: (values) => {
       console.log("onSubmit", values);
-      //dispatch(action())
+      dispatch(setGlobalCustomerDataCustomer(values))
       handleNext();
     },
   });
@@ -122,8 +125,10 @@ const Stepper = ({ backLinkRef }) => {
     initialValues: insuredDataInitialValues,
     // validationSchema: insuredDataFormValidationSchema(),
     onSubmit: (values) => {
-      handleNext();
       console.log(values);
+      // dispatch(setGlobalCustomerDataCustomer(values))
+      handleNext();
+
     },
   });
 
