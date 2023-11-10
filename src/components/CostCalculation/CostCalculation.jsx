@@ -114,7 +114,7 @@ export const CostCalculation = () => {
                 onChange={handleChangeDate}
                 type="date"
                 name="date"
-                dateFormat="DD.MM.YYYY"
+                dateFormat="YYYY-MM-DD"
                 timeFormat={false}
                 closeOnSelect={true}
                 // isValidDate={isValidDate}
