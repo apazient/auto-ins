@@ -1,9 +1,12 @@
 import PropTypes from "prop-types";
 import { InputBoxS, SpanS } from "./FormContactsStyled";
 import GeneralInput from "../../components/GeneralInput/GeneralInput";
+import { useSelector } from "react-redux";
+import { selectGlobalCustomerDataCustomer } from "../../redux/Global/selectors";
 
 const FormContacts = ({ formik }) => {  
-
+const customerContacts = useSelector(selectGlobalCustomerDataCustomer)
+console.log('customerContacts: ', customerContacts);
   return (
     <>
         <InputBoxS>

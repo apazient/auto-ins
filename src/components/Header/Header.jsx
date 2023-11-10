@@ -30,7 +30,7 @@ const Header = () => {
     <header>
       <HeaderS disableGutters={true} maxWidth={false}>
         <HeaderBoxS>
-          <LogoBoxS>
+          <LogoBoxS href="/" rel="noreferrer noopener">
             <BoxIconHS className="logoIcon">
               <SpriteSVG name={"icon-logo"} />
             </BoxIconHS>

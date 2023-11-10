@@ -1,3 +1,4 @@
+
 export const insuredDataInitialValues = {
   surname: "",
   name: "",
@@ -27,7 +28,11 @@ export const homeAddressInitialValues = {
   houseNumber: "",
   apartmentNumber: "",
 };
+
+// const contacts = useSelector(selectContacts)
+// const {email, phone} = contacts
 export const contactsInitialValues = {
+  // email: email || "",
   email: "",
   phone: "",
 };
