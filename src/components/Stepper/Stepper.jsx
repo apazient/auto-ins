@@ -91,7 +91,7 @@ const CarDataForm = lazy(() => import("../../forms/CarDataForm/CarDataForm"));
 // ];
 
 const Stepper = ({ backLinkRef }) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [activeStep, setActiveStep] = useState(0);
 
   const [identityCard, setIdentityCard] = useState([]);
@@ -115,9 +115,9 @@ const Stepper = ({ backLinkRef }) => {
     initialValues: contactsInitialValues,
     // validationSchema: contactsValidationSchema(),
     onSubmit: (values) => {
-      console.log("onSubmit", values);
-      dispatch(setGlobalCustomerDataCustomer(contactsInitialValues))
-      dispatch(setGlobalCustomerDataCustomer(values))
+      console.log("contacts", values);
+      dispatch(setGlobalCustomerDataCustomer(contactsInitialValues));
+      dispatch(setGlobalCustomerDataCustomer(values));
       handleNext();
     },
   });
@@ -126,20 +126,47 @@ const Stepper = ({ backLinkRef }) => {
     initialValues: insuredDataInitialValues,
     // validationSchema: insuredDataFormValidationSchema(),
     onSubmit: (values) => {
-      console.log(values);
-      // dispatch(setGlobalCustomerDataCustomer(values))
+      console.log("insured", values);
+      const {
+        birthDate,
+        date,
+        issuedBy,
+        middleName,
+        name,
+        number,
+        record,
+        series,
+        surname,
+        taxNumber,
+      } = values;
+      const insuredValues = {
+        surname,
+        name,
+        middleName,
+        birthDate,
+        taxNumber,
+        record,//????????????????????????
+        document: {
+          //type: "", //document{}
+          series,
+          number,
+          issuedBy,
+          date,
+        },
+      };
+      dispatch(setGlobalCustomerDataCustomer(insuredDataInitialValues))
+      dispatch(setGlobalCustomerDataCustomer(insuredValues))
       handleNext();
-
     },
   });
 
   const homeAddressFormik = useFormik({
     initialValues: homeAddressInitialValues,
-    onSubmit: (values) => {
-      handleNext();
-      console.log(values);
-    },
     // validationSchema: HomeAddressFormValidationSchema(),
+    onSubmit: (values) => {
+      console.log(values);
+      handleNext();
+    },
   });
 
   const carDataFormik = useFormik({

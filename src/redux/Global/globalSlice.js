@@ -6,8 +6,11 @@ const initialState = {
   // globalCustomerData: null,
   globalCustomerData: {    
     customer: {
-      email: "test@test.ua",
-      phone: "+123"
+      // email: "test@test.ua",
+      // phone: "+123"
+      // "nameLast": "Тест",
+//     "nameFirst": "Тест",
+//     "birthDate": "1987-01-01"
     },
 //   "customer": {
 //     "code": "1234567890",
@@ -16,12 +19,12 @@ const initialState = {
 //     "address": "Киев",
 //     "phone": "+380111111111",//ok
 //     "email": "test@test.ua",//ok
-//     "birthDate": "1987-01-01",
+//     "birthDate": "1987-01-01",//ok
 //     "document": {
 //       "type": "PASSPORT",
 //       "series": "аа",
 //       "number": "12345",
-//       "date": "2003-01-01",
+//       "date": "2003-01-01",//
 //       "issuedBy": "Солом'янським РУ ГУ МВС України в місті Києві"
 //     }
 //   }, 
