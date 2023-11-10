@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import { Link as ScrollLink } from "react-scroll";
 import { useTheme } from "@mui/material";
 import { useMediaQuery } from "@mui/material";
@@ -13,14 +14,15 @@ import {
   LogoTextHS,
   UlListHS,
 } from "./HeaderStyled";
-import BurgerMenu from "../BurgerMenu/BurgerMenu";
+// import BurgerMenu from "../BurgerMenu/BurgerMenu";
+const BurgerMenu = lazy(() => import("../BurgerMenu/BurgerMenu"));
 import { useNavigate } from "react-router-dom";
 
 const Header = () => {
-  const theme = useTheme();  
-  const isLargeScreen = useMediaQuery(`${theme.breakpoints.up("lg")}`);  
+  const theme = useTheme();
+  const isLargeScreen = useMediaQuery(`${theme.breakpoints.up("lg")}`);
   const navigate = useNavigate();
-  const handleScrollToSection = (chapter) => {    
+  const handleScrollToSection = (chapter) => {
     navigate("/", { state: { id: chapter } });
   };
 
@@ -37,9 +39,7 @@ const Header = () => {
           {isLargeScreen ? (
             <>
               <UlListHS>
-                <LiItemHS
-                  disablePadding={true}                  
-                >
+                <LiItemHS disablePadding={true}>
                   <ScrollLink
                     to="переваги"
                     smooth={true}
@@ -53,9 +53,7 @@ const Header = () => {
                     </ChapterSpanHS>
                   </ScrollLink>
                 </LiItemHS>
-                <LiItemHS
-                  disablePadding={true}                  
-                >
+                <LiItemHS disablePadding={true}>
                   <ScrollLink
                     to="партнери"
                     smooth={true}
@@ -69,9 +67,7 @@ const Header = () => {
                     </ChapterSpanHS>
                   </ScrollLink>
                 </LiItemHS>
-                <LiItemHS
-                  disablePadding={true}                  
-                >
+                <LiItemHS disablePadding={true}>
                   <ScrollLink
                     to="питання-відповіді"
                     smooth={true}
@@ -138,7 +134,9 @@ const Header = () => {
               </UlListHS>
             </>
           ) : (
-            <BurgerMenu sx={{ width: "32px" }} />
+            <Suspense>
+              <BurgerMenu sx={{ width: "32px" }} />
+            </Suspense>
           )}
         </HeaderBoxS>
       </HeaderS>

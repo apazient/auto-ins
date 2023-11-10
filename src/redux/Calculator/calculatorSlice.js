@@ -15,6 +15,8 @@ const initialState = {
   allAutoByNumber: {},
   stateNumber: "",
   error: "",
+  policyStatus: 0,
+  vclStatus: 0,
   user: null,
 };
 
@@ -24,12 +26,17 @@ export const calculatorSlice = createSlice({
   reducers: {
     setStateNumber: (state, { payload }) => {
       state.stateNumber = payload;
+      state.tariffVcl = [];
+      state.tariffPolicyChoose = [];
     },
     setAutoByNumber: (state, { payload }) => {
       state.autoByNumber = payload;
     },
-    setTariffPolicyDn: (state, { payload }) => {
-      state.tariffPolicyDn = payload;
+    setTariffPolicyChoose: (state, { payload }) => {
+      state.tariffPolicyChoose = payload;
+    },
+    setTariffVcl: (state, { payload }) => {
+      state.tariffVcl = payload;
     },
     setFilteredCompanies: (state, { payload }) => {
       state.filteredCompanies = payload;
@@ -43,24 +50,31 @@ export const calculatorSlice = createSlice({
       })
       .addCase(osagoByParams.fulfilled, (state, { payload }) => {
         state.tariffPolicyChoose = payload;
+        state.policyStatus = 1;
       })
       .addCase(osagoByParams.rejected, (state, { payload }) => {
         state.error = payload;
+        state.policyStatus = -1;
       })
       .addCase(osagoByParams.pending, (state, { payload }) => {
         state.error = payload;
+        state.policyStatus = 0;
       })
 
       .addCase(osagoByDn.fulfilled, (state, { payload }) => {
         state.tariffPolicyChoose = payload;
+        state.policyStatus = 1;
       })
       .addCase(osagoByDn.rejected, (state, { payload }) => {
         state.error = payload;
+        state.policyStatus = -1;
       })
       .addCase(osagoByDn.pending, (state, { payload }) => {
         state.error = payload;
+        state.policyStatus = 0;
       })
       .addCase(autoByNumber.fulfilled, (state, { payload }) => {
+        console.log(payload);
         const { bodyNumber, year, modelText } = payload;
         state.autoByNumber = [bodyNumber, year, modelText];
         state.allAutoByNumber = payload;
@@ -68,12 +82,15 @@ export const calculatorSlice = createSlice({
 
       .addCase(chooseVclTariffDGO.fulfilled, (state, { payload }) => {
         state.tariffVcl = payload;
+        state.vclStatus = 1;
       })
       .addCase(chooseVclTariffDGO.rejected, (state, { payload }) => {
         state.error = payload;
+        state.vclStatus = -1;
       })
       .addCase(chooseVclTariffDGO.pending, (state, { payload }) => {
         state.error = payload;
+        state.vclStatus = 0;
       });
   },
 });
@@ -81,7 +98,8 @@ export const calculatorSlice = createSlice({
 export const {
   setStateNumber,
   setAutoByNumber,
-  setTariffPolicyDn,
+  setTariffPolicyChoose,
   setFilteredCompanies,
+  setTariffVcl,
 } = calculatorSlice.actions;
 export const calculatorReducer = calculatorSlice.reducer;

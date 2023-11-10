@@ -1,19 +1,27 @@
+/* eslint-disable react/display-name */
+import React from "react";
+
 import Typography from "@mui/material/Typography";
-
+import { useSelector } from "react-redux";
+import { getParamsFromUrl } from "../../redux/Global/selectors";
 import CompanyCardMedia from "../CompanyCardMedia/index";
-
 import { ContentBox, FormContainerS } from "./CompanySmallStyled";
 
-const CompanySmall = () => {
+const CompanySmall = React.memo(() => {
+  const paramsFromUrl = useSelector(getParamsFromUrl);
+
   return (
     <FormContainerS component="article">
       <Typography variant="subtitle1" component="h3" className="title">
         Електронний поліс ОСЦПВ
       </Typography>
       <ContentBox>
-        {/* <CompanyCardMedia id={insurerId} alt={tariff.insurer.name} />
+        <CompanyCardMedia
+          id={paramsFromUrl?.insurer.id}
+          alt={paramsFromUrl?.insurer.name}
+        />
         <Typography component="span" className="leightText">
-          {tariff.insurer.name}
+          {paramsFromUrl?.insurer.name}
         </Typography>
       </ContentBox>
 
@@ -22,7 +30,7 @@ const CompanySmall = () => {
           Франшиза
         </Typography>
         <Typography component="span" variant="body1">
-          {tariff.franchise} грн
+          {paramsFromUrl?.franchise} грн
         </Typography>
       </ContentBox>
 
@@ -31,7 +39,7 @@ const CompanySmall = () => {
           Реєстрація
         </Typography>
         <Typography component="span" variant="body1">
-          {registrationPlace.name}
+          {paramsFromUrl?.registrationPlace}
         </Typography>
       </ContentBox>
       <ContentBox className="line" />
@@ -41,11 +49,10 @@ const CompanySmall = () => {
           До сплати:
         </Typography>
         <Typography component="span" variant="subtitle1" className="boldText">
-          {price} грн
-        </Typography> */}
+          {paramsFromUrl?.price} грн
+        </Typography>
       </ContentBox>
     </FormContainerS>
   );
-};
-
+});
 export default CompanySmall;

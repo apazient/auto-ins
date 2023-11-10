@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { ExpandIconBox } from "./CompanyExpandMoreStyled";
 
-export const CompanyExpandMore = () => {
+const CompanyExpandMore = () => {
   const [expanded, setExpanded] = useState(false);
   const rotate = !expanded ? "rotate(0deg)" : "rotate(180deg)";
 
@@ -44,3 +44,5 @@ export const CompanyExpandMore = () => {
     </>
   );
 };
+
+export default CompanyExpandMore;

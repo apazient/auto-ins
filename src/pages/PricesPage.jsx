@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { CostCalculation } from "../components/CostCalculation/CostCalculation";
 
 import { useEffect, useRef } from "react";
@@ -24,6 +24,7 @@ import { getIsModalErrorOpen } from "../redux/Global/selectors";
 
 const PricesPage = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const { current } = useRef(location.state?.data);
   const userParams = useSelector(getSubmitObject);
   const stateNumber = useSelector(getStateNumber);
@@ -31,20 +32,28 @@ const PricesPage = () => {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    if (!userParams) {
+    let subscribed = true;
+    if (!Object.hasOwn(userParams, "dateFrom") && stateNumber) {
+      navigate("/");
       return;
     }
-    if (stateNumber && userParams) {
-      dispatch(setIsLoading(true));
-      dispatch(osagoByDn(userParams)).then(() => dispatch(setIsLoading(false)));
+    if (subscribed) {
+      if (stateNumber && userParams) {
+        dispatch(setIsLoading(true));
+        dispatch(osagoByDn(userParams)).then(() =>
+          dispatch(setIsLoading(false))
+        );
+      }
+      if (!stateNumber && userParams) {
+        dispatch(setIsLoading(true));
+        dispatch(osagoByParams(userParams)).then(() =>
+          dispatch(setIsLoading(false))
+        );
+      }
     }
-    if (!stateNumber && userParams) {
-      dispatch(setIsLoading(true));
-
-      dispatch(osagoByParams(userParams)).then(() =>
-        dispatch(setIsLoading(false))
-      );
-    }
+    return () => {
+      subscribed = false;
+    };
   }, [dispatch, userParams, stateNumber]);
 
   return (

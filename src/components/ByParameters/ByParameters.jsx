@@ -23,7 +23,11 @@ import {
   setSubmitObj,
   setVehicle,
 } from "../../redux/byParameters/byParametersSlice";
-import { setStateNumber } from "../../redux/Calculator/calculatorSlice";
+import {
+  setStateNumber,
+  setTariffPolicyChoose,
+  setTariffVcl,
+} from "../../redux/Calculator/calculatorSlice";
 
 const ByParameters = () => {
   const navigate = useNavigate();
@@ -108,6 +112,8 @@ const ByParameters = () => {
 
       dispatch(setSubmitObj(sendObj));
       dispatch(setStateNumber(""));
+      dispatch(setTariffPolicyChoose([]));
+      dispatch(setTariffVcl([]));
 
       navigate("/prices", {
         state: { from: locationPath.pathname, data: sendObj },

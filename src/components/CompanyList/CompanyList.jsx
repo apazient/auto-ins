@@ -1,7 +1,10 @@
 import { useSelector } from "react-redux";
 import {
   getFilteredCompanies,
+  getPolicyStatus,
+  getTariffsStatus,
   getTariffVcl,
+  getVclStatus,
 } from "../../redux/Calculator/selectors";
 
 import Company from "../Company/Company";
@@ -10,24 +13,25 @@ const CompanyList = () => {
   let dgo = null;
 
   const proposals = useSelector(getFilteredCompanies);
-  const dgos = useSelector(getTariffVcl);
+  let dgos = useSelector(getTariffVcl);
+  const status = useSelector(getTariffsStatus);
+  const insurerProposal = proposals?.map((companyObject) => {
+    if (dgos.length === 0) {
+      return;
+    }
+    dgo = dgos?.find((el) => el?.insurerId === companyObject?.insurerId);
+    if (!dgo) {
+      dgo = null;
+    } else {
+      const d = [...dgo.tariff];
+      d.unshift({ limit: 0, discountedPayment: 0 });
+      dgo = { ...dgo, tariff: d };
+    }
+    companyObject = { ...companyObject, dgo };
 
-  if (proposals.length > 0 && dgos.length > 0) {
-    const ViewData = () =>
-      proposals?.map((companyObject) => {
-        dgo =
-          dgos?.find((el) => el?.insurerId === companyObject?.insurerId) ||
-          null;
-        return (
-          <Company
-            key={companyObject?.insurerId}
-            proposal={companyObject}
-            dgo={dgo}
-          />
-        );
-      });
-    return <ul>{ViewData()}</ul>;
-  }
+    return <Company key={companyObject?.insurerId} proposal={companyObject} />;
+  });
+  return <ul>{status && insurerProposal}</ul>;
 };
 
 export default CompanyList;
