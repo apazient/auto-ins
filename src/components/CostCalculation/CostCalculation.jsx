@@ -3,6 +3,8 @@ import {
   FormContainerS,
   Item,
   StackS,
+  StyledDatatimeWrapper,
+  StyledDatetime,
   YellowButtonS,
 } from "./CostCalculationStyled";
 import { useNavigate } from "react-router-dom";
@@ -11,19 +13,24 @@ import {
   getAutoByNumber,
   getStateNumber,
 } from "../../redux/Calculator/selectors";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { autoByNumber } from "../../redux/Calculator/operations";
 import { setAutoByNumber } from "../../redux/Calculator/calculatorSlice";
 import GeneralInput from "../GeneralInput/GeneralInput";
 import { InputStyled } from "../ByParameters/ByParameters.styled";
 import { getSubmitObject } from "../../redux/byParameters/selectors";
 import { setSubmitObj } from "../../redux/byParameters/byParametersSlice";
+import Datetime from "react-datetime";
+import { Formik, useFormik } from "formik";
+
+import moment from "moment";
 
 export const CostCalculation = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const stateNumber = useSelector(getStateNumber);
   const { dateFrom } = useSelector((state) => state.byParameters.submitObj);
+  const [userDate, setUserDate] = useState(new Date(dateFrom));
 
   const autoByNumberRes = useSelector(getAutoByNumber);
   const sendObject = useSelector(getSubmitObject);
@@ -42,13 +49,32 @@ export const CostCalculation = () => {
       );
     }
   }, [dispatch, stateNumber, params, address]);
+
+  const formik = useFormik({
+    initialValues: {
+      date: userDate,
+    },
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  });
+  // const isValidDate = (currentDate) => {
+  //   return (
+  //     currentDate.isBefore(Datetime.moment()) ||
+  //     currentDate.isSame(Datetime.moment(), "day")
+  //   );
+  // };
   const handleChangeDate = (e) => {
-    const newObject = { ...sendObject, dateFrom: e.target.value };
+    const newObject = {
+      ...sendObject,
+      dateFrom: moment(e).format("YYYY-MM-DD"),
+    };
+    setUserDate(e);
     dispatch(setSubmitObj(newObject));
   };
 
   return (
-    <FormContainerS>
+    <FormContainerS className="costCalc">
       <Typography
         variant="formTitle"
         component="span"
@@ -80,13 +106,21 @@ export const CostCalculation = () => {
               ) : null;
             })
           }
-          <InputStyled
-            id="dateFrom"
-            label="Дата початку дії поліса*:"
-            value={dateFrom}
-            onChange={handleChangeDate}
-            type="date"
-          />
+          <Formik onSubmit={formik.handleSubmit}>
+            <StyledDatatimeWrapper>
+              <Datetime
+                id="dateFrom"
+                value={dateFrom}
+                onChange={handleChangeDate}
+                type="date"
+                name="date"
+                dateFormat="DD.MM.YYYY"
+                timeFormat={false}
+                closeOnSelect={true}
+                // isValidDate={isValidDate}
+              />
+            </StyledDatatimeWrapper>
+          </Formik>
         </StackS>
         <YellowButtonS type="submit" onClick={() => navigate("/")}>
           Змінити параметри
