@@ -4,9 +4,10 @@ const initialState = {
   isLoading: false,
   isModalErrorOpen: false,
   // globalCustomerData: null,
-  globalCustomerData: {    
+  globalCustomerData: {
     customer: {},
   },
+  paramsFromUrl: null,
 };
 
 export const globalSlice = createSlice({
@@ -22,11 +23,18 @@ export const globalSlice = createSlice({
     setIsModalErrorOpen: (state, { payload }) => {
       state.isModalErrorOpen = payload;
     },
+    setParamsFromUrl: (state, { payload }) => {
+      state.paramsFromUrl = { ...state.payload, ...payload };
+    },
   },
 });
 
-export const { setIsModalErrorOpen, setIsLoading, setGlobalCustomerData } =
-  globalSlice.actions;
+export const {
+  setIsModalErrorOpen,
+  setIsLoading,
+  setGlobalCustomerData,
+  setParamsFromUrl,
+} = globalSlice.actions;
 export const globalReducer = globalSlice.reducer;
 
 ///Запрос на получение тарифов без ДГО
