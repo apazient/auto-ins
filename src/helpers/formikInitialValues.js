@@ -29,10 +29,7 @@ export const homeAddressInitialValues = {
   apartmentNumber: "",
 };
 
-// const contacts = useSelector(selectContacts)
-// const {email, phone} = contacts
 export const contactsInitialValues = {
-  // email: email || "",
   email: "",
   phone: "",
 };

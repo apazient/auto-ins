@@ -9,8 +9,8 @@ const FormContacts = ({ formik }) => {
 
 const customerContacts = useSelector(selectGlobalCustomerDataCustomer)
 const contacts = contactsInitialValues
-const globalData = useSelector(getGlobalCustomerData)
-console.log('globalData: ', globalData);
+const globalData = useSelector(getGlobalCustomerData)// to delete
+console.log('globalData: ', globalData); //to delete
 
   return (
     <>

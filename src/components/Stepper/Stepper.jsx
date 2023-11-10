@@ -98,7 +98,7 @@ const Stepper = ({ backLinkRef }) => {
   const location = useLocation();
 
   let InsuredDataSelectOptions =
-    location.state.data.customerCategory === "NATURAL"
+    location.state?.data?.customerCategory === "NATURAL"
       ? NATURALSelectOptions
       : PRIVILEGEDSelectOptions;
   useEffect(() => {

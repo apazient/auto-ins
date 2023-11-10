@@ -6,7 +6,8 @@ const initialState = {
   // globalCustomerData: null,
   globalCustomerData: {    
     customer: {
-      email: "test@test.ua"
+      email: "test@test.ua",
+      phone: "+123"
     },
 //   "customer": {
 //     "code": "1234567890",
