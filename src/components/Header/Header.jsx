@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import { Link as ScrollLink } from "react-scroll";
 import { useTheme } from "@mui/material";
 import { useMediaQuery } from "@mui/material";
@@ -13,7 +14,8 @@ import {
   LogoTextHS,
   UlListHS,
 } from "./HeaderStyled";
-import BurgerMenu from "../BurgerMenu/BurgerMenu";
+// import BurgerMenu from "../BurgerMenu/BurgerMenu";
+const BurgerMenu = lazy(() => import("../BurgerMenu/BurgerMenu"));
 import { useNavigate } from "react-router-dom";
 
 const Header = () => {
@@ -132,7 +134,9 @@ const Header = () => {
               </UlListHS>
             </>
           ) : (
-            <BurgerMenu sx={{ width: "32px" }} />
+            <Suspense>
+              <BurgerMenu sx={{ width: "32px" }} />
+            </Suspense>
           )}
         </HeaderBoxS>
       </HeaderS>

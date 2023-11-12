@@ -43,7 +43,6 @@ export const ContentBox = styled(Box)(({ theme }) => ({
   [theme.breakpoints.up("lg")]: { width: "307px" },
 
   "& img": {
-    borderRadius: "16px",
     [theme.breakpoints.up("xs")]: { width: "115px!important" },
     [theme.breakpoints.up("md")]: { width: "125px!important" },
   },

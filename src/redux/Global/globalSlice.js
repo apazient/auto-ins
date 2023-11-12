@@ -5,7 +5,7 @@ const initialState = {
   isModalErrorOpen: false,
   // globalCustomerData: null,
   forms: {},
-  globalCustomerData: {    
+  globalCustomerData: {      
     customer: {},
 //   "customer": {
 //     "code": "1234567890",
@@ -25,6 +25,7 @@ const initialState = {
 //   }, 
     
   },
+  paramsFromUrl: null,
 };
 
 export const globalSlice = createSlice({
@@ -45,13 +46,23 @@ export const globalSlice = createSlice({
       state.globalCustomerData.customer = { ...state.globalCustomerData.customer, ...payload };
     },
     setFormData: (state, {payload}) => {            
-      state.forms = {...state.forms, ...payload}      
+      state.forms = {...state.forms, ...payload}
+    },
+
+    setParamsFromUrl: (state, { payload }) => {
+      state.paramsFromUrl = { ...state.payload, ...payload };
     },
   },
 });
 
-export const { setIsModalErrorOpen, setIsLoading, setGlobalCustomerData, setGlobalCustomerDataCustomer, setFormData } =
-  globalSlice.actions;
+export const {
+  setIsModalErrorOpen,
+  setIsLoading,
+  setGlobalCustomerData,
+  setParamsFromUrl,
+  setGlobalCustomerDataCustomer,
+  setFormData
+} = globalSlice.actions;
 export const globalReducer = globalSlice.reducer;
 
 ///Запрос на получение тарифов без ДГО

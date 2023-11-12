@@ -10,27 +10,35 @@ import {
   WrapperStyled,
 } from "./CompanyStyled";
 import Grid from "@mui/material/Grid";
-import { useState } from "react";
+import { lazy, Suspense, useState } from "react";
 import useTheme from "@mui/material/styles/useTheme";
 
 import { useLocation, useNavigate } from "react-router-dom";
-import { CompanyExpandMore } from "../CompanyExpandMore/CompanyExpandMore";
+// import { CompanyExpandMore } from "../CompanyExpandMore/CompanyExpandMore";
 import GeneralSelect from "../GeneralSelect/GeneralSelect";
 import Box from "@mui/material/Box";
 import { useEffect } from "react";
 import { useFormik } from "formik";
 import CompanyCardMedia from "../CompanyCardMedia/index";
 import { useDispatch, useSelector } from "react-redux";
-import { setGlobalCustomerData } from "../../redux/Global/globalSlice";
+import {
+  setGlobalCustomerData,
+  setParamsFromUrl,
+} from "../../redux/Global/globalSlice";
 import { getUser } from "../../redux/Calculator/selectors";
 
-const Company = ({ proposal, dgo }) => {
+const CompanyExpandMore = lazy(() =>
+  import("../CompanyExpandMore/CompanyExpandMore")
+);
+
+const Company = ({ proposal }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector(getUser);
   const theme = useTheme();
-  const { insurerId, insurerName, tariff, registrationPlace, autoCategory } =
+
+  const { insurerId, insurerName, tariff, autoCategory, registrationPlace } =
     proposal;
 
   const [checkSavety, setCheckSavety] = useState(false);
@@ -45,7 +53,6 @@ const Company = ({ proposal, dgo }) => {
   }, []);
 
   useEffect(() => {
-    if (!proposal) return;
     setPrice(franchise.discountedPayment + chooseDgo.discountedPayment);
   }, [tariff, chooseDgo, franchise.discountedPayment, proposal]);
 
@@ -65,13 +72,38 @@ const Company = ({ proposal, dgo }) => {
         autoCategory,
         tariff: franchise,
         dgoTarrif: chooseDgo,
-        registrationPlace,
+
         usageMonths: 0,
         taxi: false,
         salePoint: 40629,
       };
 
-      dispatch(setGlobalCustomerData(user));
+      dispatch(
+        setGlobalCustomerData({
+          user,
+          type: franchise.type,
+          tariff: {
+            type: franchise.type,
+            id: franchise.id,
+          },
+          dgoTarrif: {
+            type: chooseDgo.type,
+            id: chooseDgo.id,
+            limit: chooseDgo.limit,
+          },
+        })
+      );
+
+      dispatch(
+        setParamsFromUrl({
+          price,
+          insurer: { id: franchise.insurer.id, name: franchise.insurer.name },
+          registrationPlace: registrationPlace || "",
+          autoCategory,
+          franchise: franchise.franchise,
+        })
+      );
+
       navigate("/form", {
         state: {
           from: location,
@@ -119,6 +151,7 @@ const Company = ({ proposal, dgo }) => {
           <Typography variant="subtitle1" component="h3" className="title">
             ОСЦПВ від {insurerName}
           </Typography>
+
           <Box className="content">
             <BoxSelect className="franchise">
               <GeneralSelect
@@ -139,7 +172,7 @@ const Company = ({ proposal, dgo }) => {
                 lableText="Додаткове покриття"
                 helper="Пояснення до додаткове покриття"
                 color={theme.palette.primary.main}
-                optionsArr={dgo?.tariff || []}
+                optionsArr={proposal?.dgo?.tariff || []}
                 changeCB={handleChangeDgoSelect}
                 defaultValue={{ limit: 0, discountedPayment: 0 }}
                 getOptionLabel={(option) =>
@@ -147,7 +180,7 @@ const Company = ({ proposal, dgo }) => {
                 }
                 getOptionValue={(option) => option.discountedPayment}
                 currentValue={chooseDgo}
-                isDisabled={!dgo ? true : false}
+                isDisabled={!proposal?.dgo ? true : false}
               />
             </BoxSelect>
           </Box>
@@ -170,7 +203,9 @@ const Company = ({ proposal, dgo }) => {
         </WrapperStyled>
       </WrapperStyled>
       <WrapperStyled>
-        <CompanyExpandMore />
+        <Suspense>
+          <CompanyExpandMore />
+        </Suspense>
       </WrapperStyled>
     </CardStyled>
   );

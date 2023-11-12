@@ -64,7 +64,7 @@ const ProposalsFilter = () => {
     } else {
       dispatch(setFilteredCompanies(companies));
     }
-  }, [selectedCompanieName, companies, selectedPriceSort, dispatch ]);
+  }, [selectedCompanieName, companies, selectedPriceSort, dispatch]);
 
   const handleChange = () => {
     setIsShowFilter((prev) => !prev);
@@ -97,7 +97,7 @@ const ProposalsFilter = () => {
               id="price"
               lableText="Ціна"
               optionsArr={priceSortOptionsGeneral}
-              changeCB={setSelectedPriceSort} 
+              changeCB={setSelectedPriceSort}
               currentValue={selectedPriceSort}
             />
             {/* <GeneralSelect

@@ -1,12 +1,19 @@
-import HeroTabs from "../components/HeroTabs/HeroTabs";
-import AccordionSection from "../components/AccordionSection/index";
-import CheckInsSection from "../components/CheckInsSection/index";
-import InfoSection from "../components/InfoSection/index";
-
-import { useEffect } from "react";
-import AdvatagesSection from "../components/AdvantagesSection/index";
+import { lazy, Suspense, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import Partners from "../components/Partners/Partners";
+const AccordionSection = lazy(() =>
+  import("../components/AccordionSection/index")
+);
+const CheckInsSection = lazy(() =>
+  import("../components/CheckInsSection/index")
+);
+const InfoSection = lazy(() => import("../components/InfoSection/index"));
+const AdvatagesSection = lazy(() =>
+  import("../components/AdvantagesSection/index")
+);
+const Partners = lazy(() => import("../components/Partners/Partners"));
+
+import HeroTabs from "../components/HeroTabs/HeroTabs";
+
 import { useDispatch, useSelector } from "react-redux";
 import { loginThunk } from "../redux/Calculator/operations";
 import { getUser } from "../redux/Calculator/selectors";
@@ -40,11 +47,21 @@ const HomePage = () => {
     <>
       <main>
         <HeroTabs />
-        <AdvatagesSection />
-        <CheckInsSection />
-        <Partners />
-        <AccordionSection />
-        <InfoSection />
+        <Suspense>
+          <AdvatagesSection />
+        </Suspense>
+        <Suspense>
+          <CheckInsSection />
+        </Suspense>
+        <Suspense>
+          <Partners />
+        </Suspense>
+        <Suspense>
+          <AccordionSection />
+        </Suspense>
+        <Suspense>
+          <InfoSection />
+        </Suspense>
       </main>
     </>
   );
