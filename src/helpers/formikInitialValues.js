@@ -15,15 +15,12 @@ export const insuredDataInitialValues = {
   number: "", //document{}
   issuedBy: "", //document{}
   date: "", //document{}
-};
 
-export const carDataFormikInitialValues = {
-  effectiveDatePolicy: "",
-  licensePlate: "",
-  graduationYear: "",
-  brand: "",
-  model: "",
-  bodyNumber: "",
+  // type: "", //document{}
+  //series: "", //document{}
+  //number: "", //document{}
+  // issuedBy: "", //document{}
+  //date: "", //document{}
 };
 
 export const homeAddressInitialValues = {
@@ -32,4 +29,13 @@ export const homeAddressInitialValues = {
   street: "",
   houseNumber: "",
   apartmentNumber: "",
+};
+
+export const carDataFormikInitialValues = {
+  effectiveDatePolicy: "",
+  licensePlate: "",//"stateNumber"
+  graduationYear: "",//"year"
+  brand: "",//"autoMaker"
+  model: "",//"modelText"
+  bodyNumber: "",//"bodyNumber"
 };

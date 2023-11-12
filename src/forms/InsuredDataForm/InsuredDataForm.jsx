@@ -3,18 +3,16 @@ import GeneralSelect from "../../components/GeneralSelect/GeneralSelect";
 import GeneralInput from "../../components/GeneralInput/GeneralInput";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
-import { selectGlobalCustomerDataCustomer } from "../../redux/Global/selectors";
-import { insuredDataInitialValues } from "../../helpers/formikInitialValues";
+import { selectForms } from "../../redux/Global/selectors";
 
 const InsuredDataForm = ({ formik, selectData }) => {
-  const customerFormData = useSelector(selectGlobalCustomerDataCustomer);  
-  console.log('customerFormData: ', customerFormData);
-  const initialValuesInsured = insuredDataInitialValues;
-
+  const {initialValues} = formik
+  const formData = useSelector(selectForms);
+  const insuredFormData = formData.formInsuredData;  
   const { InsuredDataSelectOptions, identityCard, setIdentityCard } =
     selectData;
   const isID_PASSPORT = identityCard.value === "ID_PASSPORT";
-  console.log('identityCard: ', identityCard);
+  console.log("identityCard: ", identityCard);
 
   return (
     <>
@@ -23,9 +21,9 @@ const InsuredDataForm = ({ formik, selectData }) => {
           id="surname"
           lableText="Прізвище*:"
           value={
-            customerFormData.surname
-              ? customerFormData.surname
-              : initialValuesInsured.surname
+            insuredFormData?.surname
+              ? insuredFormData.surname
+              : initialValues.surname
           }
           formikData={formik}
         />
@@ -33,9 +31,9 @@ const InsuredDataForm = ({ formik, selectData }) => {
           id="name"
           lableText="Ім’я*:"
           value={
-            customerFormData.name
-              ? customerFormData.name
-              : initialValuesInsured.name
+            insuredFormData?.name
+              ? insuredFormData.name
+              : initialValues.name
           }
           formikData={formik}
         />
@@ -43,9 +41,9 @@ const InsuredDataForm = ({ formik, selectData }) => {
           id="middleName"
           lableText="По батькові*:"
           value={
-            customerFormData.middleName
-              ? customerFormData.middleName
-              : initialValuesInsured.middleName
+            insuredFormData?.middleName
+              ? insuredFormData.middleName
+              : initialValues.middleName
           }
           formikData={formik}
         />
@@ -53,20 +51,29 @@ const InsuredDataForm = ({ formik, selectData }) => {
           id="birthDate"
           lableText="Дата народження*:"
           value={
-            customerFormData.birthDate
-              ? customerFormData.birthDate
-              : initialValuesInsured.birthDate
+            insuredFormData?.birthDate
+              ? insuredFormData.birthDate
+              : initialValues.birthDate
           }
           formikData={formik}
           type="date"
         />
-        <GeneralInput id="taxNumber" lableText="РНОКПП*:" formikData={formik} />
+        <GeneralInput
+          id="taxNumber"
+          lableText="РНОКПП*:"
+          value={
+            insuredFormData?.taxNumber
+              ? insuredFormData.taxNumber
+              : initialValues.taxNumber
+          }
+          formikData={formik}
+        />
         <GeneralSelect
-          id="licensDoc"          
+          id="licensDoc"
           lableText="Документ на вибір*:"
           optionsArr={InsuredDataSelectOptions}
           changeCB={setIdentityCard} //функція що повертає вибране значення (піднесення)
-          currentValue={identityCard}          
+          currentValue={identityCard}
         />
         <DocInputsStyled>
           {!isID_PASSPORT && (
@@ -74,9 +81,9 @@ const InsuredDataForm = ({ formik, selectData }) => {
               id="series"
               lableText="Серія*:"
               value={
-                customerFormData.document?.series
-                  ? customerFormData.document?.series
-                  : initialValuesInsured.series
+                insuredFormData?.series
+                  ? insuredFormData.series
+                  : initialValues.series
               }
               formikData={formik}
             />
@@ -85,9 +92,9 @@ const InsuredDataForm = ({ formik, selectData }) => {
             id="number"
             lableText="Номер*:"
             value={
-              customerFormData.document?.number
-                ? customerFormData.document?.number
-                : initialValuesInsured.number
+              insuredFormData?.number
+                ? insuredFormData.number
+                : initialValues.number
             }
             formikData={formik}
           />
@@ -96,9 +103,9 @@ const InsuredDataForm = ({ formik, selectData }) => {
               id="record"
               lableText="УНЗР*:"
               value={
-                customerFormData.record
-                  ? customerFormData.record
-                  : initialValuesInsured.record
+                insuredFormData?.record
+                  ? insuredFormData.record
+                  : initialValues.record
               }
               formikData={formik}
             />
@@ -107,9 +114,9 @@ const InsuredDataForm = ({ formik, selectData }) => {
             id="issuedBy"
             lableText="Ким виданий*:"
             value={
-              customerFormData.document?.issuedBy
-                ? customerFormData.document?.issuedBy
-                : initialValuesInsured.issuedBy
+              insuredFormData?.issuedBy
+                ? insuredFormData.issuedBy
+                : initialValues.issuedBy
             }
             formikData={formik}
           />
@@ -117,9 +124,9 @@ const InsuredDataForm = ({ formik, selectData }) => {
             id="date"
             lableText="Дата видачі*:"
             value={
-              customerFormData.document?.date
-                ? customerFormData.document?.date
-                : initialValuesInsured.date
+              insuredFormData?.date
+                ? insuredFormData.date
+                : initialValues.date
             }
             formikData={formik}
             type="date"
