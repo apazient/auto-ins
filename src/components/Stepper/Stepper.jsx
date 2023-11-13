@@ -36,7 +36,7 @@ import {
   NATURALSelectOptions,
   PRIVILEGEDSelectOptions,
 } from "../../assets/utils/isPrivilegedOptions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   allAutoMakers,
   autoByMakerAndModel,
@@ -69,12 +69,12 @@ const Stepper = ({ backLinkRef }) => {
   const [activeStep, setActiveStep] = useState(0);
 
   const [identityCard, setIdentityCard] = useState([]);
-  const location = useLocation();
+  // const location = useLocation();
 
-  let InsuredDataSelectOptions =
-    location.state?.data?.customerCategory === "NATURAL"
-      ? NATURALSelectOptions
-      : PRIVILEGEDSelectOptions;
+  const customerCategory = useSelector((state) => state.byParameters.benefits);
+  let InsuredDataSelectOptions = !customerCategory
+    ? NATURALSelectOptions
+    : PRIVILEGEDSelectOptions;
   useEffect(() => {
     setIdentityCard(InsuredDataSelectOptions[0]);
   }, [InsuredDataSelectOptions]);
@@ -138,14 +138,12 @@ const Stepper = ({ backLinkRef }) => {
     // validationSchema: HomeAddressFormValidationSchema(),
     onSubmit: (values) => {
       console.log(values);
-      const { region, city, street, houseNumber, apartmentNumber } = values;
+      const { regionANDcity, street, houseNumber, apartmentNumber } = values;
 
       const address = {
-        address: `${region && `обл.${region}`} ${city && `м.${city}`} ${
-          street && `вул.${street}`
-        } ${houseNumber && `б.${houseNumber}`} ${
-          apartmentNumber && `кв.${apartmentNumber}`
-        }`,
+        address: `${regionANDcity} ${street && `вул.${street}`} ${
+          houseNumber && `б.${houseNumber}`
+        } ${apartmentNumber && `кв.${apartmentNumber}`}`,
       };
 
       dispatch(setFormData({ formHomeAddress: values }));
