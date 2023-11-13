@@ -36,6 +36,9 @@ import {
   NATURALSelectOptions,
   PRIVILEGEDSelectOptions,
 } from "../../assets/utils/isPrivilegedOptions";
+import { useDispatch } from "react-redux";
+import { allAutoMakers } from "../../redux/References/operations";
+
 // import { getCarModel } from "../../services/api";
 
 const steps = [
@@ -88,25 +91,29 @@ const CarDataForm = lazy(() => import("../../forms/CarDataForm/CarDataForm"));
 //   },
 // ];
 
+// eslint-disable-next-line react/display-name
 const Stepper = ({ backLinkRef }) => {
   const [activeStep, setActiveStep] = useState(0);
 
   const [identityCard, setIdentityCard] = useState([]);
   const location = useLocation();
+  const dispatch = useDispatch();
 
   let InsuredDataSelectOptions =
-    location.state.data.customerCategory === "NATURAL"
+    location.state?.data?.customerCategory === "NATURAL"
       ? NATURALSelectOptions
       : PRIVILEGEDSelectOptions;
   useEffect(() => {
     setIdentityCard(InsuredDataSelectOptions[0]);
   }, [InsuredDataSelectOptions]);
-
+  console.log("!!!!!");
   // const [identityCard, setIdentityCard] = useState({
   //   value: "Паспорт",
   //   label: "Паспорт",
   // });
-
+  useEffect(() => {
+    dispatch(allAutoMakers());
+  }, [dispatch]);
   // =======================Formik======================================
   const contactsFormik = useFormik({
     initialValues: contactsInitialValues,
@@ -149,7 +156,10 @@ const Stepper = ({ backLinkRef }) => {
       console.log(allValues);
       alert(JSON.stringify(allValues, null, 2));
     },
+
     // validationSchema: carDataFormValidationSchema(),
+    validateOnBlur: true,
+    validateOnChange: false,
   });
 
   const handleNext = () => {

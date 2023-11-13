@@ -8,6 +8,7 @@ import { mergeObjectsById } from "../../helpers/mergeObjectsById";
 import { sortAndFilterTariff } from "../../helpers/sortAndFilterTariff";
 import { instance } from "../../services/api";
 import { setIsModalErrorOpen } from "../Global/globalSlice";
+import { setStateNumber } from "./calculatorSlice";
 
 const setSalePoint = (salePoint) => {
   instance.defaults.params = { ...instance.defaults.params, salePoint };
@@ -82,6 +83,7 @@ export const osagoByDn = createAsyncThunk(
         autoCategory,
         registrationPlace: { id },
       } = d;
+
       const { calculator } = getState();
       const salePoint = { salePoint: calculator.user.salePoint.id };
       const b = {
@@ -130,15 +132,16 @@ export const chooseVclTariffDGO = createAsyncThunk(
 
 export const autoByNumber = createAsyncThunk(
   "calculator/autoByNumber",
-  async (body, { rejectWithValue }) => {
+  async (query, { rejectWithValue }) => {
     try {
       const { data } = await instance.get("/auto/mtibu/number", {
         params: {
-          query: body,
+          query: decodeURIComponent(query),
         },
       });
 
-      return data[0];
+      return data;
+      // return data[0];
     } catch (error) {
       return rejectWithValue(error.response.data);
     }

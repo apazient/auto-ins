@@ -1,4 +1,3 @@
-
 export const insuredDataInitialValues = {
   surname: "",
   name: "",
@@ -13,7 +12,6 @@ export const insuredDataInitialValues = {
 };
 
 export const carDataFormikInitialValues = {
-  effectiveDatePolicy: "",
   licensePlate: "",
   graduationYear: "",
   brand: "",
