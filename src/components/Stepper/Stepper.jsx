@@ -37,13 +37,15 @@ import {
   PRIVILEGEDSelectOptions,
 } from "../../assets/utils/isPrivilegedOptions";
 import { useDispatch } from "react-redux";
-import { allAutoMakers } from "../../redux/References/operations";
+import {
+  allAutoMakers,
+  autoByMakerAndModel,
+} from "../../redux/References/operations";
 
 import {
   setFormData,
   setGlobalCustomerDataCustomer,
 } from "../../redux/Global/globalSlice";
-// import { getCarModel } from "../../services/api";
 
 const steps = [
   { Контакти: "icon-email" },
@@ -62,40 +64,6 @@ const HomeAddressForm = lazy(() =>
 );
 const CarDataForm = lazy(() => import("../../forms/CarDataForm/CarDataForm"));
 
-// const NATURALSelectOptions = [
-//   {
-//     value: "Паспорт",
-//     label: "Паспорт",
-//   },
-//   {
-//     value: "ID карта",
-//     label: "ID карта",
-//   },
-//   {
-//     value: "Посвідчення водія",
-//     label: "Посвідчення водія",
-//   },
-// ];
-// const PRIVILEGEDSelectOptions = [
-//   {
-//     value: "Пенсійне посвідчення",
-//     label: "Пенсійне посвідчення",
-//   },
-//   {
-//     value: "Посвідчення учасника війни",
-//     label: "Посвідчення учасника війни",
-//   },
-//   {
-//     value: "Посвідчення інваліда 2гр.",
-//     label: "Посвідчення інваліда 2гр.",
-//   },
-//   {
-//     value: "Посвідчення постраждалого на ЧАЕС (1,2 кат.)",
-//     label: "Посвідчення постраждалого на ЧАЕС (1,2 кат.)",
-//   },
-// ];
-
-// eslint-disable-next-line react/display-name
 const Stepper = ({ backLinkRef }) => {
   const dispatch = useDispatch();
   const [activeStep, setActiveStep] = useState(0);
@@ -111,12 +79,10 @@ const Stepper = ({ backLinkRef }) => {
     setIdentityCard(InsuredDataSelectOptions[0]);
   }, [InsuredDataSelectOptions]);
 
-  // const [identityCard, setIdentityCard] = useState({
-  //   value: "Паспорт",
-  //   label: "Паспорт",
-  // });
   useEffect(() => {
+    console.log("useEffect stepper dispatch allAutoMakers");
     dispatch(allAutoMakers());
+    dispatch(autoByMakerAndModel());
   }, [dispatch]);
   // =======================Formik======================================
   const contactsFormik = useFormik({
@@ -192,27 +158,18 @@ const Stepper = ({ backLinkRef }) => {
     initialValues: carDataFormikInitialValues,
     onSubmit: (values) => {
       console.log("valuesCarData: ", values);
-      const { licensePlate, graduationYear, brand, model, bodyNumber } = values;
-      const carData = {
-        //autoMaker: brand, //"autoMaker"
-        modelText: model, //"modelText"
-        bodyNumber: bodyNumber, //"bodyNumber"
-        stateNumber: licensePlate, //"stateNumber"
-        year: graduationYear, //"year"
-      };
 
-      console.log("carData: ", carData);
       dispatch(setFormData({ formCarData: values }));
-      dispatch(setGlobalCustomerDataCustomer(carData));
-      //getCarModel("bmw e65");
-      const allValues = {
-        ...contactsFormik.values,
-        ...insuredDataFormik.values,
-        ...homeAddressFormik.values,
-        ...values,
-      };
-      console.log(allValues);
-      alert(JSON.stringify(allValues, null, 2));
+      dispatch(setGlobalCustomerDataCustomer(values));
+
+      // const allValues = {
+      //   ...contactsFormik.values,
+      //   ...insuredDataFormik.values,
+      //   ...homeAddressFormik.values,
+      //   ...values,
+      // };
+      // console.log(allValues);
+      // alert(JSON.stringify(allValues, null, 2));
     },
 
     // validationSchema: carDataFormValidationSchema(),

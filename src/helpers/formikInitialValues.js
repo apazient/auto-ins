@@ -32,8 +32,8 @@ export const homeAddressInitialValues = {
 };
 
 export const carDataFormikInitialValues = {
-  licensePlate: "", //"stateNumber"
-  graduationYear: "", //"year"
+  stateNumber: "", //"stateNumber"
+  year: "", //"year"
   brand: "", //"autoMaker"
   model: "", //"modelText"
   bodyNumber: "", //"bodyNumber"
