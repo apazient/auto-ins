@@ -12,6 +12,7 @@ import {
 } from "../../redux/References/selectors";
 import { useState } from "react";
 import { allAutoModelByMaker } from "../../redux/References/operations";
+import { selectForms } from "../../redux/Global/selectors";
 
 const CarDataForm = ({ formik }) => {
   const dispatch = useDispatch();
@@ -45,23 +46,41 @@ const CarDataForm = ({ formik }) => {
     dispatch(allAutoModelByMaker(e.id));
     formik.setFieldValue("brand", e);
   };
+  const { initialValues } = formik;
+  const formData = useSelector(selectForms);
+  const carDataFormData = formData.formCarData;
   return (
     <>
       <InputContBoxStyled>
         {/* <GeneralInput
           id="effectiveDatePolicy"
           lableText="Дата початку дії поліса*:"
+          value={
+            carDataFormData?.effectiveDatePolicy
+              ? carDataFormData.effectiveDatePolicy
+              : initialValues.effectiveDatePolicy
+          }
           formikData={formik}
           type="date"
         /> */}
         <GeneralInput
           id="licensePlate"
           lableText="Номерний знак*:"
+          value={
+            carDataFormData?.licensePlate
+              ? carDataFormData.licensePlate
+              : initialValues.licensePlate
+          }
           formikData={{ ...formik, handleBlur: handleBlurStateNumber }}
         />
         <GeneralInput
           id="graduationYear"
           lableText="Рік випуску*:"
+          value={
+            carDataFormData?.graduationYear
+              ? carDataFormData.graduationYear
+              : initialValues.graduationYear
+          }
           formikData={formik}
         />
         <GeneralSelect
@@ -93,6 +112,11 @@ const CarDataForm = ({ formik }) => {
         <GeneralInput
           id="bodyNumber"
           lableText="VIN*:"
+          value={
+            carDataFormData?.bodyNumber
+              ? carDataFormData.bodyNumber
+              : initialValues.bodyNumber
+          }
           formikData={{ ...formik, handleBlur: handleBlurVinNumber }}
         />
       </InputContBoxStyled>

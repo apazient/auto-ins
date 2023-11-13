@@ -6,7 +6,7 @@ import { getIsLoading } from "../redux/Global/selectors";
 import Loader from "./Loader/Loader";
 
 const Layout = () => {
-  const isLoading = useSelector(getIsLoading);  
+  const isLoading = useSelector(getIsLoading);    
   return (
     <>      
       <Header />

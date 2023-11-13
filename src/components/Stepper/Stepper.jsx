@@ -9,8 +9,8 @@ import { Connector, Lable, LableIcon, StepperStyled } from "./StepperStyled";
 import StepIcon from "./StepIcon";
 import { useFormik } from "formik";
 import {
-  carDataFormikInitialValues,
   contactsInitialValues,
+  carDataFormikInitialValues,
   homeAddressInitialValues,
   insuredDataInitialValues,
 } from "../../helpers/formikInitialValues";
@@ -39,6 +39,10 @@ import {
 import { useDispatch } from "react-redux";
 import { allAutoMakers } from "../../redux/References/operations";
 
+import {
+  setFormData,
+  setGlobalCustomerDataCustomer,
+} from "../../redux/Global/globalSlice";
 // import { getCarModel } from "../../services/api";
 
 const steps = [
@@ -93,11 +97,11 @@ const CarDataForm = lazy(() => import("../../forms/CarDataForm/CarDataForm"));
 
 // eslint-disable-next-line react/display-name
 const Stepper = ({ backLinkRef }) => {
+  const dispatch = useDispatch();
   const [activeStep, setActiveStep] = useState(0);
 
   const [identityCard, setIdentityCard] = useState([]);
   const location = useLocation();
-  const dispatch = useDispatch();
 
   let InsuredDataSelectOptions =
     location.state?.data?.customerCategory === "NATURAL"
@@ -119,33 +123,87 @@ const Stepper = ({ backLinkRef }) => {
     initialValues: contactsInitialValues,
     // validationSchema: contactsValidationSchema(),
     onSubmit: (values) => {
-      console.log("onSubmit", values);
-      //dispatch(action())
+      console.log("contacts", values);
+      dispatch(setFormData({ formContacts: values }));
+      dispatch(setGlobalCustomerDataCustomer(values));
       handleNext();
     },
   });
 
   const insuredDataFormik = useFormik({
     initialValues: insuredDataInitialValues,
-    // validationSchema: insuredDataFormValidationSchema(),
     onSubmit: (values) => {
+      console.log("insured", values);
+      const {
+        birthDate,
+        date,
+        issuedBy,
+        middleName,
+        name,
+        number,
+        record,
+        series,
+        surname,
+        taxNumber,
+      } = values;
+      const insuredValues = {
+        surname,
+        name,
+        middleName,
+        birthDate,
+        taxNumber,
+        record, //????????????????????????
+        document: {
+          //type: "", //document{}
+          series,
+          number,
+          issuedBy,
+          date,
+        },
+      };
+      dispatch(setFormData({ formInsuredData: values }));
+      dispatch(setGlobalCustomerDataCustomer(insuredValues));
       handleNext();
-      console.log(values);
     },
   });
 
   const homeAddressFormik = useFormik({
     initialValues: homeAddressInitialValues,
-    onSubmit: (values) => {
-      handleNext();
-      console.log(values);
-    },
     // validationSchema: HomeAddressFormValidationSchema(),
+    onSubmit: (values) => {
+      console.log(values);
+      const { region, city, street, houseNumber, apartmentNumber } = values;
+
+      const address = {
+        address: `${region && `обл.${region}`} ${city && `м.${city}`} ${
+          street && `вул.${street}`
+        } ${houseNumber && `б.${houseNumber}`} ${
+          apartmentNumber && `кв.${apartmentNumber}`
+        }`,
+      };
+
+      dispatch(setFormData({ formHomeAddress: values }));
+      dispatch(setGlobalCustomerDataCustomer(address));
+      handleNext();
+    },
   });
 
   const carDataFormik = useFormik({
     initialValues: carDataFormikInitialValues,
     onSubmit: (values) => {
+      console.log("valuesCarData: ", values);
+      const { licensePlate, graduationYear, brand, model, bodyNumber } = values;
+      const carData = {
+        //autoMaker: brand, //"autoMaker"
+        modelText: model, //"modelText"
+        bodyNumber: bodyNumber, //"bodyNumber"
+        stateNumber: licensePlate, //"stateNumber"
+        year: graduationYear, //"year"
+      };
+
+      console.log("carData: ", carData);
+      dispatch(setFormData({ formCarData: values }));
+      dispatch(setGlobalCustomerDataCustomer(carData));
       //getCarModel("bmw e65");
       const allValues = {
         ...contactsFormik.values,
