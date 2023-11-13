@@ -10,7 +10,7 @@ const initialState = {
   filteredCompanies: [],
   tariffPolicyChoose: [],
   tariffVcl: [],
-  autoByNumber: [],
+
   stateNumber: "",
   error: "",
   policyStatus: 0,
@@ -27,9 +27,7 @@ export const calculatorSlice = createSlice({
       state.tariffVcl = [];
       state.tariffPolicyChoose = [];
     },
-    setAutoByNumber: (state, { payload }) => {
-      state.autoByNumber = payload;
-    },
+
     setTariffPolicyChoose: (state, { payload }) => {
       state.tariffPolicyChoose = payload;
     },
@@ -88,7 +86,6 @@ export const calculatorSlice = createSlice({
 
 export const {
   setStateNumber,
-  setAutoByNumber,
   setTariffPolicyChoose,
   setFilteredCompanies,
   setTariffVcl,

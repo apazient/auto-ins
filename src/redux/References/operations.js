@@ -55,9 +55,11 @@ export const autoByMakerAndModel = createAsyncThunk(
     try {
       const { autoByNumber } = getState().references;
       const maker = autoByNumber[0].modelText.replace(/ .*/, "");
+      console.log(maker);
       const model = autoByNumber[0].modelText
         .replace(/^[^\s]+\s/, "")
-        .slice(0, 3);
+        .slice(0, 1);
+      console.log(model);
       const { data } = await instance.get("/auto_model/maker_and_model", {
         params: {
           query: decodeURIComponent(maker + " " + model),

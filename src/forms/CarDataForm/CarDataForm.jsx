@@ -18,7 +18,6 @@ import {
 } from "../../redux/Global/selectors";
 
 const CarDataForm = ({ formik }) => {
-  console.log(formik);
   const dispatch = useDispatch();
   const allAutoMakers = useSelector(getAutoMakers);
   const { initialValues } = formik;
@@ -97,7 +96,8 @@ const CarDataForm = ({ formik }) => {
               ? carDataFormData.stateNumber
               : initialValues.stateNumber
           }
-          formikData={{ ...formik, handleBlur: handleBlurStateNumber }}
+          formikData={formik}
+          // formikData={{ ...formik, handleBlur: handleBlurStateNumber }}
         />
         <GeneralInput
           id="graduationYear"

@@ -22,6 +22,9 @@ export const referencesSlice = createSlice({
     setAutoMakers: (state, { payload }) => {
       state.autoMakers = payload;
     },
+    setAutoByNumber: (state, { payload }) => {
+      state.autoByNumber = payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -41,5 +44,6 @@ export const referencesSlice = createSlice({
       });
   },
 });
-export const { setAutoModelByMaker, setAutoMakers } = referencesSlice.actions;
+export const { setAutoModelByMaker, setAutoMakers, setAutoByNumber } =
+  referencesSlice.actions;
 export const referencesReducer = referencesSlice.reducer;

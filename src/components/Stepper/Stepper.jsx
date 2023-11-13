@@ -155,7 +155,7 @@ const Stepper = ({ backLinkRef }) => {
   const carDataFormik = useFormik({
     initialValues: carDataFormikInitialValues,
     onSubmit: (values) => {
-      console.log("valuesCarData: ", values);
+      console.log(values);
 
       dispatch(setFormData({ formCarData: values }));
       dispatch(setGlobalCustomerDataCustomer(values));
