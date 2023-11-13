@@ -32,10 +32,9 @@ export const homeAddressInitialValues = {
 };
 
 export const carDataFormikInitialValues = {
-  effectiveDatePolicy: "",//це куди
-  licensePlate: "",//"stateNumber"
-  graduationYear: "",//"year"
-  brand: "",//"autoMaker"
-  model: "",//"modelText"
-  bodyNumber: "",//"bodyNumber"
+  licensePlate: "", //"stateNumber"
+  graduationYear: "", //"year"
+  brand: "", //"autoMaker"
+  model: "", //"modelText"
+  bodyNumber: "", //"bodyNumber"
 };

@@ -74,9 +74,9 @@ export const calculatorSlice = createSlice({
         state.policyStatus = 0;
       })
       .addCase(autoByNumber.fulfilled, (state, { payload }) => {
-        console.log(payload);
-        const { bodyNumber, year, modelText } = payload;
-        state.autoByNumber = [bodyNumber, year, modelText];
+        // const { bodyNumber, year, modelText } = payload;
+        // state.autoByNumber = [bodyNumber, year, modelText];
+        state.autoByNumber = payload;
         state.allAutoByNumber = payload;
       })
 

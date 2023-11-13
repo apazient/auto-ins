@@ -21,7 +21,7 @@ const CompanySmall = React.memo(() => {
           alt={paramsFromUrl?.insurer.name}
         />
         <Typography component="span" className="leightText">
-          {paramsFromUrl?.insurer.name}
+          {paramsFromUrl?.insurer.name.replace(/,[^,]+$/, "")}
         </Typography>
       </ContentBox>
 
@@ -39,7 +39,7 @@ const CompanySmall = React.memo(() => {
           Реєстрація
         </Typography>
         <Typography component="span" variant="body1">
-          {paramsFromUrl?.registrationPlace}
+          {paramsFromUrl?.registrationPlace?.name}
         </Typography>
       </ContentBox>
       <ContentBox className="line" />

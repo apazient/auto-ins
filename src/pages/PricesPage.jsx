@@ -9,17 +9,14 @@ import ProposalsFilter from "../components/ProposalsFilter/ProposalsFilter";
 import CompanyList from "../components/CompanyList/CompanyList";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  chooseVclTariffDGO,
+  autoByNumber,
   osagoByDn,
   osagoByParams,
 } from "../redux/Calculator/operations";
 import { getSubmitObject } from "../redux/byParameters/selectors";
-import {
-  getStateNumber,
-  getTariffPolicyChoose,
-} from "../redux/Calculator/selectors";
+import { getStateNumber } from "../redux/Calculator/selectors";
 import { setIsLoading } from "../redux/Global/globalSlice";
-import { ThemeContext } from "@emotion/react";
+
 import { getIsModalErrorOpen } from "../redux/Global/selectors";
 
 const PricesPage = () => {
@@ -33,18 +30,19 @@ const PricesPage = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     let subscribed = true;
-    if (!Object.hasOwn(userParams, "dateFrom") && stateNumber) {
+
+    if (!Object.hasOwn(userParams, "dateFrom") && stateNumber === "") {
       navigate("/");
       return;
     }
     if (subscribed) {
-      if (stateNumber && userParams) {
+      if (stateNumber !== "" && userParams) {
         dispatch(setIsLoading(true));
         dispatch(osagoByDn(userParams)).then(() =>
           dispatch(setIsLoading(false))
         );
       }
-      if (!stateNumber && userParams) {
+      if (stateNumber === "" && userParams) {
         dispatch(setIsLoading(true));
         dispatch(osagoByParams(userParams)).then(() =>
           dispatch(setIsLoading(false))
