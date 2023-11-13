@@ -3,7 +3,8 @@ import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
 import { FormContainer, YellowButton } from "../../style/Global.styled";
 import Datetime from "react-datetime";
-import "react-datetime/css/react-datetime.css";
+import { blue } from "@mui/material/colors";
+import { Box } from "@mui/material";
 
 export const FormContainerS = styled(FormContainer)(({ theme }) => ({
   [theme.breakpoints.up("lg")]: {
@@ -68,20 +69,42 @@ export const YellowButtonS = styled(YellowButton)(({ theme }) => ({
 }));
 //Datetime
 export const StyledDatatimeWrapper = styled("div")(({ theme }) => ({
-  display: "flex",
-  justifyContent: "space-between",
-  "&.rdtPicker": {
-    width: "280px",
+  position: "relative",
+  textAlign: "left",
+
+  "& input": {
+    cursor: "pointer",
+    padding: "8px 12px",
+    borderRadius: "50px",
+    border: `1px solid ${theme.palette.primary.main}`,
+    fontFamily: "OpenSans-SemiBold",
+    fontSize: "18px",
+    fontWeight: "600",
+  },
+  "& input:hover, & input:focus-visible": {
+    color: theme.palette.primary.blue,
+    borderColor: theme.palette.primary.darkBlue,
+    outline: "none",
+  },
+
+  "& .rdtPicker": {
+    // width: "280px",
     border: "none",
     borderRadius: "8px",
-    background:
-      "linear-gradient(360deg, rgba(83,61,186,1) 0%, rgba(80,48,154,1) 35.94%, rgba(106,70,165,1) 61.04%, rgba(133,93,175,1) 100%)",
+    background: theme.palette.primary.white,
     [theme.breakpoints.up("sm")]: {
       width: "250px",
     },
   },
+  "& .rdtPicker td.rdtDay td.rdtNew td.rdtDisabled": {
+    color: theme.palette.primary.tertiaryDark,
+  },
+  "& .rdtPicker td.rdtNew": {
+    color: theme.palette.primary.main,
+  },
+
   "& .rdtPicker td.rdtActive, .rdtPicker td.rdtActive:hover": {
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: theme.palette.primary.blue,
     borderRadius: "20px",
   },
   "& .rdtPicker td.rdtToday:before": {
@@ -91,8 +114,7 @@ export const StyledDatatimeWrapper = styled("div")(({ theme }) => ({
     display: "none",
   },
   "& .rdtPicker td:hover": {
-    background:
-      "linear-gradient(96.76deg, #FFC727 -16.42%, #9E40BA 97.04%, #7000FF 150.71%)",
+    backgroundColor: theme.palette.primary.blue,
     textShadow: "0 -1px 0 rgba (0, 0, 0, 0.25)",
     borderRadius: "20px",
   },
@@ -113,4 +135,16 @@ export const StyledDatetime = styled(Datetime)(({ theme }) => ({
     "&:focus": { outline: "none" },
     "&::placeholder": { backgroundColor: "transparent" },
   },
+}));
+export const BoxImg = styled(Box)(({ theme }) => ({
+  position: "absolute",
+  bottom: "5px",
+  right: "15px",
+  pointerEvents: "none",
+  width: "32px",
+  height: "32px",
+  fill: theme.palette.primary.main,
+  padding: "0",
+
+  [theme.breakpoints.up("sm")]: {},
 }));

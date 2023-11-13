@@ -1,10 +1,8 @@
 import { useSelector } from "react-redux";
 import {
   getFilteredCompanies,
-  getPolicyStatus,
   getTariffsStatus,
   getTariffVcl,
-  getVclStatus,
 } from "../../redux/Calculator/selectors";
 
 import Company from "../Company/Company";

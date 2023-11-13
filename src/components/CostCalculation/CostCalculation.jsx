@@ -1,5 +1,10 @@
+import Datetime from "react-datetime";
+import moment from "moment";
+import "moment/locale/uk";
+import "react-datetime/css/react-datetime.css";
 import { Box, Typography } from "@mui/material";
 import {
+  BoxImg,
   FormContainerS,
   Item,
   StackS,
@@ -16,14 +21,12 @@ import {
 import { useEffect, useState } from "react";
 import { autoByNumber } from "../../redux/Calculator/operations";
 import { setAutoByNumber } from "../../redux/Calculator/calculatorSlice";
-import GeneralInput from "../GeneralInput/GeneralInput";
-import { InputStyled } from "../ByParameters/ByParameters.styled";
 import { getSubmitObject } from "../../redux/byParameters/selectors";
 import { setSubmitObj } from "../../redux/byParameters/byParametersSlice";
-import Datetime from "react-datetime";
 import { Formik, useFormik } from "formik";
+import { getIsLoading } from "../../redux/Global/selectors";
 
-import moment from "moment";
+import { SpriteSVG } from "../../images/SpriteSVG";
 
 export const CostCalculation = () => {
   const navigate = useNavigate();
@@ -34,6 +37,7 @@ export const CostCalculation = () => {
 
   const autoByNumberRes = useSelector(getAutoByNumber);
   const sendObject = useSelector(getSubmitObject);
+  const isLoading = useSelector(getIsLoading);
 
   const {
     address: { label: address },
@@ -41,7 +45,7 @@ export const CostCalculation = () => {
   } = useSelector((state) => state.byParameters);
 
   useEffect(() => {
-    if (stateNumber) {
+    if (stateNumber !== "") {
       dispatch(autoByNumber(stateNumber));
     } else {
       dispatch(
@@ -54,25 +58,27 @@ export const CostCalculation = () => {
     initialValues: {
       date: userDate,
     },
-    onSubmit: (values) => {
-      console.log(values);
-    },
+    onSubmit: (values) => {},
   });
-  // const isValidDate = (currentDate) => {
-  //   return (
-  //     currentDate.isBefore(Datetime.moment()) ||
-  //     currentDate.isSame(Datetime.moment(), "day")
-  //   );
-  // };
+
+  const valid = (current) => {
+    const inThreeMonths = Datetime.moment().add(3, "months");
+    return (
+      current.isAfter(Datetime.moment()) && current.isBefore(inThreeMonths)
+    );
+  };
   const handleChangeDate = (e) => {
     const newObject = {
       ...sendObject,
       dateFrom: moment(e).format("YYYY-MM-DD"),
     };
+    // dispatch(setIsLoading(true));
     setUserDate(e);
     dispatch(setSubmitObj(newObject));
   };
-
+  let inputProps = {
+    disabled: isLoading,
+  };
   return (
     <FormContainerS className="costCalc">
       <Typography
@@ -87,10 +93,11 @@ export const CostCalculation = () => {
       </Typography>
       <Box className="wrapContent">
         <StackS direction="row">
-          {
-            // [bodyNumber, year, modelText].map((el, index) => {
-            autoByNumberRes.map((el, index) => {
-              return el ? (
+          {autoByNumberRes.map((el) => {
+            if (el) {
+              const { bodyNumber, year, modelText } = el;
+              el = [bodyNumber, year, modelText];
+              return el.map((item, index) => (
                 <Item key={index}>
                   <Typography
                     component="span"
@@ -100,14 +107,18 @@ export const CostCalculation = () => {
                       fontWeight: { lg: "600" },
                     }}
                   >
-                    {el}
+                    {item}
                   </Typography>
                 </Item>
-              ) : null;
-            })
-          }
+              ));
+            } else {
+              return null;
+            }
+          })}
           <Formik onSubmit={formik.handleSubmit}>
             <StyledDatatimeWrapper>
+              <label htmlFor="dateFrom" />
+              Дата початку дії поліса:
               <Datetime
                 id="dateFrom"
                 value={dateFrom}
@@ -117,8 +128,14 @@ export const CostCalculation = () => {
                 dateFormat="YYYY-MM-DD"
                 timeFormat={false}
                 closeOnSelect={true}
-                // isValidDate={isValidDate}
+                isValidDate={valid}
+                locale="uk"
+                inputProps={inputProps}
+                className="datePicker"
               />
+              <BoxImg>
+                <SpriteSVG name={"icon-calendar"} />
+              </BoxImg>
             </StyledDatatimeWrapper>
           </Formik>
         </StackS>

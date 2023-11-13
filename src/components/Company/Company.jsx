@@ -124,7 +124,7 @@ const Company = ({ proposal }) => {
           <Grid container className="gridContainer">
             <GridContainer item xs={6} sm={0}>
               <Typography variant="subtitle1" component="h3">
-                ОСЦПВ від {insurerName}
+                ОСЦПВ від {insurerName.replace(/,[^,]+$/, "")}
               </Typography>
             </GridContainer>
             <GridContainerImg item xs={6} sm={12}>
@@ -149,7 +149,7 @@ const Company = ({ proposal }) => {
         </WrapperStyled>
         <BoxContent>
           <Typography variant="subtitle1" component="h3" className="title">
-            ОСЦПВ від {insurerName}
+            ОСЦПВ від {insurerName.replace(/,[^,]+$/, "")}
           </Typography>
 
           <Box className="content">
