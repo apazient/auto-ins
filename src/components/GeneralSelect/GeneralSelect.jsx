@@ -8,7 +8,7 @@ const CustomDropdownIndicator = () => {
   return <SpriteSVG name="icon-zoom-out" />;
 };
 
-const GeneralSelect = ({
+const GeneralSelect = ({  
   id,
   lableText, //текст елемента lable
   optionsArr, //масив елементів які відображає SElect
@@ -22,14 +22,14 @@ const GeneralSelect = ({
   defaultValue,
   getOptionLabel,
   getOptionValue,
-}) => {
+}) => {  
   return (
     <InputContStyled className="select-container">
       <Typography variant="body1" component="label" htmlFor={id}>
         {lableText}
         {helper && <HelpCircle lableText={helper} color={color ? color : ""} />}
       </Typography>
-      <SelectStyled
+      <SelectStyled      
         $find={inputChangeCB}
         components={
           inputChangeCB ? { DropdownIndicator: CustomDropdownIndicator } : true
@@ -47,7 +47,7 @@ const GeneralSelect = ({
         inputValue={inputValue}
         onInputChange={inputChangeCB}
         onChange={(e) => {
-          changeCB(e);
+          changeCB(e);          
         }}
         getOptionLabel={getOptionLabel}
         getOptionValue={getOptionValue}

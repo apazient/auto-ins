@@ -1,24 +1,26 @@
-
-export const insuredDataInitialValues = {
-  surname: "",
-  name: "",
-  middleName: "",
-  birthDate: "",
-  taxNumber: "",
-  series: "",
-  number: "",
-  issuedBy: "",
-  date: "",
-  record: "",
+export const contactsInitialValues = {
+  email: "",
+  phone: "",
 };
 
-export const carDataFormikInitialValues = {
-  effectiveDatePolicy: "",
-  licensePlate: "",
-  graduationYear: "",
-  brand: "",
-  model: "",
-  bodyNumber: "",
+export const insuredDataInitialValues = {
+  surname: "", //
+  name: "", //
+  middleName: "", //
+  birthDate: "", //
+  taxNumber: "", //
+  record: "", //
+  type: "", //document{}
+  series: "", //document{}
+  number: "", //document{}
+  issuedBy: "", //document{}
+  date: "", //document{}
+
+  // type: "", //document{}
+  //series: "", //document{}
+  //number: "", //document{}
+  // issuedBy: "", //document{}
+  //date: "", //document{}
 };
 
 export const homeAddressInitialValues = {
@@ -29,10 +31,11 @@ export const homeAddressInitialValues = {
   apartmentNumber: "",
 };
 
-// const contacts = useSelector(selectContacts)
-// const {email, phone} = contacts
-export const contactsInitialValues = {
-  // email: email || "",
-  email: "",
-  phone: "",
+export const carDataFormikInitialValues = {
+  effectiveDatePolicy: "",//це куди
+  licensePlate: "",//"stateNumber"
+  graduationYear: "",//"year"
+  brand: "",//"autoMaker"
+  model: "",//"modelText"
+  bodyNumber: "",//"bodyNumber"
 };

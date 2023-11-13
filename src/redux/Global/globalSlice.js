@@ -4,8 +4,26 @@ const initialState = {
   isLoading: false,
   isModalErrorOpen: false,
   // globalCustomerData: null,
-  globalCustomerData: {
+  forms: {},
+  globalCustomerData: {      
     customer: {},
+//   "customer": {
+//     "code": "1234567890",
+//     "nameLast": "Тест",//ok
+//     "nameFirst": "Тест",//ok
+//     "address": "Киев",
+//     "phone": "+380111111111",//ok
+//     "email": "test@test.ua",//ok
+//     "birthDate": "1987-01-01",//ok
+//     "document": {
+//       "type": "PASSPORT",
+//       "series": "аа",//ok
+//       "number": "12345",//ok
+//       "date": "2003-01-01",//ok
+//       "issuedBy": "Солом'янським РУ ГУ МВС України в місті Києві"//ok
+//     }
+//   }, 
+    
   },
   paramsFromUrl: null,
 };
@@ -23,6 +41,14 @@ export const globalSlice = createSlice({
     setIsModalErrorOpen: (state, { payload }) => {
       state.isModalErrorOpen = payload;
     },
+    setGlobalCustomerDataCustomer: (state, { payload }) => {      
+      console.log('payload: ', payload);
+      state.globalCustomerData.customer = { ...state.globalCustomerData.customer, ...payload };
+    },
+    setFormData: (state, {payload}) => {            
+      state.forms = {...state.forms, ...payload}
+    },
+
     setParamsFromUrl: (state, { payload }) => {
       state.paramsFromUrl = { ...state.payload, ...payload };
     },
@@ -34,6 +60,8 @@ export const {
   setIsLoading,
   setGlobalCustomerData,
   setParamsFromUrl,
+  setGlobalCustomerDataCustomer,
+  setFormData
 } = globalSlice.actions;
 export const globalReducer = globalSlice.reducer;
 
@@ -60,40 +88,40 @@ export const globalReducer = globalSlice.reducer;
 //     "id": 10935
 //   },
 //   "dateFrom": "2018-06-05T21:00:00.000+0000",
-//   "customer": {
-//     "code": "1234567890",
-//     "nameLast": "Тест",
-//     "nameFirst": "Тест",
-//     "address": "Киев",
-//     "phone": "+380111111111",
-//     "email": "test@test.ua"
-//     "birthDate": "1987-01-01",
-//     "document": {
-//       "type": "PASSPORT",
-//       "series": "аа",
-//       "number": "12345",
-//       "date": "2003-01-01",
-//       "issuedBy": "Солом'янським РУ ГУ МВС України в місті Києві"
-//     }
-//   },
-//   "insuranceObject": {
-//     "type": "auto",
-//     "category": "B1",
-//     "model": {
-//       "id": 5890,
-//       "autoMaker": {
-//         "id": 281
-//       }
-//     },
-//     "modelText": "Mazda 2",
-//     "bodyNumber": "ASDF1",
-//     "stateNumber": "12345АА",
-//     "registrationPlace": {
-//       "id": 1
-//     },
-//     "registrationType": "PERMANENT_WITHOUT_OTK",
-//     "year": 2018
-//   },
+  // "customer": {
+  //   "code": "1234567890",
+  //   "nameLast": "Тест",
+  //   "nameFirst": "Тест",
+  //   "address": "Киев",
+  //   "phone": "+380111111111",
+  //   "email": "test@test.ua"
+  //   "birthDate": "1987-01-01",
+  //   "document": {
+  //     "type": "PASSPORT",
+  //     "series": "аа",
+  //     "number": "12345",
+  //     "date": "2003-01-01",
+  //     "issuedBy": "Солом'янським РУ ГУ МВС України в місті Києві"
+  //   }
+  // },
+  // "insuranceObject": {
+  //   "type": "auto",
+  //   "category": "B1",
+  //   "model": {
+  //     "id": 5890,
+  //     "autoMaker": {
+  //       "id": 281
+  //     }
+  //   },
+  //   "modelText": "Mazda 2",//ok
+  //   "bodyNumber": "ASDF1",//ok
+  //   "stateNumber": "12345АА",//ok
+  //   "registrationPlace": {
+  //     "id": 1
+  //   },
+  //   "registrationType": "PERMANENT_WITHOUT_OTK",
+  //   "year": 2018//ok
+  // },
 //   "state": "DRAFT"
 // } \
 
