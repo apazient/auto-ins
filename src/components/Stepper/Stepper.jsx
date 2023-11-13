@@ -36,7 +36,7 @@ import {
   NATURALSelectOptions,
   PRIVILEGEDSelectOptions,
 } from "../../assets/utils/isPrivilegedOptions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { allAutoMakers } from "../../redux/References/operations";
 
 import {
@@ -62,49 +62,17 @@ const HomeAddressForm = lazy(() =>
 );
 const CarDataForm = lazy(() => import("../../forms/CarDataForm/CarDataForm"));
 
-// const NATURALSelectOptions = [
-//   {
-//     value: "Паспорт",
-//     label: "Паспорт",
-//   },
-//   {
-//     value: "ID карта",
-//     label: "ID карта",
-//   },
-//   {
-//     value: "Посвідчення водія",
-//     label: "Посвідчення водія",
-//   },
-// ];
-// const PRIVILEGEDSelectOptions = [
-//   {
-//     value: "Пенсійне посвідчення",
-//     label: "Пенсійне посвідчення",
-//   },
-//   {
-//     value: "Посвідчення учасника війни",
-//     label: "Посвідчення учасника війни",
-//   },
-//   {
-//     value: "Посвідчення інваліда 2гр.",
-//     label: "Посвідчення інваліда 2гр.",
-//   },
-//   {
-//     value: "Посвідчення постраждалого на ЧАЕС (1,2 кат.)",
-//     label: "Посвідчення постраждалого на ЧАЕС (1,2 кат.)",
-//   },
-// ];
 
-// eslint-disable-next-line react/display-name
 const Stepper = ({ backLinkRef }) => {
   const dispatch = useDispatch();
   const [activeStep, setActiveStep] = useState(0);
 
   const [identityCard, setIdentityCard] = useState([]);
-  const location = useLocation();
+  // const location = useLocation();
 
+  const customerCategory = useSelector(state=>state.byParameters.benefits)
   let InsuredDataSelectOptions =
-    location.state?.data?.customerCategory === "NATURAL"
+    !customerCategory
       ? NATURALSelectOptions
       : PRIVILEGEDSelectOptions;
   useEffect(() => {
@@ -172,10 +140,10 @@ const Stepper = ({ backLinkRef }) => {
     // validationSchema: HomeAddressFormValidationSchema(),
     onSubmit: (values) => {
       console.log(values);
-      const { region, city, street, houseNumber, apartmentNumber } = values;
+      const { regionANDcity, street, houseNumber, apartmentNumber } = values;
 
       const address = {
-        address: `${region && `обл.${region}`} ${city && `м.${city}`} ${
+        address: `${regionANDcity} ${
           street && `вул.${street}`
         } ${houseNumber && `б.${houseNumber}`} ${
           apartmentNumber && `кв.${apartmentNumber}`
