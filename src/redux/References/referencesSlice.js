@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { allAutoMakers, allAutoModelByMaker } from "./operations";
+import { allAutoMakers, allAutoModelByMaker, autoByNumber } from "./operations";
 
 const initialState = {
   autoMakers: [],
   autoModelByMaker: [],
+  autoByNumber: [],
 };
 
 export const referencesSlice = createSlice({
@@ -17,6 +18,11 @@ export const referencesSlice = createSlice({
       })
       .addCase(allAutoModelByMaker.fulfilled, (state, { payload }) => {
         state.autoModelByMaker = payload;
+      })
+      .addCase(autoByNumber.fulfilled, (state, { payload }) => {
+        // const { bodyNumber, year, modelText } = payload;
+        // state.autoByNumber = [bodyNumber, year, modelText];
+        state.autoByNumber = payload;
       });
   },
 });

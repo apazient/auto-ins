@@ -28,3 +28,21 @@ export const allAutoModelByMaker = createAsyncThunk(
     }
   }
 );
+
+export const autoByNumber = createAsyncThunk(
+  "calculator/autoByNumber",
+  async (query, { rejectWithValue }) => {
+    try {
+      const { data } = await instance.get("/auto/mtibu/number", {
+        params: {
+          query: decodeURIComponent(query),
+        },
+      });
+
+      return data;
+      // return data[0];
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);

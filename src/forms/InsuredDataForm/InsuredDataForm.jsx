@@ -6,13 +6,12 @@ import { useSelector } from "react-redux";
 import { selectForms } from "../../redux/Global/selectors";
 
 const InsuredDataForm = ({ formik, selectData }) => {
-  const {initialValues} = formik
+  const { initialValues } = formik;
   const formData = useSelector(selectForms);
-  const insuredFormData = formData.formInsuredData;  
+  const insuredFormData = formData.formInsuredData;
   const { InsuredDataSelectOptions, identityCard, setIdentityCard } =
     selectData;
   const isID_PASSPORT = identityCard.value === "ID_PASSPORT";
-  console.log("identityCard: ", identityCard);
 
   return (
     <>
@@ -31,9 +30,7 @@ const InsuredDataForm = ({ formik, selectData }) => {
           id="name"
           lableText="Ім’я*:"
           value={
-            insuredFormData?.name
-              ? insuredFormData.name
-              : initialValues.name
+            insuredFormData?.name ? insuredFormData.name : initialValues.name
           }
           formikData={formik}
         />
@@ -124,9 +121,7 @@ const InsuredDataForm = ({ formik, selectData }) => {
             id="date"
             lableText="Дата видачі*:"
             value={
-              insuredFormData?.date
-                ? insuredFormData.date
-                : initialValues.date
+              insuredFormData?.date ? insuredFormData.date : initialValues.date
             }
             formikData={formik}
             type="date"

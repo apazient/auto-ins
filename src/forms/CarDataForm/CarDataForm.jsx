@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { DNUMBER_REGEX, VIN_REGEX } from "../../constants";
 import { useDispatch, useSelector } from "react-redux";
 
-import { autoByNumber } from "../../redux/Calculator/operations";
+import { autoByNumber } from "../../redux/References/operations";
 import GeneralSelect from "../../components/GeneralSelect/GeneralSelect";
 import {
   getAutoMakers,

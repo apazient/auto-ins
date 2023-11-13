@@ -110,7 +110,7 @@ const Stepper = ({ backLinkRef }) => {
   useEffect(() => {
     setIdentityCard(InsuredDataSelectOptions[0]);
   }, [InsuredDataSelectOptions]);
-  console.log("!!!!!");
+
   // const [identityCard, setIdentityCard] = useState({
   //   value: "Паспорт",
   //   label: "Паспорт",

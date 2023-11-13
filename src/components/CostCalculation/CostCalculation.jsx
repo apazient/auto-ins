@@ -14,19 +14,17 @@ import {
 } from "./CostCalculationStyled";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getAutoByNumber,
-  getStateNumber,
-} from "../../redux/Calculator/selectors";
+import { getStateNumber } from "../../redux/Calculator/selectors";
 import { useEffect, useState } from "react";
-import { autoByNumber } from "../../redux/Calculator/operations";
-import { setAutoByNumber } from "../../redux/Calculator/calculatorSlice";
+
 import { getSubmitObject } from "../../redux/byParameters/selectors";
 import { setSubmitObj } from "../../redux/byParameters/byParametersSlice";
 import { Formik, useFormik } from "formik";
 import { getIsLoading } from "../../redux/Global/selectors";
 
 import { SpriteSVG } from "../../images/SpriteSVG";
+import { getAutoByNumber } from "../../redux/References/selectors";
+import { autoByNumber } from "../../redux/References/operations";
 
 export const CostCalculation = () => {
   const navigate = useNavigate();
@@ -48,9 +46,9 @@ export const CostCalculation = () => {
     if (stateNumber !== "") {
       dispatch(autoByNumber(stateNumber));
     } else {
-      dispatch(
-        setAutoByNumber([...params.split(" - "), address.split(",")[0]])
-      );
+      // dispatch(
+      //   setAutoByNumber([...params.split(" - "), address.split(",")[0]])
+      // );
     }
   }, [dispatch, stateNumber, params, address]);
 

@@ -8,11 +8,7 @@ import ModalError from "../components/ModalError/ModalError";
 import ProposalsFilter from "../components/ProposalsFilter/ProposalsFilter";
 import CompanyList from "../components/CompanyList/CompanyList";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  autoByNumber,
-  osagoByDn,
-  osagoByParams,
-} from "../redux/Calculator/operations";
+import { osagoByDn, osagoByParams } from "../redux/Calculator/operations";
 import { getSubmitObject } from "../redux/byParameters/selectors";
 import { getStateNumber } from "../redux/Calculator/selectors";
 import { setIsLoading } from "../redux/Global/globalSlice";

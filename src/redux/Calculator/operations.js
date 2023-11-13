@@ -8,7 +8,6 @@ import { mergeObjectsById } from "../../helpers/mergeObjectsById";
 import { sortAndFilterTariff } from "../../helpers/sortAndFilterTariff";
 import { instance } from "../../services/api";
 import { setIsModalErrorOpen } from "../Global/globalSlice";
-import { setStateNumber } from "./calculatorSlice";
 
 const setSalePoint = (salePoint) => {
   instance.defaults.params = { ...instance.defaults.params, salePoint };
@@ -124,24 +123,6 @@ export const chooseVclTariffDGO = createAsyncThunk(
       const newData = data.filter((el) => el.crossSell === false);
 
       return mergeObjectsById(newData, responseDGONormalize);
-    } catch (error) {
-      return rejectWithValue(error.response.data);
-    }
-  }
-);
-
-export const autoByNumber = createAsyncThunk(
-  "calculator/autoByNumber",
-  async (query, { rejectWithValue }) => {
-    try {
-      const { data } = await instance.get("/auto/mtibu/number", {
-        params: {
-          query: decodeURIComponent(query),
-        },
-      });
-
-      return data;
-      // return data[0];
     } catch (error) {
       return rejectWithValue(error.response.data);
     }
