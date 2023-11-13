@@ -24,8 +24,7 @@ export const insuredDataInitialValues = {
 };
 
 export const homeAddressInitialValues = {
-  region: "",
-  city: "",
+  regionANDcity: "",
   street: "",
   houseNumber: "",
   apartmentNumber: "",

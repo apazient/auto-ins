@@ -5,68 +5,40 @@ import {
 import GeneralInput from "../../components/GeneralInput/GeneralInput";
 import PropTypes from "prop-types";
 import GeneralSelect from "../../components/GeneralSelect/GeneralSelect";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { selectForms } from "../../redux/Global/selectors";
-// import { getCityByName } from "../../services/api";
+import { fetchAddress } from "../../redux/byParameters/operations";
 
 const HomeAddressForm = ({ formik }) => {
   const {initialValues} = formik  
   const formData = useSelector(selectForms);
-  const homeAddressFormData = formData.formHomeAddress;   
+  const homeAddressFormData = formData.formHomeAddress;
 
   const [allAddress, setAllAddress] = useState([]);
   const [address, setAddress] = useState({ label: "", value: "" });
-  const [qweryText, setQweryText] = useState("");
+  const [queryText, setQueryText] = useState("");
 
-  // useEffect(
-  //   () => async () => {
-  //     try {
-  //       if (qweryText) {
-  //         const addressVariants = await getCityByName(qweryText);
-  //         const addressSelectOptions = addressVariants.map((address) => ({
-  //           label: address.nameFull,
-  //           value: address.id,
-  //         }));
-  //         setAllAddress(addressSelectOptions);
-  //       }
-  //     } catch (error) {
-  //       console.log(error.message);
-  //     }
-  //   },
-  //   [qweryText]
-  // );
+  const getHomeAddress =  async (e) => {
+    setQueryText(e)
+    setAllAddress( await fetchAddress(e))
+}
+  const setHomeAddress = async (e) => {
+    setAddress(e);
+    formik.values.regionANDcity = e.label;
+  }
+
   return (
     <>
       <InputContBoxStyled>
         <GeneralSelect
-          id="address"
+          id="homeAddress"
           lableText="Адреса"
           optionsArr={allAddress}
-          changeCB={setAddress} //функція що повертає вибране значення (піднесення)
+          changeCB={setHomeAddress} //функція що повертає вибране значення (піднесення)
           currentValue={address}
-          inputValue={qweryText}
-          inputChangeCB={setQweryText}
-        />
-        <GeneralInput
-          id="region"
-          lableText="Область*:"
-          value={
-            homeAddressFormData?.region
-              ? homeAddressFormData?.region
-              : initialValues.region
-          }
-          formikData={formik}
-        />
-        <GeneralInput
-          id="city"
-          lableText="Місто*:"
-          value={
-            homeAddressFormData?.city
-              ? homeAddressFormData.city
-              : initialValues.city
-          }
-          formikData={formik}
+          inputValue={queryText}
+          inputChangeCB={getHomeAddress}
         />
         <GeneralInput
           id="street"
