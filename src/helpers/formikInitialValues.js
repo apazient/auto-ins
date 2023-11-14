@@ -32,10 +32,10 @@ export const homeAddressInitialValues = {
   apartmentNumber: "",
 };
 
-export const carDataFormikInitialValues = {
-  stateNumber: "", //"stateNumber"
-  year: "", //"year"
-  brand: "", //"autoMaker"
-  model: "", //"modelText"
-  bodyNumber: "", //"bodyNumber"
-};
+// export const carDataFormikInitialValues = {
+//   stateNumber: "", //"stateNumber"
+//   year: "", //"year"
+//   brand: "", //"autoMaker"
+//   model: "", //"modelText"
+//   bodyNumber: "", //"bodyNumber"
+// };

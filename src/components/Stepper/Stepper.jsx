@@ -10,7 +10,7 @@ import StepIcon from "./StepIcon";
 import { useFormik } from "formik";
 import {
   contactsInitialValues,
-  carDataFormikInitialValues,
+  // carDataFormikInitialValues,
   homeAddressInitialValues,
   insuredDataInitialValues,
 } from "../../helpers/formikInitialValues";
@@ -46,6 +46,7 @@ import {
   setFormData,
   setGlobalCustomerDataCustomer,
 } from "../../redux/Global/globalSlice";
+import { getGlobalCustomerData } from "../../redux/Global/selectors";
 
 const steps = [
   { Контакти: "icon-email" },
@@ -151,9 +152,16 @@ const Stepper = ({ backLinkRef }) => {
       handleNext();
     },
   });
-
+  const { insuranceObject } = useSelector(getGlobalCustomerData);
+  console.log(insuranceObject);
   const carDataFormik = useFormik({
-    initialValues: carDataFormikInitialValues,
+    initialValues: {
+      stateNumber: insuranceObject.stateNumber || "",
+      year: insuranceObject.year || "",
+      brand: insuranceObject.modelText || "",
+      model: "",
+      bodyNumber: insuranceObject.bodyNumber || "",
+    },
     onSubmit: (values) => {
       console.log(values);
 
@@ -173,6 +181,7 @@ const Stepper = ({ backLinkRef }) => {
     // validationSchema: carDataFormValidationSchema(),
     validateOnBlur: true,
     validateOnChange: false,
+    enableReinitialize: true,
   });
 
   const handleNext = () => {
