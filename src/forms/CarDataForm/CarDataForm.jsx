@@ -10,13 +10,19 @@ import {
   getAutoMakers,
   getAutoModelByMaker,
 } from "../../redux/References/selectors";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { allAutoModelByMaker } from "../../redux/References/operations";
-import { selectForms } from "../../redux/Global/selectors";
-import { getStateNumber } from "../../redux/Calculator/selectors";
+import {
+  getGlobalCustomerData,
+  selectForms,
+} from "../../redux/Global/selectors";
 
 const CarDataForm = ({ formik }) => {
   const dispatch = useDispatch();
+  const allAutoMakers = useSelector(getAutoMakers);
+
+  // const formData = useSelector(getGlobalCustomerData);
+  // const carDataFormData = formData?.insuranceObject;
 
   const [selectedAutoMaker, setSelectedAutoMaker] = useState({
     name: "Оберіть марку авто",
@@ -24,6 +30,7 @@ const CarDataForm = ({ formik }) => {
   const [selectedAutoModel, setSelectedAutoModel] = useState({
     name: "Оберіть модель авто",
   });
+
   ///TODO: add validation for number
   const handleBlurStateNumber = (e) => {
     const v = e.target.value.trim().toUpperCase();
@@ -47,11 +54,26 @@ const CarDataForm = ({ formik }) => {
     dispatch(allAutoModelByMaker(e.id));
     formik.setFieldValue("brand", e);
   };
-  const { initialValues } = formik;
-  const formData = useSelector(selectForms);
-  const stateNumber = useSelector(getStateNumber)
-  console.log('stateNumber: ', stateNumber);
-  const carDataFormData = formData.formCarData;
+
+  const handleChangeModel = (e) => {
+    setSelectedAutoModel(e);
+    formik.setFieldValue("model", e);
+  };
+
+  const findMakerByName = (name) => {
+    return allAutoMakers?.find(
+      (el) => el.name.toUpperCase() === name.toUpperCase()
+    );
+  };
+
+  useEffect(() => {
+    const maker = formik.values.brand?.replace(/ .*/, "");
+    if (findMakerByName(maker)) {
+      const m = findMakerByName(maker);
+      setSelectedAutoMaker(m);
+    }
+  }, [dispatch]);
+
   return (
     <>
       <InputContBoxStyled>
@@ -67,23 +89,17 @@ const CarDataForm = ({ formik }) => {
           type="date"
         /> */}
         <GeneralInput
-          id="licensePlate"
+          id="stateNumber"
           lableText="Номерний знак*:"
-          value={
-            carDataFormData?.licensePlate
-              ? carDataFormData.licensePlate
-              : initialValues.licensePlate
-          }
-          formikData={{ ...formik, handleBlur: handleBlurStateNumber }}
+          value={formik.values.stateNumber}
+          // value={formik.values.stateNumber}
+          formikData={formik}
+          // formikData={{ ...formik, handleBlur: handleBlurStateNumber }}
         />
         <GeneralInput
           id="graduationYear"
           lableText="Рік випуску*:"
-          value={
-            carDataFormData?.graduationYear
-              ? carDataFormData.graduationYear
-              : initialValues.graduationYear
-          }
+          value={formik.values.year}
           formikData={formik}
         />
         <GeneralSelect
@@ -91,7 +107,7 @@ const CarDataForm = ({ formik }) => {
           lableText="Марка*:"
           formikData={formik}
           currentValue={selectedAutoMaker}
-          optionsArr={useSelector(getAutoMakers)}
+          optionsArr={allAutoMakers}
           defaultValue={{ name: "Оберіть марку авто" }}
           getOptionLabel={(option) => option.name}
           getOptionValue={(option) => option.id}
@@ -107,19 +123,12 @@ const CarDataForm = ({ formik }) => {
           getOptionLabel={(option) => option.name}
           getOptionValue={(option) => option.id}
           isDisabled={selectedAutoMaker.name === "Оберіть марку авто"}
-          changeCB={(e) => {
-            setSelectedAutoModel(e);
-            formik.setFieldValue("model", e);
-          }}
+          changeCB={handleChangeModel}
         />
         <GeneralInput
           id="bodyNumber"
           lableText="VIN*:"
-          value={
-            carDataFormData?.bodyNumber
-              ? carDataFormData.bodyNumber
-              : initialValues.bodyNumber
-          }
+          value={formik.values.bodyNumber}
           formikData={{ ...formik, handleBlur: handleBlurVinNumber }}
         />
       </InputContBoxStyled>

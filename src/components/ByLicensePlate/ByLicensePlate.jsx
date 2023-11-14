@@ -14,6 +14,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { getIsLoading } from "../../redux/Global/selectors";
 import { setStateNumber } from "../../redux/Calculator/calculatorSlice";
 import { setSubmitObj } from "../../redux/byParameters/byParametersSlice";
+import {
+  setAutoMakers,
+  setAutoModelByMaker,
+} from "../../redux/References/referencesSlice";
 const ByLicensePlate = () => {
   const navigate = useNavigate();
   const locationPath = useLocation();
@@ -34,6 +38,8 @@ const ByLicensePlate = () => {
         stateNumber: decodeURIComponent(values.licensePlate),
         dateFrom: d,
       };
+      dispatch(setAutoModelByMaker([]));
+      dispatch(setAutoMakers([]));
       dispatch(setStateNumber(decodeURIComponent(values.licensePlate)));
       dispatch(setSubmitObj(params));
       navigate("/prices", {

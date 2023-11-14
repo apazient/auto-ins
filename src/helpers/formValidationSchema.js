@@ -17,7 +17,7 @@ export const validationName = () =>
 export const carDataFormValidationSchema = () =>
   Yup.object().shape({
     effectiveDatePolicy: Yup.date().required("Обов’язкове поле!"),
-    licensePlate: Yup.string().required("Обов’язкове поле!"),
+    statusbar: Yup.string().required("Обов’язкове поле!"),
     graduationYear: Yup.number()
       .integer("Рік повинен бути цілим числом")
       .typeError("Будь ласка, введіть рік")
@@ -82,5 +82,8 @@ export const contactsValidationSchema = () =>
     phone: Yup.string()
       .required("Введіть номер телефону")
       // .matches(/^\d{10}$/, "Номер телефону неправильний (введіть 10 цифр)"),
-      .matches(/^\+\d{12}$/, "Номер телефону неправильний (введіть у форматі +380123456789)"),
+      .matches(
+        /^\+\d{12}$/,
+        "Номер телефону неправильний (введіть у форматі +380123456789)"
+      ),
   });

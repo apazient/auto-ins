@@ -17,8 +17,8 @@ const GeneralInput = ({
   formikData: { values, handleChange, handleBlur, errors, touched },
 }) => {
   const theme = useTheme();
-  const smScreen = useMediaQuery(theme.breakpoints.up("sm"));  
-  
+  const smScreen = useMediaQuery(theme.breakpoints.up("sm"));
+
   return (
     <InputContStyled>
       <LableStyled variant="inputLable" component="label" htmlFor={id}>
@@ -35,7 +35,7 @@ const GeneralInput = ({
         // value={values[id]}
         // value={value ? value : values[id]}
         // defaultValue = {value ? value : values[id]}
-        defaultValue = {value}
+        defaultValue={value}
         onChange={customFunc || handleChange}
         onBlur={handleBlur}
         id={id}
@@ -52,7 +52,7 @@ export default GeneralInput;
 GeneralInput.propTypes = {
   lableText: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
-  value: PropTypes.string,
+  // value: PropTypes.string,
   type: PropTypes.string,
   color: PropTypes.string,
   formikData: PropTypes.object,
