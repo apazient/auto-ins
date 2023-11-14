@@ -10,7 +10,7 @@ import StepIcon from "./StepIcon";
 import { useFormik } from "formik";
 import {
   contactsInitialValues,
-  carDataFormikInitialValues,
+  // carDataFormikInitialValues,
   homeAddressInitialValues,
   insuredDataInitialValues,
 } from "../../helpers/formikInitialValues";
@@ -37,14 +37,16 @@ import {
   PRIVILEGEDSelectOptions,
 } from "../../assets/utils/isPrivilegedOptions";
 import { useDispatch, useSelector } from "react-redux";
-import { allAutoMakers } from "../../redux/References/operations";
+import {
+  allAutoMakers,
+  autoByMakerAndModel,
+} from "../../redux/References/operations";
 
 import {
   setFormData,
   setGlobalCustomerDataCustomer,
 } from "../../redux/Global/globalSlice";
-import { getStateNumber } from "../../redux/Calculator/selectors";
-// import { getCarModel } from "../../services/api";
+import { getGlobalCustomerData } from "../../redux/Global/selectors";
 
 const steps = [
   { Контакти: "icon-email" },
@@ -63,7 +65,6 @@ const HomeAddressForm = lazy(() =>
 );
 const CarDataForm = lazy(() => import("../../forms/CarDataForm/CarDataForm"));
 
-
 const Stepper = ({ backLinkRef }) => {
   const dispatch = useDispatch();
   const [activeStep, setActiveStep] = useState(0);
@@ -71,21 +72,18 @@ const Stepper = ({ backLinkRef }) => {
   const [identityCard, setIdentityCard] = useState([]);
   // const location = useLocation();
 
-  const customerCategory = useSelector(state=>state.byParameters.benefits)
-  let InsuredDataSelectOptions =
-    !customerCategory
-      ? NATURALSelectOptions
-      : PRIVILEGEDSelectOptions;
+  const customerCategory = useSelector((state) => state.byParameters.benefits);
+  let InsuredDataSelectOptions = !customerCategory
+    ? NATURALSelectOptions
+    : PRIVILEGEDSelectOptions;
   useEffect(() => {
     setIdentityCard(InsuredDataSelectOptions[0]);
   }, [InsuredDataSelectOptions]);
 
-  // const [identityCard, setIdentityCard] = useState({
-  //   value: "Паспорт",
-  //   label: "Паспорт",
-  // });
   useEffect(() => {
+    console.log("useEffect stepper dispatch allAutoMakers");
     dispatch(allAutoMakers());
+    dispatch(autoByMakerAndModel());
   }, [dispatch]);
   // =======================Formik======================================
   const contactsFormik = useFormik({
@@ -144,11 +142,9 @@ const Stepper = ({ backLinkRef }) => {
       const { regionANDcity, street, houseNumber, apartmentNumber } = values;
 
       const address = {
-        address: `${regionANDcity} ${
-          street && `вул.${street}`
-        } ${houseNumber && `б.${houseNumber}`} ${
-          apartmentNumber && `кв.${apartmentNumber}`
-        }`,
+        address: `${regionANDcity} ${street && `вул.${street}`} ${
+          houseNumber && `б.${houseNumber}`
+        } ${apartmentNumber && `кв.${apartmentNumber}`}`,
       };
 
       dispatch(setFormData({ formHomeAddress: values }));
@@ -156,38 +152,36 @@ const Stepper = ({ backLinkRef }) => {
       handleNext();
     },
   });
-
-  const stateNumber = useSelector(getStateNumber)
+  const { insuranceObject } = useSelector(getGlobalCustomerData);
+  console.log(insuranceObject);
   const carDataFormik = useFormik({
-    initialValues: {...carDataFormikInitialValues, licensePlate: stateNumber},
+    initialValues: {
+      stateNumber: insuranceObject.stateNumber || "",
+      year: insuranceObject.year || "",
+      brand: insuranceObject.modelText || "",
+      model: "",
+      bodyNumber: insuranceObject.bodyNumber || "",
+    },
     onSubmit: (values) => {
-      console.log("valuesCarData: ", values);
-      const { licensePlate, graduationYear, brand, model, bodyNumber } = values;
-      const carData = {
-        //autoMaker: brand, //"autoMaker"
-        modelText: model, //"modelText"
-        bodyNumber: bodyNumber, //"bodyNumber"
-        stateNumber: licensePlate, //"stateNumber"
-        year: graduationYear, //"year"
-      };
+      console.log(values);
 
-      console.log("carData: ", carData);
       dispatch(setFormData({ formCarData: values }));
-      dispatch(setGlobalCustomerDataCustomer(carData));
-      //getCarModel("bmw e65");
-      const allValues = {
-        ...contactsFormik.values,
-        ...insuredDataFormik.values,
-        ...homeAddressFormik.values,
-        ...values,
-      };
-      console.log(allValues);
-      alert(JSON.stringify(allValues, null, 2));
+      dispatch(setGlobalCustomerDataCustomer(values));
+
+      // const allValues = {
+      //   ...contactsFormik.values,
+      //   ...insuredDataFormik.values,
+      //   ...homeAddressFormik.values,
+      //   ...values,
+      // };
+      // console.log(allValues);
+      // alert(JSON.stringify(allValues, null, 2));
     },
 
     // validationSchema: carDataFormValidationSchema(),
     validateOnBlur: true,
     validateOnChange: false,
+    enableReinitialize: true,
   });
 
   const handleNext = () => {

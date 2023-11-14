@@ -28,6 +28,11 @@ import {
   setTariffPolicyChoose,
   setTariffVcl,
 } from "../../redux/Calculator/calculatorSlice";
+import {
+  setAutoByNumber,
+  setAutoMakers,
+  setAutoModelByMaker,
+} from "../../redux/References/referencesSlice";
 
 const ByParameters = () => {
   const navigate = useNavigate();
@@ -112,6 +117,9 @@ const ByParameters = () => {
 
       dispatch(setSubmitObj(sendObj));
       dispatch(setStateNumber(""));
+      dispatch(setAutoByNumber([]));
+      dispatch(setAutoMakers([]));
+      dispatch(setAutoModelByMaker([]));
       dispatch(setTariffPolicyChoose([]));
       dispatch(setTariffVcl([]));
 

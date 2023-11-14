@@ -1,3 +1,5 @@
+import { useSelector } from "react-redux";
+
 export const contactsInitialValues = {
   email: "",
   phone: "",
@@ -30,10 +32,10 @@ export const homeAddressInitialValues = {
   apartmentNumber: "",
 };
 
-export const carDataFormikInitialValues = {
-  licensePlate: "", //"stateNumber"
-  graduationYear: "", //"year"
-  brand: "", //"autoMaker"
-  model: "", //"modelText"
-  bodyNumber: "", //"bodyNumber"
-};
+// export const carDataFormikInitialValues = {
+//   stateNumber: "", //"stateNumber"
+//   year: "", //"year"
+//   brand: "", //"autoMaker"
+//   model: "", //"modelText"
+//   bodyNumber: "", //"bodyNumber"
+// };

@@ -8,21 +8,7 @@ const initialState = {
   globalCustomerData: {
     customer: {},
     insuranceObject: {},
-    // "insuranceObject": {
-    //   "type": "auto",
-    //   "category": "B1",
-    //   "model": {
-    //     "id": 5890,
-    //     "autoMaker": {
-    //       "id": 281
-    //     }
-    //   },
-    //   "modelText": "Mazda 2",//ok
-    //   "bodyNumber": "ASDF1",//ok
-    //   "stateNumber": "12345АА",//ok
-    //   "registrationPlace": {
-    //     "id": 1
-    //   }
+
     //   "customer": {
     //     "code": "1234567890",
     //     "nameLast": "Тест",//ok
