@@ -13,6 +13,7 @@ import {
 import { useState } from "react";
 import { allAutoModelByMaker } from "../../redux/References/operations";
 import { selectForms } from "../../redux/Global/selectors";
+import { getStateNumber } from "../../redux/Calculator/selectors";
 
 const CarDataForm = ({ formik }) => {
   const dispatch = useDispatch();
@@ -48,6 +49,8 @@ const CarDataForm = ({ formik }) => {
   };
   const { initialValues } = formik;
   const formData = useSelector(selectForms);
+  const stateNumber = useSelector(getStateNumber)
+  console.log('stateNumber: ', stateNumber);
   const carDataFormData = formData.formCarData;
   return (
     <>

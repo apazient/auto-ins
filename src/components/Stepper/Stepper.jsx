@@ -43,6 +43,7 @@ import {
   setFormData,
   setGlobalCustomerDataCustomer,
 } from "../../redux/Global/globalSlice";
+import { getStateNumber } from "../../redux/Calculator/selectors";
 // import { getCarModel } from "../../services/api";
 
 const steps = [
@@ -156,8 +157,9 @@ const Stepper = ({ backLinkRef }) => {
     },
   });
 
+  const stateNumber = useSelector(getStateNumber)
   const carDataFormik = useFormik({
-    initialValues: carDataFormikInitialValues,
+    initialValues: {...carDataFormikInitialValues, licensePlate: stateNumber},
     onSubmit: (values) => {
       console.log("valuesCarData: ", values);
       const { licensePlate, graduationYear, brand, model, bodyNumber } = values;
