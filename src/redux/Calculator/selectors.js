@@ -17,3 +17,4 @@ export const getTariffsStatus = createSelector(
     return policyStatus === 1 && vclStatus === 1;
   }
 );
+export const getStateCalculator = (state) => state.calculator.isLoading;

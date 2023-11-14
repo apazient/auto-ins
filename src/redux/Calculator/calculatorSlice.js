@@ -16,6 +16,7 @@ const initialState = {
   policyStatus: 0,
   vclStatus: 0,
   user: null,
+  isLoading: false
 };
 
 export const calculatorSlice = createSlice({
@@ -46,15 +47,17 @@ export const calculatorSlice = createSlice({
       })
       .addCase(osagoByParams.fulfilled, (state, { payload }) => {
         state.tariffPolicyChoose = payload;
-        state.policyStatus = 1;
+        state.policyStatus = 1;        
       })
       .addCase(osagoByParams.rejected, (state, { payload }) => {
         state.error = payload;
         state.policyStatus = -1;
+        state.isLoading = false;
       })
       .addCase(osagoByParams.pending, (state, { payload }) => {
         state.error = payload;
         state.policyStatus = 0;
+        state.isLoading = true;
       })
 
       .addCase(osagoByDn.fulfilled, (state, { payload }) => {
@@ -72,14 +75,16 @@ export const calculatorSlice = createSlice({
       .addCase(chooseVclTariffDGO.fulfilled, (state, { payload }) => {
         state.tariffVcl = payload;
         state.vclStatus = 1;
+        state.isLoading = false;      
       })
       .addCase(chooseVclTariffDGO.rejected, (state, { payload }) => {
         state.error = payload;
         state.vclStatus = -1;
+        state.isLoading = false;
       })
       .addCase(chooseVclTariffDGO.pending, (state, { payload }) => {
         state.error = payload;
-        state.vclStatus = 0;
+        state.vclStatus = 0;        
       });
   },
 });
