@@ -3,10 +3,13 @@ import GeneralInput from "../../components/GeneralInput/GeneralInput";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import { selectForms } from "../../redux/Global/selectors";
+import { getStateNumber } from "../../redux/Calculator/selectors";
 
 const CarDataForm = ({ formik }) => {
   const { initialValues } = formik;
   const formData = useSelector(selectForms);
+  const stateNumber = useSelector(getStateNumber)
+  console.log('stateNumber: ', stateNumber);
   const carDataFormData = formData.formCarData;
   return (
     <>
@@ -29,7 +32,7 @@ const CarDataForm = ({ formik }) => {
             carDataFormData?.licensePlate
               ? carDataFormData.licensePlate
               : initialValues.licensePlate
-          }
+          }          
           formikData={formik}
         />
         <GeneralInput

@@ -36,11 +36,12 @@ import {
   NATURALSelectOptions,
   PRIVILEGEDSelectOptions,
 } from "../../assets/utils/isPrivilegedOptions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   setFormData,
   setGlobalCustomerDataCustomer,
 } from "../../redux/Global/globalSlice";
+import { getStateNumber } from "../../redux/Calculator/selectors";
 // import { getCarModel } from "../../services/api";
 
 const steps = [
@@ -166,7 +167,7 @@ const Stepper = ({ backLinkRef }) => {
     initialValues: homeAddressInitialValues,
     // validationSchema: HomeAddressFormValidationSchema(),
     onSubmit: (values) => {
-      console.log(values);
+      console.log("homeAddress", values);
       const { region, city, street, houseNumber, apartmentNumber } = values;
 
       const address = {
@@ -183,8 +184,9 @@ const Stepper = ({ backLinkRef }) => {
     },
   });
 
+  const stateNumber = useSelector(getStateNumber)
   const carDataFormik = useFormik({
-    initialValues: carDataFormikInitialValues,
+    initialValues: {...carDataFormikInitialValues, licensePlate: stateNumber},
     onSubmit: (values) => {
       console.log("valuesCarData: ", values);
       const {effectiveDatePolicy, licensePlate, graduationYear, brand, model, bodyNumber} = values;

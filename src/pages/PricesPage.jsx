@@ -15,12 +15,15 @@ import {
 } from "../redux/Calculator/operations";
 import { getSubmitObject } from "../redux/byParameters/selectors";
 import {
+  getStateCalculator,
   getStateNumber,
   getTariffPolicyChoose,
 } from "../redux/Calculator/selectors";
 import { setIsLoading } from "../redux/Global/globalSlice";
 import { ThemeContext } from "@emotion/react";
 import { getIsModalErrorOpen } from "../redux/Global/selectors";
+import Loader from "../components/Loader/Loader";
+import { LinearProgress } from "@mui/material";
 
 const PricesPage = () => {
   const location = useLocation();
@@ -29,6 +32,7 @@ const PricesPage = () => {
   const userParams = useSelector(getSubmitObject);
   const stateNumber = useSelector(getStateNumber);
   const isError = useSelector(getIsModalErrorOpen);
+  const isLoadingCalculator = useSelector(getStateCalculator)
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -38,17 +42,11 @@ const PricesPage = () => {
       return;
     }
     if (subscribed) {
-      if (stateNumber && userParams) {
-        dispatch(setIsLoading(true));
-        dispatch(osagoByDn(userParams)).then(() =>
-          dispatch(setIsLoading(false))
-        );
+      if (stateNumber && userParams) {        
+        dispatch(osagoByDn(userParams))
       }
-      if (!stateNumber && userParams) {
-        dispatch(setIsLoading(true));
-        dispatch(osagoByParams(userParams)).then(() =>
-          dispatch(setIsLoading(false))
-        );
+      if (!stateNumber && userParams) {        
+        dispatch(osagoByParams(userParams))
       }
     }
     return () => {
@@ -60,7 +58,8 @@ const PricesPage = () => {
     <>
       <OutletPageWrapper>
         <CostCalculation />
-        <ProposalsFilter />
+        <ProposalsFilter />        
+        {isLoadingCalculator && <LinearProgress />}        
         <CompanyList />
       </OutletPageWrapper>
       {isError && <ModalError />}

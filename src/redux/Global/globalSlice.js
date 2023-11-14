@@ -42,7 +42,6 @@ export const globalSlice = createSlice({
       state.isModalErrorOpen = payload;
     },
     setGlobalCustomerDataCustomer: (state, { payload }) => {      
-      console.log('payload: ', payload);
       state.globalCustomerData.customer = { ...state.globalCustomerData.customer, ...payload };
     },
     setFormData: (state, {payload}) => {            
