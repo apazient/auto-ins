@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
-  autoByNumber,
+  //autoByNumber,
   chooseVclTariffDGO,
   loginThunk,
   osagoByDn,
@@ -16,6 +16,8 @@ const initialState = {
   policyStatus: 0,
   vclStatus: 0,
   user: null,
+  // autoByNumber: [],
+  // allAutoByNumber: {},
   isLoading: false,
 };
 
@@ -74,12 +76,12 @@ export const calculatorSlice = createSlice({
         state.policyStatus = 0;
         state.isLoading = true;
       })
-      .addCase(autoByNumber.fulfilled, (state, { payload }) => {
-        console.log(payload);
-        const { bodyNumber, year, modelText } = payload;
-        state.autoByNumber = [bodyNumber, year, modelText];
-        state.allAutoByNumber = payload;
-      })
+      // .addCase(autoByNumber.fulfilled, (state, { payload }) => {
+      //   console.log(payload);
+      //   const { bodyNumber, year, modelText } = payload;
+      //   state.autoByNumber = [bodyNumber, year, modelText];
+      //   state.allAutoByNumber = payload;
+      // })
 
       .addCase(chooseVclTariffDGO.fulfilled, (state, { payload }) => {
         state.tariffVcl = payload;
