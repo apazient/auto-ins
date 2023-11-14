@@ -24,18 +24,16 @@ export const insuredDataInitialValues = {
 };
 
 export const homeAddressInitialValues = {
-  region: "",
-  city: "",
+  regionANDcity: "",
   street: "",
   houseNumber: "",
   apartmentNumber: "",
 };
 
 export const carDataFormikInitialValues = {
-  effectiveDatePolicy: "",//це куди
-  licensePlate: "",//"stateNumber"
-  graduationYear: "",//"year"
-  brand: "",//"autoMaker"
-  model: "",//"modelText"
-  bodyNumber: "",//"bodyNumber"
+  licensePlate: "", //"stateNumber"
+  graduationYear: "", //"year"
+  brand: "", //"autoMaker"
+  model: "", //"modelText"
+  bodyNumber: "", //"bodyNumber"
 };

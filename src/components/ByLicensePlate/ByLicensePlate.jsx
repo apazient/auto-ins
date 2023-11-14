@@ -29,6 +29,7 @@ const ByLicensePlate = () => {
       const dateF = new Date(Date.now() + 86400000);
       const d = dateF.toISOString().substring(0, 10);
       const params = {
+        outsideUkraine: false,
         customerCategory: values.benefits ? "PRIVILEGED" : "NATURAL",
         stateNumber: decodeURIComponent(values.licensePlate),
         dateFrom: d,

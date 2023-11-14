@@ -8,19 +8,16 @@ import ModalError from "../components/ModalError/ModalError";
 import ProposalsFilter from "../components/ProposalsFilter/ProposalsFilter";
 import CompanyList from "../components/CompanyList/CompanyList";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  chooseVclTariffDGO,
-  osagoByDn,
-  osagoByParams,
-} from "../redux/Calculator/operations";
+import { osagoByDn, osagoByParams } from "../redux/Calculator/operations";
 import { getSubmitObject } from "../redux/byParameters/selectors";
 import {
   getStateCalculator,
   getStateNumber,
   getTariffPolicyChoose,
 } from "../redux/Calculator/selectors";
+import { getStateNumber } from "../redux/Calculator/selectors";
 import { setIsLoading } from "../redux/Global/globalSlice";
-import { ThemeContext } from "@emotion/react";
+
 import { getIsModalErrorOpen } from "../redux/Global/selectors";
 import Loader from "../components/Loader/Loader";
 import { LinearProgress } from "@mui/material";
@@ -37,7 +34,8 @@ const PricesPage = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     let subscribed = true;
-    if (!Object.hasOwn(userParams, "dateFrom") && stateNumber) {
+
+    if (!Object.hasOwn(userParams, "dateFrom") && stateNumber === "") {
       navigate("/");
       return;
     }

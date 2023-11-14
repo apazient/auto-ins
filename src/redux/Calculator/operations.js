@@ -82,6 +82,7 @@ export const osagoByDn = createAsyncThunk(
         autoCategory,
         registrationPlace: { id },
       } = d;
+
       const { calculator } = getState();
       const salePoint = { salePoint: calculator.user.salePoint.id };
       const b = {
@@ -122,23 +123,6 @@ export const chooseVclTariffDGO = createAsyncThunk(
       const newData = data.filter((el) => el.crossSell === false);
 
       return mergeObjectsById(newData, responseDGONormalize);
-    } catch (error) {
-      return rejectWithValue(error.response.data);
-    }
-  }
-);
-
-export const autoByNumber = createAsyncThunk(
-  "calculator/autoByNumber",
-  async (body, { rejectWithValue }) => {
-    try {
-      const { data } = await instance.get("/auto/mtibu/number", {
-        params: {
-          query: body,
-        },
-      });
-
-      return data[0];
     } catch (error) {
       return rejectWithValue(error.response.data);
     }

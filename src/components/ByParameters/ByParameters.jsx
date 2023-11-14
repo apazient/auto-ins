@@ -8,7 +8,7 @@ import {
 import GeneralSelect from "../GeneralSelect/GeneralSelect";
 import { GeneralCheckbox } from "../GeneralCheckbox/GeneralCheckbox";
 import { useLocation, useNavigate } from "react-router-dom";
-// import debounce from "lodash.debounce";
+
 import {
   selectCategoryOptions,
   selectAutoCategory,
