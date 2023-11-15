@@ -3,12 +3,16 @@ import React from "react";
 
 import Typography from "@mui/material/Typography";
 import { useSelector } from "react-redux";
-import { getParamsFromUrl } from "../../redux/Global/selectors";
+import {
+  getGlobalCustomerData,
+  getParamsFromUrl,
+} from "../../redux/Global/selectors";
 import CompanyCardMedia from "../CompanyCardMedia/index";
 import { ContentBox, FormContainerS } from "./CompanySmallStyled";
 
 const CompanySmall = React.memo(() => {
   const paramsFromUrl = useSelector(getParamsFromUrl);
+  const { dateFrom } = useSelector(getGlobalCustomerData);
 
   return (
     <FormContainerS component="article">
@@ -40,6 +44,14 @@ const CompanySmall = React.memo(() => {
         </Typography>
         <Typography component="span" variant="body1">
           {paramsFromUrl?.registrationPlace?.name}
+        </Typography>
+      </ContentBox>
+      <ContentBox>
+        <Typography component="span" variant="body1">
+          Початок дії поліса
+        </Typography>
+        <Typography component="span" variant="body1">
+          {dateFrom}
         </Typography>
       </ContentBox>
       <ContentBox className="line" />

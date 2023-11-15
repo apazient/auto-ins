@@ -25,6 +25,18 @@ export const FormContainerS = styled(FormContainer)(({ theme }) => ({
   "&.costCalc": {
     overflow: "visible",
   },
+  "& .formTitle": {
+    [theme.breakpoints.up("sm")]: {
+      fontSize: "18px",
+      fontWeight: "700",
+      fontFamily: "OpenSans-Bold",
+    },
+    [theme.breakpoints.up("lg")]: {
+      fontSize: "22px",
+      fontWeight: "800",
+      fontFamily: "OpenSans-ExtraBold",
+    },
+  },
 }));
 
 export const StackS = styled(Stack)(({ theme }) => ({
@@ -51,6 +63,13 @@ export const Item = styled(Paper)(({ theme }) => ({
     boxShadow: "none",
     color: theme.palette.primary.main,
     border: `1px solid ${theme.palette.primary.main}`,
+  },
+  "& .inputLabel": {
+    [theme.breakpoints.up("lg")]: {
+      fontSize: "18px",
+      fontWeight: "600",
+      fontFamily: "OpenSans-SemiBold",
+    },
   },
 }));
 

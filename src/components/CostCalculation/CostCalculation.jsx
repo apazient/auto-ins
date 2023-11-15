@@ -17,40 +17,51 @@ import { useDispatch, useSelector } from "react-redux";
 import { getStateNumber } from "../../redux/Calculator/selectors";
 import { useEffect, useState } from "react";
 
-import { getSubmitObject } from "../../redux/byParameters/selectors";
+import {
+  getAddressAndAuto,
+  getSubmitObject,
+} from "../../redux/byParameters/selectors";
 import { setSubmitObj } from "../../redux/byParameters/byParametersSlice";
 import { Formik, useFormik } from "formik";
 import { getIsLoading } from "../../redux/Global/selectors";
 
 import { SpriteSVG } from "../../images/SpriteSVG";
 import { getAutoByNumber } from "../../redux/References/selectors";
-import { autoByNumber } from "../../redux/References/operations";
+
+import {
+  paramsByNumberNormalize,
+  pramsByParamsNormalize,
+} from "../../helpers/dataNormalize/paramsNormalize";
 
 export const CostCalculation = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const stateNumber = useSelector(getStateNumber);
-  const { dateFrom } = useSelector((state) => state.byParameters.submitObj);
-  const [userDate, setUserDate] = useState(new Date(dateFrom));
-
-  const autoByNumberRes = useSelector(getAutoByNumber);
-  const sendObject = useSelector(getSubmitObject);
+  const { dateFrom } = useSelector(getSubmitObject);
+  const autoByNumber = useSelector(getAutoByNumber);
+  const submitObject = useSelector(getSubmitObject);
   const isLoading = useSelector(getIsLoading);
-
-  const {
-    address: { label: address },
-    engineCapacity: { label: params },
-  } = useSelector((state) => state.byParameters);
+  const autoByParams = useSelector(getAddressAndAuto);
+  const [userDate, setUserDate] = useState(new Date(dateFrom));
+  const [items, setItems] = useState([]);
+  let inputProps = {
+    disabled: isLoading,
+  };
 
   useEffect(() => {
-    if (stateNumber !== "") {
-      dispatch(autoByNumber(stateNumber));
-    } else {
-      // dispatch(
-      //   setAutoByNumber([...params.split(" - "), address.split(",")[0]])
-      // );
+    if (autoByNumber.length > 0) {
+      setItems(paramsByNumberNormalize(autoByNumber));
     }
-  }, [dispatch, stateNumber, params, address]);
+    if (autoByNumber.length === 0 && stateNumber === "") {
+      setItems(pramsByParamsNormalize(autoByParams));
+    }
+  }, [stateNumber, autoByParams, autoByNumber]);
+
+  useEffect(() => {
+    return () => {
+      setItems([]);
+    };
+  }, []);
 
   const formik = useFormik({
     initialValues: {
@@ -67,52 +78,35 @@ export const CostCalculation = () => {
   };
   const handleChangeDate = (e) => {
     const newObject = {
-      ...sendObject,
+      ...submitObject,
       dateFrom: moment(e).format("YYYY-MM-DD"),
     };
-    // dispatch(setIsLoading(true));
+
     setUserDate(e);
     dispatch(setSubmitObj(newObject));
   };
-  let inputProps = {
-    disabled: isLoading,
-  };
+
   return (
     <FormContainerS className="costCalc">
-      <Typography
-        variant="formTitle"
-        component="span"
-        sx={{
-          fontSize: { sm: "18px", lg: "22px" },
-          fontWeight: { sm: "700", lg: "800" },
-        }}
-      >
+      <Typography variant="formTitle" component="span" className="formTitle">
         Розрахунок вартості:
       </Typography>
       <Box className="wrapContent">
         <StackS direction="row">
-          {autoByNumberRes.map((el) => {
-            if (el) {
-              const { bodyNumber, year, modelText } = el;
-              el = [bodyNumber, year, modelText];
-              return el.map((item, index) => (
-                <Item key={index}>
-                  <Typography
-                    component="span"
-                    variant="inputLable"
-                    sx={{
-                      fontSize: { lg: "18px" },
-                      fontWeight: { lg: "600" },
-                    }}
-                  >
-                    {item}
-                  </Typography>
-                </Item>
-              ));
-            } else {
-              return null;
-            }
+          {items.map((el, index) => {
+            return (
+              <Item key={index}>
+                <Typography
+                  component="span"
+                  variant="inputLable"
+                  className="inputLable"
+                >
+                  {el}
+                </Typography>
+              </Item>
+            );
           })}
+
           <Formik onSubmit={formik.handleSubmit}>
             <StyledDatatimeWrapper>
               <label htmlFor="dateFrom" />

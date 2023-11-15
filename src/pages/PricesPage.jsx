@@ -13,11 +13,11 @@ import { getSubmitObject } from "../redux/byParameters/selectors";
 import {
   getStateCalculator,
   getStateNumber,
-  getTariffPolicyChoose,
 } from "../redux/Calculator/selectors";
 
 import { getIsModalErrorOpen } from "../redux/Global/selectors";
 import { LinearProgress } from "@mui/material";
+import { autoByNumber } from "../redux/References/operations";
 
 const PricesPage = () => {
   const location = useLocation();
@@ -39,6 +39,7 @@ const PricesPage = () => {
     if (subscribed) {
       if (stateNumber && userParams) {
         dispatch(osagoByDn(userParams));
+        dispatch(autoByNumber(stateNumber));
       }
       if (!stateNumber && userParams) {
         dispatch(osagoByParams(userParams));
@@ -47,7 +48,7 @@ const PricesPage = () => {
     return () => {
       subscribed = false;
     };
-  }, [dispatch, userParams, stateNumber]);
+  }, [dispatch, userParams, stateNumber, navigate]);
 
   return (
     <>

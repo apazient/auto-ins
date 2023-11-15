@@ -16,6 +16,7 @@ import {
   getGlobalCustomerData,
   selectForms,
 } from "../../redux/Global/selectors";
+import { useCallback } from "react";
 
 const CarDataForm = ({ formik }) => {
   const dispatch = useDispatch();
@@ -36,16 +37,26 @@ const CarDataForm = ({ formik }) => {
     const v = e.target.value.trim().toUpperCase();
     const stateNumber = v.match(DNUMBER_REGEX);
     if (stateNumber) {
+      console.log("handleBlurStateNumber", stateNumber);
       dispatch(autoByNumber(stateNumber[0]));
     }
     formik.handleChange(e);
   };
   const handleBlurVinNumber = (e) => {
-    const v = e.target.value.trim().toUpperCase();
     const vinNumber = v.match(VIN_REGEX);
 
     // formik.handleChange(e);
   };
+  // const handleChange = (e) => {
+  //   const v = e.target.value.trim().toUpperCase();
+  //   console.log("handleChange", v);
+  //   const s = v.match(DNUMBER_REGEX);
+  //   if (s) {
+  //     console.log("handleBlurStateNumber", s);
+  //     dispatch(autoByNumber(s[0]));
+  //   }
+  //   console.log("handleChange", s);
+  // };
   const handleChangeBrand = (e) => {
     setSelectedAutoModel({
       name: "Оберіть модель авто",
@@ -60,11 +71,14 @@ const CarDataForm = ({ formik }) => {
     formik.setFieldValue("model", e);
   };
 
-  const findMakerByName = (name) => {
-    return allAutoMakers?.find(
-      (el) => el.name.toUpperCase() === name.toUpperCase()
-    );
-  };
+  const findMakerByName = useCallback(
+    (name) => {
+      return allAutoMakers?.find(
+        (el) => el.name.toUpperCase() === name.toUpperCase()
+      );
+    },
+    [allAutoMakers]
+  );
 
   useEffect(() => {
     const maker = formik.values.brand?.replace(/ .*/, "");
@@ -72,7 +86,7 @@ const CarDataForm = ({ formik }) => {
       const m = findMakerByName(maker);
       setSelectedAutoMaker(m);
     }
-  }, [dispatch]);
+  }, [findMakerByName, formik.values.brand]);
 
   return (
     <>
@@ -92,6 +106,7 @@ const CarDataForm = ({ formik }) => {
           id="stateNumber"
           lableText="Номерний знак*:"
           value={formik.values.stateNumber}
+          // customFunc={handleChange}
           // value={formik.values.stateNumber}
           formikData={formik}
           // formikData={{ ...formik, handleBlur: handleBlurStateNumber }}
