@@ -9,10 +9,11 @@ import {
 } from "../../redux/Global/selectors";
 import CompanyCardMedia from "../CompanyCardMedia/index";
 import { ContentBox, FormContainerS } from "./CompanySmallStyled";
+import { getSubmitObject } from "../../redux/byParameters/selectors";
 
 const CompanySmall = React.memo(() => {
   const paramsFromUrl = useSelector(getParamsFromUrl);
-  const { dateFrom } = useSelector(getGlobalCustomerData);
+  const { dateFrom, outsideUkraine } = useSelector(getSubmitObject);
 
   return (
     <FormContainerS component="article">
@@ -43,7 +44,9 @@ const CompanySmall = React.memo(() => {
           Реєстрація
         </Typography>
         <Typography component="span" variant="body1">
-          {paramsFromUrl?.registrationPlace?.name}
+          {outsideUkraine
+            ? "Без реєстрації"
+            : paramsFromUrl?.registrationPlace?.name}
         </Typography>
       </ContentBox>
       <ContentBox>

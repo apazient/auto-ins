@@ -18,6 +18,7 @@ import {
 import { getIsModalErrorOpen } from "../redux/Global/selectors";
 import { LinearProgress } from "@mui/material";
 import { autoByNumber } from "../redux/References/operations";
+import LineSection from "../components/LineSection/LineSection";
 
 const PricesPage = () => {
   const location = useLocation();
@@ -55,6 +56,7 @@ const PricesPage = () => {
       <OutletPageWrapper>
         <CostCalculation />
         <ProposalsFilter />
+        <LineSection />
         {isLoadingCalculator && <LinearProgress />}
         <CompanyList />
       </OutletPageWrapper>

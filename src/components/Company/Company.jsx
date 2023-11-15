@@ -49,7 +49,6 @@ const Company = ({ proposal }) => {
     discountedPayment: 0,
   });
   const [price, setPrice] = useState([]);
-  const { dateFrom } = useSelector(getSubmitObject);
 
   useEffect(() => {
     if (!proposal) return;
@@ -94,7 +93,6 @@ const Company = ({ proposal }) => {
             id: chooseDgo.id,
             limit: chooseDgo.limit,
           },
-          dateFrom,
         })
       );
 
@@ -103,7 +101,7 @@ const Company = ({ proposal }) => {
           price,
           insurer: { id: franchise.insurer.id, name: franchise.insurer.name },
           registrationPlace: registrationPlace || "",
-          autoCategory,
+          // autoCategory,
           franchise: franchise.franchise,
         })
       );
