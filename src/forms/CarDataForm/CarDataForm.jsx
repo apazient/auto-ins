@@ -22,9 +22,6 @@ const CarDataForm = ({ formik, values }) => {
   const allAutoMakers = useSelector(getAutoMakers);
   const { outsideUkraine } = useSelector(getSubmitObject);
   const [insuranceObject] = useSelector(getAutoByNumber);
-  console.log(insuranceObject?.stateNumber ? true : false);
-
-  console.log("CarDataForm", outsideUkraine);
 
   const [selectedAutoMaker, setSelectedAutoMaker] = useState({
     name: "Оберіть марку авто",
@@ -80,15 +77,16 @@ const CarDataForm = ({ formik, values }) => {
   useEffect(() => {
     console.log("useEffect", insuranceObject);
   }, [insuranceObject?.year]);
+
   useEffect(() => {
-    const maker = formik.values.brand?.replace(/ .*/, "");
+    const maker = formik.values?.brand?.replace(/ .*/, "");
     if (findMakerByName(maker)) {
       const m = findMakerByName(maker);
       setSelectedAutoMaker(m);
       formik.setFieldValue("maker", m);
     }
-  }, []);
-
+  }, [findMakerByName]);
+  console.log(insuranceObject?.stateNumber ? true : false);
   return (
     <>
       <InputContBoxStyled>
@@ -105,8 +103,8 @@ const CarDataForm = ({ formik, values }) => {
           lableText="Рік випуску*:"
           value={formik.values?.year}
           formikData={formik}
-          readOnly={outsideUkraine}
-          disabled={insuranceObject?.stateNumber ? true : false}
+          isReadOnly={!outsideUkraine}
+          isDisabled={insuranceObject?.stateNumber ? false : true}
         />
         <GeneralSelect
           id="brand"
@@ -118,7 +116,6 @@ const CarDataForm = ({ formik, values }) => {
           getOptionLabel={(option) => option.name}
           getOptionValue={(option) => option.id}
           changeCB={handleChangeBrand}
-          isDisabled={insuranceObject?.stateNumber ? true : false}
         />
         <GeneralSelect
           id="model"
@@ -138,8 +135,8 @@ const CarDataForm = ({ formik, values }) => {
           value={formik.values?.bodyNumber}
           formikData={formik}
           customFunc={handleChangeVinNumber}
-          readOnly={outsideUkraine}
-          disabled={insuranceObject?.stateNumber ? true : false}
+          isReadOnly={!outsideUkraine}
+          isDisabled={insuranceObject?.stateNumber ? false : true}
         />
       </InputContBoxStyled>
     </>

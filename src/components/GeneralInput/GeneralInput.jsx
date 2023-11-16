@@ -15,6 +15,8 @@ const GeneralInput = ({
   handleBlur,
   customFunc,
   placeholder,
+  isDisabled = false,
+  isReadOnly = false,
   formikData: { values, handleChange, errors, touched },
 }) => {
   const theme = useTheme();
@@ -43,6 +45,8 @@ const GeneralInput = ({
         color={color || "inputBase"}
         error={touched[id] && Boolean(errors[id])}
         placeholder={placeholder}
+        disabled={isDisabled}
+        readOnly={isReadOnly}
       />
     </InputContStyled>
   );
