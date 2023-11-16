@@ -1,4 +1,5 @@
-import { createTheme } from "@mui/material";
+import { createTheme } from "@mui/material/styles";
+
 export const theme = createTheme({
   palette: {
     primary: {
@@ -50,74 +51,47 @@ export const theme = createTheme({
   },
   components: {
     MuiCssBaseline: {
-      styleOverrides: {
-        "@font-face": {
-          fontDisplay: "swap",
-          fontFamily: "Open Sans",
-          fontStyle: "normal",
-          fontWeight: 400,
-          src: `url('./fonts/open-sans-v36-cyrillic_latin-regular.woff2') format('woff2');
-   `,
-        },
-
-        "@font-face": [
-          `
-    font-display: swap;
-    /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-    font-family: 'Open Sans';
-    font-style: normal;
-    font-weight: 400;
-    src: url('./fonts/open-sans-v36-cyrillic_latin-regular.woff2') format('woff2');
-    /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-`,
-
-          `
-    font-display: swap;
-    /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-    font-family: 'Open Sans';
-    font-style: normal;
-    font-weight: 600;
-    src: url('./fonts/open-sans-v36-cyrillic_latin-600.woff2') format('woff2');
-`,
-
-          `
-     font-display: swap;
-    /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+      styleOverrides: `@font-face {
+             font-display: swap;
+             font-family: 'Open Sans';
+             font-style: normal;
+             font-weight: 400;
+             src: url('../fonts/open-sans-v36-cyrillic_latin-regular.woff2') format('woff2');
+         }
+         @font-face {
+             font-display: swap;
+             font-family: 'Open Sans';
+             font-style: normal;
+             font-weight: 600;
+             src: url('../fonts/open-sans-v36-cyrillic_latin-600.woff2') format('woff2');
+         }
+         @font-face {
+    font-display: swap;  
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 700;
-    src: url('./fonts/open-sans-v36-cyrillic_latin-700.woff2') format('woff2');
-    /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-`,
+    src: url('../fonts/open-sans-v36-cyrillic_latin-700.woff2') format('woff2');   
+}
 
-          `
-     font-display: swap;
-    /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+@font-face {
+    font-display: swap;   
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 800;
-    src: url('./fonts/open-sans-v36-cyrillic_latin-800.woff2') format('woff2');
-    /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-`,
-        ],
-        // html: [{ fontSize: "16px" }],
-        body: {
-          backgroundColor: "#030303",
-        },
-        img: {
-          display: "block",
-          maxWidth: "100%",
-          height: "auto",
-        },
-        ul: { margin: 0, padding: 0 },
-        h1: { margin: 0, padding: 0 },
-        h2: { margin: 0, padding: 0 },
-        h3: { margin: 0, padding: 0 },
-        h4: { margin: 0, padding: 0 },
-        h5: { margin: 0, padding: 0 },
-        h6: { margin: 0, padding: 0 },
-        p: { margin: 0, padding: 0 },
-      },
+    src: url('../fonts/open-sans-v36-cyrillic_latin-800.woff2') format('woff2');   
+}
+         
+         html {font-size: 16px}
+         body {background-color: #030303; }
+         img {display: block; max-width: 100%; height: auto}
+         ul {margin: 0; padding: 0}
+         h1 {margin: 0; padding: 0}
+         h2 {margin: 0; padding: 0}
+         h3 {margin: 0; padding: 0}
+         h4 {margin: 0; padding: 0}
+         h5 {margin: 0; padding: 0}
+         h6 {margin: 0; padding: 0}
+         p {margin: 0; padding: 0}`,
     },
   },
 });
@@ -127,7 +101,7 @@ theme.typography.h1 = {
   [theme.breakpoints.up("xs")]: {
     color: theme.palette.primary.white,
     fontSize: "1.5rem",
-    // fontFamily: "OpenSans-Bold, sans-serif",
+    // fontFamily: "Open Sans",
     fontWeight: 800,
     lineHeight: "2.25rem",
   },
@@ -145,6 +119,7 @@ theme.typography.h2 = {
   [theme.breakpoints.up("xs")]: {
     fontSize: "1.375rem",
     color: theme.palette.primary.white,
+    // fontFamily: "Open Sans",
     // fontFamily: "OpenSans-ExtraBold, sans-serif",
     fontWeight: 800,
     lineHeight: "1.5rem",
@@ -160,6 +135,7 @@ theme.typography.h2 = {
 theme.typography.h3 = {
   [theme.breakpoints.up("xs")]: {
     fontSize: "1rem",
+    // fontFamily: "Open Sans",
     // fontFamily: "OpenSans-ExtraBold, sans-serif",
     fontWeight: 800,
     color: theme.palette.primary.white,
@@ -174,6 +150,7 @@ theme.typography.h3 = {
 theme.typography.body1 = {
   [theme.breakpoints.up("xs")]: {
     fontSize: "0.875rem",
+    // fontFamily: "Open Sans",
     // fontFamily: "OpenSans-Regular, sans-serif",
     fontWeight: 400,
     color: theme.palette.primary.white,
@@ -188,6 +165,7 @@ theme.typography.body1 = {
 theme.typography.subtitle1 = {
   [theme.breakpoints.up("xs")]: {
     fontSize: "1rem",
+    // fontFamily: "Open Sans",
     // fontFamily: "OpenSans-Bold, sans-serif",
     fontWeight: 700,
     color: theme.palette.primary.white,
@@ -202,6 +180,7 @@ theme.typography.subtitle1 = {
 theme.typography.subtitle2 = {
   [theme.breakpoints.up("xs")]: {
     fontSize: "0.875rem",
+    // fontFamily: "Open Sans",
     // fontFamily: "OpenSans-SemiBold, sans-serif",
     fontWeight: 600,
     color: theme.palette.primary.main,
@@ -218,6 +197,7 @@ theme.typography.subtitle2 = {
 theme.typography.body2 = {
   [theme.breakpoints.up("xs")]: {
     fontSize: "0.875rem",
+    // fontFamily: "Open Sans",
     // fontFamily: "OpenSans-SemiBold, sans-serif",
     fontWeight: 400,
     color: theme.palette.primary.main,
@@ -233,6 +213,7 @@ theme.typography.body2 = {
 theme.typography.caption = {
   [theme.breakpoints.up("xs")]: {
     fontSize: "0.875rem",
+    // fontFamily: "Open Sans",
     // fontFamily: "OpenSans-Regular, sans-serif",
     fontWeight: 400,
     color: theme.palette.primary.main,
@@ -246,6 +227,7 @@ theme.typography.caption = {
 theme.typography.formTitle = {
   [theme.breakpoints.up("xs")]: {
     fontSize: "1rem",
+    // fontFamily: "Open Sans",
     // fontFamily: "OpenSans-ExtraBold, sans-serif",
     fontWeight: 800,
     color: theme.palette.primary.main,
@@ -261,6 +243,7 @@ theme.typography.inputLable = {
     fontSize: "0.875rem",
     // fontFamily: "OpenSans-SemiBold, sans-serif",
     fontWeight: 600,
+    // fontFamily: "Open Sans",
     color: theme.palette.primary.main,
     lineHeight: 1.5,
   },
@@ -276,6 +259,7 @@ theme.typography.inputSpan = {
   fontSize: "12px",
   // fontFamily: "OpenSans-Regular, sans-serif",
   fontWeight: 400,
+  // fontFamily: "Open Sans",
   color: theme.palette.primary.main,
   lineHeight: "1.5rem",
   margin: "4px 0 16px",
