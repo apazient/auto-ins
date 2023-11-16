@@ -51,6 +51,15 @@ export const theme = createTheme({
   components: {
     MuiCssBaseline: {
       styleOverrides: {
+        "@font-face": {
+          fontDisplay: "swap",
+          fontFamily: "Open Sans",
+          fontStyle: "normal",
+          fontWeight: 400,
+          src: `url('./fonts/open-sans-v36-cyrillic_latin-regular.woff2') format('woff2');
+   `,
+        },
+
         "@font-face": [
           `
     font-display: swap;
