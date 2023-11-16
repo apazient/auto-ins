@@ -12,10 +12,11 @@ const GeneralInput = ({
   value,
   type,
   color,
+  handleBlur,
   customFunc,
   placeholder,
 
-  formikData: { values, handleBlur, handleChange, errors, touched },
+  formikData: { values, handleChange, errors, touched },
 }) => {
   const theme = useTheme();
   const smScreen = useMediaQuery(theme.breakpoints.up("sm"));
@@ -33,10 +34,10 @@ const GeneralInput = ({
       <InputStyled
         name={id}
         type={type || "text"}
-        //value={values[id]}
+        value={value}
         // value={value ? value : values[id]}
         // defaultValue = {value ? value : values[id]}
-        defaultValue={value}
+        // defaultValue={value}
         onChange={customFunc || handleChange}
         onBlur={handleBlur}
         id={id}
