@@ -15,7 +15,8 @@ export const GeneralCheckbox = ({
   changeCB, //функція що повертає вибране значення (піднесення)
   helper = "", //якщо текст присутній то показується елемент <HelpCircle/>
   color = "", //базовий колір для елемента
-  isChecked=false
+  isChecked = false,
+  isDisabled=false
 }) => {
   const theme = useTheme();
   return (
@@ -23,6 +24,9 @@ export const GeneralCheckbox = ({
       component="span"
       sx={{
         stroke: color ? color : theme.palette.primary.white,
+        "& .MuiTypography-root.Mui-disabled": {
+          color: color ? color : theme.palette.primary.white,
+        },
         "& .MuiTypography-root": {
           color: color ? color : theme.palette.primary.white,
         },
@@ -44,6 +48,7 @@ export const GeneralCheckbox = ({
             icon={<SpriteSVG name="icon-square" />}
             checkedIcon={<SpriteSVG name="icon-square-checked" />}
             defaultChecked={isChecked}
+            disabled={isDisabled}
           />
         }
         label={lableText}
@@ -59,6 +64,7 @@ GeneralCheckbox.propTypes = {
   color: PropTypes.string,
   val: PropTypes.bool,
   isChecked: PropTypes.bool,
+  isDisabled: PropTypes.bool,
   helper: PropTypes.string,
   changeCB: PropTypes.func,
 };
