@@ -72,7 +72,7 @@ const ByParameters = () => {
   //   },
   //   [qweryText]
   // );
-
+  
   const handleChangeengineCapacity = (e) => {
     dispatch(setEngineCapacity(e));
   };
@@ -123,11 +123,15 @@ const ByParameters = () => {
       dispatch(setTariffPolicyChoose([]));
       dispatch(setTariffVcl([]));
 
+console.log(sendObj);
+
       navigate("/prices", {
         state: { from: locationPath.pathname, data: sendObj },
       });
     },
   });
+
+  engineCapacity.value === 'B5' ? formik.values.benefits=false : formik.values.benefits 
 
   return (
     <div>
@@ -164,9 +168,11 @@ const ByParameters = () => {
           <GeneralCheckbox
             lableText="Є пільги"
             name="benefits"
-            val={formik.values.benefits}
+            val={formik.values.benefits }
             changeCB={formik.handleChange}
-            isChecked={benefits}
+            isChecked={ engineCapacity.value === 'B5' ? false : benefits}
+            color={engineCapacity.value==='B5'?"rgba(243, 243, 243, 0.40)":null}
+            isDisabled={engineCapacity.value==='B5'?true:false}
             helper="Учасники війни; Інваліди II групи; Громадяни України, які постраждали внаслідок Чорнобильської катастрофи, віднесені до I та II категорії; 
           Пенсіонери"
           />
