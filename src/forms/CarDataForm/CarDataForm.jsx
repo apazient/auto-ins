@@ -15,11 +15,16 @@ import { useEffect, useState } from "react";
 import { allAutoModelByMaker } from "../../redux/References/operations";
 
 import { useCallback } from "react";
+import { getSubmitObject } from "../../redux/byParameters/selectors";
 
 const CarDataForm = ({ formik, values }) => {
   const dispatch = useDispatch();
   const allAutoMakers = useSelector(getAutoMakers);
+  const { outsideUkraine } = useSelector(getSubmitObject);
   const [insuranceObject] = useSelector(getAutoByNumber);
+  console.log(insuranceObject?.stateNumber ? true : false);
+
+  console.log("CarDataForm", outsideUkraine);
 
   const [selectedAutoMaker, setSelectedAutoMaker] = useState({
     name: "Оберіть марку авто",
@@ -76,7 +81,6 @@ const CarDataForm = ({ formik, values }) => {
     console.log("useEffect", insuranceObject);
   }, [insuranceObject?.year]);
   useEffect(() => {
-    console.log(formik.values.brand);
     const maker = formik.values.brand?.replace(/ .*/, "");
     if (findMakerByName(maker)) {
       const m = findMakerByName(maker);
@@ -84,7 +88,7 @@ const CarDataForm = ({ formik, values }) => {
       formik.setFieldValue("maker", m);
     }
   }, []);
-  console.log(formik.values.year);
+
   return (
     <>
       <InputContBoxStyled>
@@ -101,6 +105,8 @@ const CarDataForm = ({ formik, values }) => {
           lableText="Рік випуску*:"
           value={formik.values?.year}
           formikData={formik}
+          readOnly={outsideUkraine}
+          disabled={insuranceObject?.stateNumber ? true : false}
         />
         <GeneralSelect
           id="brand"
@@ -112,6 +118,7 @@ const CarDataForm = ({ formik, values }) => {
           getOptionLabel={(option) => option.name}
           getOptionValue={(option) => option.id}
           changeCB={handleChangeBrand}
+          isDisabled={insuranceObject?.stateNumber ? true : false}
         />
         <GeneralSelect
           id="model"
@@ -128,9 +135,11 @@ const CarDataForm = ({ formik, values }) => {
         <GeneralInput
           id="bodyNumber"
           lableText="VIN*:"
-          value={formik.values.bodyNumber}
+          value={formik.values?.bodyNumber}
           formikData={formik}
           customFunc={handleChangeVinNumber}
+          readOnly={outsideUkraine}
+          disabled={insuranceObject?.stateNumber ? true : false}
         />
       </InputContBoxStyled>
     </>

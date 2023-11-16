@@ -15,7 +15,6 @@ const GeneralInput = ({
   handleBlur,
   customFunc,
   placeholder,
-
   formikData: { values, handleChange, errors, touched },
 }) => {
   const theme = useTheme();
