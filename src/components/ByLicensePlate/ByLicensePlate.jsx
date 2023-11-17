@@ -10,19 +10,23 @@ import {
 import HelpCircle from "../HelpCircle/HelpCircle";
 import { GeneralCheckbox } from "../GeneralCheckbox/GeneralCheckbox";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { getIsLoading } from "../../redux/Global/selectors";
+import { useDispatch } from "react-redux";
+
 import { setStateNumber } from "../../redux/Calculator/calculatorSlice";
-import { setSubmitObj } from "../../redux/byParameters/byParametersSlice";
+import {
+  setAddress,
+  setEngineCapacity,
+  setSubmitObj,
+} from "../../redux/byParameters/byParametersSlice";
 import {
   setAutoMakers,
   setAutoModelByMaker,
 } from "../../redux/References/referencesSlice";
+import { DNUMBER_REGEX } from "../../constants";
 const ByLicensePlate = () => {
   const navigate = useNavigate();
   const locationPath = useLocation();
   const dispatch = useDispatch();
-  const isLoading = useSelector(getIsLoading);
 
   const formik = useFormik({
     initialValues: {
@@ -35,19 +39,22 @@ const ByLicensePlate = () => {
       const params = {
         outsideUkraine: false,
         customerCategory: values.benefits ? "PRIVILEGED" : "NATURAL",
-        stateNumber: decodeURIComponent(values.licensePlate),
+        stateNumber: values.licensePlate,
         dateFrom: d,
       };
+      dispatch(setAddress({ label: "", value: "" }));
+      dispatch(setEngineCapacity({ label: "", value: "" }));
       dispatch(setAutoModelByMaker([]));
       dispatch(setAutoMakers([]));
-      dispatch(setStateNumber(decodeURIComponent(values.licensePlate)));
+      dispatch(setStateNumber(params.stateNumber));
       dispatch(setSubmitObj(params));
       navigate("/prices", {
         state: { from: locationPath.pathname, data: params },
       });
     },
-    validationSchema: Yup.object().shape({
-      licensePlate: Yup.string().required("Required field!"),
+
+    validationSchema: Yup.object({
+      licensePlate: Yup.string().matches(DNUMBER_REGEX),
     }),
   });
 
@@ -62,9 +69,14 @@ const ByLicensePlate = () => {
           <InputStyled
             name="licensePlate"
             type="text"
-            value={formik.values.licensePlate}
-            onChange={formik.handleChange}
+            value={formik.values.licensePlate.trim().toUpperCase()}
+            onChange={(e) => {
+              const e2 = e.target.value.trim().toUpperCase();
+              e.target.value = e2;
+              formik.handleChange(e);
+            }}
             id="license-plate"
+            required
           />
         </InputContStyled>
         <GeneralCheckbox
@@ -75,7 +87,7 @@ const ByLicensePlate = () => {
           helper="Учасники війни; Інваліди II групи; Громадяни України, які постраждали внаслідок Чорнобильської катастрофи, віднесені до I та II категорії; 
           Пенсіонери"
         />
-        <SubmitButton type="submit" disabled={isLoading}>
+        <SubmitButton type="submit" disabled={!formik.values.licensePlate}>
           Розрахувати вартість
         </SubmitButton>
       </FormStyled>

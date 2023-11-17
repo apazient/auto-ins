@@ -68,6 +68,8 @@ export const theme = createTheme({
         ],
         body: {
           backgroundColor: "#030303",
+          scrollbarWidth: "thin",
+          scrollbarColor: "rgba(255, 255, 255, 0.8) rgba(21, 71, 248, 0.6)",
         },
         img: {
           display: "block",
@@ -82,6 +84,21 @@ export const theme = createTheme({
         h5: { margin: 0, padding: 0 },
         h6: { margin: 0, padding: 0 },
         p: { margin: 0, padding: 0 },
+      },
+    },
+    MuiLinearProgress: {
+      styleOverrides: {
+        indeterminate: {
+          backgroundColor: "#F7F8FF",
+          height: "6px",
+          borderRadius: "4px",
+        },
+        bar: {
+          backgroundColor: "#E8C71A",
+          transition: "transform 0.6s linear 0s",
+          animation:
+            "2.2s cubic-bezier(0.65, 0.815, 0.735, 0.395) 0s infinite normal none running animation-ozg7p2",
+        },
       },
     },
     // MuiButtonBase: {
@@ -138,7 +155,7 @@ theme.typography.h3 = {
     fontFamily: "OpenSans-ExtraBold, sans-serif",
     fontWeight: 800,
     color: theme.palette.primary.white,
-    lineHeight: "1.5rem",    
+    lineHeight: "1.5rem",
   },
   [theme.breakpoints.up("sm")]: {
     fontSize: "1.375rem",
@@ -253,11 +270,11 @@ theme.typography.inputSpan = {
   fontWeight: 400,
   color: theme.palette.primary.main,
   lineHeight: "1.5rem",
-  margin: '4px 0 16px',
-  [theme.breakpoints.up("md")]:{
-    margin: '8px 0 16px',
+  margin: "4px 0 16px",
+  [theme.breakpoints.up("md")]: {
+    margin: "8px 0 16px",
   },
-  [theme.breakpoints.up("lg")]:{
-    margin: '16px 0 24px',
-  }
+  [theme.breakpoints.up("lg")]: {
+    margin: "16px 0 24px",
+  },
 };

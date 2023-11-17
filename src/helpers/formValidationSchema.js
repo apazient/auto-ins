@@ -1,4 +1,5 @@
 import * as Yup from "yup";
+import { VIN_REGEX } from "../constants";
 
 export const validationName = () =>
   Yup.string()
@@ -16,9 +17,8 @@ export const validationName = () =>
 // =============================================================================
 export const carDataFormValidationSchema = () =>
   Yup.object().shape({
-    effectiveDatePolicy: Yup.date().required("Обов’язкове поле!"),
-    statusbar: Yup.string().required("Обов’язкове поле!"),
-    graduationYear: Yup.number()
+    stateNumber: Yup.string().required("Обов’язкове поле!"),
+    year: Yup.number()
       .integer("Рік повинен бути цілим числом")
       .typeError("Будь ласка, введіть рік")
       .required("Обов’язкове поле")
@@ -27,14 +27,12 @@ export const carDataFormValidationSchema = () =>
         new Date().getFullYear(),
         "Рік не може бути більшим за поточний рік"
       ),
-    brand: validationName(),
-    model: Yup.string().required("Обов’язкове поле!"),
+    // brand: validationName(),
+    // model: Yup.string().required("Обов’язкове поле!"),
     bodyNumber: Yup.string()
-      .min(5, "VIN повинен містити не менше 5 символів")
-      .max(17, "VIN повинен містити не більше 17 символів")
       .required("Обов’язкове поле!")
       .matches(
-        /^[A-HJ-NPR-Z0-9a-hj-npr-z]{5,17}$/,
+        VIN_REGEX,
         "VIN повинен містити 17 літер або цифр і відсутній символ I, O, Q"
       ),
   });

@@ -69,7 +69,7 @@ export const osagoByDn = createAsyncThunk(
         params: {
           ...body,
           taxi: false,
-          registrationType: "PERMANENT_WITHOUT_OTK",
+          // registrationType: "PERMANENT_WITHOUT_OTK",
         },
       });
 
@@ -116,10 +116,11 @@ export const chooseVclTariffDGO = createAsyncThunk(
 
       const { data } = await instance.post("/tariff/choose/vcl", {
         ...rest,
-        ...cat,
+        cat,
         dateFrom,
         dateTo,
       });
+
       const newData = data.filter((el) => el.crossSell === false);
 
       return mergeObjectsById(newData, responseDGONormalize);

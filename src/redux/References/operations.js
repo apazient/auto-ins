@@ -31,15 +31,15 @@ export const allAutoModelByMaker = createAsyncThunk(
 );
 
 export const autoByNumber = createAsyncThunk(
-  "calculator/autoByNumber",
+  "references/autoByNumber",
   async (query, { rejectWithValue, dispatch }) => {
     try {
       const { data } = await instance.get("/auto/mtibu/number", {
         params: {
-          query: decodeURIComponent(query),
+          query,
         },
       });
-      dispatch(setGlobalCustomerData({ insuranceObject: data[0] }));
+      //dispatch(setGlobalCustomerData({ insuranceObject: data[0] }));
       return data;
       // return data[0];
     } catch (error) {
@@ -49,7 +49,7 @@ export const autoByNumber = createAsyncThunk(
 );
 
 export const autoByMakerAndModel = createAsyncThunk(
-  "calculator/autoByMakerAndModel",
+  "references/autoByMakerAndModel",
   async (query, { rejectWithValue, getState }) => {
     try {
       const { autoByNumber } = getState().references;
@@ -61,7 +61,7 @@ export const autoByMakerAndModel = createAsyncThunk(
 
       const { data } = await instance.get("/auto_model/maker_and_model", {
         params: {
-          query: decodeURIComponent(maker + " " + model),
+          query: maker + " " + model,
         },
       });
 

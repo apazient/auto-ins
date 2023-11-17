@@ -1,8 +1,7 @@
 import PropTypes from "prop-types";
 import Stack from "@mui/material/Stack";
 import Step from "@mui/material/Step";
-
-import { lazy } from "react";
+import { lazy, Suspense } from "react";
 import { useEffect, useState } from "react";
 import { SpriteSVG } from "../../images/SpriteSVG";
 import { Connector, Lable, LableIcon, StepperStyled } from "./StepperStyled";
@@ -30,23 +29,18 @@ import {
 } from "../../forms/InsuredDataForm/InsuredDataForm.styled";
 import { Typography } from "@mui/material";
 import BtnBack from "../../forms/Buttons/BtnBack";
-
-import { useLocation } from "react-router-dom";
 import {
   NATURALSelectOptions,
   PRIVILEGEDSelectOptions,
 } from "../../assets/utils/isPrivilegedOptions";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  allAutoMakers,
-  autoByMakerAndModel,
-} from "../../redux/References/operations";
-
-import {
   setFormData,
+  setGlobalCustomerData,
   setGlobalCustomerDataCustomer,
 } from "../../redux/Global/globalSlice";
 import { getGlobalCustomerData, selectForms } from "../../redux/Global/selectors";
+import { getAutoByNumber } from "../../redux/References/selectors";
 
 const steps = [
   { Контакти: "icon-email" },
@@ -80,13 +74,12 @@ const Stepper = ({ backLinkRef }) => {
     setIdentityCard(InsuredDataSelectOptions[0]);
   }, [InsuredDataSelectOptions]);
 
-  useEffect(() => {
-    console.log("useEffect stepper dispatch allAutoMakers");
-    dispatch(allAutoMakers());
-    dispatch(autoByMakerAndModel());
-  }, [dispatch]);
-  // =======================Formik======================================  
-  
+  // useEffect(() => {
+  //   console.log("useEffect stepper dispatch allAutoMakers");
+  //   dispatch(allAutoMakers());
+  //   dispatch(autoByMakerAndModel());
+  // }, [dispatch]);
+  // =======================Formik======================================
   const contactsFormik = useFormik({
     initialValues: contactsInitialValues,    
     onSubmit: (values) => {
@@ -148,33 +141,26 @@ const Stepper = ({ backLinkRef }) => {
       handleNext();
     },
   });
-  const { insuranceObject } = useSelector(getGlobalCustomerData);
-  console.log(insuranceObject);
+  const [insuranceObject] = useSelector(getAutoByNumber);
+
   const carDataFormik = useFormik({
     initialValues: {
-      stateNumber: insuranceObject.stateNumber || "",
-      year: insuranceObject.year || "",
-      brand: insuranceObject.modelText || "",
+      stateNumber: insuranceObject?.stateNumber || "",
+      year: insuranceObject?.year || "",
+      brand: insuranceObject?.modelText || "",
       model: "",
-      bodyNumber: insuranceObject.bodyNumber || "",
+      bodyNumber: insuranceObject?.bodyNumber || "",
+      maker: "",
     },
     onSubmit: (values) => {
       console.log("carData", values);
       dispatch(setGlobalCustomerDataCustomer(values));
-
-      // const allValues = {
-      //   ...contactsFormik.values,
-      //   ...insuredDataFormik.values,
-      //   ...homeAddressFormik.values,
-      //   ...values,
-      // };
-      // console.log(allValues);
-      // alert(JSON.stringify(allValues, null, 2));
     },
 
     // validationSchema: carDataFormValidationSchema(),
     validateOnBlur: true,
     validateOnChange: false,
+    validateOnMount: true,
     enableReinitialize: true,
   });
 
@@ -189,22 +175,36 @@ const Stepper = ({ backLinkRef }) => {
   const getStepContent = (step) => {
     switch (step) {
       case 0:
-        return <FormContacts formik={contactsFormik} />;
+        return (
+          <Suspense>
+            <FormContacts formik={contactsFormik} />
+          </Suspense>
+        );
       case 1:
         return (
-          <InsuredDataForm
-            formik={insuredDataFormik}
-            selectData={{
-              InsuredDataSelectOptions,
-              identityCard,
-              setIdentityCard,
-            }}
-          />
+          <Suspense>
+            <InsuredDataForm
+              formik={insuredDataFormik}
+              selectData={{
+                InsuredDataSelectOptions,
+                identityCard,
+                setIdentityCard,
+              }}
+            />
+          </Suspense>
         );
       case 2:
-        return <HomeAddressForm formik={homeAddressFormik} />;
+        return (
+          <Suspense>
+            <HomeAddressForm formik={homeAddressFormik} />
+          </Suspense>
+        );
       case 3:
-        return <CarDataForm formik={carDataFormik} />;
+        return (
+          <Suspense>
+            <CarDataForm formik={carDataFormik} values={carDataFormik.values} />
+          </Suspense>
+        );
       default:
         return "Unknown step";
     }
