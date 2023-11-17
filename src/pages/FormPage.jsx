@@ -17,7 +17,7 @@ const FormPage = () => {
   const dispatch = useDispatch();
   const autoByNumber = useSelector(getAutoByNumber);
   const backLinkRef = useRef(location.state?.from);
-  console.log("FormPage");
+
   useEffect(() => {
     let subscribed = true;
     if (subscribed) {
@@ -25,7 +25,6 @@ const FormPage = () => {
       dispatch(autoByMakerAndModel());
     }
     return () => {
-      console.log("FormPage useEffect return");
       subscribed = false;
     };
   }, [dispatch]);

@@ -9,7 +9,7 @@ import {
 const GeneralInput = ({
   id,
   lableText,
-  value,
+  valueGlobal,
   type,
   color,
   handleBlur,
@@ -35,10 +35,7 @@ const GeneralInput = ({
       <InputStyled
         name={id}
         type={type || "text"}
-        value={value}
-        // value={value ? value : values[id]}
-        // defaultValue = {value ? value : values[id]}
-        // defaultValue={value}
+        value={valueGlobal || values[id]}
         onChange={customFunc || handleChange}
         onBlur={handleBlur}
         id={id}
@@ -57,7 +54,6 @@ export default GeneralInput;
 GeneralInput.propTypes = {
   lableText: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
-  // value: PropTypes.string,
   type: PropTypes.string,
   color: PropTypes.string,
   formikData: PropTypes.object,

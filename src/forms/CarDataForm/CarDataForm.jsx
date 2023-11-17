@@ -29,14 +29,11 @@ const CarDataForm = ({ formik, values }) => {
   const [selectedAutoModel, setSelectedAutoModel] = useState({
     name: "Оберіть модель авто",
   });
-  console.log(selectedAutoMaker);
+
   const handleBlurStateNumber = (e) => {
-    console.log("handleBlurStateNumber", e.target.value);
     const v = e.target.value.trim().toUpperCase();
     const stateNumber = v.match(DNUMBER_REGEX);
-    console.log("stateNumber", stateNumber);
     if (stateNumber) {
-      console.log("stateNumber", stateNumber);
       dispatch(autoByNumber(stateNumber[0]));
       formik.handleChange(e);
     }
@@ -52,12 +49,10 @@ const CarDataForm = ({ formik, values }) => {
     });
     setSelectedAutoMaker(e);
     dispatch(allAutoModelByMaker(e.id));
-    // formik.setFieldValue("maker", e);
   };
 
   const handleChangeModel = (e) => {
     setSelectedAutoModel(e);
-    // formik.setFieldValue("model", e);
   };
 
   const handleChangeVinNumber = (e) => {
@@ -68,35 +63,28 @@ const CarDataForm = ({ formik, values }) => {
 
   const findMakerByName = useCallback(
     (name) => {
-      console.log(
-        allAutoMakers?.find(
-          (el) => el?.name?.toUpperCase() === name.toUpperCase()
-        )
-      );
       return allAutoMakers?.find(
         (el) => el?.name?.toUpperCase() === name.toUpperCase()
       );
     },
     [allAutoMakers]
   );
-  console.log(findMakerByName);
+
   useEffect(() => {
     const maker = formik.values?.brand?.replace(/ .*/, "");
-    console.log("maker", maker);
     if (findMakerByName(maker)) {
       const m = findMakerByName(maker);
       setSelectedAutoMaker(m);
-      // formik.setFieldValue("maker", m);
     }
   }, [findMakerByName]);
-  console.log(insuranceObject?.stateNumber ? true : false);
+
   return (
     <>
       <InputContBoxStyled>
         <GeneralInput
           id="stateNumber"
           lableText="Номерний знак*:"
-          value={formik.values.stateNumber}
+          valueGlobal={formik.values.stateNumber}
           handleBlur={handleBlurStateNumber}
           customFunc={handleChangeStateNumber}
           formikData={formik}
@@ -104,9 +92,9 @@ const CarDataForm = ({ formik, values }) => {
         <GeneralInput
           id="graduationYear"
           lableText="Рік випуску*:"
-          value={formik.values?.year}
+          valueGlobal={formik.values?.year}
           formikData={formik}
-          isReadOnly={!outsideUkraine}
+          // isReadOnly={!outsideUkraine}
           isDisabled={insuranceObject?.stateNumber ? false : true}
         />
         <GeneralSelect
@@ -135,10 +123,10 @@ const CarDataForm = ({ formik, values }) => {
         <GeneralInput
           id="bodyNumber"
           lableText="VIN*:"
-          value={formik.values?.bodyNumber}
+          valueGlobal={formik.values?.bodyNumber}
           formikData={formik}
           customFunc={handleChangeVinNumber}
-          isReadOnly={!outsideUkraine}
+          // isReadOnly={!outsideUkraine}
           isDisabled={insuranceObject?.stateNumber ? false : true}
         />
       </InputContBoxStyled>
