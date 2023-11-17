@@ -68,6 +68,8 @@ export const theme = createTheme({
         ],
         body: {
           backgroundColor: "#030303",
+          scrollbarWidth: "thin",
+          scrollbarColor: "rgba(255, 255, 255, 0.8) rgba(21, 71, 248, 0.6)",
         },
         img: {
           display: "block",
