@@ -189,6 +189,7 @@ export const ButtonStyled = styled(Button)(({ theme }) => ({
   color: theme.palette.primary.main,
   textAlign: "center",
   display: "block",
+  width: "100%",
   "&:hover, &:focus": {
     background: theme.palette.primary.secondaryYellow,
   },

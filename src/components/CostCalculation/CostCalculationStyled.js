@@ -2,10 +2,10 @@ import Stack from "@mui/material/Stack";
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
 import { FormContainer, YellowButton } from "../../style/Global.styled";
-import Datetime from "react-datetime";
+
 import { blue } from "@mui/material/colors";
 import { Box } from "@mui/material";
-
+import DatePicker from "react-datepicker";
 export const FormContainerS = styled(FormContainer)(({ theme }) => ({
   [theme.breakpoints.up("lg")]: {
     display: "flex",
@@ -142,7 +142,7 @@ export const StyledDatatimeWrapper = styled("div")(({ theme }) => ({
   },
 }));
 
-export const StyledDatetime = styled(Datetime)(({ theme }) => ({
+export const StyledDatetime = styled(DatePicker)(({ theme }) => ({
   "& input": {
     width: "280px",
     fontSize: "18px",

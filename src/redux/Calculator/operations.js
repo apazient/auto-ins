@@ -69,7 +69,7 @@ export const osagoByDn = createAsyncThunk(
         params: {
           ...body,
           taxi: false,
-          registrationType: "PERMANENT_WITHOUT_OTK",
+          // registrationType: "PERMANENT_WITHOUT_OTK",
         },
       });
 

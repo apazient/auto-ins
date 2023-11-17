@@ -29,7 +29,7 @@ const CarDataForm = ({ formik, values }) => {
   const [selectedAutoModel, setSelectedAutoModel] = useState({
     name: "Оберіть модель авто",
   });
-
+  console.log(selectedAutoMaker);
   const handleBlurStateNumber = (e) => {
     console.log("handleBlurStateNumber", e.target.value);
     const v = e.target.value.trim().toUpperCase();
@@ -52,12 +52,12 @@ const CarDataForm = ({ formik, values }) => {
     });
     setSelectedAutoMaker(e);
     dispatch(allAutoModelByMaker(e.id));
-    formik.setFieldValue("maker", e);
+    // formik.setFieldValue("maker", e);
   };
 
   const handleChangeModel = (e) => {
     setSelectedAutoModel(e);
-    formik.setFieldValue("model", e);
+    // formik.setFieldValue("model", e);
   };
 
   const handleChangeVinNumber = (e) => {
@@ -68,22 +68,25 @@ const CarDataForm = ({ formik, values }) => {
 
   const findMakerByName = useCallback(
     (name) => {
+      console.log(
+        allAutoMakers?.find(
+          (el) => el?.name?.toUpperCase() === name.toUpperCase()
+        )
+      );
       return allAutoMakers?.find(
-        (el) => el.name.toUpperCase() === name.toUpperCase()
+        (el) => el?.name?.toUpperCase() === name.toUpperCase()
       );
     },
     [allAutoMakers]
   );
-  useEffect(() => {
-    console.log("useEffect", insuranceObject);
-  }, [insuranceObject?.year]);
-
+  console.log(findMakerByName);
   useEffect(() => {
     const maker = formik.values?.brand?.replace(/ .*/, "");
+    console.log("maker", maker);
     if (findMakerByName(maker)) {
       const m = findMakerByName(maker);
       setSelectedAutoMaker(m);
-      formik.setFieldValue("maker", m);
+      // formik.setFieldValue("maker", m);
     }
   }, [findMakerByName]);
   console.log(insuranceObject?.stateNumber ? true : false);

@@ -1,20 +1,17 @@
-import Datetime from "react-datetime";
-import moment from "moment";
-import "moment/locale/uk";
-import "react-datetime/css/react-datetime.css";
 import { Box, Typography } from "@mui/material";
 import {
   BoxImg,
   FormContainerS,
   Item,
   StackS,
-  StyledDatatimeWrapper,
-  StyledDatetime,
   YellowButtonS,
 } from "./CostCalculationStyled";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getStateNumber } from "../../redux/Calculator/selectors";
+import {
+  getStateCalculator,
+  getStateNumber,
+} from "../../redux/Calculator/selectors";
 import { useEffect, useState } from "react";
 
 import {
@@ -23,7 +20,6 @@ import {
 } from "../../redux/byParameters/selectors";
 import { setSubmitObj } from "../../redux/byParameters/byParametersSlice";
 import { Formik, useFormik } from "formik";
-import { getIsLoading } from "../../redux/Global/selectors";
 
 import { SpriteSVG } from "../../images/SpriteSVG";
 import { getAutoByNumber } from "../../redux/References/selectors";
@@ -33,6 +29,13 @@ import {
   pramsByParamsNormalize,
 } from "../../helpers/dataNormalize/paramsNormalize";
 
+import DatePicker, { registerLocale, setDefaultLocale } from "react-datepicker";
+import moment from "moment/moment";
+import "react-datepicker/dist/react-datepicker.css";
+import { uk } from "date-fns/locale";
+import addDays from "date-fns/addDays";
+import addMonths from "date-fns/addMonths";
+
 export const CostCalculation = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -40,14 +43,14 @@ export const CostCalculation = () => {
   const { dateFrom } = useSelector(getSubmitObject);
   const autoByNumber = useSelector(getAutoByNumber);
   const submitObject = useSelector(getSubmitObject);
-  const isLoading = useSelector(getIsLoading);
+  const isLoagingCalculator = useSelector(getStateCalculator);
   const autoByParams = useSelector(getAddressAndAuto);
   const [userDate, setUserDate] = useState(new Date(dateFrom));
-  const [items, setItems] = useState([]);
-  let inputProps = {
-    disabled: isLoading,
-  };
 
+  const [items, setItems] = useState([]);
+
+  registerLocale("uk", uk);
+  setDefaultLocale("uk");
   useEffect(() => {
     if (autoByNumber.length > 0) {
       setItems(paramsByNumberNormalize(autoByNumber));
@@ -70,18 +73,11 @@ export const CostCalculation = () => {
     onSubmit: (values) => {},
   });
 
-  const valid = (current) => {
-    const inThreeMonths = Datetime.moment().add(3, "months");
-    return (
-      current.isAfter(Datetime.moment()) && current.isBefore(inThreeMonths)
-    );
-  };
   const handleChangeDate = (e) => {
     const newObject = {
       ...submitObject,
       dateFrom: moment(e).format("YYYY-MM-DD"),
     };
-
     setUserDate(e);
     dispatch(setSubmitObj(newObject));
   };
@@ -108,27 +104,29 @@ export const CostCalculation = () => {
           })}
 
           <Formik onSubmit={formik.handleSubmit}>
-            <StyledDatatimeWrapper>
+            <Box>
               <label htmlFor="dateFrom" />
               Дата початку дії поліса:
-              <Datetime
+              <DatePicker
                 id="dateFrom"
                 value={dateFrom}
+                closeOnScroll={(e) => e.target === document}
                 onChange={handleChangeDate}
-                type="date"
+                disabled={isLoagingCalculator}
                 name="date"
-                dateFormat="YYYY-MM-DD"
-                timeFormat={false}
-                closeOnSelect={true}
-                isValidDate={valid}
+                dateFormat="yyyy-MM-dd"
+                showIcon={true}
+                minDate={addDays(new Date(), 1)}
+                maxDate={addMonths(new Date(), 3)}
+                startDate={dateFrom}
                 locale="uk"
-                inputProps={inputProps}
-                className="datePicker"
+                icon={
+                  <BoxImg>
+                    <SpriteSVG name={"icon-calendar"} />
+                  </BoxImg>
+                }
               />
-              <BoxImg>
-                <SpriteSVG name={"icon-calendar"} />
-              </BoxImg>
-            </StyledDatatimeWrapper>
+            </Box>
           </Formik>
         </StackS>
         <YellowButtonS type="submit" onClick={() => navigate("/")}>
