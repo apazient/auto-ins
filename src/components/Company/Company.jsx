@@ -70,7 +70,7 @@ const Company = ({ proposal }) => {
     onSubmit: (values) => {
       const sendObj = {
         insurerId,
-        price,
+        price: Math.round(price),
         autoCategory,
         tariff: franchise,
         dgoTarrif: chooseDgo,

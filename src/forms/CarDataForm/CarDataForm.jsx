@@ -4,9 +4,14 @@ import PropTypes from "prop-types";
 import { DNUMBER_REGEX } from "../../constants";
 import { useDispatch, useSelector } from "react-redux";
 
-import { autoByNumber } from "../../redux/References/operations";
+import {
+  allAutoMakers,
+  autoByMakerAndModel,
+  autoByNumber,
+} from "../../redux/References/operations";
 import GeneralSelect from "../../components/GeneralSelect/GeneralSelect";
 import {
+  getAutoByMakerAndModel,
   getAutoByNumber,
   getAutoMakers,
   getAutoModelByMaker,
@@ -17,9 +22,11 @@ import { allAutoModelByMaker } from "../../redux/References/operations";
 import { useCallback } from "react";
 import { getSubmitObject } from "../../redux/byParameters/selectors";
 
-const CarDataForm = ({ formik, values }) => {
+const CarDataForm = ({ formik }) => {
   const dispatch = useDispatch();
-  const allAutoMakers = useSelector(getAutoMakers);
+  const autoMakers = useSelector(getAutoMakers);
+  const allAutoModel = useSelector(getAutoModelByMaker);
+  const autoByBrand = useSelector(getAutoByMakerAndModel);
   const { outsideUkraine } = useSelector(getSubmitObject);
   const [insuranceObject] = useSelector(getAutoByNumber);
 
@@ -30,13 +37,25 @@ const CarDataForm = ({ formik, values }) => {
     name: "Оберіть модель авто",
   });
 
+  const [disabled, setDisabled] = useState(true);
+
+  //todo: get allAutoMakers for auto outside Ukraine
   const handleBlurStateNumber = (e) => {
+    console.log("e.target.value", e.target.value);
     const v = e.target.value.trim().toUpperCase();
     const stateNumber = v.match(DNUMBER_REGEX);
-    if (stateNumber) {
-      dispatch(autoByNumber(stateNumber[0]));
-      formik.handleChange(e);
+
+    if (stateNumber && outsideUkraine) {
+      setDisabled(false);
     }
+    if (stateNumber && !outsideUkraine) {
+      console.log("stateNumber", stateNumber);
+      dispatch(autoByNumber(stateNumber[0])).then(() => {
+        dispatch(allAutoMakers());
+        setDisabled(false);
+      });
+    }
+    formik.handleChange(e);
   };
   const handleChangeStateNumber = (e) => {
     const e2 = e.target.value.trim().toUpperCase();
@@ -47,12 +66,16 @@ const CarDataForm = ({ formik, values }) => {
     setSelectedAutoModel({
       name: "Оберіть модель авто",
     });
+
     setSelectedAutoMaker(e);
     dispatch(allAutoModelByMaker(e.id));
+    formik.setFieldValue("maker", e.id);
   };
 
   const handleChangeModel = (e) => {
     setSelectedAutoModel(e);
+    formik.setFieldValue("maker", e.autoMaker);
+    formik.setFieldValue("model", { id: e.id, name: e.name });
   };
 
   const handleChangeVinNumber = (e) => {
@@ -61,22 +84,23 @@ const CarDataForm = ({ formik, values }) => {
     formik.handleChange(e);
   };
 
-  const findMakerByName = useCallback(
-    (name) => {
-      return allAutoMakers?.find(
-        (el) => el?.name?.toUpperCase() === name.toUpperCase()
-      );
-    },
-    [allAutoMakers]
-  );
+  const findMakerAndModel = useCallback(() => {
+    const maker = autoByBrand[0]?.autoMaker;
+    setSelectedAutoMaker(maker);
+  }, [autoByBrand]);
+
+  useEffect(() => {
+    findMakerAndModel();
+  }, [findMakerAndModel]);
 
   useEffect(() => {
     const maker = formik.values?.brand?.replace(/ .*/, "");
-    if (findMakerByName(maker)) {
-      const m = findMakerByName(maker);
-      setSelectedAutoMaker(m);
+    const model = formik.values?.brand?.replace(/^[^\s]+\s/, "").slice(0, 1);
+
+    if (!outsideUkraine && maker?.length > 0) {
+      dispatch(autoByMakerAndModel(maker + " " + model));
     }
-  }, [findMakerByName]);
+  }, [formik.values?.brand, dispatch, outsideUkraine]);
 
   return (
     <>
@@ -92,30 +116,30 @@ const CarDataForm = ({ formik, values }) => {
           id="year"
           lableText="Рік випуску*:"
           formikData={formik}
-          // isReadOnly={!outsideUkraine}
-          isDisabled={insuranceObject?.stateNumber ? false : true}
+          isDisabled={disabled}
         />
         <GeneralSelect
           id="brand"
           lableText="Марка*:"
           formikData={formik}
           currentValue={selectedAutoMaker}
-          optionsArr={allAutoMakers}
+          optionsArr={autoMakers}
           defaultValue={{ name: "Оберіть марку авто" }}
           getOptionLabel={(option) => option.name}
           getOptionValue={(option) => option.id}
           changeCB={handleChangeBrand}
+          isDisabled={disabled}
         />
         <GeneralSelect
           id="model"
           lableText="Модель*:"
           formikData={formik}
           currentValue={selectedAutoModel}
-          optionsArr={useSelector(getAutoModelByMaker)}
+          optionsArr={allAutoModel.length > 0 ? allAutoModel : autoByBrand}
           defaultValue={{ name: "Оберіть модель авто" }}
           getOptionLabel={(option) => option.name}
           getOptionValue={(option) => option.id}
-          isDisabled={selectedAutoMaker.name === "Оберіть марку авто"}
+          isDisabled={disabled}
           changeCB={handleChangeModel}
         />
         <GeneralInput
@@ -123,8 +147,7 @@ const CarDataForm = ({ formik, values }) => {
           lableText="VIN Номер*:"
           formikData={formik}
           customFunc={handleChangeVinNumber}
-          // isReadOnly={!outsideUkraine}
-          isDisabled={insuranceObject?.stateNumber ? false : true}
+          isDisabled={disabled}
         />
       </InputContBoxStyled>
     </>

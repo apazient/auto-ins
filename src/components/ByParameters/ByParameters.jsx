@@ -72,7 +72,7 @@ const ByParameters = () => {
   //   },
   //   [qweryText]
   // );
-  
+
   const handleChangeengineCapacity = (e) => {
     dispatch(setEngineCapacity(e));
   };
@@ -102,7 +102,6 @@ const ByParameters = () => {
     },
     onSubmit: (values) => {
       const dateF = new Date(Date.now() + 86400000);
-      const date = new Date();
       const dateFrom = dateF.toISOString().substring(0, 10);
 
       let sendObj = {
@@ -123,15 +122,15 @@ const ByParameters = () => {
       dispatch(setTariffPolicyChoose([]));
       dispatch(setTariffVcl([]));
 
-console.log(sendObj);
-
       navigate("/prices", {
         state: { from: locationPath.pathname, data: sendObj },
       });
     },
   });
 
-  engineCapacity.value === 'B5' ? formik.values.benefits=false : formik.values.benefits 
+  engineCapacity.value === "B5"
+    ? (formik.values.benefits = false)
+    : formik.values.benefits;
 
   return (
     <div>
@@ -168,11 +167,13 @@ console.log(sendObj);
           <GeneralCheckbox
             lableText="Є пільги"
             name="benefits"
-            val={formik.values.benefits }
+            val={formik.values.benefits}
             changeCB={formik.handleChange}
-            isChecked={ engineCapacity.value === 'B5' ? false : benefits}
-            color={engineCapacity.value==='B5'?"rgba(243, 243, 243, 0.40)":null}
-            isDisabled={engineCapacity.value==='B5'?true:false}
+            isChecked={engineCapacity.value === "B5" ? false : benefits}
+            color={
+              engineCapacity.value === "B5" ? "rgba(243, 243, 243, 0.40)" : null
+            }
+            isDisabled={engineCapacity.value === "B5" ? true : false}
             helper="Учасники війни; Інваліди II групи; Громадяни України, які постраждали внаслідок Чорнобильської катастрофи, віднесені до I та II категорії; 
           Пенсіонери"
           />

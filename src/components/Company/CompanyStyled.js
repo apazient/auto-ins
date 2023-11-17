@@ -3,7 +3,7 @@ import Card from "@mui/material/Card";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Rating from "@mui/material/Rating";
-import { Link } from "react-router-dom";
+
 import { Button } from "@mui/material";
 
 export const CardStyled = styled(Card)(({ theme }) => ({

@@ -13,12 +13,6 @@ import {
   homeAddressInitialValues,
   insuredDataInitialValues,
 } from "../../helpers/formikInitialValues";
-import {
-  HomeAddressFormValidationSchema,
-  carDataFormValidationSchema,
-  contactsValidationSchema,
-  insuredDataFormValidationSchema,
-} from "../../helpers/formValidationSchema";
 
 import {
   ButtonContainerStyled,
@@ -34,12 +28,8 @@ import {
   PRIVILEGEDSelectOptions,
 } from "../../assets/utils/isPrivilegedOptions";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  setFormData,
-  setGlobalCustomerData,
-  setGlobalCustomerDataCustomer,
-} from "../../redux/Global/globalSlice";
-import { getGlobalCustomerData, selectForms } from "../../redux/Global/selectors";
+import { setGlobalCustomerDataCustomer } from "../../redux/Global/globalSlice";
+
 import { getAutoByNumber } from "../../redux/References/selectors";
 
 const steps = [
@@ -74,16 +64,11 @@ const Stepper = ({ backLinkRef }) => {
     setIdentityCard(InsuredDataSelectOptions[0]);
   }, [InsuredDataSelectOptions]);
 
-  // useEffect(() => {
-  //   console.log("useEffect stepper dispatch allAutoMakers");
-  //   dispatch(allAutoMakers());
-  //   dispatch(autoByMakerAndModel());
-  // }, [dispatch]);
   // =======================Formik======================================
   const contactsFormik = useFormik({
-    initialValues: contactsInitialValues,    
+    initialValues: contactsInitialValues,
     onSubmit: (values) => {
-      console.log("contacts", values);      
+      console.log("contacts", values);
       dispatch(setGlobalCustomerDataCustomer(values));
       handleNext();
     },
@@ -119,7 +104,7 @@ const Stepper = ({ backLinkRef }) => {
           issuedBy,
           date,
         },
-      };      
+      };
       dispatch(setGlobalCustomerDataCustomer(insuredValues));
       handleNext();
     },
@@ -136,7 +121,7 @@ const Stepper = ({ backLinkRef }) => {
         address: `${regionANDcity} ${street && `вул.${street}`} ${
           houseNumber && `б.${houseNumber}`
         } ${apartmentNumber && `кв.${apartmentNumber}`}`,
-      };      
+      };
       dispatch(setGlobalCustomerDataCustomer(address));
       handleNext();
     },
@@ -153,7 +138,13 @@ const Stepper = ({ backLinkRef }) => {
       maker: "",
     },
     onSubmit: (values) => {
-      console.log("carData", values);
+      const allValues = {
+        ...contactsFormik.values,
+        ...insuredDataFormik.values,
+        ...homeAddressFormik.values,
+        ...values,
+      };
+
       dispatch(setGlobalCustomerDataCustomer(values));
     },
 
