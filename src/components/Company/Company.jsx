@@ -26,6 +26,7 @@ import {
   setParamsFromUrl,
 } from "../../redux/Global/globalSlice";
 import { getUser } from "../../redux/Calculator/selectors";
+import { getSubmitObject } from "../../redux/byParameters/selectors";
 
 const CompanyExpandMore = lazy(() =>
   import("../CompanyExpandMore/CompanyExpandMore")
@@ -48,6 +49,7 @@ const Company = ({ proposal }) => {
     discountedPayment: 0,
   });
   const [price, setPrice] = useState([]);
+
   useEffect(() => {
     if (!proposal) return;
   }, []);
@@ -99,7 +101,7 @@ const Company = ({ proposal }) => {
           price,
           insurer: { id: franchise.insurer.id, name: franchise.insurer.name },
           registrationPlace: registrationPlace || "",
-          autoCategory,
+          // autoCategory,
           franchise: franchise.franchise,
         })
       );
@@ -196,7 +198,7 @@ const Company = ({ proposal }) => {
           <BoxFooter>
             <Typography component="span">Вартість</Typography>
             <Typography variant="h3" component="span" className="price">
-              {price} грн
+              {Math.round(price)} грн
             </Typography>
           </BoxFooter>
           <ButtonStyled type="submit">Придбати</ButtonStyled>

@@ -9,12 +9,15 @@ import {
 const GeneralInput = ({
   id,
   lableText,
-  value,
+  valueGlobal,
   type,
   color,
+  handleBlur,
   customFunc,
   placeholder,
-  formikData: { values, handleChange, handleBlur, errors, touched },
+  isDisabled = false,
+  isReadOnly = false,
+  formikData: { values, handleChange, errors, touched },
 }) => {
   const theme = useTheme();
   const smScreen = useMediaQuery(theme.breakpoints.up("sm"));
@@ -32,16 +35,15 @@ const GeneralInput = ({
       <InputStyled
         name={id}
         type={type || "text"}
-        // value={values[id]}
-        // value={value ? value : values[id]}
-        // defaultValue = {value ? value : values[id]}
-        defaultValue={value}
+        value={valueGlobal || values[id]}
         onChange={customFunc || handleChange}
         onBlur={handleBlur}
         id={id}
         color={color || "inputBase"}
         error={touched[id] && Boolean(errors[id])}
         placeholder={placeholder}
+        disabled={isDisabled}
+        readOnly={isReadOnly}
       />
     </InputContStyled>
   );
@@ -52,7 +54,6 @@ export default GeneralInput;
 GeneralInput.propTypes = {
   lableText: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
-  // value: PropTypes.string,
   type: PropTypes.string,
   color: PropTypes.string,
   formikData: PropTypes.object,

@@ -1,28 +1,27 @@
 import { InputContBoxStyled } from "../InsuredDataForm/InsuredDataForm.styled";
 import GeneralInput from "../../components/GeneralInput/GeneralInput";
 import PropTypes from "prop-types";
-import { DNUMBER_REGEX, VIN_REGEX } from "../../constants";
+import { DNUMBER_REGEX } from "../../constants";
 import { useDispatch, useSelector } from "react-redux";
 
 import { autoByNumber } from "../../redux/References/operations";
 import GeneralSelect from "../../components/GeneralSelect/GeneralSelect";
 import {
+  getAutoByNumber,
   getAutoMakers,
   getAutoModelByMaker,
 } from "../../redux/References/selectors";
 import { useEffect, useState } from "react";
 import { allAutoModelByMaker } from "../../redux/References/operations";
-import {
-  getGlobalCustomerData,
-  selectForms,
-} from "../../redux/Global/selectors";
 
-const CarDataForm = ({ formik }) => {
+import { useCallback } from "react";
+import { getSubmitObject } from "../../redux/byParameters/selectors";
+
+const CarDataForm = ({ formik, values }) => {
   const dispatch = useDispatch();
   const allAutoMakers = useSelector(getAutoMakers);
-
-  // const formData = useSelector(getGlobalCustomerData);
-  // const carDataFormData = formData?.insuranceObject;
+  const { outsideUkraine } = useSelector(getSubmitObject);
+  const [insuranceObject] = useSelector(getAutoByNumber);
 
   const [selectedAutoMaker, setSelectedAutoMaker] = useState({
     name: "Оберіть марку авто",
@@ -31,20 +30,18 @@ const CarDataForm = ({ formik }) => {
     name: "Оберіть модель авто",
   });
 
-  ///TODO: add validation for number
   const handleBlurStateNumber = (e) => {
     const v = e.target.value.trim().toUpperCase();
     const stateNumber = v.match(DNUMBER_REGEX);
     if (stateNumber) {
       dispatch(autoByNumber(stateNumber[0]));
+      formik.handleChange(e);
     }
-    formik.handleChange(e);
   };
-  const handleBlurVinNumber = (e) => {
-    const v = e.target.value.trim().toUpperCase();
-    const vinNumber = v.match(VIN_REGEX);
-
-    // formik.handleChange(e);
+  const handleChangeStateNumber = (e) => {
+    const e2 = e.target.value.trim().toUpperCase();
+    e.target.value = e2;
+    formik.handleChange(e);
   };
   const handleChangeBrand = (e) => {
     setSelectedAutoModel({
@@ -52,55 +49,53 @@ const CarDataForm = ({ formik }) => {
     });
     setSelectedAutoMaker(e);
     dispatch(allAutoModelByMaker(e.id));
-    formik.setFieldValue("brand", e);
   };
 
   const handleChangeModel = (e) => {
     setSelectedAutoModel(e);
-    formik.setFieldValue("model", e);
   };
 
-  const findMakerByName = (name) => {
-    return allAutoMakers?.find(
-      (el) => el.name.toUpperCase() === name.toUpperCase()
-    );
+  const handleChangeVinNumber = (e) => {
+    const e2 = e.target.value.trim().toUpperCase();
+    e.target.value = e2;
+    formik.handleChange(e);
   };
+
+  const findMakerByName = useCallback(
+    (name) => {
+      return allAutoMakers?.find(
+        (el) => el?.name?.toUpperCase() === name.toUpperCase()
+      );
+    },
+    [allAutoMakers]
+  );
 
   useEffect(() => {
-    const maker = formik.values.brand?.replace(/ .*/, "");
+    const maker = formik.values?.brand?.replace(/ .*/, "");
     if (findMakerByName(maker)) {
       const m = findMakerByName(maker);
       setSelectedAutoMaker(m);
     }
-  }, [dispatch]);
+  }, [findMakerByName]);
 
   return (
     <>
       <InputContBoxStyled>
-        {/* <GeneralInput
-          id="effectiveDatePolicy"
-          lableText="Дата початку дії поліса*:"
-          value={
-            carDataFormData?.effectiveDatePolicy
-              ? carDataFormData.effectiveDatePolicy
-              : initialValues.effectiveDatePolicy
-          }
-          formikData={formik}
-          type="date"
-        /> */}
         <GeneralInput
           id="stateNumber"
           lableText="Номерний знак*:"
-          value={formik.values.stateNumber}
-          // value={formik.values.stateNumber}
+          valueGlobal={formik.values.stateNumber}
+          handleBlur={handleBlurStateNumber}
+          customFunc={handleChangeStateNumber}
           formikData={formik}
-          // formikData={{ ...formik, handleBlur: handleBlurStateNumber }}
         />
         <GeneralInput
           id="graduationYear"
           lableText="Рік випуску*:"
-          value={formik.values.year}
+          valueGlobal={formik.values?.year}
           formikData={formik}
+          // isReadOnly={!outsideUkraine}
+          isDisabled={insuranceObject?.stateNumber ? false : true}
         />
         <GeneralSelect
           id="brand"
@@ -128,8 +123,11 @@ const CarDataForm = ({ formik }) => {
         <GeneralInput
           id="bodyNumber"
           lableText="VIN*:"
-          value={formik.values.bodyNumber}
-          formikData={{ ...formik, handleBlur: handleBlurVinNumber }}
+          valueGlobal={formik.values?.bodyNumber}
+          formikData={formik}
+          customFunc={handleChangeVinNumber}
+          // isReadOnly={!outsideUkraine}
+          isDisabled={insuranceObject?.stateNumber ? false : true}
         />
       </InputContBoxStyled>
     </>

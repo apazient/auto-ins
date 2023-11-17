@@ -1,7 +1,10 @@
 import { Typography } from "@mui/material";
+import { useSelector } from "react-redux";
+import { getTariffPolicyChoose } from "../../redux/Calculator/selectors";
 import { Line } from "./LineSectionStyled";
 
-export const LineSection = ({ props }) => {
+export const LineSection = () => {
+  const proposal = useSelector(getTariffPolicyChoose);
   const word = (companies) => {
     if (companies.length === 0) return "пропозицій";
     if (companies.length % 1 > 1) return "пропозиція";
@@ -11,7 +14,7 @@ export const LineSection = ({ props }) => {
     <section>
       <Line>
         <Typography variant="body1" component="span">
-          {props.length} {word(props)}
+          {proposal.length} {word(proposal)}
         </Typography>
       </Line>
     </section>

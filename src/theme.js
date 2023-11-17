@@ -86,6 +86,21 @@ export const theme = createTheme({
         p: { margin: 0, padding: 0 },
       },
     },
+    MuiLinearProgress: {
+      styleOverrides: {
+        indeterminate: {
+          backgroundColor: "#F7F8FF",
+          height: "6px",
+          borderRadius: "4px",
+        },
+        bar: {
+          backgroundColor: "#E8C71A",
+          transition: "transform 0.6s linear 0s",
+          animation:
+            "2.2s cubic-bezier(0.65, 0.815, 0.735, 0.395) 0s infinite normal none running animation-ozg7p2",
+        },
+      },
+    },
     // MuiButtonBase: {
     //   styleOverrides: {
     //     root: {
