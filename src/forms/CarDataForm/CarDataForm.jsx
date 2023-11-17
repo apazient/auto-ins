@@ -84,15 +84,13 @@ const CarDataForm = ({ formik, values }) => {
         <GeneralInput
           id="stateNumber"
           lableText="Номерний знак*:"
-          valueGlobal={formik.values.stateNumber}
           handleBlur={handleBlurStateNumber}
           customFunc={handleChangeStateNumber}
           formikData={formik}
         />
         <GeneralInput
-          id="graduationYear"
+          id="year"
           lableText="Рік випуску*:"
-          valueGlobal={formik.values?.year}
           formikData={formik}
           // isReadOnly={!outsideUkraine}
           isDisabled={insuranceObject?.stateNumber ? false : true}
@@ -122,8 +120,6 @@ const CarDataForm = ({ formik, values }) => {
         />
         <GeneralInput
           id="bodyNumber"
-          lableText="VIN*:"
-          valueGlobal={formik.values?.bodyNumber}
           formikData={formik}
           customFunc={handleChangeVinNumber}
           // isReadOnly={!outsideUkraine}

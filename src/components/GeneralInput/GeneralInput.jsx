@@ -9,7 +9,6 @@ import {
 const GeneralInput = ({
   id,
   lableText,
-  valueGlobal,
   type,
   color,
   handleBlur,
@@ -35,7 +34,7 @@ const GeneralInput = ({
       <InputStyled
         name={id}
         type={type || "text"}
-        value={valueGlobal || values[id]}
+        value={values[id]}
         onChange={customFunc || handleChange}
         onBlur={handleBlur}
         id={id}
