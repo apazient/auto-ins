@@ -8,8 +8,7 @@ import {
 
 const GeneralInput = ({
   id,
-  lableText,
-  value,
+  lableText,  
   type,
   color,
   customFunc,
@@ -31,11 +30,8 @@ const GeneralInput = ({
       </LableStyled>
       <InputStyled
         name={id}
-        type={type || "text"}
-        // value={values[id]}
-        // value={value ? value : values[id]}
-        // defaultValue = {value ? value : values[id]}
-        defaultValue={value}
+        type={type || "text"}        
+        value={values[id]}        
         onChange={customFunc || handleChange}
         onBlur={handleBlur}
         id={id}
@@ -51,8 +47,7 @@ export default GeneralInput;
 
 GeneralInput.propTypes = {
   lableText: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
-  // value: PropTypes.string,
+  id: PropTypes.string.isRequired,  
   type: PropTypes.string,
   color: PropTypes.string,
   formikData: PropTypes.object,

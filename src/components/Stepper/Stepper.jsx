@@ -46,7 +46,7 @@ import {
   setFormData,
   setGlobalCustomerDataCustomer,
 } from "../../redux/Global/globalSlice";
-import { getGlobalCustomerData } from "../../redux/Global/selectors";
+import { getGlobalCustomerData, selectForms } from "../../redux/Global/selectors";
 
 const steps = [
   { Контакти: "icon-email" },
@@ -85,13 +85,12 @@ const Stepper = ({ backLinkRef }) => {
     dispatch(allAutoMakers());
     dispatch(autoByMakerAndModel());
   }, [dispatch]);
-  // =======================Formik======================================
+  // =======================Formik======================================  
+  
   const contactsFormik = useFormik({
-    initialValues: contactsInitialValues,
-    // validationSchema: contactsValidationSchema(),
+    initialValues: contactsInitialValues,    
     onSubmit: (values) => {
-      console.log("contacts", values);
-      dispatch(setFormData({ formContacts: values }));
+      console.log("contacts", values);      
       dispatch(setGlobalCustomerDataCustomer(values));
       handleNext();
     },
@@ -127,8 +126,7 @@ const Stepper = ({ backLinkRef }) => {
           issuedBy,
           date,
         },
-      };
-      dispatch(setFormData({ formInsuredData: values }));
+      };      
       dispatch(setGlobalCustomerDataCustomer(insuredValues));
       handleNext();
     },
@@ -138,16 +136,14 @@ const Stepper = ({ backLinkRef }) => {
     initialValues: homeAddressInitialValues,
     // validationSchema: HomeAddressFormValidationSchema(),
     onSubmit: (values) => {
-      console.log(values);
+      console.log("homeAddress", values);
       const { regionANDcity, street, houseNumber, apartmentNumber } = values;
 
       const address = {
         address: `${regionANDcity} ${street && `вул.${street}`} ${
           houseNumber && `б.${houseNumber}`
         } ${apartmentNumber && `кв.${apartmentNumber}`}`,
-      };
-
-      dispatch(setFormData({ formHomeAddress: values }));
+      };      
       dispatch(setGlobalCustomerDataCustomer(address));
       handleNext();
     },
@@ -163,9 +159,7 @@ const Stepper = ({ backLinkRef }) => {
       bodyNumber: insuranceObject.bodyNumber || "",
     },
     onSubmit: (values) => {
-      console.log(values);
-
-      dispatch(setFormData({ formCarData: values }));
+      console.log("carData", values);
       dispatch(setGlobalCustomerDataCustomer(values));
 
       // const allValues = {
