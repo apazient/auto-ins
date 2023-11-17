@@ -1,13 +1,8 @@
 import PropTypes from "prop-types";
 import { InputBoxS, SpanS } from "./FormContactsStyled";
 import GeneralInput from "../../components/GeneralInput/GeneralInput";
-import { useSelector } from "react-redux";
-import { selectForms } from "../../redux/Global/selectors";
 
-const FormContacts = ({ formik }) => {
-  const { initialValues } = formik;
-  const formData = useSelector(selectForms);
-  const contactFormData = formData.formContacts;
+const FormContacts = ({ formik }) => {   
 
   return (
     <>
@@ -15,13 +10,7 @@ const FormContacts = ({ formik }) => {
         <GeneralInput
           id="email"
           type="text"
-          lableText="Електронна пошта* :"
-          // value={
-          //   contactFormData?.email
-          //     ? contactFormData.email
-          //     : initialValues.email
-          // }
-          value={formik.values.email}
+          lableText="Електронна пошта* :"          
           formikData={formik}
         />
         <SpanS variant="inputSpan">
@@ -30,13 +19,7 @@ const FormContacts = ({ formik }) => {
         </SpanS>
         <GeneralInput
           id="phone"
-          lableText="Телефон* :"
-          // value={
-          //   contactFormData?.phone
-          //     ? contactFormData.phone
-          //     : initialValues.phone
-          // }
-          value={formik.values.phone}
+          lableText="Телефон* :"          
           type="phone"
           formikData={formik}
           placeholder="+38(_ _ _)_ _ _ - _ _ _ _"
