@@ -120,6 +120,7 @@ const CarDataForm = ({ formik, values }) => {
         />
         <GeneralInput
           id="bodyNumber"
+          lableText="VIN Номер*:"
           formikData={formik}
           customFunc={handleChangeVinNumber}
           // isReadOnly={!outsideUkraine}
