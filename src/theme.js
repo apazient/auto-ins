@@ -1,5 +1,8 @@
 import { createTheme } from "@mui/material/styles";
-
+import OpenSansRegular from "./fonts/open-sans-v36-cyrillic_latin-regular.woff2";
+import OpenSansSemiBold from "./fonts/open-sans-v36-cyrillic_latin-600.woff2";
+import OpenSansBold from "./fonts/open-sans-v36-cyrillic_latin-700.woff2";
+import OpenSansExtraBold from "./fonts/open-sans-v36-cyrillic_latin-800.woff2";
 export const theme = createTheme({
   palette: {
     primary: {
@@ -47,6 +50,7 @@ export const theme = createTheme({
     },
   },
   typography: {
+    // fontFamily: "Open Sans, sans-serif",
     fontFamily: ["Open Sans", "sans-serif"].join(","),
   },
   components: {
@@ -56,21 +60,21 @@ export const theme = createTheme({
              font-family: 'Open Sans';
              font-style: normal;
              font-weight: 400;
-             src: url('../fonts/open-sans-v36-cyrillic_latin-regular.woff2') format('woff2');
+             src: local('OpenSan-Regular'), url(${OpenSansRegular}) format('woff2');
          }
          @font-face {
              font-display: swap;
              font-family: 'Open Sans';
              font-style: normal;
              font-weight: 600;
-             src: url('../fonts/open-sans-v36-cyrillic_latin-600.woff2') format('woff2');
+             src: url(${OpenSansSemiBold}) format('woff2');
          }
          @font-face {
     font-display: swap;  
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 700;
-    src: url('../fonts/open-sans-v36-cyrillic_latin-700.woff2') format('woff2');   
+    src: url(${OpenSansBold}) format('woff2');   
 }
 
 @font-face {
@@ -78,11 +82,11 @@ export const theme = createTheme({
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 800;
-    src: url('../fonts/open-sans-v36-cyrillic_latin-800.woff2') format('woff2');   
+    src: url(${OpenSansExtraBold}) format('woff2');   
 }
          
          html {font-size: 16px}
-         body {background-color: #030303; }
+         body {background-color: #030303; font-family: 'Open Sans', sans-serif; font-weight: 400; color: #FEFEFF; font-size: 1rem; line-height: 1.5em; }
          img {display: block; max-width: 100%; height: auto}
          ul {margin: 0; padding: 0}
          h1 {margin: 0; padding: 0}
@@ -101,7 +105,7 @@ theme.typography.h1 = {
   [theme.breakpoints.up("xs")]: {
     color: theme.palette.primary.white,
     fontSize: "1.5rem",
-    // fontFamily: "Open Sans",
+    fontFamily: "Open Sans",
     fontWeight: 800,
     lineHeight: "2.25rem",
   },
@@ -119,8 +123,7 @@ theme.typography.h2 = {
   [theme.breakpoints.up("xs")]: {
     fontSize: "1.375rem",
     color: theme.palette.primary.white,
-    // fontFamily: "Open Sans",
-    // fontFamily: "OpenSans-ExtraBold, sans-serif",
+    fontFamily: "Open Sans",
     fontWeight: 800,
     lineHeight: "1.5rem",
   },
@@ -135,7 +138,7 @@ theme.typography.h2 = {
 theme.typography.h3 = {
   [theme.breakpoints.up("xs")]: {
     fontSize: "1rem",
-    // fontFamily: "Open Sans",
+    fontFamily: "Open Sans",
     // fontFamily: "OpenSans-ExtraBold, sans-serif",
     fontWeight: 800,
     color: theme.palette.primary.white,
@@ -150,8 +153,8 @@ theme.typography.h3 = {
 theme.typography.body1 = {
   [theme.breakpoints.up("xs")]: {
     fontSize: "0.875rem",
-    // fontFamily: "Open Sans",
-    // fontFamily: "OpenSans-Regular, sans-serif",
+
+    fontFamily: "Open Sans",
     fontWeight: 400,
     color: theme.palette.primary.white,
     lineHeight: "1.5em",
@@ -165,7 +168,7 @@ theme.typography.body1 = {
 theme.typography.subtitle1 = {
   [theme.breakpoints.up("xs")]: {
     fontSize: "1rem",
-    // fontFamily: "Open Sans",
+    fontFamily: "Open Sans",
     // fontFamily: "OpenSans-Bold, sans-serif",
     fontWeight: 700,
     color: theme.palette.primary.white,
@@ -180,7 +183,7 @@ theme.typography.subtitle1 = {
 theme.typography.subtitle2 = {
   [theme.breakpoints.up("xs")]: {
     fontSize: "0.875rem",
-    // fontFamily: "Open Sans",
+    fontFamily: "Open Sans",
     // fontFamily: "OpenSans-SemiBold, sans-serif",
     fontWeight: 600,
     color: theme.palette.primary.main,
@@ -197,7 +200,7 @@ theme.typography.subtitle2 = {
 theme.typography.body2 = {
   [theme.breakpoints.up("xs")]: {
     fontSize: "0.875rem",
-    // fontFamily: "Open Sans",
+    fontFamily: "Open Sans",
     // fontFamily: "OpenSans-SemiBold, sans-serif",
     fontWeight: 400,
     color: theme.palette.primary.main,
@@ -213,7 +216,7 @@ theme.typography.body2 = {
 theme.typography.caption = {
   [theme.breakpoints.up("xs")]: {
     fontSize: "0.875rem",
-    // fontFamily: "Open Sans",
+    fontFamily: "Open Sans",
     // fontFamily: "OpenSans-Regular, sans-serif",
     fontWeight: 400,
     color: theme.palette.primary.main,
@@ -243,7 +246,7 @@ theme.typography.inputLable = {
     fontSize: "0.875rem",
     // fontFamily: "OpenSans-SemiBold, sans-serif",
     fontWeight: 600,
-    // fontFamily: "Open Sans",
+    fontFamily: "Open Sans",
     color: theme.palette.primary.main,
     lineHeight: 1.5,
   },
@@ -259,7 +262,7 @@ theme.typography.inputSpan = {
   fontSize: "12px",
   // fontFamily: "OpenSans-Regular, sans-serif",
   fontWeight: 400,
-  // fontFamily: "Open Sans",
+  fontFamily: "Open Sans",
   color: theme.palette.primary.main,
   lineHeight: "1.5rem",
   margin: "4px 0 16px",
