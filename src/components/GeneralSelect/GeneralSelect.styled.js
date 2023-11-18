@@ -33,10 +33,10 @@ export const SelectStyled = styled(Select)(({ theme, $find }) => ({
       "&--is-disabled": {
         borderColor: theme.palette.primary.tertiaryDark,
         "& svg": {
-          fill: theme.palette.primary.tertiaryDark,
+          fill: "transparent",
         },
         //opacity: 0.4,
-        // backgroundColor: "black",
+        backgroundColor: theme.palette.primary.secondaryWhite,
       },
       [theme.breakpoints.up("sm")]: {
         fontSize: 18,

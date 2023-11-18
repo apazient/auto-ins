@@ -28,9 +28,7 @@ const GeneralSelect = ({
     <InputContStyled className="select-container">
       <Typography
         sx={{
-          color: isDisabled
-            ? `${theme.palette.primary.tertiaryDark}!important`
-            : null,
+          color: isDisabled ? "darkgray!important" : null,
         }}
         variant="body1"
         component="label"

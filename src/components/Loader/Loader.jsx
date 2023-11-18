@@ -1,9 +1,11 @@
 import { BallTriangle } from "react-loader-spinner";
+import { SpriteSVG } from "../../images/SpriteSVG";
 import { LoaderBox } from "./LoaderStyled";
 
-const Loader = () => {  
+const Loader = () => {
   return (
     <LoaderBox>
+      {/* <SpriteSVG name={"icon-logo"} /> */}
       <BallTriangle
         height={200}
         width={200}
