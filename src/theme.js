@@ -101,16 +101,6 @@ export const theme = createTheme({
         },
       },
     },
-    // MuiButtonBase: {
-    //   styleOverrides: {
-    //     root: {
-    //       transition: "color 250ms linear",
-    //       "&:hover": {
-    //         color: "#1547F8!important",
-    //       },
-    //     },
-    //   },
-    // },
   },
 });
 

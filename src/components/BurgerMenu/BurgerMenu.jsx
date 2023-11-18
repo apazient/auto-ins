@@ -72,14 +72,7 @@ const BurgerMenu = () => {
             </IconButton>
           </HeaderMenu>
 
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-              height: "calc(100% - 80px)",
-            }}
-          >
+          <Box className="menuBodyWrapper">
             <BodyMenu>
               {["Переваги", "Партнери", "Питання-відповіді"].map(
                 (text, index) => {

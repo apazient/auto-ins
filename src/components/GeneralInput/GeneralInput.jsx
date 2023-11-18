@@ -25,9 +25,7 @@ const GeneralInput = ({
     <InputContStyled>
       <LableStyled
         sx={{
-          color: isDisabled
-            ? `${theme.palette.primary.tertiaryDark}!important`
-            : null,
+          color: isDisabled ? "darkgray!important" : null,
         }}
         variant="inputLable"
         component="label"
