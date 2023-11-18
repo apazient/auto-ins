@@ -12,7 +12,6 @@ import {
 import GeneralSelect from "../../components/GeneralSelect/GeneralSelect";
 import {
   getAutoByMakerAndModel,
-  getAutoByNumber,
   getAutoMakers,
   getAutoModelByMaker,
 } from "../../redux/References/selectors";
@@ -21,6 +20,7 @@ import { allAutoModelByMaker } from "../../redux/References/operations";
 
 import { useCallback } from "react";
 import { getSubmitObject } from "../../redux/byParameters/selectors";
+import { setAutoByMakerAndModel } from "../../redux/References/referencesSlice";
 
 const CarDataForm = ({ formik }) => {
   const dispatch = useDispatch();
@@ -28,30 +28,21 @@ const CarDataForm = ({ formik }) => {
   const allAutoModel = useSelector(getAutoModelByMaker);
   const autoByBrand = useSelector(getAutoByMakerAndModel);
   const { outsideUkraine } = useSelector(getSubmitObject);
-  const [insuranceObject] = useSelector(getAutoByNumber);
-
   const [selectedAutoMaker, setSelectedAutoMaker] = useState({
     name: "Оберіть марку авто",
   });
   const [selectedAutoModel, setSelectedAutoModel] = useState({
     name: "Оберіть модель авто",
   });
-
   const [disabled, setDisabled] = useState(true);
-
-  //todo: get allAutoMakers for auto outside Ukraine
   const handleBlurStateNumber = (e) => {
-    console.log("e.target.value", e.target.value);
-    const v = e.target.value.trim().toUpperCase();
-    const stateNumber = v.match(DNUMBER_REGEX);
-
-    if (stateNumber && outsideUkraine) {
+    dispatch(setAutoByMakerAndModel([]));
+    if (e.target.value && outsideUkraine) {
       setDisabled(false);
+      dispatch(allAutoMakers());
     }
-    if (stateNumber && !outsideUkraine) {
-      console.log("stateNumber", stateNumber);
-      dispatch(autoByNumber(stateNumber[0])).then(() => {
-        dispatch(allAutoMakers());
+    if (e.target.value && !outsideUkraine) {
+      dispatch(autoByNumber(e.target.value)).then(() => {
         setDisabled(false);
       });
     }
@@ -87,7 +78,10 @@ const CarDataForm = ({ formik }) => {
   const findMakerAndModel = useCallback(() => {
     const maker = autoByBrand[0]?.autoMaker;
     setSelectedAutoMaker(maker);
-  }, [autoByBrand]);
+    if (autoByBrand.length === 0) {
+      dispatch(allAutoMakers());
+    }
+  }, [autoByBrand, dispatch]);
 
   useEffect(() => {
     findMakerAndModel();
@@ -112,16 +106,19 @@ const CarDataForm = ({ formik }) => {
           customFunc={handleChangeStateNumber}
           formikData={formik}
         />
+        {formik.errors.stateNumber ? (
+          <div>{formik.errors.stateNumber}</div>
+        ) : null}
         <GeneralInput
           id="year"
           lableText="Рік випуску*:"
           formikData={formik}
           isDisabled={disabled}
         />
+        {formik.errors.model ? <div>{formik.errors.model}</div> : null}
         <GeneralSelect
           id="brand"
           lableText="Марка*:"
-          formikData={formik}
           currentValue={selectedAutoMaker}
           optionsArr={autoMakers}
           defaultValue={{ name: "Оберіть марку авто" }}
@@ -130,10 +127,10 @@ const CarDataForm = ({ formik }) => {
           changeCB={handleChangeBrand}
           isDisabled={disabled}
         />
+        {formik.errors.model ? <div>{formik.errors.model}</div> : null}
         <GeneralSelect
           id="model"
           lableText="Модель*:"
-          formikData={formik}
           currentValue={selectedAutoModel}
           optionsArr={allAutoModel.length > 0 ? allAutoModel : autoByBrand}
           defaultValue={{ name: "Оберіть модель авто" }}
@@ -142,6 +139,7 @@ const CarDataForm = ({ formik }) => {
           isDisabled={disabled}
           changeCB={handleChangeModel}
         />
+        {formik.errors.model ? <div>{formik.errors.model}</div> : null}
         <GeneralInput
           id="bodyNumber"
           lableText="VIN Номер*:"
@@ -149,6 +147,7 @@ const CarDataForm = ({ formik }) => {
           customFunc={handleChangeVinNumber}
           isDisabled={disabled}
         />
+        {formik.errors.model ? <div>{formik.errors.model}</div> : null}
       </InputContBoxStyled>
     </>
   );

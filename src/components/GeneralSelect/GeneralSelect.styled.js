@@ -13,6 +13,7 @@ export const SelectStyled = styled(Select)(({ theme, $find }) => ({
       padding: 16,
       height: 56,
       borderRadius: 50,
+      borderColor: theme.palette.primary.main,
       backgroundColor: "#FEFEFF",
       boxShadow: "0 0 0 0",
       "&:hover, &:focus": {
@@ -30,7 +31,11 @@ export const SelectStyled = styled(Select)(({ theme, $find }) => ({
         },
       },
       "&--is-disabled": {
-        opacity: 0.4,
+        borderColor: theme.palette.primary.tertiaryDark,
+        "& svg": {
+          fill: theme.palette.primary.tertiaryDark,
+        },
+        //opacity: 0.4,
         // backgroundColor: "black",
       },
       [theme.breakpoints.up("sm")]: {

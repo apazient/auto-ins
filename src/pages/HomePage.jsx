@@ -17,12 +17,15 @@ import HeroTabs from "../components/HeroTabs/HeroTabs";
 import { useDispatch, useSelector } from "react-redux";
 import { loginThunk } from "../redux/Calculator/operations";
 import { getUser } from "../redux/Calculator/selectors";
+import ModalError from "../components/ModalError/ModalError";
+import { getIsModalErrorOpen } from "../redux/Global/selectors";
 
 const HomePage = () => {
   const { state } = useLocation();
   const { id } = state || {};
   const dispatch = useDispatch();
   const user = useSelector(getUser);
+  const isError = useSelector(getIsModalErrorOpen);
 
   useEffect(() => {
     let element = document.getElementById(id);
@@ -33,14 +36,7 @@ const HomePage = () => {
 
   useEffect(() => {
     if (user) return;
-    dispatch(loginThunk())
-      .unwrap()
-      .catch((error) => {
-        const { message } = error.response.data;
-        if (message) {
-          console.log(message);
-        }
-      });
+    dispatch(loginThunk());
   }, [dispatch, user]);
 
   return (
@@ -63,6 +59,7 @@ const HomePage = () => {
           <InfoSection />
         </Suspense>
       </main>
+      {isError && <ModalError />}
     </>
   );
 };

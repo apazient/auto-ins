@@ -31,6 +31,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { setGlobalCustomerDataCustomer } from "../../redux/Global/globalSlice";
 
 import { getAutoByNumber } from "../../redux/References/selectors";
+import {
+  carDataFormValidationSchema,
+  HomeAddressFormValidationSchema,
+} from "../../helpers/formValidationSchema";
+import { getSubmitObject } from "../../redux/byParameters/selectors";
 
 const steps = [
   { Контакти: "icon-email" },
@@ -112,7 +117,7 @@ const Stepper = ({ backLinkRef }) => {
 
   const homeAddressFormik = useFormik({
     initialValues: homeAddressInitialValues,
-    // validationSchema: HomeAddressFormValidationSchema(),
+    //validationSchema: HomeAddressFormValidationSchema(),
     onSubmit: (values) => {
       console.log("homeAddress", values);
       const { regionANDcity, street, houseNumber, apartmentNumber } = values;
@@ -126,8 +131,9 @@ const Stepper = ({ backLinkRef }) => {
       handleNext();
     },
   });
-  const [insuranceObject] = useSelector(getAutoByNumber);
 
+  const [insuranceObject] = useSelector(getAutoByNumber);
+  const userParams = useSelector(getSubmitObject);
   const carDataFormik = useFormik({
     initialValues: {
       stateNumber: insuranceObject?.stateNumber || "",
@@ -136,7 +142,9 @@ const Stepper = ({ backLinkRef }) => {
       model: "",
       bodyNumber: insuranceObject?.bodyNumber || "",
       maker: "",
+      outsideUkraine: userParams?.outsideUkraine || false,
     },
+
     onSubmit: (values) => {
       const allValues = {
         ...contactsFormik.values,
@@ -144,14 +152,13 @@ const Stepper = ({ backLinkRef }) => {
         ...homeAddressFormik.values,
         ...values,
       };
-
+      console.log("values", values);
       dispatch(setGlobalCustomerDataCustomer(values));
     },
 
-    // validationSchema: carDataFormValidationSchema(),
-    validateOnBlur: true,
-    validateOnChange: false,
-    validateOnMount: true,
+    validationSchema: carDataFormValidationSchema(),
+    // validateOnBlur: true,
+    // validateOnChange: false,
     enableReinitialize: true,
   });
 

@@ -1,5 +1,5 @@
 import * as Yup from "yup";
-import { VIN_REGEX } from "../constants";
+import { DNUMBER_REGEX, VIN_REGEX } from "../constants";
 
 export const validationName = () =>
   Yup.string()
@@ -17,7 +17,15 @@ export const validationName = () =>
 // =============================================================================
 export const carDataFormValidationSchema = () =>
   Yup.object().shape({
-    stateNumber: Yup.string().required("Обов’язкове поле!"),
+    outsideUkraine: Yup.boolean(),
+    stateNumber: Yup.string().when("outsideUkraine", {
+      is: false,
+      then: () =>
+        Yup.string()
+          .required("Обов’язкове поле!")
+          .matches(DNUMBER_REGEX, "Номер авто вказано невірно"),
+    }),
+
     year: Yup.number()
       .integer("Рік повинен бути цілим числом")
       .typeError("Будь ласка, введіть рік")
@@ -28,7 +36,7 @@ export const carDataFormValidationSchema = () =>
         "Рік не може бути більшим за поточний рік"
       ),
     // brand: validationName(),
-    // model: Yup.string().required("Обов’язкове поле!"),
+    model: Yup.object().required("Обов’язкове поле!"),
     bodyNumber: Yup.string()
       .required("Обов’язкове поле!")
       .matches(

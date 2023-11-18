@@ -1,5 +1,5 @@
 import { InputContStyled, SelectStyled } from "./GeneralSelect.styled";
-import { Typography } from "@mui/material";
+import { Typography, useTheme } from "@mui/material";
 import PropTypes from "prop-types";
 import HelpCircle from "../HelpCircle/HelpCircle";
 import { SpriteSVG } from "../../images/SpriteSVG";
@@ -8,7 +8,7 @@ const CustomDropdownIndicator = () => {
   return <SpriteSVG name="icon-zoom-out" />;
 };
 
-const GeneralSelect = ({  
+const GeneralSelect = ({
   id,
   lableText, //текст елемента lable
   optionsArr, //масив елементів які відображає SElect
@@ -22,14 +22,24 @@ const GeneralSelect = ({
   defaultValue,
   getOptionLabel,
   getOptionValue,
-}) => {  
+}) => {
+  const theme = useTheme();
   return (
     <InputContStyled className="select-container">
-      <Typography variant="body1" component="label" htmlFor={id}>
+      <Typography
+        sx={{
+          color: isDisabled
+            ? `${theme.palette.primary.tertiaryDark}!important`
+            : null,
+        }}
+        variant="body1"
+        component="label"
+        htmlFor={id}
+      >
         {lableText}
         {helper && <HelpCircle lableText={helper} color={color ? color : ""} />}
       </Typography>
-      <SelectStyled      
+      <SelectStyled
         $find={inputChangeCB}
         components={
           inputChangeCB ? { DropdownIndicator: CustomDropdownIndicator } : true
@@ -47,7 +57,7 @@ const GeneralSelect = ({
         inputValue={inputValue}
         onInputChange={inputChangeCB}
         onChange={(e) => {
-          changeCB(e);          
+          changeCB(e);
         }}
         getOptionLabel={getOptionLabel}
         getOptionValue={getOptionValue}
