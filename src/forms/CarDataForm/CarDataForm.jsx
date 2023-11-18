@@ -12,6 +12,7 @@ import {
 import GeneralSelect from "../../components/GeneralSelect/GeneralSelect";
 import {
   getAutoByMakerAndModel,
+  getAutoByNumber,
   getAutoMakers,
   getAutoModelByMaker,
 } from "../../redux/References/selectors";
@@ -28,13 +29,16 @@ const CarDataForm = ({ formik }) => {
   const allAutoModel = useSelector(getAutoModelByMaker);
   const autoByBrand = useSelector(getAutoByMakerAndModel);
   const { outsideUkraine } = useSelector(getSubmitObject);
+  const [insuranceObject] = useSelector(getAutoByNumber);
   const [selectedAutoMaker, setSelectedAutoMaker] = useState({
     name: "Оберіть марку авто",
   });
   const [selectedAutoModel, setSelectedAutoModel] = useState({
     name: "Оберіть модель авто",
   });
-  const [disabled, setDisabled] = useState(true);
+  const [disabled, setDisabled] = useState(
+    insuranceObject?.stateNumber ? false : true
+  );
   const handleBlurStateNumber = (e) => {
     dispatch(setAutoByMakerAndModel([]));
     if (e.target.value && outsideUkraine) {
@@ -115,7 +119,7 @@ const CarDataForm = ({ formik }) => {
           formikData={formik}
           isDisabled={disabled}
         />
-        {formik.errors.model ? <div>{formik.errors.model}</div> : null}
+        {formik.errors.year ? <div>{formik.errors.year}</div> : null}
         <GeneralSelect
           id="brand"
           lableText="Марка*:"
@@ -127,7 +131,7 @@ const CarDataForm = ({ formik }) => {
           changeCB={handleChangeBrand}
           isDisabled={disabled}
         />
-        {formik.errors.model ? <div>{formik.errors.model}</div> : null}
+        {formik.errors.brand ? <div>{formik.errors.brand}</div> : null}
         <GeneralSelect
           id="model"
           lableText="Модель*:"
@@ -139,7 +143,9 @@ const CarDataForm = ({ formik }) => {
           isDisabled={disabled}
           changeCB={handleChangeModel}
         />
-        {formik.errors.model ? <div>{formik.errors.model}</div> : null}
+        {formik.errors.model ? (
+          <div style={{ color: "red" }}>{formik.errors.model}</div>
+        ) : null}
         <GeneralInput
           id="bodyNumber"
           lableText="VIN Номер*:"
@@ -147,7 +153,9 @@ const CarDataForm = ({ formik }) => {
           customFunc={handleChangeVinNumber}
           isDisabled={disabled}
         />
-        {formik.errors.model ? <div>{formik.errors.model}</div> : null}
+        {formik.errors.bodyNumber ? (
+          <div>{formik.errors.bodyNumber}</div>
+        ) : null}
       </InputContBoxStyled>
     </>
   );
