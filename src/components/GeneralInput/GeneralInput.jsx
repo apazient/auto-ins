@@ -23,7 +23,16 @@ const GeneralInput = ({
 
   return (
     <InputContStyled>
-      <LableStyled variant="inputLable" component="label" htmlFor={id}>
+      <LableStyled
+        sx={{
+          color: isDisabled
+            ? `${theme.palette.primary.tertiaryDark}!important`
+            : null,
+        }}
+        variant="inputLable"
+        component="label"
+        htmlFor={id}
+      >
         <span>{lableText}</span>
         {touched[id] && Boolean(errors[id]) && (
           <span className="errorMessages">

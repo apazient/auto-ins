@@ -123,7 +123,8 @@ const ByParameters = () => {
       dispatch(setTariffVcl([]));
 
       navigate("/prices", {
-        state: { from: locationPath.pathname, data: sendObj },
+        state: { from: locationPath },
+        // state: { from: locationPath.pathname, data: sendObj },
       });
     },
   });
