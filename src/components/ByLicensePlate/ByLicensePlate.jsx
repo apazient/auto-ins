@@ -23,6 +23,7 @@ import {
 } from "../../redux/References/referencesSlice";
 import { DNUMBER_REGEX } from "../../constants";
 import { setIsModalErrorOpen } from "../../redux/Global/globalSlice";
+import HelperList from "../HelpCircle/HelperList/HelperList";
 const ByLicensePlate = () => {
   const navigate = useNavigate();
   const locationPath = useLocation();
@@ -89,8 +90,7 @@ const ByLicensePlate = () => {
           name="benefits"
           val={formik.values.benefits}
           changeCB={formik.handleChange}
-          helper="Учасники війни; Інваліди II групи; Громадяни України, які постраждали внаслідок Чорнобильської катастрофи, віднесені до I та II категорії; 
-          Пенсіонери"
+          helper={<HelperList/>}
         />
         <SubmitButton type="submit" disabled={!formik.values.licensePlate}>
           Розрахувати вартість

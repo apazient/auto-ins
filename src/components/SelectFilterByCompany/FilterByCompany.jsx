@@ -9,6 +9,7 @@ import {
 import {
   InputContStyled,
   InputStyled,
+  MenuItemStyled,
   MenuProps,
   SelectStyled,
 } from "./FilterByCompany.styled";
@@ -40,6 +41,9 @@ const FilterByCompany = (props) => {
           IconComponent={() => (
             <Box
               sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems:"center",
                 pointerEvents: "none",
                 "& svg": {
                   height: 24,
@@ -56,17 +60,18 @@ const FilterByCompany = (props) => {
             Усі компанії
           </MenuItem>
           {optionsArr.map((value) => (
-            <MenuItem
-              sx={{ color: "black!important", padding: 1.5 }}
+            <MenuItemStyled
               key={value}
               value={value}
             >
               <Checkbox
-                sx={{ paddingBottom: "0", paddingTop: 0 }}
+                sx={{
+                  paddingBottom: "0", paddingTop: 0
+                }}
                 checked={currentValue.indexOf(value) > -1}
               />
               <ListItemText disableTypography primary={value} />
-            </MenuItem>
+            </MenuItemStyled>
           ))}
         </SelectStyled>
       </InputContStyled>

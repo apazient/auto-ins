@@ -27,6 +27,7 @@ const initialState = {
     //   },
   },
   paramsFromUrl: null,
+  homeAddress:{ label: "", value:"" },
 };
 
 export const globalSlice = createSlice({
@@ -55,6 +56,10 @@ export const globalSlice = createSlice({
     setParamsFromUrl: (state, { payload }) => {
       state.paramsFromUrl = { ...state.payload, ...payload };
     },
+    setHomeAddress: (state, { payload }) => {
+      state.homeAddress = payload;
+    },
+
   },
 });
 
@@ -65,6 +70,7 @@ export const {
   setParamsFromUrl,
   setGlobalCustomerDataCustomer,
   setFormData,
+  setHomeAddress,
 } = globalSlice.actions;
 export const globalReducer = globalSlice.reducer;
 

@@ -100,13 +100,6 @@ const ProposalsFilter = () => {
               changeCB={setSelectedPriceSort}
               currentValue={selectedPriceSort}
             />
-            {/* <GeneralSelect
-              id="popularity"
-              lableText="Популярність"
-              optionsArr={priceSortOptionsGeneral}
-              changeCB={setSelectedSortByReiting} //функція що повертає вибране значення (піднесення)
-              currentValue={selectedSortByReiting}
-            /> */}
 
             <FilterByCompany
               id="filteredByName"
