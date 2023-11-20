@@ -70,20 +70,20 @@ export const theme = createTheme({
              src: url(${OpenSansSemiBold}) format('woff2');
          }
          @font-face {
-    font-display: swap;  
-    font-family: 'Open Sans';
-    font-style: normal;
-    font-weight: 700;
-    src: url(${OpenSansBold}) format('woff2');   
-}
+            font-display: swap;  
+            font-family: 'Open Sans';
+            font-style: normal;
+            font-weight: 700;
+            src: url(${OpenSansBold}) format('woff2');   
+        }
 
-@font-face {
-    font-display: swap;   
-    font-family: 'Open Sans';
-    font-style: normal;
-    font-weight: 800;
-    src: url(${OpenSansExtraBold}) format('woff2');   
-}
+        @font-face {
+            font-display: swap;   
+            font-family: 'Open Sans';
+            font-style: normal;
+            font-weight: 800;
+            src: url(${OpenSansExtraBold}) format('woff2');   
+        }
          
          html {font-size: 16px}
          body {background-color: #030303; font-family: 'Open Sans', sans-serif; font-weight: 400; color: #FEFEFF; font-size: 1rem; line-height: 1.5em; }
