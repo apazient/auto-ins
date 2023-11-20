@@ -13,6 +13,8 @@ export const InputStyled = styled(OutlinedInput)(({ theme }) => ({
     fontFamily: "OpenSans-SemiBold",
     fontSize: 16,
     lineHeight: "150%" /* 24px */,
+    outline: "none",
+    border:'none',
     "&:-webkit-autofill": {
       WebkitBackgroundClip: "text",
       WebkitTextFillColor: theme.palette.primary.main,
@@ -27,7 +29,8 @@ export const InputStyled = styled(OutlinedInput)(({ theme }) => ({
   },
 
   "& fieldset.MuiOutlinedInput-notchedOutline": {
-    border: `1px solid ${theme.palette.primary.main}`,
+    outline: "none",
+    border:'none',
   },
   [theme.breakpoints.up("sm")]: {
     height: 59,

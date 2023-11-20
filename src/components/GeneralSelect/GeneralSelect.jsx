@@ -4,10 +4,6 @@ import PropTypes from "prop-types";
 import HelpCircle from "../HelpCircle/HelpCircle";
 import { SpriteSVG } from "../../images/SpriteSVG";
 
-const CustomDropdownIndicator = () => {
-  return <SpriteSVG name="icon-zoom-out" />;
-};
-
 const GeneralSelect = ({
   id,
   lableText, //текст елемента lable
@@ -40,7 +36,7 @@ const GeneralSelect = ({
       <SelectStyled
         $find={inputChangeCB}
         components={
-          inputChangeCB ? { DropdownIndicator: CustomDropdownIndicator } : true
+          inputChangeCB ? { DropdownIndicator: () => <SpriteSVG name="icon-zoom-out" /> } : true
         }
         isDisabled={isDisabled}
         variant="body1"
@@ -50,7 +46,6 @@ const GeneralSelect = ({
         placeholder="Enter the text"
         options={optionsArr}
         defaultValue={defaultValue}
-        // defaultValue={optionsArr[0]}
         value={currentValue}
         inputValue={inputValue}
         onInputChange={inputChangeCB}
@@ -68,7 +63,10 @@ GeneralSelect.propTypes = {
   lableText: PropTypes.string.isRequired,
   currentValue: PropTypes.object,
   id: PropTypes.string.isRequired,
-  helper: PropTypes.string,
+  helper: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.string
+  ]),
   inputValue: PropTypes.string,
   color: PropTypes.string,
   isDisabled: PropTypes.bool,

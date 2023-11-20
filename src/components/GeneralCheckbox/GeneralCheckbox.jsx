@@ -65,6 +65,9 @@ GeneralCheckbox.propTypes = {
   val: PropTypes.bool,
   isChecked: PropTypes.bool,
   isDisabled: PropTypes.bool,
-  helper: PropTypes.string,
+  helper: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.string
+  ]),
   changeCB: PropTypes.func,
 };

@@ -33,6 +33,8 @@ import {
   setAutoMakers,
   setAutoModelByMaker,
 } from "../../redux/References/referencesSlice";
+import HelperImg from "../HelpCircle/HelperImg/HelperImg";
+import HelperList from "../HelpCircle/HelperList/HelperList";
 
 const ByParameters = () => {
   const navigate = useNavigate();
@@ -47,31 +49,6 @@ const ByParameters = () => {
     foreignNumber,
     benefits,
   } = useSelector((state) => state.byParameters);
-  // const queryText = useSelector(state=>state.byParameters.queryText)
-  // const allAddress = useSelector(state=>state.byParameters.addressOptions)
-  // const address = useSelector(state=>state.byParameters.address)
-
-  // const [vehicle, setVehicle] = useState(selectCategoryOptions[0]);
-  // const [engineCapacity, setEngineCapacity] = useState(
-  //   selectAutoCategory(vehicle.value)[0]
-  // );
-  // const [allAddress, setAllAddress] = useState([]);
-  // const [address, setAddress] = useState({ label: "", value: "" });
-  // const [qweryText, setQweryText] = useState("");
-
-  // useEffect(
-  //   () => async () => {
-  //     try {
-  //       if (qweryText) {
-  //         const addressVariants = await getCityByName(qweryText);
-  //         setAllAddress(selectAddressOptions(addressVariants));
-  //       }
-  //     } catch (error) {
-  //       console.log(error.message);
-  //     }
-  //   },
-  //   [qweryText]
-  // );
 
   const handleChangeengineCapacity = (e) => {
     dispatch(setEngineCapacity(e));
@@ -124,7 +101,6 @@ const ByParameters = () => {
 
       navigate("/prices", {
         state: { from: locationPath },
-        // state: { from: locationPath.pathname, data: sendObj },
       });
     },
   });
@@ -159,7 +135,7 @@ const ByParameters = () => {
             currentValue={address}
             inputValue={queryText}
             inputChangeCB={handleChangeQueryText}
-            helper={"тут потрібно ввести текст)))"}
+            helper={<HelperImg/>}
             isDisabled={formik.values.foreignNumber}
           />
         </AllInputContStyled>
@@ -175,8 +151,7 @@ const ByParameters = () => {
               engineCapacity.value === "B5" ? "rgba(243, 243, 243, 0.40)" : null
             }
             isDisabled={engineCapacity.value === "B5" ? true : false}
-            helper="Учасники війни; Інваліди II групи; Громадяни України, які постраждали внаслідок Чорнобильської катастрофи, віднесені до I та II категорії; 
-          Пенсіонери"
+            helper={<HelperList/>}
           />
           <GeneralCheckbox
             lableText="Авто на іноземних номерах"
