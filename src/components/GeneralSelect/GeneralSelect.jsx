@@ -1,14 +1,10 @@
 import { InputContStyled, SelectStyled } from "./GeneralSelect.styled";
-import { Typography } from "@mui/material";
+import { Typography, useTheme } from "@mui/material";
 import PropTypes from "prop-types";
 import HelpCircle from "../HelpCircle/HelpCircle";
 import { SpriteSVG } from "../../images/SpriteSVG";
 
-const CustomDropdownIndicator = () => {
-  return <SpriteSVG name="icon-zoom-out" />;
-};
-
-const GeneralSelect = ({  
+const GeneralSelect = ({
   id,
   lableText, //текст елемента lable
   optionsArr, //масив елементів які відображає SElect
@@ -22,17 +18,25 @@ const GeneralSelect = ({
   defaultValue,
   getOptionLabel,
   getOptionValue,
-}) => {  
+}) => {
+  const theme = useTheme();
   return (
     <InputContStyled className="select-container">
-      <Typography variant="body1" component="label" htmlFor={id}>
+      <Typography
+        sx={{
+          color: isDisabled ? "darkgray!important" : null,
+        }}
+        variant="body1"
+        component="label"
+        htmlFor={id}
+      >
         {lableText}
         {helper && <HelpCircle lableText={helper} color={color ? color : ""} />}
       </Typography>
-      <SelectStyled      
+      <SelectStyled
         $find={inputChangeCB}
         components={
-          inputChangeCB ? { DropdownIndicator: CustomDropdownIndicator } : true
+          inputChangeCB ? { DropdownIndicator: () => <SpriteSVG name="icon-zoom-out" /> } : true
         }
         isDisabled={isDisabled}
         variant="body1"
@@ -42,12 +46,11 @@ const GeneralSelect = ({
         placeholder="Enter the text"
         options={optionsArr}
         defaultValue={defaultValue}
-        // defaultValue={optionsArr[0]}
         value={currentValue}
         inputValue={inputValue}
         onInputChange={inputChangeCB}
         onChange={(e) => {
-          changeCB(e);          
+          changeCB(e);
         }}
         getOptionLabel={getOptionLabel}
         getOptionValue={getOptionValue}
@@ -60,7 +63,10 @@ GeneralSelect.propTypes = {
   lableText: PropTypes.string.isRequired,
   currentValue: PropTypes.object,
   id: PropTypes.string.isRequired,
-  helper: PropTypes.string,
+  helper: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.string
+  ]),
   inputValue: PropTypes.string,
   color: PropTypes.string,
   isDisabled: PropTypes.bool,

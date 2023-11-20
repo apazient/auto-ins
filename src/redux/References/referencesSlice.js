@@ -10,6 +10,7 @@ const initialState = {
   autoMakers: [],
   autoModelByMaker: [],
   autoByNumber: [],
+  autoByMakerAndModel: [],
 };
 
 export const referencesSlice = createSlice({
@@ -25,6 +26,9 @@ export const referencesSlice = createSlice({
     setAutoByNumber: (state, { payload }) => {
       state.autoByNumber = payload;
     },
+    setAutoByMakerAndModel: (state, { payload }) => {
+      state.autoByMakerAndModel = payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -35,15 +39,17 @@ export const referencesSlice = createSlice({
         state.autoModelByMaker = payload;
       })
       .addCase(autoByNumber.fulfilled, (state, { payload }) => {
-        // const { bodyNumber, year, modelText } = payload;
-        // state.autoByNumber = [bodyNumber, year, modelText];
         state.autoByNumber = payload;
       })
       .addCase(autoByMakerAndModel.fulfilled, (state, { payload }) => {
-        state.autoModelByMaker = payload;
+        state.autoByMakerAndModel = payload;
       });
   },
 });
-export const { setAutoModelByMaker, setAutoMakers, setAutoByNumber } =
-  referencesSlice.actions;
+export const {
+  setAutoModelByMaker,
+  setAutoMakers,
+  setAutoByNumber,
+  setAutoByMakerAndModel,
+} = referencesSlice.actions;
 export const referencesReducer = referencesSlice.reducer;

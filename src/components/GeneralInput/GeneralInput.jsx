@@ -8,7 +8,7 @@ import {
 
 const GeneralInput = ({
   id,
-  lableText,  
+  lableText,
   type,
   color,
   handleBlur,
@@ -23,7 +23,14 @@ const GeneralInput = ({
 
   return (
     <InputContStyled>
-      <LableStyled variant="inputLable" component="label" htmlFor={id}>
+      <LableStyled
+        sx={{
+          color: isDisabled ? "darkgray!important" : null,
+        }}
+        variant="inputLable"
+        component="label"
+        htmlFor={id}
+      >
         <span>{lableText}</span>
         {touched[id] && Boolean(errors[id]) && (
           <span className="errorMessages">

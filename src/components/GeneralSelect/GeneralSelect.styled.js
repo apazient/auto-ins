@@ -13,6 +13,7 @@ export const SelectStyled = styled(Select)(({ theme, $find }) => ({
       padding: 16,
       height: 56,
       borderRadius: 50,
+      borderColor: theme.palette.primary.main,
       backgroundColor: "#FEFEFF",
       boxShadow: "0 0 0 0",
       "&:hover, &:focus": {
@@ -30,8 +31,12 @@ export const SelectStyled = styled(Select)(({ theme, $find }) => ({
         },
       },
       "&--is-disabled": {
-        opacity: 0.4,
-        // backgroundColor: "black",
+        borderColor: theme.palette.primary.tertiaryDark,
+        "& svg": {
+          fill: "transparent",
+        },
+        //opacity: 0.4,
+        backgroundColor: theme.palette.primary.secondaryWhite,
       },
       [theme.breakpoints.up("sm")]: {
         fontSize: 18,
@@ -79,14 +84,14 @@ export const SelectStyled = styled(Select)(({ theme, $find }) => ({
     "&menu-list": {
       padding: 4,
       "&::-webkit-scrollbar": {
-        width: 6 /* ширина всей полосы прокрутки */,
+        width: 6, // ширина всей полосы прокрутки /,
       },
       "&::-webkit-scrollbar-track": {
-        background: "rgba(21, 71, 248, 0.6)" /* цвет зоны отслеживания */,
+        background: "rgba(21, 71, 248, 0.6)", //цвет зоны отслеживания /,
       },
       "&::-webkit-scrollbar-thumb": {
-        backgroundColor: "rgba(255, 255, 255, 0.8)" /* цвет бегунка */,
-        borderRadius: 4 /* округлось бегунка */,
+        backgroundColor: "rgba(255, 255, 255, 0.8)", // цвет бегунка /,
+        borderRadius: 4, // округлось бегунка */,
       },
     },
 

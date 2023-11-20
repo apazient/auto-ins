@@ -1,5 +1,4 @@
 import { useFormik } from "formik";
-import * as Yup from "yup";
 import { Typography } from "@mui/material";
 import { FormStyled, InputStyled } from "./ByLicensePlate.styled";
 import {
@@ -23,6 +22,8 @@ import {
   setAutoModelByMaker,
 } from "../../redux/References/referencesSlice";
 import { DNUMBER_REGEX } from "../../constants";
+import { setIsModalErrorOpen } from "../../redux/Global/globalSlice";
+import HelperList from "../HelpCircle/HelperList/HelperList";
 const ByLicensePlate = () => {
   const navigate = useNavigate();
   const locationPath = useLocation();
@@ -33,7 +34,15 @@ const ByLicensePlate = () => {
       licensePlate: "",
       benefits: false,
     },
+
+    validateOnChange: false,
     onSubmit: (values) => {
+      const stateNumber = values.licensePlate.match(DNUMBER_REGEX);
+      if (!stateNumber) {
+        dispatch(setIsModalErrorOpen(true));
+        return;
+      }
+
       const dateF = new Date(Date.now() + 86400000);
       const d = dateF.toISOString().substring(0, 10);
       const params = {
@@ -42,6 +51,7 @@ const ByLicensePlate = () => {
         stateNumber: values.licensePlate,
         dateFrom: d,
       };
+
       dispatch(setAddress({ label: "", value: "" }));
       dispatch(setEngineCapacity({ label: "", value: "" }));
       dispatch(setAutoModelByMaker([]));
@@ -49,15 +59,10 @@ const ByLicensePlate = () => {
       dispatch(setStateNumber(params.stateNumber));
       dispatch(setSubmitObj(params));
       navigate("/prices", {
-        state: { from: locationPath.pathname, data: params },
+        state: { from: locationPath },
       });
     },
-
-    validationSchema: Yup.object({
-      licensePlate: Yup.string().matches(DNUMBER_REGEX),
-    }),
   });
-
   return (
     <div>
       <FormStyled onSubmit={formik.handleSubmit}>
@@ -79,13 +84,13 @@ const ByLicensePlate = () => {
             required
           />
         </InputContStyled>
+
         <GeneralCheckbox
           lableText="Є пільги"
           name="benefits"
           val={formik.values.benefits}
           changeCB={formik.handleChange}
-          helper="Учасники війни; Інваліди II групи; Громадяни України, які постраждали внаслідок Чорнобильської катастрофи, віднесені до I та II категорії; 
-          Пенсіонери"
+          helper={<HelperList/>}
         />
         <SubmitButton type="submit" disabled={!formik.values.licensePlate}>
           Розрахувати вартість

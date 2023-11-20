@@ -3,7 +3,7 @@ import Card from "@mui/material/Card";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Rating from "@mui/material/Rating";
-import { Link } from "react-router-dom";
+
 import { Button } from "@mui/material";
 
 export const CardStyled = styled(Card)(({ theme }) => ({
@@ -36,15 +36,12 @@ export const WrapperStyled = styled(Box)(({ theme }) => ({
     },
   },
   "&.wrapper": {
-    marginBottom: "16px",
     [theme.breakpoints.up("sm")]: {
       display: "flex",
       gap: "16px",
-      marginBottom: "24px",
     },
     [theme.breakpoints.up("lg")]: {
       gap: "24px",
-      marginBottom: "40px",
     },
   },
   "& .gridContainer": {
@@ -56,9 +53,6 @@ export const WrapperStyled = styled(Box)(({ theme }) => ({
       width: "256px",
     },
   },
-  // "& .footer": {
-  //   width: "100%",
-  // },
 }));
 
 export const GridContainer = styled(Grid)(({ theme }) => ({
@@ -79,13 +73,16 @@ export const GridContainerImg = styled(Grid)(({ theme }) => ({
   "&.MuiGrid-root": {
     marginBottom: "8px",
     textAlign: "-webkit-right",
+    width: 125,
 
     "& img": {
-      width: "125px!important",
+      [theme.breakpoints.down("sm")]: {
+        width: "125px!important",
+      },
     },
   },
   [theme.breakpoints.up("sm")]: {
-    "&.MuiGrid-root": { marginBottom: "16px", textAlign: "center" },
+    "&.MuiGrid-root": { textAlign: "center" },
   },
 }));
 

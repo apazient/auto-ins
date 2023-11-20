@@ -1,4 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
+import isEqual from "lodash.isequal";
 import { CostCalculation } from "../components/CostCalculation/CostCalculation";
 
 import { useEffect, useRef } from "react";
@@ -23,13 +24,14 @@ import LineSection from "../components/LineSection/LineSection";
 const PricesPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { current } = useRef(location.state?.data);
+  const { current } = useRef(location.state?.from);
   const userParams = useSelector(getSubmitObject);
   const stateNumber = useSelector(getStateNumber);
   const isError = useSelector(getIsModalErrorOpen);
   const isLoadingCalculator = useSelector(getStateCalculator);
-
+  const prevUserParams = useRef(userParams);
   const dispatch = useDispatch();
+
   useEffect(() => {
     let subscribed = true;
 
@@ -37,6 +39,7 @@ const PricesPage = () => {
       navigate("/");
       return;
     }
+
     if (subscribed) {
       if (stateNumber && userParams) {
         dispatch(osagoByDn(userParams));
@@ -60,7 +63,6 @@ const PricesPage = () => {
         {isLoadingCalculator && <LinearProgress />}
         <CompanyList />
       </OutletPageWrapper>
-      {isError && <ModalError />}
     </>
   );
 };

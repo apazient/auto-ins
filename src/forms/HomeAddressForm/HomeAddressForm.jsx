@@ -7,21 +7,23 @@ import PropTypes from "prop-types";
 import GeneralSelect from "../../components/GeneralSelect/GeneralSelect";
 import { useState } from "react";
 import { fetchAddress } from "../../redux/byParameters/operations";
+import { useDispatch, useSelector } from "react-redux";
+import { setHomeAddress } from "../../redux/Global/globalSlice";
 
 const HomeAddressForm = ({ formik }) => {  
-  
+  const dispatch = useDispatch();
+  const address = useSelector(state => state.global.homeAddress)
 
   const [allAddress, setAllAddress] = useState([]);
-  const [address, setAddress] = useState({ label: "", value: "" });
   const [queryText, setQueryText] = useState("");
 
   const getHomeAddress =  async (e) => {
     setQueryText(e)
     setAllAddress( await fetchAddress(e))
 }
-  const setHomeAddress = async (e) => {
-    setAddress(e);
+  const setAddress = async (e) => {
     formik.values.regionANDcity = e.label;
+    dispatch(setHomeAddress(e))
   }
 
   return (
@@ -31,7 +33,7 @@ const HomeAddressForm = ({ formik }) => {
           id="homeAddress"
           lableText="Адреса"
           optionsArr={allAddress}
-          changeCB={setHomeAddress} //функція що повертає вибране значення (піднесення)
+          changeCB={setAddress} //функція що повертає вибране значення (піднесення)
           currentValue={address}
           inputValue={queryText}
           inputChangeCB={getHomeAddress}
