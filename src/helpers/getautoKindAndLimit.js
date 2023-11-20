@@ -28,6 +28,6 @@ export const getAutoKindAndLimit = (data) => {
       return { autoKind: "TRAILER ", autoKindLimit: "0" };
 
     default:
-      "Not found";
+      return "Not found";
   }
 };
