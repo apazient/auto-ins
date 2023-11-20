@@ -1,9 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { addYearToDate } from "../../helpers/addYearToDate";
+import { autoKindAndLimit } from "../../helpers/autoKindAndLimit";
 import { responseDGONormalize } from "../../helpers/dataNormalize/responseDGONormalize";
 import { responseOSAGONormalize } from "../../helpers/dataNormalize/responseOSAGONormalize";
 import { userNormalize } from "../../helpers/dataNormalize/userNormalize";
-import { getAutoKindAndLimit } from "../../helpers/getAutoKindAndLimit";
 import { mergeObjectsById } from "../../helpers/mergeObjectsById";
 import { sortAndFilterTariff } from "../../helpers/sortAndFilterTariff";
 import { instance } from "../../services/api";
@@ -112,11 +112,10 @@ export const chooseVclTariffDGO = createAsyncThunk(
     try {
       const { autoCategory, dateFrom, ...rest } = body;
       const dateTo = addYearToDate(dateFrom);
-      const cat = getAutoKindAndLimit(autoCategory);
-
+      const cat = autoKindAndLimit(autoCategory);
       const { data } = await instance.post("/tariff/choose/vcl", {
         ...rest,
-        cat,
+        ...cat,
         dateFrom,
         dateTo,
       });
