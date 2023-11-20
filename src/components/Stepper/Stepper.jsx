@@ -33,6 +33,7 @@ import { setGlobalCustomerDataCustomer } from "../../redux/Global/globalSlice";
 import { getAutoByNumber } from "../../redux/References/selectors";
 import {
   carDataFormValidationSchema,
+  contactsValidationSchema,
   HomeAddressFormValidationSchema,
 } from "../../helpers/formValidationSchema";
 import { getSubmitObject } from "../../redux/byParameters/selectors";
@@ -72,6 +73,7 @@ const Stepper = ({ backLinkRef }) => {
   // =======================Formik======================================
   const contactsFormik = useFormik({
     initialValues: contactsInitialValues,
+    validationSchema: contactsValidationSchema(),
     onSubmit: (values) => {
       console.log("contacts", values);
       dispatch(setGlobalCustomerDataCustomer(values));
@@ -81,6 +83,7 @@ const Stepper = ({ backLinkRef }) => {
 
   const insuredDataFormik = useFormik({
     initialValues: insuredDataInitialValues,
+    // validationSchema: insuredDataFormValidationSchema(),
     onSubmit: (values) => {
       console.log("insured", values);
       const {
