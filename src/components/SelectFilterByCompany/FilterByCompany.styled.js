@@ -19,13 +19,11 @@ export const InputStyled = styled(OutlinedInput)(({ theme }) => ({
   "&:hover, &:focus": {
     border: `none !important`,
     outline: `none !important`,
-  
-    
   },
   "& .Mui-focused": {
-      border: `none !important`,
+    border: `none !important`,
     outline: `none !important`,
-    },
+  },
   "& .MuiInputBase-input.MuiOutlinedInput-input": {
     color: `${theme.palette.primary.main}`,
     fontWeight: 600,
@@ -33,7 +31,7 @@ export const InputStyled = styled(OutlinedInput)(({ theme }) => ({
     fontSize: 16,
     lineHeight: "150%" /* 24px */,
     border: `none !important`,
-  outline: `none !important`,
+    outline: `none !important`,
     "&:-webkit-autofill": {
       WebkitBackgroundClip: "text",
       WebkitTextFillColor: theme.palette.primary.main,
@@ -60,65 +58,64 @@ export const InputStyled = styled(OutlinedInput)(({ theme }) => ({
   },
 }));
 export const SelectStyled = styled(Select)(({ theme }) => ({
-"& svg": {
-        transition: "transform 200ms ease-in-out",
+  "& svg": {
+    transition: "transform 200ms ease-in-out",
   },
-"[aria-expanded=false]": {
+  "[aria-expanded=false]": {
     "& svg": {
-    transform: "rotateX(180deg)",
-  }
-},
-"[aria-expanded=true]": {
+      transform: "rotateX(180deg)",
+    },
+  },
+  "[aria-expanded=true]": {
     "& svg": {
-    transform: "rotateX(0deg)",
-  }
-},
+      transform: "rotateX(0deg)",
+    },
+  },
 
-"&.MuiButtonBase-root.MuiMenuItem-root": {
-  padding: 12,
-},
+  "&.MuiButtonBase-root.MuiMenuItem-root": {
+    padding: 12,
+  },
 
-width: "100%",
-[theme.breakpoints.up("sm")]: {
-  width: 187,
-},
-[theme.breakpoints.up("lg")]: {
-  width: 272,
-},
+  width: "100%",
+  [theme.breakpoints.up("sm")]: {
+    // width: 187,
+  },
+  [theme.breakpoints.up("lg")]: {
+    // width: 272,
+  },
 }));
 export const MenuItemStyled = styled(MenuItem)(({ theme }) => ({
-  color:theme.palette.primary.main,
+  color: theme.palette.primary.main,
   padding: 12,
   "&.Mui-selected": {
-      "& .MuiListItemText-root": {
-        color: theme.palette.primary.blue,
+    "& .MuiListItemText-root": {
+      color: theme.palette.primary.blue,
+    },
+    "& .MuiButtonBase-root": {
+      "& svg": {
+        width: 20,
+        height: 20,
+        fill: theme.palette.primary.white,
+        stroke: theme.palette.primary.blue,
+        background: theme.palette.primary.blue,
       },
-      "& .MuiButtonBase-root": {
-        "& svg": {
-          width: 20,
-          height:20,
-          fill:theme.palette.primary.white,
-          stroke: theme.palette.primary.blue,
-          background: theme.palette.primary.blue,
-          }
-      }
+    },
   },
   "& svg": {
     width: 24,
-    height:24,
-    borderRadius:4,
+    height: 24,
+    borderRadius: 4,
   },
   "& .MuiListItemText-root": {
     color: theme.palette.primary.main,
     fontFamily: "OpenSans-SemiBold, sans-serif",
-    fontSize: '18px',
-    fontWeight: '600',
+    fontSize: "18px",
+    fontWeight: "600",
     lineHeight: 1.5,
-
   },
   "& .MuiCheckbox-root": {
-    width:40,
-  }
+    width: 40,
+  },
 }));
 
 const ITEM_HEIGHT = 59;
@@ -128,9 +125,10 @@ export const MenuProps = {
   PaperProps: {
     style: {
       maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 187,
+      // width: 187,
+      width: "fit-content",
       borderRadius: "25px",
-       "&::-webkit-scrollbar": {
+      "&::-webkit-scrollbar": {
         width: 6 /* ширина всей полосы прокрутки */,
       },
       "&::-webkit-scrollbar-track": {
@@ -174,6 +172,6 @@ export const MenuProps = {
 //                 },
 //                 "& .MuiCheckbox-root": {
 //                   width:40,
-                      
+
 //                     }
 //               };
