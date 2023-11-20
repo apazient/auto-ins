@@ -2,20 +2,9 @@ import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import { styled } from "@mui/material/styles";
-import Typography from "@mui/material/Typography";
+
 import { ContainerSection } from "../../style/Global.styled";
 
-export const MainText = styled(Typography)(({ theme }) => ({
-  textAlign: "center",
-  marginBottom: "32px",
-
-  [theme.breakpoints.up("sm")]: {
-    marginBottom: "56px",
-  },
-  [theme.breakpoints.up("lg")]: {
-    marginBottom: "72px",
-  },
-}));
 export const Accordions = styled(Accordion)(({ theme }) => ({
   "&.MuiAccordion-root": {
     borderBottom: `1px solid ${theme.palette.primary.white}`,
@@ -44,6 +33,15 @@ export const AccordionsSummary = styled(AccordionSummary)(({ theme }) => ({
   "&.MuiAccordionSummary-root": {
     padding: 0,
   },
+
+  "& .subtitle": {
+    [theme.breakpoints.up("sm")]: {
+      fontFamily: "OpenSans-Bold",
+      fontSize: "18px",
+      lineHeight: "1.5",
+      fontWeight: "bold",
+    },
+  },
 }));
 
 export const AccordionsDetails = styled(AccordionDetails)(({ theme }) => ({
@@ -57,7 +55,7 @@ export const AccordionsDetails = styled(AccordionDetails)(({ theme }) => ({
 
 export const ContAccordion = styled(ContainerSection)(({ theme }) => ({
   backgroundColor: theme.palette.primary.main,
-  // [theme.breakpoints.up("lg")]: {
-  //   maxWidth: "1006px",
-  // },
+  [theme.breakpoints.up("lg")]: {
+    padding: "120px 317px",
+  },
 }));

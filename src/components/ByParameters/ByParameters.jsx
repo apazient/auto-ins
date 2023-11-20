@@ -1,110 +1,179 @@
 import { useFormik } from "formik";
-import * as Yup from "yup";
 import {
   AllCheckboxContStyled,
   AllInputContStyled,
-  CheckboxContainerStyled,
-  CheckboxStyled,
   FormStyled,
-  InputContStyled,
-  InputSerchIcon,
-  InputStyled,
   SubmitButton,
 } from "./ByParameters.styled";
-import { FormControlLabel, Typography } from "@mui/material";
-import { SpriteSVG } from "../../images/SpriteSVG";
-import HelpCircle from "../HelpCircle/HelpCircle";
-import HeroSelect from "../HeroSelect/HeroSelect";
+import GeneralSelect from "../GeneralSelect/GeneralSelect";
+import { GeneralCheckbox } from "../GeneralCheckbox/GeneralCheckbox";
+import { useLocation, useNavigate } from "react-router-dom";
+
+import {
+  selectCategoryOptions,
+  selectAutoCategory,
+} from "../../helpers/ByParameters/selectOptions";
+import { useDispatch, useSelector } from "react-redux";
+import { getAddress } from "../../redux/byParameters/operations";
+import {
+  setAddress,
+  setAddressOptions,
+  setEngineCapacity,
+  setQueryText,
+  setSubmitObj,
+  setVehicle,
+} from "../../redux/byParameters/byParametersSlice";
+import {
+  setStateNumber,
+  setTariffPolicyChoose,
+  setTariffVcl,
+} from "../../redux/Calculator/calculatorSlice";
+import {
+  setAutoByNumber,
+  setAutoMakers,
+  setAutoModelByMaker,
+} from "../../redux/References/referencesSlice";
+import HelperImg from "../HelpCircle/HelperImg/HelperImg";
+import HelperList from "../HelpCircle/HelperList/HelperList";
 
 const ByParameters = () => {
+  const navigate = useNavigate();
+  const locationPath = useLocation();
+  const dispatch = useDispatch();
+  const {
+    queryText,
+    addressOptions: allAddress,
+    address,
+    vehicle,
+    engineCapacity,
+    foreignNumber,
+    benefits,
+  } = useSelector((state) => state.byParameters);
+
+  const handleChangeengineCapacity = (e) => {
+    dispatch(setEngineCapacity(e));
+  };
+  const handleChangeVehicle = (e) => {
+    dispatch(setVehicle(e));
+    dispatch(setEngineCapacity(selectAutoCategory(e.value)[0]));
+  };
+  const handleChangeQueryText = (e) => {
+    dispatch(setQueryText(e.trim()));
+    if (e) {
+      dispatch(getAddress(e));
+    }
+    if (!e) {
+      dispatch(setAddressOptions([]));
+    }
+  };
+  const changeAddress = (e) => {
+    if (queryText) {
+      dispatch(setAddress(e));
+    }
+  };
+
   const formik = useFormik({
     initialValues: {
-      location: "",
-      benefits: false,
-      foreignNumber: false,
+      benefits,
+      foreignNumber,
     },
     onSubmit: (values) => {
-      console.log(values);
+      const dateF = new Date(Date.now() + 86400000);
+      const dateFrom = dateF.toISOString().substring(0, 10);
+
+      let sendObj = {
+        customerCategory: values.benefits ? "PRIVILEGED" : "NATURAL",
+        autoCategory: engineCapacity.value,
+        outsideUkraine: values.foreignNumber,
+        usageMonths: 0,
+        taxi: false,
+        dateFrom,
+      };
+      address.value ? (sendObj.registrationPlace = address.value) : null;
+
+      dispatch(setSubmitObj(sendObj));
+      dispatch(setStateNumber(""));
+      dispatch(setAutoByNumber([]));
+      dispatch(setAutoMakers([]));
+      dispatch(setAutoModelByMaker([]));
+      dispatch(setTariffPolicyChoose([]));
+      dispatch(setTariffVcl([]));
+
+      navigate("/prices", {
+        state: { from: locationPath },
+      });
     },
-    validationSchema: Yup.object().shape({
-      location: Yup.string().required("Required field!"),
-    }),
   });
+
+  engineCapacity.value === "B5"
+    ? (formik.values.benefits = false)
+    : formik.values.benefits;
 
   return (
     <div>
       <FormStyled onSubmit={formik.handleSubmit}>
         <AllInputContStyled>
-          <HeroSelect
+          <GeneralSelect
             id="vehicle"
             lableText="Транспортний засіб"
-            optionsArr={["Легкове авто", "Вантажівка", "Причеп"]}
+            optionsArr={selectCategoryOptions}
+            changeCB={handleChangeVehicle}
+            currentValue={vehicle}
           />
-          <HeroSelect
-            id="engineCapacity"
+          <GeneralSelect
+            id="address"
             lableText="Об’єм двигуна"
-            optionsArr={["Легкове авто", "Вантажівка", "Причеп"]}
+            optionsArr={selectAutoCategory(vehicle.value)}
+            changeCB={handleChangeengineCapacity}
+            currentValue={engineCapacity}
           />
-
-          <InputContStyled>
-            <Typography
-              variant="body1"
-              compomponent="label"
-              htmlFor="location-input"
-            >
-              Адреса за техпаспортом
-            </Typography>
-            <InputStyled
-              endAdornment={
-                <InputSerchIcon position="end">
-                  <SpriteSVG name="icon-zoom-out" />
-                </InputSerchIcon>
-              }
-              name="location"
-              type="text"
-              value={formik.values.location}
-              onChange={formik.handleChange}
-              id="location-input"
-              placeholder="Виберіть населений пункт..."
-            />
-          </InputContStyled>
+          <GeneralSelect
+            id="engineCapacity"
+            lableText="Адреса за техпаспортом"
+            optionsArr={allAddress}
+            changeCB={changeAddress}
+            currentValue={address}
+            inputValue={queryText}
+            inputChangeCB={handleChangeQueryText}
+            helper={<HelperImg/>}
+            isDisabled={formik.values.foreignNumber}
+          />
         </AllInputContStyled>
 
         <AllCheckboxContStyled>
-          <CheckboxContainerStyled component="span">
-            <FormControlLabel
-              control={
-                <CheckboxStyled
-                  value={formik.values.benefits}
-                  onChange={formik.handleChange}
-                  type="checkbox"
-                  name="benefits"
-                  icon={<SpriteSVG name="icon-square" />}
-                  checkedIcon={<SpriteSVG name="icon-square-checked" />}
-                />
-              }
-              label="Є пільги"
-            />
-            <HelpCircle lableText="тут потрібно ввести текст)))" />
-          </CheckboxContainerStyled>
-          <CheckboxContainerStyled component="span">
-            <FormControlLabel
-              control={
-                <CheckboxStyled
-                  icon={<SpriteSVG name="icon-square" />}
-                  checkedIcon={<SpriteSVG name="icon-square-checked" />}
-                  value={formik.values.foreignNumber}
-                  onChange={formik.handleChange}
-                  type="checkbox"
-                  name="foreignNumber"
-                />
-              }
-              label="Авто на іноземних номерах"
-            />
-          </CheckboxContainerStyled>
+          <GeneralCheckbox
+            lableText="Є пільги"
+            name="benefits"
+            val={formik.values.benefits}
+            changeCB={formik.handleChange}
+            isChecked={engineCapacity.value === "B5" ? false : benefits}
+            color={
+              engineCapacity.value === "B5" ? "rgba(243, 243, 243, 0.40)" : null
+            }
+            isDisabled={engineCapacity.value === "B5" ? true : false}
+            helper={<HelperList/>}
+          />
+          <GeneralCheckbox
+            lableText="Авто на іноземних номерах"
+            name="foreignNumber"
+            val={formik.values.foreignNumber}
+            isChecked={foreignNumber}
+            changeCB={(e) => {
+              dispatch(setQueryText(""));
+              dispatch(setAddress({ label: "", value: "" }));
+              formik.handleChange(e);
+            }}
+          />
         </AllCheckboxContStyled>
 
-        <SubmitButton type="submit">Розрахувати вартість</SubmitButton>
+        <SubmitButton
+          type="submit"
+          disabled={
+            !address.value && !formik.values.foreignNumber ? true : false
+          }
+        >
+          Розрахувати вартість
+        </SubmitButton>
       </FormStyled>
     </div>
   );

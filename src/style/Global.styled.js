@@ -1,5 +1,6 @@
 import { Button, Container } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import { Link } from "react-router-dom";
 
 export const BlueButton = styled(Button)(({ theme }) => ({
   padding: "16px 32px",
@@ -24,27 +25,46 @@ export const BlueButton = styled(Button)(({ theme }) => ({
   },
 }));
 
-export const WhiteButton = styled(Button)(({ theme }) => ({
+export const WhiteButton = styled(Link)(({ theme }) => ({
+  width: "100%",
   padding: "16px 38px",
+  textDecoration: "none",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  gap: "8px",
   borderRadius: "50px",
   fontFamily: "OpenSans-SemiBold",
   fontWeight: 600,
+  fontSize: "16px",
+  lineHeight: "1.5",
   textTransform: "none",
-  border: `1px solid ${theme.palette.primary.main}`,
+  border: `1px solid transparent`,
   background: theme.palette.primary.white,
   color: theme.palette.primary.main,
+  transition: "background 350ms linear",
+  [theme.breakpoints.up("sm")]: {
+    width: "163px",
+    border: `1px solid ${theme.palette.primary.main}`,
+    fontSize: "18px",
+  },
   "&:hover": {
-    background: theme.palette.primary.blue,
-    color: theme.palette.primary.white,
+    "& div": {
+      fill: theme.palette.primary.yellow,
+    },
+    background: theme.palette.primary.yellow,
   },
   "&:active": {
-    background: theme.palette.primary.tertiaryBlue,
-    color: theme.palette.primary.white,
+    background: theme.palette.primary.tertiaryYellow,
   },
   "&.Mui-disabled": {
     background: theme.palette.primary.white,
     color: theme.palette.primary.tertiaryDark,
-    border: "1px solid theme.palette.primary.tertiaryDark",
+    border: `1px solid ${theme.palette.primary.tertiaryDark}`,
+    cursor: "default",
+    "& div": {
+      fill: theme.palette.primary.white,
+    },
   },
 }));
 
@@ -72,7 +92,7 @@ export const YellowButton = styled(Button)(({ theme }) => ({
 
 export const ContainerSection = styled(Container)(({ theme }) => ({
   width: "100%",
-  oveflow: "hidden",
+  overflow: "hidden",
   [theme.breakpoints.up("xs")]: {
     padding: "56px 16px",
   },
@@ -83,5 +103,76 @@ export const ContainerSection = styled(Container)(({ theme }) => ({
   [theme.breakpoints.up("lg")]: {
     padding: "120px 120px",
     width: "1400px",
+  },
+  "& .main-title": {
+    marginBottom: "32px",
+    textAlign: "center ",
+    [theme.breakpoints.up("sm")]: { marginBottom: "56px" },
+    [theme.breakpoints.up("lg")]: {
+      marginBottom: "72px",
+    },
+  },
+}));
+
+export const ContainerSectionPage = styled(ContainerSection)(({ theme }) => ({
+  "&.MuiContainer-root": { paddingTop: "16px" },
+}));
+export const PageContainerS = styled("main")(({ theme }) => ({
+  backgroundColor: theme.palette.primary.lightBlue2,
+  color: theme.palette.primary.main,
+}));
+export const FormContainer = styled(Container)(({ theme }) => ({
+  width: "100%",
+  overflow: "hidden",
+  backgroundColor: theme.palette.primary.white,
+  padding: "16px",
+  borderRadius: "35px",
+  color: theme.palette.primary.main,
+
+  [theme.breakpoints.up("sm")]: {
+    padding: "24px",
+    borderRadius: "50px",
+  },
+  [theme.breakpoints.up("lg")]: {
+    padding: "32px",
+  },
+}));
+
+export const InputS = styled("input")(({ theme }) => ({
+  padding: "16px",
+  border: `1px solid`,
+  borderColor: `${theme.palette.primary.main}`,
+  borderRadius: "50px",
+  fontFamily: "OpenSans, sans-serif",
+  fontSize: "16px",
+  fontWeight: "600",
+  lineHeight: "1.5",
+  color: theme.palette.primary.main,
+  transition: "borderColor 350ms linear",
+  [theme.breakpoints.up("md")]: {
+    fontSize: "18px",
+  },
+  "&::placeholder": {
+    color: theme.palette.primary.main,
+  },
+  "&:hover": {
+    borderColor: `${theme.palette.primary.darkBlue}`,
+  },
+  "&:focus": {
+    borderColor: `${theme.palette.primary.darkBlue}`,
+    outline: "none",
+  },
+  "&.error": {
+    borderColor: `${theme.palette.primary.red}`,
+    "&:hover": {
+      borderColor: `${theme.palette.primary.red}`,
+    },
+    "&:focus": {
+      borderColor: `${theme.palette.primary.red}`,
+      outline: "none",
+    },
+  },
+  "&.disabled": {
+    borderColor: `${theme.palette.primary.tertiaryDark}`,
   },
 }));

@@ -1,28 +1,67 @@
 import { useFormik } from "formik";
-import * as Yup from "yup";
-import { FormControlLabel, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { FormStyled, InputStyled } from "./ByLicensePlate.styled";
 import {
-  CheckboxContainerStyled,
-  CheckboxStyled,
   InputContStyled,
   SubmitButton,
 } from "../ByParameters/ByParameters.styled";
-import { SpriteSVG } from "../../images/SpriteSVG";
-import HelpCircle from "../HelpCircle/HelpCircle";
 
+import HelpCircle from "../HelpCircle/HelpCircle";
+import { GeneralCheckbox } from "../GeneralCheckbox/GeneralCheckbox";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
+import { setStateNumber } from "../../redux/Calculator/calculatorSlice";
+import {
+  setAddress,
+  setEngineCapacity,
+  setSubmitObj,
+} from "../../redux/byParameters/byParametersSlice";
+import {
+  setAutoMakers,
+  setAutoModelByMaker,
+} from "../../redux/References/referencesSlice";
+import { DNUMBER_REGEX } from "../../constants";
+import { setIsModalErrorOpen } from "../../redux/Global/globalSlice";
+import HelperList from "../HelpCircle/HelperList/HelperList";
 const ByLicensePlate = () => {
+  const navigate = useNavigate();
+  const locationPath = useLocation();
+  const dispatch = useDispatch();
+
   const formik = useFormik({
     initialValues: {
       licensePlate: "",
       benefits: false,
     },
+
+    validateOnChange: false,
     onSubmit: (values) => {
-      console.log(values);
+      const stateNumber = values.licensePlate.match(DNUMBER_REGEX);
+      if (!stateNumber) {
+        dispatch(setIsModalErrorOpen(true));
+        return;
+      }
+
+      const dateF = new Date(Date.now() + 86400000);
+      const d = dateF.toISOString().substring(0, 10);
+      const params = {
+        outsideUkraine: false,
+        customerCategory: values.benefits ? "PRIVILEGED" : "NATURAL",
+        stateNumber: values.licensePlate,
+        dateFrom: d,
+      };
+
+      dispatch(setAddress({ label: "", value: "" }));
+      dispatch(setEngineCapacity({ label: "", value: "" }));
+      dispatch(setAutoModelByMaker([]));
+      dispatch(setAutoMakers([]));
+      dispatch(setStateNumber(params.stateNumber));
+      dispatch(setSubmitObj(params));
+      navigate("/prices", {
+        state: { from: locationPath },
+      });
     },
-    validationSchema: Yup.object().shape({
-      licensePlate: Yup.string().required("Required field!"),
-    }),
   });
   return (
     <div>
@@ -30,32 +69,32 @@ const ByLicensePlate = () => {
         <InputContStyled>
           <Typography variant="body1" component="label" htmlFor="license-plate">
             Номер транспортного засобу
+            <HelpCircle lableText="Державний номерний знак" />
           </Typography>
           <InputStyled
             name="licensePlate"
             type="text"
-            value={formik.values.licensePlate}
-            onChange={formik.handleChange}
+            value={formik.values.licensePlate.trim().toUpperCase()}
+            onChange={(e) => {
+              const e2 = e.target.value.trim().toUpperCase();
+              e.target.value = e2;
+              formik.handleChange(e);
+            }}
             id="license-plate"
+            required
           />
         </InputContStyled>
-        <CheckboxContainerStyled component="span">
-          <FormControlLabel
-            control={
-              <CheckboxStyled
-                icon={<SpriteSVG name="icon-square" />}
-                checkedIcon={<SpriteSVG name="icon-square-checked" />}
-                value={formik.values.benefits}
-                onChange={formik.handleChange}
-                type="checkbox"
-                name="benefits"
-              />
-            }
-            label="Є пільги"
-          />
-          <HelpCircle lableText="тут потрібно ввести текст)))" />
-        </CheckboxContainerStyled>
-        <SubmitButton type="submit">Розрахувати вартість</SubmitButton>
+
+        <GeneralCheckbox
+          lableText="Є пільги"
+          name="benefits"
+          val={formik.values.benefits}
+          changeCB={formik.handleChange}
+          helper={<HelperList/>}
+        />
+        <SubmitButton type="submit" disabled={!formik.values.licensePlate}>
+          Розрахувати вартість
+        </SubmitButton>
       </FormStyled>
     </div>
   );

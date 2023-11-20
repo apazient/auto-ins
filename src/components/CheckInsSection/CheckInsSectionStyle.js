@@ -1,6 +1,6 @@
 import { styled } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
+import { Box } from "@mui/material";
+import { Container } from "@mui/material";
 import { BlueButton, ContainerSection } from "../../style/Global.styled";
 
 export const BoxImg = styled(Box)(({ theme }) => ({
@@ -45,6 +45,17 @@ export const ContCheck = styled(Container)(({ theme }) => ({
   [theme.breakpoints.up("lg")]: {
     display: "flex",
   },
+  "& .container": {
+    [theme.breakpoints.up("lg")]: {
+      display: "flex",
+      gap: "16px",
+    },
+  },
+  "& .title": {
+    marginBottom: "4px",
+    [theme.breakpoints.up("sm")]: { marginBottom: "8px" },
+    [theme.breakpoints.up("lg")]: { marginBottom: "0" },
+  },
 }));
 
 export const ContainerSectionS = styled(ContainerSection)(({ theme }) => ({
@@ -56,5 +67,15 @@ export const ContainerSectionS = styled(ContainerSection)(({ theme }) => ({
   },
   [theme.breakpoints.up("lg")]: {
     padding: "0 120px 120px 120px",
+  },
+
+  "& .button": {
+    marginTop: "24px",
+    width: "100%",
+    [theme.breakpoints.up("lg")]: {
+      marginTop: "32px",
+      width: "272px",
+      padding: "16px 38px",
+    },
   },
 }));

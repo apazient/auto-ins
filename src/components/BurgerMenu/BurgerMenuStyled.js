@@ -33,6 +33,12 @@ export const MenuContainer = styled(Drawer)(({ theme }) => ({
   "& .MuiBackdrop-root": {
     top: "80px",
   },
+  "& .menuBodyWrapper": {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    height: "calc(100% - 80px)",
+  },
 }));
 
 export const BodyMenu = styled(Box)(({ theme }) => ({

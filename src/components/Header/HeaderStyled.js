@@ -8,12 +8,17 @@ import {
   styled,
 } from "@mui/material";
 
-export const HeaderS = styled(Container)(({ theme }) => ({
-  [theme.breakpoints.up("xs")]: {
-    padding: "8px 16px",
-  },
+export const HeaderS = styled(Container)(({ theme }) => ({  
+  minwidth: "375px",
+  padding: "8px 16px",
+
   [theme.breakpoints.up("sm")]: {
+    width: "744px",
     padding: "16px 32px",
+  },
+  [theme.breakpoints.up("lg")]: {
+    width: "1400px",
+    padding: "16px 120px",
   },
 }));
 
@@ -31,13 +36,14 @@ export const HeaderBoxS = styled(Container)(({ theme }) => ({
   },
 }));
 
-export const LogoBoxS = styled(Box)(({ theme }) => ({
+export const LogoBoxS = styled(Link)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "center",
   width: "70px",
   height: "42px",
+  cursor: "pointer",
 
   [theme.breakpoints.up("sm")]: {
     width: "80px",
@@ -121,18 +127,18 @@ export const ChapterSpanHS = styled(Typography)(({ theme }) => ({
   },
 }));
 
-export const LinkS = styled(Link)(({ theme }) => ({  
-    width: "40px",
-    height: "40px",
-    backgroundColor: theme.palette.primary.white,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",    
-    borderRadius: "50%",
-    stroke: theme.palette.primary.main,
-    fill: "none",
-    transition: "stroke 250ms linear",
-    "&:hover": {
-      stroke: theme.palette.primary.blue,    
+export const LinkS = styled(Link)(({ theme }) => ({
+  width: "40px",
+  height: "40px",
+  backgroundColor: theme.palette.primary.white,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  borderRadius: "50%",
+  stroke: theme.palette.primary.main,
+  fill: "none",
+  transition: "stroke 250ms linear",
+  "&:hover": {
+    stroke: theme.palette.primary.blue,
   },
 }));

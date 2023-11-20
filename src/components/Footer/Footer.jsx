@@ -1,6 +1,6 @@
 import { Link as ScrollLink } from "react-scroll";
 import { SpriteSVG } from "../../images/SpriteSVG";
-// import RRR from "../RRR.js/RRR";
+import RRR from "../RRR.js/RRR";
 import {
   FooterS,
   FooterBoxS,
@@ -24,7 +24,7 @@ const Footer = () => {
   return (
     <footer style={{ oveflow: "hidden" }}>
       <FooterS disableGutters={true} maxWidth={false}>
-        {/* <RRR /> */}
+        <RRR />
         <FooterBoxS disableGutters={true}>
           <LogoBox>
             <BoxIconS className="logoIcon">
@@ -79,7 +79,7 @@ const Footer = () => {
             </LiItemS>
             <LiItemS disablePadding={true}>
               <LinkS
-                href="https://www.facebook.com"
+                href="https://www.facebook.com/profile.php?id=61551725567425"
                 target="_blank"
                 rel="noreferrer noopener"
                 aria-label="facebook"

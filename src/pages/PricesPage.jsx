@@ -1,12 +1,69 @@
-import { WhiteButton } from "../style/Global.styled";
+import { useLocation, useNavigate } from "react-router-dom";
+import isEqual from "lodash.isequal";
+import { CostCalculation } from "../components/CostCalculation/CostCalculation";
 
-export const PricesPage = () => {
+import { useEffect, useRef } from "react";
+import OutletPageWrapper from "../components/OutletPageWrapper";
+import ModalError from "../components/ModalError/ModalError";
+
+import ProposalsFilter from "../components/ProposalsFilter/ProposalsFilter";
+import CompanyList from "../components/CompanyList/CompanyList";
+import { useDispatch, useSelector } from "react-redux";
+import { osagoByDn, osagoByParams } from "../redux/Calculator/operations";
+import { getSubmitObject } from "../redux/byParameters/selectors";
+import {
+  getStateCalculator,
+  getStateNumber,
+} from "../redux/Calculator/selectors";
+
+import { getIsModalErrorOpen } from "../redux/Global/selectors";
+import { LinearProgress } from "@mui/material";
+import { autoByNumber } from "../redux/References/operations";
+import LineSection from "../components/LineSection/LineSection";
+
+const PricesPage = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { current } = useRef(location.state?.from);
+  const userParams = useSelector(getSubmitObject);
+  const stateNumber = useSelector(getStateNumber);
+  const isError = useSelector(getIsModalErrorOpen);
+  const isLoadingCalculator = useSelector(getStateCalculator);
+  const prevUserParams = useRef(userParams);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    let subscribed = true;
+
+    if (!Object.hasOwn(userParams, "dateFrom") && stateNumber === "") {
+      navigate("/");
+      return;
+    }
+
+    if (subscribed) {
+      if (stateNumber && userParams) {
+        dispatch(osagoByDn(userParams));
+        dispatch(autoByNumber(stateNumber));
+      }
+      if (!stateNumber && userParams) {
+        dispatch(osagoByParams(userParams));
+      }
+    }
+    return () => {
+      subscribed = false;
+    };
+  }, [dispatch, userParams, stateNumber, navigate]);
+
   return (
     <>
-      <div>PricesPage</div>
-      <WhiteButton> WhiteButton</WhiteButton>
+      <OutletPageWrapper>
+        <CostCalculation />
+        <ProposalsFilter />
+        <LineSection />
+        {isLoadingCalculator && <LinearProgress />}
+        <CompanyList />
+      </OutletPageWrapper>
     </>
   );
 };
-
 export default PricesPage;

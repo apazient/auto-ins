@@ -33,12 +33,21 @@ export const theme = createTheme({
     error: {
       main: "#E04040",
     },
+    inputBase: {
+      main: "#052A74",
+    },
+  },
+  primary: {
+    "&:hover": {
+      color: "#1547F8",
+    },
   },
   breakpoints: {
     values: {
       xs: 0,
       sm: 744,
       md: 900,
+      ml: 1160,
       lg: 1400,
       xl: 1536,
     },
@@ -59,11 +68,36 @@ export const theme = createTheme({
         ],
         body: {
           backgroundColor: "#030303",
+          scrollbarWidth: "thin",
+          scrollbarColor: "rgba(255, 255, 255, 0.8) rgba(21, 71, 248, 0.6)",
         },
         img: {
           display: "block",
           maxWidth: "100%",
           height: "auto",
+        },
+        ul: { margin: 0, padding: 0 },
+        h1: { margin: 0, padding: 0 },
+        h2: { margin: 0, padding: 0 },
+        h3: { margin: 0, padding: 0 },
+        h4: { margin: 0, padding: 0 },
+        h5: { margin: 0, padding: 0 },
+        h6: { margin: 0, padding: 0 },
+        p: { margin: 0, padding: 0 },
+      },
+    },
+    MuiLinearProgress: {
+      styleOverrides: {
+        indeterminate: {
+          backgroundColor: "#F7F8FF",
+          height: "6px",
+          borderRadius: "4px",
+        },
+        bar: {
+          backgroundColor: "#E8C71A",
+          transition: "transform 0.6s linear 0s",
+          animation:
+            "2.2s cubic-bezier(0.65, 0.815, 0.735, 0.395) 0s infinite normal none running animation-ozg7p2",
         },
       },
     },
@@ -125,7 +159,7 @@ theme.typography.body1 = {
     fontFamily: "OpenSans-Regular, sans-serif",
     fontWeight: 400,
     color: theme.palette.primary.white,
-    lineHeight: "1.5rem",
+    lineHeight: "1.5em",
   },
   [theme.breakpoints.up("sm")]: {
     fontSize: "1rem",
@@ -190,4 +224,47 @@ theme.typography.caption = {
     fontSize: "1rem",
   },
   [theme.breakpoints.up("lg")]: {},
+};
+theme.typography.formTitle = {
+  [theme.breakpoints.up("xs")]: {
+    fontSize: "1rem",
+    fontFamily: "OpenSans-ExtraBold, sans-serif",
+    fontWeight: 800,
+    color: theme.palette.primary.main,
+    lineHeight: 1.5,
+  },
+  [theme.breakpoints.up("sm")]: {
+    fontSize: "1.375rem",
+  },
+  [theme.breakpoints.up("lg")]: {},
+};
+theme.typography.inputLable = {
+  [theme.breakpoints.up("xs")]: {
+    fontSize: "0.875rem",
+    fontFamily: "OpenSans-SemiBold, sans-serif",
+    fontWeight: 600,
+    color: theme.palette.primary.main,
+    lineHeight: 1.5,
+  },
+  [theme.breakpoints.up("sm")]: {
+    fontSize: "1rem",
+  },
+  "&.disabled": {
+    color: `${theme.palette.primary.tertiaryDark}`,
+  },
+};
+
+theme.typography.inputSpan = {
+  fontSize: "12px",
+  fontFamily: "OpenSans-Regular, sans-serif",
+  fontWeight: 400,
+  color: theme.palette.primary.main,
+  lineHeight: "1.5rem",
+  margin: "4px 0 16px",
+  [theme.breakpoints.up("md")]: {
+    margin: "8px 0 16px",
+  },
+  [theme.breakpoints.up("lg")]: {
+    margin: "16px 0 24px",
+  },
 };

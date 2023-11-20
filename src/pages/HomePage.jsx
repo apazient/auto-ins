@@ -1,16 +1,31 @@
-import HeroTabs from "../components/HeroTabs/HeroTabs";
-import { AccordionSection } from "../components/AccordionSection/AccordionSection";
-import CheckInsSection from "../components/CheckInsSection/CheckInsSection";
-import InfoSection from "../components/InfoSection/InfoSection";
-
-import { useEffect } from "react";
-import AdvatagesSection from "../components/AdvatagesSection/AdvatagesSection";
+import { lazy, Suspense, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import Partners from "../components/Partners/Partners";
+const AccordionSection = lazy(() =>
+  import("../components/AccordionSection/index")
+);
+const CheckInsSection = lazy(() =>
+  import("../components/CheckInsSection/index")
+);
+const InfoSection = lazy(() => import("../components/InfoSection/index"));
+const AdvatagesSection = lazy(() =>
+  import("../components/AdvantagesSection/index")
+);
+const Partners = lazy(() => import("../components/Partners/Partners"));
+
+import HeroTabs from "../components/HeroTabs/HeroTabs";
+
+import { useDispatch, useSelector } from "react-redux";
+import { loginThunk } from "../redux/Calculator/operations";
+import { getUser } from "../redux/Calculator/selectors";
+import ModalError from "../components/ModalError/ModalError";
+import { getIsModalErrorOpen } from "../redux/Global/selectors";
 
 const HomePage = () => {
   const { state } = useLocation();
   const { id } = state || {};
+  const dispatch = useDispatch();
+  const user = useSelector(getUser);
+  const isError = useSelector(getIsModalErrorOpen);
 
   useEffect(() => {
     let element = document.getElementById(id);
@@ -19,15 +34,32 @@ const HomePage = () => {
     }
   }, [id]);
 
+  useEffect(() => {
+    if (user) return;
+    dispatch(loginThunk());
+  }, [dispatch, user]);
+
   return (
     <>
-      <HeroTabs />
-
-      <AdvatagesSection />
-      <CheckInsSection />
-      <Partners />
-      <AccordionSection />
-      <InfoSection />
+      <main>
+        <HeroTabs />
+        <Suspense>
+          <AdvatagesSection />
+        </Suspense>
+        <Suspense>
+          <CheckInsSection />
+        </Suspense>
+        <Suspense>
+          <Partners />
+        </Suspense>
+        <Suspense>
+          <AccordionSection />
+        </Suspense>
+        <Suspense>
+          <InfoSection />
+        </Suspense>
+      </main>
+      {isError && <ModalError />}
     </>
   );
 };

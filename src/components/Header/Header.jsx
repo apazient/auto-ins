@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import { Link as ScrollLink } from "react-scroll";
 import { useTheme } from "@mui/material";
 import { useMediaQuery } from "@mui/material";
@@ -13,7 +14,8 @@ import {
   LogoTextHS,
   UlListHS,
 } from "./HeaderStyled";
-import BurgerMenu from "../BurgerMenu/BurgerMenu";
+// import BurgerMenu from "../BurgerMenu/BurgerMenu";
+const BurgerMenu = lazy(() => import("../BurgerMenu/BurgerMenu"));
 import { useNavigate } from "react-router-dom";
 
 const Header = () => {
@@ -28,7 +30,7 @@ const Header = () => {
     <header>
       <HeaderS disableGutters={true} maxWidth={false}>
         <HeaderBoxS>
-          <LogoBoxS>
+          <LogoBoxS href="/" rel="noreferrer noopener">
             <BoxIconHS className="logoIcon">
               <SpriteSVG name={"icon-logo"} />
             </BoxIconHS>
@@ -37,48 +39,42 @@ const Header = () => {
           {isLargeScreen ? (
             <>
               <UlListHS>
-                <LiItemHS
-                  disablePadding={true}
-                  onClick={() => handleScrollToSection("переваги")}
-                >
+                <LiItemHS disablePadding={true}>
                   <ScrollLink
                     to="переваги"
                     smooth={true}
                     duration={700}
                     style={{ cursor: "pointer" }}
                     activeClass="active"
+                    onClick={() => handleScrollToSection("переваги")}
                   >
                     <ChapterSpanHS className="chapterSpan">
                       Переваги
                     </ChapterSpanHS>
                   </ScrollLink>
                 </LiItemHS>
-                <LiItemHS
-                  disablePadding={true}
-                  onClick={() => handleScrollToSection("партнери")}
-                >
+                <LiItemHS disablePadding={true}>
                   <ScrollLink
                     to="партнери"
                     smooth={true}
                     duration={700}
                     style={{ cursor: "pointer" }}
                     activeClass="active"
+                    onClick={() => handleScrollToSection("партнери")}
                   >
                     <ChapterSpanHS className="chapterSpan">
                       Партнери
                     </ChapterSpanHS>
                   </ScrollLink>
                 </LiItemHS>
-                <LiItemHS
-                  disablePadding={true}
-                  onClick={() => handleScrollToSection("питання-відповіді")}
-                >
+                <LiItemHS disablePadding={true}>
                   <ScrollLink
                     to="питання-відповіді"
                     smooth={true}
                     duration={700}
                     style={{ cursor: "pointer" }}
                     activeClass="active"
+                    onClick={() => handleScrollToSection("питання-відповіді")}
                   >
                     <ChapterSpanHS className="chapterSpan">
                       Питання-відповіді
@@ -101,7 +97,7 @@ const Header = () => {
                 </LiItemHS>
                 <LiItemHS disablePadding={true}>
                   <LinkS
-                    href="https://www.facebook.com"
+                    href="https://www.facebook.com/profile.php?id=61551725567425"
                     target="_blank"
                     rel="noreferrer noopener"
                     aria-label="facebook"
@@ -138,7 +134,9 @@ const Header = () => {
               </UlListHS>
             </>
           ) : (
-            <BurgerMenu sx={{ width: "32px" }} />
+            <Suspense>
+              <BurgerMenu sx={{ width: "32px" }} />
+            </Suspense>
           )}
         </HeaderBoxS>
       </HeaderS>
