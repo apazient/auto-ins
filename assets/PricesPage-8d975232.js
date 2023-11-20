@@ -1,1 +1,0 @@
-import{j as t}from"./index-dc70f43d.js";import{W as e}from"./Global.styled-b455a442.js";const i=()=>t.jsxs(t.Fragment,{children:[t.jsx("div",{children:"PricesPage"}),t.jsx(e,{children:" WhiteButton"})]});export{i as PricesPage,i as default};
