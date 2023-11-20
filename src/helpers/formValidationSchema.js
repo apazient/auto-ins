@@ -37,8 +37,6 @@ export const carDataFormValidationSchema = () =>
         new Date().getFullYear(),
         "Рік не може бути більшим за поточний рік"
       ),
-
-    brand: Yup.object().required("Обов’язкове поле!"),
     model: Yup.object().required("Обов’язкове поле!"),
     bodyNumber: Yup.string()
       .required("Обов’язкове поле!")

@@ -5,29 +5,24 @@ import {
   InputContStyled,
   SubmitButton,
 } from "../ByParameters/ByParameters.styled";
-
 import HelpCircle from "../HelpCircle/HelpCircle";
 import { GeneralCheckbox } from "../GeneralCheckbox/GeneralCheckbox";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-
-import { setStateNumber } from "../../redux/Calculator/calculatorSlice";
-import {
-  setAddress,
-  setEngineCapacity,
-  setSubmitObj,
-} from "../../redux/byParameters/byParametersSlice";
-import {
-  setAutoMakers,
-  setAutoModelByMaker,
-} from "../../redux/References/referencesSlice";
 import { DNUMBER_REGEX } from "../../constants";
-import { setIsModalErrorOpen } from "../../redux/Global/globalSlice";
 import HelperList from "../HelpCircle/HelperList/HelperList";
+import { useActions } from "../../hooks/useActions";
 const ByLicensePlate = () => {
   const navigate = useNavigate();
   const locationPath = useLocation();
-  const dispatch = useDispatch();
+  const {
+    setAddress,
+    setIsModalErrorOpen,
+    setEngineCapacity,
+    setAutoModelByMaker,
+    setStateNumber,
+    setAutoMakers,
+    setSubmitObj,
+  } = useActions();
 
   const formik = useFormik({
     initialValues: {
@@ -39,7 +34,7 @@ const ByLicensePlate = () => {
     onSubmit: (values) => {
       const stateNumber = values.licensePlate.match(DNUMBER_REGEX);
       if (!stateNumber) {
-        dispatch(setIsModalErrorOpen(true));
+        setIsModalErrorOpen(true);
         return;
       }
 
@@ -52,12 +47,12 @@ const ByLicensePlate = () => {
         dateFrom: d,
       };
 
-      dispatch(setAddress({ label: "", value: "" }));
-      dispatch(setEngineCapacity({ label: "", value: "" }));
-      dispatch(setAutoModelByMaker([]));
-      dispatch(setAutoMakers([]));
-      dispatch(setStateNumber(params.stateNumber));
-      dispatch(setSubmitObj(params));
+      setAddress({ label: "", value: "" });
+      setEngineCapacity({ label: "", value: "" });
+      setAutoModelByMaker([]);
+      setAutoMakers([]);
+      setStateNumber(params.stateNumber);
+      setSubmitObj(params);
       navigate("/prices", {
         state: { from: locationPath },
       });
@@ -90,7 +85,7 @@ const ByLicensePlate = () => {
           name="benefits"
           val={formik.values.benefits}
           changeCB={formik.handleChange}
-          helper={<HelperList/>}
+          helper={<HelperList />}
         />
         <SubmitButton type="submit" disabled={!formik.values.licensePlate}>
           Розрахувати вартість
