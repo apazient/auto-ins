@@ -27,6 +27,7 @@ export const getAutoKindAndLimit = (data) => {
     case "F":
       return { autoKind: "TRAILER", autoKindLimit: "0" };
     default:
-      return "Not found";
+      "Not found";
   }
+  return "Not found";
 };
