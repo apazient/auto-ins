@@ -3,7 +3,7 @@ import { addYearToDate } from "../../helpers/addYearToDate";
 import { responseDGONormalize } from "../../helpers/dataNormalize/responseDGONormalize";
 import { responseOSAGONormalize } from "../../helpers/dataNormalize/responseOSAGONormalize";
 import { userNormalize } from "../../helpers/dataNormalize/userNormalize";
-import { getAutoKindAndLimit } from "../../helpers/getAutoKindAndLimit.js";
+import { getAutoKindAndLimit } from "../../helpers/getAutoKindAndLimit";
 import { mergeObjectsById } from "../../helpers/mergeObjectsById";
 import { sortAndFilterTariff } from "../../helpers/sortAndFilterTariff";
 import { instance } from "../../services/api";
