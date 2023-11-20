@@ -28,8 +28,6 @@ import {
   PRIVILEGEDSelectOptions,
 } from "../../assets/utils/isPrivilegedOptions";
 import { useDispatch, useSelector } from "react-redux";
-import { setGlobalCustomerDataCustomer } from "../../redux/Global/globalSlice";
-
 import { getAutoByNumber } from "../../redux/References/selectors";
 import {
   carDataFormValidationSchema,
@@ -37,6 +35,7 @@ import {
   HomeAddressFormValidationSchema,
 } from "../../helpers/formValidationSchema";
 import { getSubmitObject } from "../../redux/byParameters/selectors";
+import { useActions } from "../../hooks/useActions";
 
 const steps = [
   { Контакти: "icon-email" },
@@ -57,6 +56,7 @@ const CarDataForm = lazy(() => import("../../forms/CarDataForm/CarDataForm"));
 
 const Stepper = ({ backLinkRef }) => {
   const dispatch = useDispatch();
+  const { setGlobalCustomerDataCustomer } = useActions();
   const [activeStep, setActiveStep] = useState(0);
 
   const [identityCard, setIdentityCard] = useState([]);
@@ -156,12 +156,10 @@ const Stepper = ({ backLinkRef }) => {
         ...values,
       };
       console.log("values", values);
-      dispatch(setGlobalCustomerDataCustomer(values));
+      setGlobalCustomerDataCustomer(values);
     },
 
     validationSchema: carDataFormValidationSchema(),
-    // validateOnBlur: true,
-    // validateOnChange: false,
     enableReinitialize: true,
   });
 

@@ -1,5 +1,4 @@
 export const autoKindAndLimit = (data) => {
-  console.log(data);
   switch (data) {
     case "A1":
       return { autoKind: "MOTO", autoKindLimit: "300" };
