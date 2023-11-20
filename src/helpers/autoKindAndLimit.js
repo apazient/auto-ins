@@ -1,4 +1,5 @@
-export const getAutoKindAndLimit = (data) => {
+export const autoKindAndLimit = (data) => {
+  console.log(data);
   switch (data) {
     case "A1":
       return { autoKind: "MOTO", autoKindLimit: "300" };
@@ -27,7 +28,6 @@ export const getAutoKindAndLimit = (data) => {
     case "F":
       return { autoKind: "TRAILER", autoKindLimit: "0" };
     default:
-      "Not found";
+      return {};
   }
-  return "Not found";
 };
