@@ -18,13 +18,15 @@ export const validationName = () =>
 export const carDataFormValidationSchema = () =>
   Yup.object().shape({
     outsideUkraine: Yup.boolean(),
-    stateNumber: Yup.string().when("outsideUkraine", {
-      is: false,
-      then: () =>
-        Yup.string()
-          .required("Обов’язкове поле!")
-          .matches(DNUMBER_REGEX, "Номер авто вказано невірно"),
-    }),
+    stateNumber: Yup.string()
+      .required("Обов’язкове поле")
+      .when("outsideUkraine", {
+        is: false,
+        then: () =>
+          Yup.string()
+            .required("Обов’язкове поле!")
+            .matches(DNUMBER_REGEX, "Номер авто вказано невірно"),
+      }),
 
     year: Yup.number()
       .integer("Рік повинен бути цілим числом")
@@ -35,7 +37,8 @@ export const carDataFormValidationSchema = () =>
         new Date().getFullYear(),
         "Рік не може бути більшим за поточний рік"
       ),
-    // brand: validationName(),
+
+    brand: Yup.object().required("Обов’язкове поле!"),
     model: Yup.object().required("Обов’язкове поле!"),
     bodyNumber: Yup.string()
       .required("Обов’язкове поле!")

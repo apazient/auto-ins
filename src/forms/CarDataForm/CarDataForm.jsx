@@ -110,16 +110,19 @@ const CarDataForm = ({ formik }) => {
           customFunc={handleChangeStateNumber}
           formikData={formik}
         />
-        {formik.errors.stateNumber ? (
+        {/* {formik.errors.stateNumber ? (
           <div>{formik.errors.stateNumber}</div>
-        ) : null}
+        ) : null} */}
         <GeneralInput
           id="year"
           lableText="Рік випуску*:"
           formikData={formik}
           isDisabled={disabled}
         />
-        {formik.errors.year ? <div>{formik.errors.year}</div> : null}
+        {/* {formik.errors.year ? <div>{formik.errors.year}</div> : null} */}
+        {formik.errors.brand ? (
+          <div style={{ color: "red" }}>{formik.errors.brand}</div>
+        ) : null}
         <GeneralSelect
           id="brand"
           lableText="Марка*:"
@@ -131,7 +134,10 @@ const CarDataForm = ({ formik }) => {
           changeCB={handleChangeBrand}
           isDisabled={disabled}
         />
-        {formik.errors.brand ? <div>{formik.errors.brand}</div> : null}
+        {/* {formik.errors.brand ? <div>{formik.errors.brand}</div> : null} */}
+        {formik.errors.model ? (
+          <div style={{ color: "red" }}>{formik.errors.model}</div>
+        ) : null}
         <GeneralSelect
           id="model"
           lableText="Модель*:"
@@ -143,9 +149,7 @@ const CarDataForm = ({ formik }) => {
           isDisabled={disabled}
           changeCB={handleChangeModel}
         />
-        {formik.errors.model ? (
-          <div style={{ color: "red" }}>{formik.errors.model}</div>
-        ) : null}
+
         <GeneralInput
           id="bodyNumber"
           lableText="VIN Номер*:"
@@ -153,9 +157,9 @@ const CarDataForm = ({ formik }) => {
           customFunc={handleChangeVinNumber}
           isDisabled={disabled}
         />
-        {formik.errors.bodyNumber ? (
+        {/* {formik.errors.bodyNumber ? (
           <div>{formik.errors.bodyNumber}</div>
-        ) : null}
+        ) : null} */}
       </InputContBoxStyled>
     </>
   );
