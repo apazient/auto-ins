@@ -81,7 +81,8 @@ const Stepper = ({ backLinkRef }) => {
   // }, [dispatch]);
   // =======================Formik======================================
   const contactsFormik = useFormik({
-    initialValues: contactsInitialValues,    
+    initialValues: contactsInitialValues,
+    validationSchema: contactsValidationSchema(),
     onSubmit: (values) => {
       console.log("contacts", values);      
       dispatch(setGlobalCustomerDataCustomer(values));
@@ -91,6 +92,7 @@ const Stepper = ({ backLinkRef }) => {
 
   const insuredDataFormik = useFormik({
     initialValues: insuredDataInitialValues,
+    // validationSchema: insuredDataFormValidationSchema(),
     onSubmit: (values) => {
       console.log("insured", values);
       const {
