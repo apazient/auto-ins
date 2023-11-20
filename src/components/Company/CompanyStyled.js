@@ -177,7 +177,7 @@ export const ButtonStyled = styled(Button)(({ theme }) => ({
   padding: "16px 38px",
   fontSize: "1rem",
   borderRadius: "50px",
-  fontFamily: "OpenSans-SemiBold",
+  fontFamily: "Open Sans",
   fontWeight: 600,
   lineHeight: "1.5",
   textTransform: "none",

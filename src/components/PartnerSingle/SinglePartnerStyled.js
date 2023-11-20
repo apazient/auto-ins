@@ -56,7 +56,7 @@ export const RatingTextS = styled(Typography)(({ theme }) => ({
   "&.ratingText": {
     margin: "0",
     fontSize: "14px",
-    fontFamily: "OpenSans, sans-serif",
+    fontFamily: "Open Sans, sans-serif",
     fontWeight: 600,
     color: theme.palette.primary.main,
     lineHeight: "1.5",

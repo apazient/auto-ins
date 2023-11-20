@@ -38,7 +38,7 @@ export const ButtonS = styled(NavLink)(({ theme }) => ({
   width: "100%",
   borderRadius: "50px",
   fontSize: "16px",
-  fontFamily: "OpenSans-SemiBold",
+  fontFamily: "Open Sans",
   lineHeight: "1.5em",
   [theme.breakpoints.up("sm")]: { width: "178px", fontSize: "18px" },
   "&:hover, &:active, &:visited": {

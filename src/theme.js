@@ -54,6 +54,21 @@ export const theme = createTheme({
     fontFamily: ["Open Sans", "sans-serif"].join(","),
   },
   components: {
+    MuiLinearProgress: {
+      styleOverrides: {
+        indeterminate: {
+          backgroundColor: "#F7F8FF",
+          height: "6px",
+          borderRadius: "4px",
+        },
+        bar: {
+          backgroundColor: "#E8C71A",
+          transition: "transform 0.6s linear 0s",
+          animation:
+            "2.2s cubic-bezier(0.65, 0.815, 0.735, 0.395) 0s infinite normal none running animation-ozg7p2",
+        },
+      },
+    },
     MuiCssBaseline: {
       styleOverrides: `@font-face {
              font-display: swap;
@@ -139,7 +154,6 @@ theme.typography.h3 = {
   [theme.breakpoints.up("xs")]: {
     fontSize: "1rem",
     fontFamily: "Open Sans",
-    // fontFamily: "OpenSans-ExtraBold, sans-serif",
     fontWeight: 800,
     color: theme.palette.primary.white,
     lineHeight: "1.5rem",
@@ -153,7 +167,6 @@ theme.typography.h3 = {
 theme.typography.body1 = {
   [theme.breakpoints.up("xs")]: {
     fontSize: "0.875rem",
-
     fontFamily: "Open Sans",
     fontWeight: 400,
     color: theme.palette.primary.white,
@@ -169,7 +182,6 @@ theme.typography.subtitle1 = {
   [theme.breakpoints.up("xs")]: {
     fontSize: "1rem",
     fontFamily: "Open Sans",
-    // fontFamily: "OpenSans-Bold, sans-serif",
     fontWeight: 700,
     color: theme.palette.primary.white,
     lineHeight: "1.5rem",
@@ -184,7 +196,6 @@ theme.typography.subtitle2 = {
   [theme.breakpoints.up("xs")]: {
     fontSize: "0.875rem",
     fontFamily: "Open Sans",
-    // fontFamily: "OpenSans-SemiBold, sans-serif",
     fontWeight: 600,
     color: theme.palette.primary.main,
     lineHeight: "1.31rem",
@@ -201,7 +212,6 @@ theme.typography.body2 = {
   [theme.breakpoints.up("xs")]: {
     fontSize: "0.875rem",
     fontFamily: "Open Sans",
-    // fontFamily: "OpenSans-SemiBold, sans-serif",
     fontWeight: 400,
     color: theme.palette.primary.main,
     lineHeight: "1.31",
@@ -217,7 +227,6 @@ theme.typography.caption = {
   [theme.breakpoints.up("xs")]: {
     fontSize: "0.875rem",
     fontFamily: "Open Sans",
-    // fontFamily: "OpenSans-Regular, sans-serif",
     fontWeight: 400,
     color: theme.palette.primary.main,
     lineHeight: "1.5",
@@ -230,8 +239,7 @@ theme.typography.caption = {
 theme.typography.formTitle = {
   [theme.breakpoints.up("xs")]: {
     fontSize: "1rem",
-    // fontFamily: "Open Sans",
-    // fontFamily: "OpenSans-ExtraBold, sans-serif",
+    fontFamily: "Open Sans",
     fontWeight: 800,
     color: theme.palette.primary.main,
     lineHeight: 1.5,
@@ -244,7 +252,6 @@ theme.typography.formTitle = {
 theme.typography.inputLable = {
   [theme.breakpoints.up("xs")]: {
     fontSize: "0.875rem",
-    // fontFamily: "OpenSans-SemiBold, sans-serif",
     fontWeight: 600,
     fontFamily: "Open Sans",
     color: theme.palette.primary.main,
@@ -260,7 +267,6 @@ theme.typography.inputLable = {
 
 theme.typography.inputSpan = {
   fontSize: "12px",
-  // fontFamily: "OpenSans-Regular, sans-serif",
   fontWeight: 400,
   fontFamily: "Open Sans",
   color: theme.palette.primary.main,

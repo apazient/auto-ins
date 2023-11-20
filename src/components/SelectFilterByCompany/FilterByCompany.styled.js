@@ -27,7 +27,7 @@ export const InputStyled = styled(OutlinedInput)(({ theme }) => ({
   "& .MuiInputBase-input.MuiOutlinedInput-input": {
     color: `${theme.palette.primary.main}`,
     fontWeight: 600,
-    fontFamily: "OpenSans-SemiBold",
+    fontFamily: "Open Sans",
     fontSize: 16,
     lineHeight: "150%" /* 24px */,
     border: `none !important`,
@@ -108,7 +108,7 @@ export const MenuItemStyled = styled(MenuItem)(({ theme }) => ({
   },
   "& .MuiListItemText-root": {
     color: theme.palette.primary.main,
-    fontFamily: "OpenSans-SemiBold, sans-serif",
+    fontFamily: "Open Sans, sans-serif",
     fontSize: "18px",
     fontWeight: "600",
     lineHeight: 1.5,

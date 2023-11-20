@@ -18,7 +18,7 @@ export const InputStyled = styled(OutlinedInput)(({ theme }) => ({
   "& .MuiInputBase-input.MuiOutlinedInput-input": {
     color: `${theme.palette.primary.main}`,
     fontWeight: 600,
-    fontFamily: "OpenSans-SemiBold",
+    fontFamily: "Open Sans",
     fontSize: 16,
     lineHeight: "150%" /* 24px */,
     [theme.breakpoints.up("sm")]: {

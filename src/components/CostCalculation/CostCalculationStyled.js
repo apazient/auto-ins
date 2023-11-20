@@ -29,12 +29,12 @@ export const FormContainerS = styled(FormContainer)(({ theme }) => ({
     [theme.breakpoints.up("sm")]: {
       fontSize: "18px",
       fontWeight: "700",
-      fontFamily: "OpenSans-Bold",
+      fontFamily: "Open Sans",
     },
     [theme.breakpoints.up("lg")]: {
       fontSize: "22px",
       fontWeight: "800",
-      fontFamily: "OpenSans-ExtraBold",
+      fontFamily: "Open Sans",
     },
   },
 }));
@@ -68,7 +68,7 @@ export const Item = styled(Paper)(({ theme }) => ({
     [theme.breakpoints.up("lg")]: {
       fontSize: "18px",
       fontWeight: "600",
-      fontFamily: "OpenSans-SemiBold",
+      fontFamily: "Open Sans",
     },
   },
 }));
@@ -96,7 +96,7 @@ export const StyledDatatimeWrapper = styled("div")(({ theme }) => ({
     padding: "8px 12px",
     borderRadius: "50px",
     border: `1px solid ${theme.palette.primary.main}`,
-    fontFamily: "OpenSans-SemiBold",
+    fontFamily: "Open Sans",
     fontSize: "18px",
     fontWeight: "600",
   },

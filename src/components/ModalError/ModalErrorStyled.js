@@ -85,7 +85,7 @@ export const ButtonCancel = styled(Button)(({ theme }) => ({
   padding: "16px 38px",
   textDecoration: "none",
   borderRadius: "50px",
-  fontFamily: "OpenSans-SemiBold",
+  fontFamily: "Open Sans",
   fontWeight: 600,
   fontSize: "16px",
   lineHeight: "1.5em",
