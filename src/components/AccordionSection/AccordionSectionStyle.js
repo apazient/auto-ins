@@ -36,7 +36,7 @@ export const AccordionsSummary = styled(AccordionSummary)(({ theme }) => ({
 
   "& .subtitle": {
     [theme.breakpoints.up("sm")]: {
-      fontFamily: "OpenSans-Bold",
+      fontFamily: "Open Sans",
       fontSize: "18px",
       lineHeight: "1.5",
       fontWeight: "bold",

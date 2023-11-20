@@ -10,11 +10,11 @@ export const InputStyled = styled(OutlinedInput)(({ theme }) => ({
   "& .MuiInputBase-input.MuiOutlinedInput-input": {
     color: `${theme.palette.primary.main}`,
     fontWeight: 600,
-    fontFamily: "OpenSans-SemiBold",
+    fontFamily: "Open Sans",
     fontSize: 16,
     lineHeight: "150%" /* 24px */,
     outline: "none",
-    border:'none',
+    border: "none",
     "&:-webkit-autofill": {
       WebkitBackgroundClip: "text",
       WebkitTextFillColor: theme.palette.primary.main,
@@ -30,7 +30,7 @@ export const InputStyled = styled(OutlinedInput)(({ theme }) => ({
 
   "& fieldset.MuiOutlinedInput-notchedOutline": {
     outline: "none",
-    border:'none',
+    border: "none",
   },
   [theme.breakpoints.up("sm")]: {
     height: 59,

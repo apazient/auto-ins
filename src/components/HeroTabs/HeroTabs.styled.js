@@ -1,7 +1,7 @@
 import { Tabs, Tab, styled, Typography } from "@mui/material";
 
 export const TabStyled = styled(Tab)(({ theme }) => ({
-  fontFamily: "OpenSans-SemiBold",
+  fontFamily: "Open Sans",
   fontSize: "1rem",
   fontWeight: 700,
   textTransform: "none",
@@ -77,7 +77,7 @@ export const TitleStaled = styled(Typography)(({ theme }) => ({
 export const TypographyStyled = styled(Typography)(() => ({
   "& h1.MuiTypography-root.MuiTypography-h1.MuiTypography-alignCenter": {
     color: " #FEFEFF",
-    fontFamily: "OpenSans-SemiBold",
+    fontFamily: "Open Sans",
     fontSize: 24,
     fontWeight: "800",
     lineHeight: "150%" /* 36px */,

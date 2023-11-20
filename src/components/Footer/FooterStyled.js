@@ -60,10 +60,11 @@ export const LogoBox = styled(Box)(({ theme }) => ({
 
 export const LogoText = styled(Typography)(({ theme }) => ({
   "&.logoText": {
-    fontFamily: "OpenSans, sans-serif",
+    fontFamily: "Open Sans, sans-serif",
     fontSize: "33px",
     fontWeight: 700,
     lineHeight: "1.39",
+    inlineSize: "max-content",
     [theme.breakpoints.up("sm")]: {
       fontSize: "36px",
       lineHeight: "1.36",
@@ -113,12 +114,12 @@ export const UlListS = styled(List)(({ theme }) => ({
 
 export const LiItemS = styled(ListItem)`
   cursor: pointer;
-  width: auto;  
+  width: auto;
 `;
 
 export const ChapterSpan = styled(Typography)(({ theme }) => ({
   "&.chapterSpan": {
-    fontFamily: "OpenSans, sans-serif",
+    fontFamily: "Open Sans, sans-serif",
     fontSize: "14px",
     fontWeight: 600,
     lineHeight: "1.5",

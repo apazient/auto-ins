@@ -8,7 +8,7 @@ import {
   styled,
 } from "@mui/material";
 
-export const HeaderS = styled(Container)(({ theme }) => ({  
+export const HeaderS = styled(Container)(({ theme }) => ({
   minwidth: "375px",
   padding: "8px 16px",
 
@@ -81,7 +81,7 @@ export const BoxIconHS = styled(Box)(({ theme }) => ({
 
 export const LogoTextHS = styled(Typography)(({ theme }) => ({
   [theme.breakpoints.up("xs")]: {
-    fontFamily: "OpenSans, sans-serif",
+    fontFamily: "Open Sans, sans-serif",
     fontSize: "14px",
     fontWeight: 700,
     lineHeight: "0.74",
@@ -115,7 +115,7 @@ export const LiItemHS = styled(ListItem)`
 
 export const ChapterSpanHS = styled(Typography)(({ theme }) => ({
   "&.chapterSpan": {
-    fontFamily: "OpenSans, sans-serif",
+    fontFamily: "Open Sans, sans-serif",
     fontSize: "16px",
     fontWeight: 600,
     lineHeight: "1.5",
