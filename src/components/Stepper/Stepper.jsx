@@ -33,6 +33,7 @@ import { setGlobalCustomerDataCustomer } from "../../redux/Global/globalSlice";
 import { getAutoByNumber } from "../../redux/References/selectors";
 import {
   carDataFormValidationSchema,
+  contactsValidationSchema,
   HomeAddressFormValidationSchema,
 } from "../../helpers/formValidationSchema";
 import { getSubmitObject } from "../../redux/byParameters/selectors";
