@@ -13,7 +13,7 @@ const HelpCircle = ({ lableText = "", color = "" }) => {
       <Tooltip
         title={lableText}
         arrow
-        placement="right-end"
+        placement="top"
         TransitionComponent={Zoom}
       >
         <IconButton
@@ -36,7 +36,10 @@ const HelpCircle = ({ lableText = "", color = "" }) => {
 export default HelpCircle;
 
 HelpCircle.propTypes = {
-  lableText: PropTypes.string,
+  lableText: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.string
+  ]),
   color: PropTypes.string,
   colorBG: PropTypes.string,
 };

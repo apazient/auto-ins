@@ -1,56 +1,70 @@
-import Datetime from "react-datetime";
-import moment from "moment";
-import "moment/locale/uk";
-import "react-datetime/css/react-datetime.css";
 import { Box, Typography } from "@mui/material";
 import {
   BoxImg,
   FormContainerS,
   Item,
   StackS,
-  StyledDatatimeWrapper,
-  StyledDatetime,
   YellowButtonS,
 } from "./CostCalculationStyled";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getStateNumber } from "../../redux/Calculator/selectors";
+import {
+  getStateCalculator,
+  getStateNumber,
+} from "../../redux/Calculator/selectors";
 import { useEffect, useState } from "react";
 
-import { getSubmitObject } from "../../redux/byParameters/selectors";
+import {
+  getAddressAndAuto,
+  getSubmitObject,
+} from "../../redux/byParameters/selectors";
 import { setSubmitObj } from "../../redux/byParameters/byParametersSlice";
 import { Formik, useFormik } from "formik";
-import { getIsLoading } from "../../redux/Global/selectors";
 
 import { SpriteSVG } from "../../images/SpriteSVG";
 import { getAutoByNumber } from "../../redux/References/selectors";
-import { autoByNumber } from "../../redux/References/operations";
+
+import {
+  paramsByNumberNormalize,
+  pramsByParamsNormalize,
+} from "../../helpers/dataNormalize/paramsNormalize";
+
+import DatePicker, { registerLocale, setDefaultLocale } from "react-datepicker";
+import moment from "moment/moment";
+import "react-datepicker/dist/react-datepicker.css";
+import { uk } from "date-fns/locale";
+import addDays from "date-fns/addDays";
+import addMonths from "date-fns/addMonths";
 
 export const CostCalculation = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const stateNumber = useSelector(getStateNumber);
-  const { dateFrom } = useSelector((state) => state.byParameters.submitObj);
+  const { dateFrom } = useSelector(getSubmitObject);
+  const autoByNumber = useSelector(getAutoByNumber);
+  const submitObject = useSelector(getSubmitObject);
+  const isLoagingCalculator = useSelector(getStateCalculator);
+  const autoByParams = useSelector(getAddressAndAuto);
   const [userDate, setUserDate] = useState(new Date(dateFrom));
 
-  const autoByNumberRes = useSelector(getAutoByNumber);
-  const sendObject = useSelector(getSubmitObject);
-  const isLoading = useSelector(getIsLoading);
+  const [items, setItems] = useState([]);
 
-  const {
-    address: { label: address },
-    engineCapacity: { label: params },
-  } = useSelector((state) => state.byParameters);
+  registerLocale("uk", uk);
+  setDefaultLocale("uk");
+  useEffect(() => {
+    if (autoByNumber.length > 0) {
+      setItems(paramsByNumberNormalize(autoByNumber));
+    }
+    if (autoByNumber.length === 0 && stateNumber === "") {
+      setItems(pramsByParamsNormalize(autoByParams));
+    }
+  }, [stateNumber, autoByParams, autoByNumber]);
 
   useEffect(() => {
-    if (stateNumber !== "") {
-      dispatch(autoByNumber(stateNumber));
-    } else {
-      // dispatch(
-      //   setAutoByNumber([...params.split(" - "), address.split(",")[0]])
-      // );
-    }
-  }, [dispatch, stateNumber, params, address]);
+    return () => {
+      setItems([]);
+    };
+  }, []);
 
   const formik = useFormik({
     initialValues: {
@@ -59,82 +73,60 @@ export const CostCalculation = () => {
     onSubmit: (values) => {},
   });
 
-  const valid = (current) => {
-    const inThreeMonths = Datetime.moment().add(3, "months");
-    return (
-      current.isAfter(Datetime.moment()) && current.isBefore(inThreeMonths)
-    );
-  };
   const handleChangeDate = (e) => {
     const newObject = {
-      ...sendObject,
+      ...submitObject,
       dateFrom: moment(e).format("YYYY-MM-DD"),
     };
-    // dispatch(setIsLoading(true));
     setUserDate(e);
     dispatch(setSubmitObj(newObject));
   };
-  let inputProps = {
-    disabled: isLoading,
-  };
+
   return (
     <FormContainerS className="costCalc">
-      <Typography
-        variant="formTitle"
-        component="span"
-        sx={{
-          fontSize: { sm: "18px", lg: "22px" },
-          fontWeight: { sm: "700", lg: "800" },
-        }}
-      >
+      <Typography variant="formTitle" component="span" className="formTitle">
         Розрахунок вартості:
       </Typography>
       <Box className="wrapContent">
         <StackS direction="row">
-          {autoByNumberRes.map((el) => {
-            if (el) {
-              const { bodyNumber, year, modelText } = el;
-              el = [bodyNumber, year, modelText];
-              return el.map((item, index) => (
-                <Item key={index}>
-                  <Typography
-                    component="span"
-                    variant="inputLable"
-                    sx={{
-                      fontSize: { lg: "18px" },
-                      fontWeight: { lg: "600" },
-                    }}
-                  >
-                    {item}
-                  </Typography>
-                </Item>
-              ));
-            } else {
-              return null;
-            }
+          {items.map((el, index) => {
+            return (
+              <Item key={index}>
+                <Typography
+                  component="span"
+                  variant="inputLable"
+                  className="inputLable"
+                >
+                  {el}
+                </Typography>
+              </Item>
+            );
           })}
+
           <Formik onSubmit={formik.handleSubmit}>
-            <StyledDatatimeWrapper>
+            <Box>
               <label htmlFor="dateFrom" />
               Дата початку дії поліса:
-              <Datetime
+              <DatePicker
                 id="dateFrom"
                 value={dateFrom}
+                closeOnScroll={(e) => e.target === document}
                 onChange={handleChangeDate}
-                type="date"
+                disabled={isLoagingCalculator}
                 name="date"
-                dateFormat="YYYY-MM-DD"
-                timeFormat={false}
-                closeOnSelect={true}
-                isValidDate={valid}
+                dateFormat="yyyy-MM-dd"
+                showIcon={true}
+                minDate={addDays(new Date(), 1)}
+                maxDate={addMonths(new Date(), 3)}
+                startDate={dateFrom}
                 locale="uk"
-                inputProps={inputProps}
-                className="datePicker"
+                icon={
+                  <BoxImg>
+                    <SpriteSVG name={"icon-calendar"} />
+                  </BoxImg>
+                }
               />
-              <BoxImg>
-                <SpriteSVG name={"icon-calendar"} />
-              </BoxImg>
-            </StyledDatatimeWrapper>
+            </Box>
           </Formik>
         </StackS>
         <YellowButtonS type="submit" onClick={() => navigate("/")}>

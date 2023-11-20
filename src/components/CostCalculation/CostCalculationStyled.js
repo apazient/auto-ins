@@ -2,10 +2,10 @@ import Stack from "@mui/material/Stack";
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
 import { FormContainer, YellowButton } from "../../style/Global.styled";
-import Datetime from "react-datetime";
+
 import { blue } from "@mui/material/colors";
 import { Box } from "@mui/material";
-
+import DatePicker from "react-datepicker";
 export const FormContainerS = styled(FormContainer)(({ theme }) => ({
   [theme.breakpoints.up("lg")]: {
     display: "flex",
@@ -24,6 +24,18 @@ export const FormContainerS = styled(FormContainer)(({ theme }) => ({
   },
   "&.costCalc": {
     overflow: "visible",
+  },
+  "& .formTitle": {
+    [theme.breakpoints.up("sm")]: {
+      fontSize: "18px",
+      fontWeight: "700",
+      fontFamily: "OpenSans-Bold",
+    },
+    [theme.breakpoints.up("lg")]: {
+      fontSize: "22px",
+      fontWeight: "800",
+      fontFamily: "OpenSans-ExtraBold",
+    },
   },
 }));
 
@@ -51,6 +63,13 @@ export const Item = styled(Paper)(({ theme }) => ({
     boxShadow: "none",
     color: theme.palette.primary.main,
     border: `1px solid ${theme.palette.primary.main}`,
+  },
+  "& .inputLabel": {
+    [theme.breakpoints.up("lg")]: {
+      fontSize: "18px",
+      fontWeight: "600",
+      fontFamily: "OpenSans-SemiBold",
+    },
   },
 }));
 
@@ -123,7 +142,7 @@ export const StyledDatatimeWrapper = styled("div")(({ theme }) => ({
   },
 }));
 
-export const StyledDatetime = styled(Datetime)(({ theme }) => ({
+export const StyledDatetime = styled(DatePicker)(({ theme }) => ({
   "& input": {
     width: "280px",
     fontSize: "18px",

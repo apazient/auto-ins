@@ -14,9 +14,6 @@ const CompanyList = () => {
   let dgos = useSelector(getTariffVcl);
   const status = useSelector(getTariffsStatus);
   const insurerProposal = proposals?.map((companyObject) => {
-    if (dgos.length === 0) {
-      return;
-    }
     dgo = dgos?.find((el) => el?.insurerId === companyObject?.insurerId);
     if (!dgo) {
       dgo = null;

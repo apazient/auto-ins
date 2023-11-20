@@ -26,6 +26,7 @@ import {
   setParamsFromUrl,
 } from "../../redux/Global/globalSlice";
 import { getUser } from "../../redux/Calculator/selectors";
+import { getSubmitObject } from "../../redux/byParameters/selectors";
 
 const CompanyExpandMore = lazy(() =>
   import("../CompanyExpandMore/CompanyExpandMore")
@@ -48,6 +49,7 @@ const Company = ({ proposal }) => {
     discountedPayment: 0,
   });
   const [price, setPrice] = useState([]);
+
   useEffect(() => {
     if (!proposal) return;
   }, []);
@@ -68,7 +70,7 @@ const Company = ({ proposal }) => {
     onSubmit: (values) => {
       const sendObj = {
         insurerId,
-        price,
+        price: Math.round(price),
         autoCategory,
         tariff: franchise,
         dgoTarrif: chooseDgo,
@@ -99,7 +101,7 @@ const Company = ({ proposal }) => {
           price,
           insurer: { id: franchise.insurer.id, name: franchise.insurer.name },
           registrationPlace: registrationPlace || "",
-          autoCategory,
+          // autoCategory,
           franchise: franchise.franchise,
         })
       );
@@ -130,21 +132,6 @@ const Company = ({ proposal }) => {
             <GridContainerImg item xs={6} sm={12}>
               <CompanyCardMedia id={insurerId} alt={insurerName} />
             </GridContainerImg>
-            {/*
-            <GridContainer item xs={6} sm={12}>
-              <Typography
-                variant="subtitle2"
-                sx={{
-                  lineHeight: { sm: "1.5em" },
-                  marginBottom: { xs: "8px" },
-                }}
-              >
-                Рейтинг МТСБУ
-              </Typography>
-            </GridContainer>
-            <GridContainerRaiting item xs={6} sm={12}>
-              <RaitingStyled name="read-only" value={raitingCompany} readOnly />
-            </GridContainerRaiting> */}
           </Grid>
         </WrapperStyled>
         <BoxContent>
@@ -184,28 +171,16 @@ const Company = ({ proposal }) => {
               />
             </BoxSelect>
           </Box>
-
-          {/* <GeneralCheckbox
-            lableText="Свідомий захист"
-            name="check"
-            val={checkSavety}
-            color={theme.palette.primary.main}
-          /> */}
         </BoxContent>
         <WrapperStyled className="footer">
           <BoxFooter>
             <Typography component="span">Вартість</Typography>
             <Typography variant="h3" component="span" className="price">
-              {price} грн
+              {Math.round(price)} грн
             </Typography>
           </BoxFooter>
           <ButtonStyled type="submit">Придбати</ButtonStyled>
         </WrapperStyled>
-      </WrapperStyled>
-      <WrapperStyled>
-        <Suspense>
-          <CompanyExpandMore />
-        </Suspense>
       </WrapperStyled>
     </CardStyled>
   );

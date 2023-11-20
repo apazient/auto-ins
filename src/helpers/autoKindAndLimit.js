@@ -1,4 +1,5 @@
-export const getAutoKindAndLimit = (data) => {
+export const autoKindAndLimit = (data) => {
+  console.log(data);
   switch (data) {
     case "A1":
       return { autoKind: "MOTO", autoKindLimit: "300" };
@@ -15,19 +16,18 @@ export const getAutoKindAndLimit = (data) => {
     case "B5":
       return { autoKind: "CAR", autoKindLimit: "1600" };
     case "C1":
-      return { autoKind: "FREIGHT ", autoKindLimit: "2000" };
+      return { autoKind: "FREIGHT", autoKindLimit: "2000" };
     case "C2":
-      return { autoKind: "FREIGHT ", autoKindLimit: "2001" };
+      return { autoKind: "FREIGHT", autoKindLimit: "2001" };
     case "D1":
-      return { autoKind: "PASSENGER ", autoKindLimit: "20" };
+      return { autoKind: "PASSENGER", autoKindLimit: "20" };
     case "D2":
-      return { autoKind: "PASSENGER ", autoKindLimit: "21" };
+      return { autoKind: "PASSENGER", autoKindLimit: "21" };
     case "E":
-      return { autoKind: "TRAILER ", autoKindLimit: "0" };
+      return { autoKind: "TRAILER", autoKindLimit: "0" };
     case "F":
-      return { autoKind: "TRAILER ", autoKindLimit: "0" };
-
+      return { autoKind: "TRAILER", autoKindLimit: "0" };
     default:
-      "Not found";
+      return {};
   }
 };
