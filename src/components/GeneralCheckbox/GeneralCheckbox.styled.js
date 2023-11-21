@@ -23,6 +23,6 @@ export const CheckboxContainerStyled = styled(Box)(({ theme }) => ({
     },
   },
   [theme.breakpoints.up("lg")]: {
-    order: 1,
+    // order: 1,
   },
 }));

@@ -9,16 +9,35 @@ const FormPage = lazy(() => import("./pages/FormPage.jsx"));
 
 function App() {
   return (
-    <Suspense fallback={<Loader />}>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<HomePage />} />
-          <Route path="/prices" element={<PricesPage />} />
-          <Route path="/form" element={<FormPage />} />
-          <Route path="*" element={<Navigate to="/" />} />
-        </Route>
-      </Routes>
-    </Suspense>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route
+          index
+          element={
+            <Suspense fallback={<Loader />}>
+              <HomePage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/prices"
+          element={
+            <Suspense fallback={<Loader />}>
+              <PricesPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/form"
+          element={
+            <Suspense fallback={<Loader />}>
+              <FormPage />
+            </Suspense>
+          }
+        />
+        <Route path="*" element={<Navigate to="/" />} />
+      </Route>
+    </Routes>
   );
 }
 
