@@ -21,8 +21,8 @@ import HeroTabs from "../components/HeroTabs/HeroTabs";
 import ModalError from "../components/ModalError/ModalError";
 
 const HomePage = () => {
-  const { state } = useLocation();
-  const { id } = state || {};
+  const location = useLocation();
+  const { id } = location.state || {};
   const { loginThunk } = useActions();
 
   const user = useSelector(getUser);
@@ -39,6 +39,10 @@ const HomePage = () => {
     if (user) return;
     loginThunk();
   }, [user, loginThunk]);
+
+  if (isError) {
+    return <ModalError />;
+  }
 
   return (
     <>
@@ -60,7 +64,6 @@ const HomePage = () => {
           <InfoSection />
         </Suspense>
       </main>
-      {isError && <ModalError />}
     </>
   );
 };

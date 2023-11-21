@@ -1,4 +1,4 @@
-import DatePicker, { registerLocale, setDefaultLocale } from "react-datepicker";
+import { registerLocale, setDefaultLocale } from "react-datepicker";
 import moment from "moment/moment";
 import "react-datepicker/dist/react-datepicker.css";
 import { uk } from "date-fns/locale";
@@ -19,12 +19,12 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { DNUMBER_REGEX } from "../../constants";
 import HelperList from "../HelpCircle/HelperList/HelperList";
 import { useActions } from "../../hooks/useActions";
-import { BoxImg } from "../BurgerMenu/BurgerMenuStyled";
+
 import { SpriteSVG } from "../../images/SpriteSVG";
-import { useSelector } from "react-redux";
-import { getSubmitObject } from "../../redux/byParameters/selectors";
+
 import { useState } from "react";
 import { addDayToDate } from "../../helpers/addDayToDate";
+
 const ByLicensePlate = () => {
   registerLocale("uk", uk);
   setDefaultLocale("uk");
@@ -38,17 +38,16 @@ const ByLicensePlate = () => {
     setStateNumber,
     setAutoMakers,
     setSubmitObj,
+    osagoByDn,
+    autoByNumber,
   } = useActions();
 
   const [dateFrom, setDateFrom] = useState(
     moment(addDayToDate()).format("DD/MM/YYYY")
   );
-  console.log(dateFrom);
-
   const handleChangeDate = (e) => {
     setDateFrom(moment(e).format("DD/MM/YYYY"));
   };
-  console.log(dateFrom);
 
   const formik = useFormik({
     initialValues: {
@@ -59,7 +58,6 @@ const ByLicensePlate = () => {
 
     validateOnChange: false,
     onSubmit: (values) => {
-      console.log(dateFrom);
       const stateNumber = values.licensePlate.match(DNUMBER_REGEX);
       if (!stateNumber) {
         setIsModalErrorOpen(true);
@@ -79,11 +77,15 @@ const ByLicensePlate = () => {
       setAutoMakers([]);
       setStateNumber(params.stateNumber);
       setSubmitObj(params);
+      osagoByDn(params);
+      autoByNumber(params.stateNumber);
+
       navigate("/prices", {
         state: { from: locationPath },
       });
     },
   });
+
   return (
     <div>
       <FormStyled onSubmit={formik.handleSubmit}>

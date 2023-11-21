@@ -39,8 +39,6 @@ export const CostCalculation = React.memo(() => {
       setItems([]);
     };
   }, []);
-
-  console.log("cosCalculations");
   return (
     <FormContainerS className="costCalc">
       <Typography variant="formTitle" component="span" className="formTitle">
