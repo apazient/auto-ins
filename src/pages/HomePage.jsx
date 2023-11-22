@@ -19,6 +19,7 @@ const Partners = lazy(() => import("../components/Partners/Partners"));
 
 import HeroTabs from "../components/HeroTabs/HeroTabs";
 import ModalError from "../components/ModalError/ModalError";
+import AlertMUI from "../components/Alert/AlertMUI";
 
 const HomePage = () => {
   const location = useLocation();
@@ -45,8 +46,9 @@ const HomePage = () => {
   }
 
   return (
-    <>
+    <>      
       <main>
+        <AlertMUI type="info" message="Будь ласка, заповніть поля" />
         <HeroTabs />
         <Suspense>
           <AdvatagesSection />
