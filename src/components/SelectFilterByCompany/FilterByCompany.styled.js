@@ -6,6 +6,10 @@ export const InputContStyled = styled(Box)(({ theme }) => ({
   gap: 8,
   [theme.breakpoints.up("sm")]: {
     gap: 16,
+    width:292,
+  },
+  [theme.breakpoints.up("lg")]: {
+    width: 470,
   },
 }));
 export const InputStyled = styled(OutlinedInput)(({ theme }) => ({
@@ -77,16 +81,21 @@ export const SelectStyled = styled(Select)(({ theme }) => ({
   },
 
   width: "100%",
-  [theme.breakpoints.up("sm")]: {
-    // width: 187,
-  },
-  [theme.breakpoints.up("lg")]: {
-    // width: 272,
-  },
 }));
+
 export const MenuItemStyled = styled(MenuItem)(({ theme }) => ({
   color: theme.palette.primary.main,
   padding: 12,
+  transition: "color 200ms ease-in-out",
+  "&:hover": {
+    color: theme.palette.primary.blue,
+    "& .MuiListItemText-root": {
+      color: theme.palette.primary.blue,
+    },
+    "& svg": {
+      color: theme.palette.primary.blue,
+    }
+  },
   "&.Mui-selected": {
     "& .MuiListItemText-root": {
       color: theme.palette.primary.blue,
@@ -125,7 +134,6 @@ export const MenuProps = {
   PaperProps: {
     style: {
       maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      // width: 187,
       width: "fit-content",
       borderRadius: "25px",
       "&::-webkit-scrollbar": {
@@ -141,37 +149,4 @@ export const MenuProps = {
     },
   },
 };
-// export const MenuItem = {
-//                 color: "black", padding: 1.5,
-//                 "&.Mui-selected": {
-//                     "& .MuiListItemText-root": {
-//                       color: "#1547F8 !important",
-//                     },
-//                     "& .MuiButtonBase-root": {
-//                       "& svg": {
-//                         width: 20,
-//                         height:20,
-//                         fill:"white !important",
-//                         stroke: "#1547F8 !important",
-//                         background: "#1547F8 !important",
-//                         }
-//                     }
-//                 },
-//                 "& svg": {
-//                         width: 24,
-//                         height:24,
-//                   borderRadius:1,
-//                         },
-//                 "& .MuiListItemText-root": {
-//                   color: "black",
-//                   fontFamily: "Open Sans",
-//                   fontSize: '18px',
-//                   fontWeight: '600',
-//                   lineHeight: 1.5,
 
-//                 },
-//                 "& .MuiCheckbox-root": {
-//                   width:40,
-
-//                     }
-//               };
