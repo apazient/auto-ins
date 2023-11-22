@@ -1,4 +1,4 @@
-import { Box, Link, ListItem, Typography, styled } from "@mui/material";
+import { Box, ListItem, Typography, styled } from "@mui/material";
 
 export const SinglePartnerContainerS = styled(ListItem)(({ theme }) => ({
   boxSizing: "border-box",
@@ -23,10 +23,6 @@ export const SinglePartnerContainerS = styled(ListItem)(({ theme }) => ({
     padding: "35px",
   },
 }));
-
-export const LinkS = styled(Link)`
-  text-decoration: "none";
-`;
 
 export const LogoBoxPartnerS = styled(Box)(({ theme }) => ({
   width: "100%",
