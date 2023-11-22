@@ -21,7 +21,7 @@ const AlertMUI = ({ type, message }) => {
   return (
     <SnackbarS
       open={open}
-      autoHideDuration={33000}
+      autoHideDuration={3000}
       onClose={handleClose}      
       anchorOrigin={{ vertical: "top", horizontal: "right" }}
     >
