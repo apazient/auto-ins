@@ -104,7 +104,7 @@ const Stepper = ({ backLinkRef }) => {
         middleName,
         birthDate,
         taxNumber,
-        record, //????????????????????????
+        record,
         document: {
           //type: "", //document{}
           series,

@@ -1,7 +1,4 @@
-import { registerLocale, setDefaultLocale } from "react-datepicker";
 import moment from "moment/moment";
-import "react-datepicker/dist/react-datepicker.css";
-import { uk } from "date-fns/locale";
 import addDays from "date-fns/addDays";
 import addMonths from "date-fns/addMonths";
 import { useFormik } from "formik";
@@ -26,8 +23,6 @@ import { useState } from "react";
 import { addDayToDate } from "../../helpers/addDayToDate";
 
 const ByLicensePlate = () => {
-  registerLocale("uk", uk);
-  setDefaultLocale("uk");
   const navigate = useNavigate();
   const locationPath = useLocation();
   const {
@@ -127,6 +122,7 @@ const ByLicensePlate = () => {
               maxDate={addMonths(new Date(), 3)}
               startDate={dateFrom}
               locale="uk"
+              withPortal
               icon={
                 <Box className="iconCalender">
                   <SpriteSVG name={"icon-calendar"} />

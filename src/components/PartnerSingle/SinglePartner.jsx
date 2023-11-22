@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import { Rating } from "@mui/material";
 import {
-  LinkS,
   LogoBoxPartnerS,
   RatingBoxPartnersS,
   RatingTextS,
@@ -9,16 +8,11 @@ import {
 } from "./SinglePartnerStyled";
 
 const SinglePartner = ({ partner }) => {
-  const { id, imgSrc, imgAlt, rating, web } = partner;
+  const { id, imgSrc, imgAlt, rating } = partner;
   return (
     <>
       <SinglePartnerContainerS id={id}>
-        <LinkS
-          href={web}
-          target="_blank"
-          rel="noreferrer noopener"
-          id={id}          
-        >
+        <div>
           <LogoBoxPartnerS>
             <img
               src={imgSrc}
@@ -31,7 +25,7 @@ const SinglePartner = ({ partner }) => {
             <RatingTextS className="ratingText">Рейтинг МТСБУ</RatingTextS>
             <Rating name="read-only" value={rating} precision={0.1} readOnly />
           </RatingBoxPartnersS>
-        </LinkS>
+        </div>
       </SinglePartnerContainerS>
     </>
   );
@@ -42,8 +36,7 @@ SinglePartner.propTypes = {
     id: PropTypes.number.isRequired,
     imgSrc: PropTypes.string.isRequired,
     imgAlt: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    web: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,    
   }).isRequired,
 };
 
