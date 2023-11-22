@@ -15,7 +15,7 @@ export const InputStyled = styled(OutlinedInput)(({ theme }) => ({
   padding: 16,
   borderRadius: 50,
   backgroundColor: `${theme.palette.primary.white}`,
-  outline: `none`,
+  outline: `none !important`,
 
   "&.MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorPrimary.Mui-focused":
     { outline: `none`, border: "none" },
