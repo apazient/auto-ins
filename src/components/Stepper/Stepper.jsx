@@ -73,7 +73,7 @@ const Stepper = ({ backLinkRef }) => {
   // =======================Formik======================================
   const contactsFormik = useFormik({
     initialValues: contactsInitialValues,
-    validationSchema: contactsValidationSchema(),
+    // validationSchema: contactsValidationSchema(),
     onSubmit: (values) => {
       console.log("contacts", values);
       dispatch(setGlobalCustomerDataCustomer(values));

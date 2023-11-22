@@ -120,6 +120,7 @@ const ByLicensePlate = () => {
               closeOnScroll={(e) => e.target === document}
               onChange={handleChangeDate}
               name="date"
+              withPortal
               dateFormat="DD/MM/YYYY"
               showIcon={true}
               minDate={addDays(new Date(), 1)}

@@ -1,5 +1,6 @@
 import { OutlinedInput, styled } from "@mui/material";
 import DatePicker from "react-datepicker";
+import { calculatorReducer } from "../../redux/Calculator/calculatorSlice";
 import { InputContStyled } from "../ByParameters/ByParameters.styled";
 
 export const InputWrapperStyled = styled(InputContStyled)(({ theme }) => ({
@@ -39,13 +40,16 @@ export const InputWrapperStyled = styled(InputContStyled)(({ theme }) => ({
       borderTopRightRadius: "50px!important",
       borderTopLeftRadius: 50,
     },
-    "&__current-month": {
-      fontSize: "1.5rem",
-    },
+    // "&__current-month": {
+    //   fontSize: "1.5rem",
+    // },
     "&__navigation": {
       top: 8,
-      "&--next": {
-        right: 8,
+      "&--next,": {
+        right: `calc(100%/6)`,
+      },
+      "&--previous": {
+        left: `calc(100%/5.5)`,
       },
       "&:hover": {
         "*::before": {
