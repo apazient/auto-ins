@@ -16,13 +16,13 @@ import {
 } from "../../helpers/proposalsFilter";
 import PropTypes from "prop-types";
 import FilterByCompany from "../SelectFilterByCompany/FilterByCompany";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { getTariffPolicyChoose } from "../../redux/Calculator/selectors";
-import { setFilteredCompanies } from "../../redux/Calculator/calculatorSlice";
+
+import { useActions } from "../../hooks/useActions";
 
 const ProposalsFilter = () => {
   const companies = useSelector(getTariffPolicyChoose);
-  const dispatch = useDispatch();
   const theme = useTheme();
   const smScreen = useMediaQuery(theme.breakpoints.up("sm"));
   const [isShowFilter, setIsShowFilter] = useState(false);
@@ -31,6 +31,8 @@ const ProposalsFilter = () => {
   const [selectedPriceSort, setSelectedPriceSort] = useState(
     priceSortOptionsGeneral[0]
   );
+
+  const {setFilteredCompanies} = useActions()
 
   useEffect(() => {
     setCompaniesNameOptions(createSelectOptionsByCompaniName(companies));
@@ -60,11 +62,11 @@ const ProposalsFilter = () => {
       filteredByPrice(filteredCompanies, selectedPriceSort.value);
     }
     if (selectedCompanieName || selectedPriceSort.value) {
-      dispatch(setFilteredCompanies(filteredCompanies));
+      setFilteredCompanies(filteredCompanies);
     } else {
-      dispatch(setFilteredCompanies(companies));
+      setFilteredCompanies(companies);
     }
-  }, [selectedCompanieName, companies, selectedPriceSort, dispatch]);
+  }, [selectedCompanieName, companies, selectedPriceSort]);
 
   const handleChange = () => {
     setIsShowFilter((prev) => !prev);
@@ -119,7 +121,6 @@ const ProposalsFilter = () => {
                 onClick={() => {
                   setSelectedCompanieName([]);
                   setSelectedPriceSort(priceSortOptionsGeneral[0]);
-                  // setSelectedSortByReiting(priceSortOptionsGeneral[0]);
                 }}
               >
                 <SpriteSVG name="icon-filter-desktop-tablet" />
