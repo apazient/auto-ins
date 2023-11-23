@@ -69,7 +69,6 @@ export const osagoByDn = createAsyncThunk(
         params: {
           ...body,
           taxi: false,
-          // registrationType: "PERMANENT_WITHOUT_OTK",
         },
       });
 
@@ -83,13 +82,13 @@ export const osagoByDn = createAsyncThunk(
         registrationPlace: { id },
       } = d;
 
-      // const { calculator } = getState();
-      // const salePoint = { salePoint: calculator.user.salePoint.id };
+      const { calculator } = getState();
+      const salePoint = { salePoint: calculator.user.salePoint.id };
       const b = {
         ...body,
         autoCategory,
         registrationPlace: id,
-        //...salePoint,
+        ...salePoint,
       };
 
       dispatch(chooseVclTariffDGO(b));
