@@ -54,7 +54,8 @@ export const SubmitButton = styled(BlueButton)(({ theme }) => ({
   [theme.breakpoints.up("lg")]: {
     height: 59,
     marginTop: "auto",
-    width: '100%',
+    width: 569,
+    marginLeft:"calc(100% - 569px)",
   },
 }));
 
