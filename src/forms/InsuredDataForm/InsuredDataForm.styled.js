@@ -1,4 +1,5 @@
 import { Box, styled } from "@mui/material";
+import { DataContainerStyled } from "../../components/ByParameters/ByParameters.styled";
 import { WhiteButton, YellowButton } from "../../style/Global.styled";
 
 export const FormStyled = styled(Box)(({ theme }) => ({
@@ -63,13 +64,13 @@ export const DocInputsStyled = styled(Box)(({ theme }) => ({
     flexWrap: "wrap",
     justifyContent: "space-evenly",
     "& div:nth-of-type(n)": {
-      width: 308,
+      // width: 308,
     },
   },
   [theme.breakpoints.up("lg")]: {
     gap: 24,
     "& div:nth-of-type(n)": {
-      width: 338,
+      // width: 338,
     },
   },
 }));
@@ -102,3 +103,7 @@ export const WhiteButtonSVGStyled = styled(Box)(({ theme }) => ({
   stroke: theme.palette.primary.main,
   fill: "transparent",
 }));
+
+export const DataContainerWrapper = styled(DataContainerStyled)(
+  ({ theme }) => ({})
+);

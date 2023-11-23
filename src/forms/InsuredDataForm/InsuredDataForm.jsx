@@ -1,47 +1,38 @@
-import { DocInputsStyled, InputContBoxStyled } from "./InsuredDataForm.styled";
+import {
+  DataContainerWrapper,
+  DocInputsStyled,
+  InputContBoxStyled,
+} from "./InsuredDataForm.styled";
 import GeneralSelect from "../../components/GeneralSelect/GeneralSelect";
 import GeneralInput from "../../components/GeneralInput/GeneralInput";
 import PropTypes from "prop-types";
 import { Box } from "@mui/material";
 import { SpriteSVG } from "../../images/SpriteSVG";
-import DatePicker, { registerLocale, setDefaultLocale } from "react-datepicker";
+import ReactDatePicker from "react-datepicker";
 import { useState } from "react";
-import moment from "moment/moment";
-import "react-datepicker/dist/react-datepicker.css";
-import { uk } from "date-fns/locale";
 import sub from "date-fns/sub";
-import format from "date-fns/format";
-import addMonths from "date-fns/addMonths";
+import { InputStyled } from "../../components/GeneralInput/GeneralInput.styled";
+import { useEffect } from "react";
+import { format } from "date-fns/fp";
 
 const InsuredDataForm = ({ formik, selectData }) => {
-  registerLocale("uk", uk);
-  setDefaultLocale("uk");
   const { InsuredDataSelectOptions, identityCard, setIdentityCard } =
     selectData;
   const isID_PASSPORT = identityCard.value === "ID_PASSPORT";
   const [birthDate, setBirthDate] = useState(
-    format(
-      sub(new Date(), {
-        years: 18,
-      }),
-      "MM/dd/yyyy"
-    )
+    sub(new Date(), {
+      years: 18,
+    })
   );
-  const [dateIssue, setDateIssue] = useState(
-    format(
-      sub(new Date(), {
-        years: 18,
-      }),
-      "MM/dd/yyyy"
-    )
-  );
-  const handleChangeDate = (e) => {
-    console.log(e);
-    console.log(format(e, "MM/dd/yyyy"));
-    setBirthDate(format(e, "MM/dd/yyyy"));
+
+  const [date, setDate] = useState(new Date());
+  const hadleChangeBirthDate = (e) => {
+    formik.setFieldValue("birthDate", e);
+  };
+  const hadleChangeDate = (e) => {
+    formik.setFieldValue("date", e);
   };
 
-  console.log("formik");
   return (
     <>
       <InputContBoxStyled>
@@ -53,19 +44,23 @@ const InsuredDataForm = ({ formik, selectData }) => {
           formikData={formik}
         />
 
-        <Box className="box">
+        <DataContainerWrapper>
           <label htmlFor="dateFrom">Дата народження*:</label>
-          <DatePicker
+          <ReactDatePicker
+            className="yearMonthPicker"
             id="birthDate"
-            value={birthDate}
+            mode="single"
+            selected={birthDate}
+            onSelect={setBirthDate}
+            onChange={hadleChangeBirthDate}
             closeOnScroll={(e) => e.target === document}
-            onChange={handleChangeDate}
             startDate={birthDate}
             name="date"
             maxDate={sub(new Date(), {
               years: 18,
             })}
-            dateFormat="DD/MM/YYYY"
+            customInput={<InputStyled />}
+            dateFormat="dd/MM/yyyy"
             showIcon={true}
             locale="uk"
             withPortal
@@ -77,7 +72,7 @@ const InsuredDataForm = ({ formik, selectData }) => {
               </Box>
             }
           />
-        </Box>
+        </DataContainerWrapper>
         <GeneralInput id="taxNumber" lableText="РНОКПП*:" formikData={formik} />
         <GeneralSelect
           id="licensDoc"
@@ -99,19 +94,20 @@ const InsuredDataForm = ({ formik, selectData }) => {
             lableText="Ким виданий*:"
             formikData={formik}
           />
-          <Box className="box">
+          <DataContainerWrapper>
             <label htmlFor="dateFrom">Дата видачі*:</label>
-            <DatePicker
-              id="dateIssue"
-              value={dateIssue}
+            <ReactDatePicker
+              id="date"
+              mode="single"
+              selected={date}
+              onSelect={setDate}
+              onChange={hadleChangeDate}
               closeOnScroll={(e) => e.target === document}
-              onChange={handleChangeDate}
-              startDate={dateIssue}
+              startDate={date}
               name="date"
-              maxDate={sub(new Date(), {
-                years: 18,
-              })}
-              dateFormat="DD/MM/YYYY"
+              maxDate={new Date()}
+              customInput={<InputStyled />}
+              dateFormat="dd/MM/yyyy"
               showIcon={true}
               locale="uk"
               withPortal
@@ -123,7 +119,7 @@ const InsuredDataForm = ({ formik, selectData }) => {
                 </Box>
               }
             />
-          </Box>
+          </DataContainerWrapper>
         </DocInputsStyled>
       </InputContBoxStyled>
     </>

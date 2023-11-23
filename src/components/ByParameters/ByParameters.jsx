@@ -18,22 +18,32 @@ import { useSelector } from "react-redux";
 import HelperImg from "../HelpCircle/HelperImg/HelperImg";
 import HelperList from "../HelpCircle/HelperList/HelperList";
 import { Box } from "@mui/material";
-import ReactDatePicker  from "react-datepicker";
+import ReactDatePicker from "react-datepicker";
 import { useState } from "react";
-import moment from "moment";
-import { addDayToDate } from "../../helpers/addDayToDate";
 import { SpriteSVG } from "../../images/SpriteSVG";
 import { addMonths } from "date-fns/esm";
 import { InputStyled } from "../GeneralInput/GeneralInput.styled";
 import { useActions } from "../../hooks/useActions";
+import format from "date-fns/format";
 
 const ByParameters = () => {
   const navigate = useNavigate();
   const locationPath = useLocation();
-  const { setEngineCapacity, setVehicle, setQueryText, getAddress, setAddressOptions, setAddress,
-    setSubmitObj, setStateNumber, setAutoMakers, setAutoByNumber, setAutoModelByMaker, setTariffPolicyChoose,
+  const {
+    setEngineCapacity,
+    setVehicle,
+    setQueryText,
+    getAddress,
+    setAddressOptions,
+    setAddress,
+    setSubmitObj,
+    setStateNumber,
+    setAutoMakers,
+    setAutoByNumber,
+    setAutoModelByMaker,
+    setTariffPolicyChoose,
     setTariffVcl,
-  } = useActions()
+  } = useActions();
   const {
     queryText,
     addressOptions: allAddress,
@@ -43,19 +53,7 @@ const ByParameters = () => {
     foreignNumber,
     benefits,
   } = useSelector((state) => state.byParameters);
-  const [dateFrom, setDateFrom] = useState(
-    moment(addDayToDate()).format("DD/MM/YYYY",{
-  useAdditionalDayOfYearTokens: true,
-  useAdditionalWeekYearTokens: true
-})
-  );
-  const handleChangeDate = (e) => {
-    setDateFrom(moment(e).format("DD/MM/YYYY"),{
-  useAdditionalDayOfYearTokens: true,
-  useAdditionalWeekYearTokens: true
-});
-  };
-
+  const [dateFrom, setDateFrom] = useState(addDays(new Date(), 1));
 
   const handleChangeengineCapacity = (e) => {
     setEngineCapacity(e);
@@ -85,15 +83,13 @@ const ByParameters = () => {
       foreignNumber,
     },
     onSubmit: (values) => {
-
-
       let sendObj = {
         customerCategory: values.benefits ? "PRIVILEGED" : "NATURAL",
         autoCategory: engineCapacity.value,
         outsideUkraine: values.foreignNumber,
         usageMonths: 0,
         taxi: false,
-        dateFrom: moment(dateFrom, "DD/MM/YYYY").format("YYYY-MM-DD"),
+        dateFrom: format(dateFrom, "yyyy-MM-dd"),
       };
       address.value ? (sendObj.registrationPlace = address.value) : null;
       setSubmitObj(sendObj);
@@ -140,19 +136,19 @@ const ByParameters = () => {
             currentValue={address}
             inputValue={queryText}
             inputChangeCB={handleChangeQueryText}
-            helper={<HelperImg/>}
+            helper={<HelperImg />}
             isDisabled={formik.values.foreignNumber}
           />
           <DataContainerStyled>
             <label htmlFor="dateFrom">Дата початку дії поліса:</label>
             <ReactDatePicker
               id="dateFrom"
-              value={dateFrom}
+              selected={dateFrom}
+              onSelect={setDateFrom}
               closeOnScroll={(e) => e.target === document}
               customInput={<InputStyled />}
-              onChange={handleChangeDate}
               name="date"
-              dateFormat="DD/MM/YYYY"
+              dateFormat="dd/MM/yyyy"
               showIcon={true}
               minDate={addDays(new Date(), 1)}
               maxDate={addMonths(new Date(), 3)}
@@ -179,7 +175,7 @@ const ByParameters = () => {
               engineCapacity.value === "B5" ? "rgba(243, 243, 243, 0.40)" : null
             }
             isDisabled={engineCapacity.value === "B5" ? true : false}
-            helper={<HelperList/>}
+            helper={<HelperList />}
           />
           <GeneralCheckbox
             lableText="Авто на іноземних номерах"

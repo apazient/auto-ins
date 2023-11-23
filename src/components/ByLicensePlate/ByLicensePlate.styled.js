@@ -1,6 +1,5 @@
 import { OutlinedInput, styled } from "@mui/material";
-import DatePicker from "react-datepicker";
-import { calculatorReducer } from "../../redux/Calculator/calculatorSlice";
+import ReactDatePicker from "react-datepicker";
 import { InputContStyled } from "../ByParameters/ByParameters.styled";
 
 export const InputWrapperStyled = styled(InputContStyled)(({ theme }) => ({
@@ -44,18 +43,6 @@ export const InputWrapperStyled = styled(InputContStyled)(({ theme }) => ({
     "& svg": {
       width: 24,
       height: 24,
-    },
-  },
-  "& .react-datepicker__view-calendar-icon input": {
-    padding: 16,
-    borderRadius: "50px",
-    outline: "none",
-    borderColor: "transparent",
-    fontSize: 16,
-    fontWeight: 600,
-    lineHeight: "1.5",
-    [theme.breakpoints.up("sm")]: {
-      fontSize: 18,
     },
   },
   "& .react-datepicker": {
@@ -202,6 +189,6 @@ export const FormStyled = styled("form")(({ theme }) => ({
   },
 }));
 
-export const DatePickerWrapper = styled(DatePicker)(({ theme }) => ({
+export const DatePickerWrapper = styled(ReactDatePicker)(({ theme }) => ({
   width: "100%",
 }));
