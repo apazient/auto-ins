@@ -2,11 +2,10 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import { AlertS, SnackbarS } from "./AlertMUIStyled";
 
-
-  /* <AlertMUI type="error" message="ERROR text"/> */
-  /* <AlertMUI type="warning" message="WARNING text"/> */
-  /* <AlertMUI type="info" message="INFO text"/> */
-  /* <AlertMUI type="success" message="SUCCESS text"/> */
+/* <AlertMUI type="error" message="ERROR text"/> */
+/* <AlertMUI type="warning" message="WARNING text"/> */
+/* <AlertMUI type="info" message="INFO text"/> */
+/* <AlertMUI type="success" message="SUCCESS text"/> */
 
 const AlertMUI = ({ type, message }) => {
   const [open, setOpen] = useState(true);
@@ -22,14 +21,14 @@ const AlertMUI = ({ type, message }) => {
     <SnackbarS
       open={open}
       autoHideDuration={3000}
-      onClose={handleClose}      
+      onClose={handleClose}
       anchorOrigin={{ vertical: "top", horizontal: "right" }}
     >
       <AlertS
         onClose={handleClose}
         variant="outlined"
         severity={type}
-        className={type}       
+        className={type}
       >
         {message}
       </AlertS>

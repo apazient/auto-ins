@@ -1,9 +1,12 @@
 import Typography from "@mui/material/Typography";
+import { useActions } from "../../hooks/useActions";
 import { SpriteSVG } from "../../images/SpriteSVG";
 
 import { BoxImgS, ButtonS, FormContainerS } from "./BlockThankStyled";
 
 export const BlockThank = () => {
+  const { setContractData } = useActions();
+
   return (
     <FormContainerS component="article">
       <BoxImgS>
@@ -22,7 +25,9 @@ export const BlockThank = () => {
       >
         На Вашу електронну пошту надіслано проєкт договору/посилання на оплату.
       </Typography>
-      <ButtonS to="/"> На головну</ButtonS>
+      <ButtonS to="/" onClick={() => setContractData({})}>
+        На головну
+      </ButtonS>
     </FormContainerS>
   );
 };
