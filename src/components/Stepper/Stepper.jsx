@@ -37,7 +37,6 @@ import {
 } from "../../helpers/formValidationSchema";
 import { getSubmitObject } from "../../redux/byParameters/selectors";
 import { useActions } from "../../hooks/useActions";
-import format from "date-fns/format";
 
 import sub from "date-fns/sub";
 import { contractSaveOSAGONormalize } from "../../helpers/dataNormalize/contractSaveOSAGONormalize";
