@@ -12,12 +12,11 @@ import ReactDatePicker from "react-datepicker";
 import { useState } from "react";
 import sub from "date-fns/sub";
 import { InputStyled } from "../../components/GeneralInput/GeneralInput.styled";
-import { useEffect } from "react";
-import { format } from "date-fns/fp";
 
 const InsuredDataForm = ({ formik, selectData }) => {
   const { InsuredDataSelectOptions, identityCard, setIdentityCard } =
     selectData;
+
   const isID_PASSPORT = identityCard.value === "ID_PASSPORT";
   const [birthDate, setBirthDate] = useState(
     sub(new Date(), {
@@ -43,7 +42,9 @@ const InsuredDataForm = ({ formik, selectData }) => {
           lableText="По батькові*:"
           formikData={formik}
         />
-
+        {formik.errors.birthDate ? (
+          <div style={{ color: "red" }}>{formik.errors.birthDate}</div>
+        ) : null}
         <DataContainerWrapper>
           <label htmlFor="dateFrom">Дата народження*:</label>
           <ReactDatePicker
@@ -94,6 +95,9 @@ const InsuredDataForm = ({ formik, selectData }) => {
             lableText="Ким виданий*:"
             formikData={formik}
           />
+          {formik.errors.date ? (
+            <div style={{ color: "red" }}>{formik.errors.date}</div>
+          ) : null}
           <DataContainerWrapper>
             <label htmlFor="dateFrom">Дата видачі*:</label>
             <ReactDatePicker

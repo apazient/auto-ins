@@ -1,33 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { contractSave } from "./operations";
 
 const initialState = {
   isLoading: false,
   isModalErrorOpen: false,
+  isBlockThanks: false,
   // globalCustomerData: null,
-  forms: {},
-  globalCustomerData: {
-    customer: {},
-    insuranceObject: {},
-
-    //   "customer": {
-    //     "code": "1234567890",
-    //     "nameLast": "Тест",//ok
-    //     "nameFirst": "Тест",//ok
-    //     "address": "Киев",
-    //     "phone": "+380111111111",//ok
-    //     "email": "test@test.ua",//ok
-    //     "birthDate": "1987-01-01",//ok
-    //     "document": {
-    //       "type": "PASSPORT",
-    //       "series": "аа",//ok
-    //       "number": "12345",//ok
-    //       "date": "2003-01-01",//ok
-    //       "issuedBy": "Солом'янським РУ ГУ МВС України в місті Києві"//ok
-    //     }
-    //   },
-  },
+  // forms: {},
+  isContractOSAGO: false,
+  isContractDGO: false,
+  globalCustomerData: {},
   paramsFromUrl: null,
   homeAddress: { label: "", value: "" },
+  error: null,
 };
 
 export const globalSlice = createSlice({
@@ -38,21 +23,20 @@ export const globalSlice = createSlice({
       state.isLoading = payload;
     },
     setGlobalCustomerData: (state, { payload }) => {
-      console.log("payload", payload);
       state.globalCustomerData = { ...state.globalCustomerData, ...payload };
     },
     setIsModalErrorOpen: (state, { payload }) => {
       state.isModalErrorOpen = payload;
     },
-    setGlobalCustomerDataCustomer: (state, { payload }) => {
-      state.globalCustomerData.customer = {
-        ...state.globalCustomerData.customer,
-        ...payload,
-      };
-    },
-    setFormData: (state, { payload }) => {
-      state.forms = { ...state.forms, ...payload };
-    },
+    // setGlobalCustomerDataCustomer: (state, { payload }) => {
+    //   state.globalCustomerData.customer = {
+    //     ...state.globalCustomerData.customer,
+    //     ...payload,
+    //   };
+    // },
+    // setFormData: (state, { payload }) => {
+    //   state.forms = { ...state.forms, ...payload };
+    // },
 
     setParamsFromUrl: (state, { payload }) => {
       state.paramsFromUrl = { ...state.payload, ...payload };
@@ -60,6 +44,31 @@ export const globalSlice = createSlice({
     setHomeAddress: (state, { payload }) => {
       state.homeAddress = payload;
     },
+    setIsBlockThanks: (state, { payload }) => {
+      state.isBlockThanks = payload;
+    },
+    setIsContractOSAGO: (state, { payload }) => {
+      state.isContractOSAGO = payload;
+    },
+    setIsContractDGO: (state, { payload }) => {
+      state.isContractDGO = payload;
+    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(contractSave.fulfilled, (state, _) => {
+        state.isBlockThanks = true;
+        state.isLoading = false;
+      })
+      .addCase(contractSave.rejected, (state, { payload }) => {
+        state.isBlockThanks = false;
+        state.error = payload;
+        state.isLoading = false;
+      })
+      .addCase(contractSave.pending, (state, _) => {
+        state.isBlockThanks = false;
+        state.isLoading = true;
+      });
   },
 });
 
@@ -71,6 +80,8 @@ export const {
   setGlobalCustomerDataCustomer,
   setFormData,
   setHomeAddress,
+  setIsContractOSAGO,
+  setIsContractDGO,
 } = globalSlice.actions;
 export const globalReducer = globalSlice.reducer;
 
