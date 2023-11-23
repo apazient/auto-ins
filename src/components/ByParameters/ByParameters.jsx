@@ -2,44 +2,48 @@ import { useFormik } from "formik";
 import {
   AllCheckboxContStyled,
   AllInputContStyled,
+  DataContainerStyled,
   FormStyled,
   SubmitButton,
 } from "./ByParameters.styled";
+import addDays from "date-fns/addDays";
 import GeneralSelect from "../GeneralSelect/GeneralSelect";
 import { GeneralCheckbox } from "../GeneralCheckbox/GeneralCheckbox";
 import { useLocation, useNavigate } from "react-router-dom";
-
 import {
   selectCategoryOptions,
   selectAutoCategory,
 } from "../../helpers/ByParameters/selectOptions";
-import { useDispatch, useSelector } from "react-redux";
-import { getAddress } from "../../redux/byParameters/operations";
-import {
-  setAddress,
-  setAddressOptions,
-  setEngineCapacity,
-  setQueryText,
-  setSubmitObj,
-  setVehicle,
-} from "../../redux/byParameters/byParametersSlice";
-import {
-  setStateNumber,
-  setTariffPolicyChoose,
-  setTariffVcl,
-} from "../../redux/Calculator/calculatorSlice";
-import {
-  setAutoByNumber,
-  setAutoMakers,
-  setAutoModelByMaker,
-} from "../../redux/References/referencesSlice";
+import { useSelector } from "react-redux";
 import HelperImg from "../HelpCircle/HelperImg/HelperImg";
 import HelperList from "../HelpCircle/HelperList/HelperList";
+import { Box } from "@mui/material";
+import ReactDatePicker from "react-datepicker";
+import { useState } from "react";
+import { SpriteSVG } from "../../images/SpriteSVG";
+import { addMonths } from "date-fns/esm";
+import { InputStyled } from "../GeneralInput/GeneralInput.styled";
+import { useActions } from "../../hooks/useActions";
+import format from "date-fns/format";
 
 const ByParameters = () => {
   const navigate = useNavigate();
   const locationPath = useLocation();
-  const dispatch = useDispatch();
+  const {
+    setEngineCapacity,
+    setVehicle,
+    setQueryText,
+    getAddress,
+    setAddressOptions,
+    setAddress,
+    setSubmitObj,
+    setStateNumber,
+    setAutoMakers,
+    setAutoByNumber,
+    setAutoModelByMaker,
+    setTariffPolicyChoose,
+    setTariffVcl,
+  } = useActions();
   const {
     queryText,
     addressOptions: allAddress,
@@ -49,26 +53,27 @@ const ByParameters = () => {
     foreignNumber,
     benefits,
   } = useSelector((state) => state.byParameters);
+  const [dateFrom, setDateFrom] = useState(addDays(new Date(), 1));
 
   const handleChangeengineCapacity = (e) => {
-    dispatch(setEngineCapacity(e));
+    setEngineCapacity(e);
   };
   const handleChangeVehicle = (e) => {
-    dispatch(setVehicle(e));
-    dispatch(setEngineCapacity(selectAutoCategory(e.value)[0]));
+    setVehicle(e);
+    setEngineCapacity(selectAutoCategory(e.value)[0]);
   };
   const handleChangeQueryText = (e) => {
-    dispatch(setQueryText(e.trim()));
+    setQueryText(e.trim());
     if (e) {
-      dispatch(getAddress(e));
+      getAddress(e);
     }
     if (!e) {
-      dispatch(setAddressOptions([]));
+      setAddressOptions([]);
     }
   };
   const changeAddress = (e) => {
     if (queryText) {
-      dispatch(setAddress(e));
+      setAddress(e);
     }
   };
 
@@ -78,26 +83,22 @@ const ByParameters = () => {
       foreignNumber,
     },
     onSubmit: (values) => {
-      const dateF = new Date(Date.now() + 86400000);
-      const dateFrom = dateF.toISOString().substring(0, 10);
-
       let sendObj = {
         customerCategory: values.benefits ? "PRIVILEGED" : "NATURAL",
         autoCategory: engineCapacity.value,
         outsideUkraine: values.foreignNumber,
         usageMonths: 0,
         taxi: false,
-        dateFrom,
+        dateFrom: format(dateFrom, "yyyy-MM-dd"),
       };
       address.value ? (sendObj.registrationPlace = address.value) : null;
-
-      dispatch(setSubmitObj(sendObj));
-      dispatch(setStateNumber(""));
-      dispatch(setAutoByNumber([]));
-      dispatch(setAutoMakers([]));
-      dispatch(setAutoModelByMaker([]));
-      dispatch(setTariffPolicyChoose([]));
-      dispatch(setTariffVcl([]));
+      setSubmitObj(sendObj);
+      setStateNumber("");
+      setAutoMakers([]);
+      setAutoByNumber([]);
+      setAutoModelByMaker([]);
+      setTariffPolicyChoose([]);
+      setTariffVcl([]);
 
       navigate("/prices", {
         state: { from: locationPath },
@@ -135,9 +136,32 @@ const ByParameters = () => {
             currentValue={address}
             inputValue={queryText}
             inputChangeCB={handleChangeQueryText}
-            helper={<HelperImg/>}
+            helper={<HelperImg />}
             isDisabled={formik.values.foreignNumber}
           />
+          <DataContainerStyled>
+            <label htmlFor="dateFrom">Дата початку дії поліса:</label>
+            <ReactDatePicker
+              id="dateFrom"
+              selected={dateFrom}
+              onSelect={setDateFrom}
+              closeOnScroll={(e) => e.target === document}
+              customInput={<InputStyled />}
+              name="date"
+              dateFormat="dd/MM/yyyy"
+              showIcon={true}
+              minDate={addDays(new Date(), 1)}
+              maxDate={addMonths(new Date(), 3)}
+              startDate={dateFrom}
+              locale="uk"
+              withPortal
+              icon={
+                <Box className="iconCalender">
+                  <SpriteSVG name="icon-calendar" />
+                </Box>
+              }
+            />
+          </DataContainerStyled>
         </AllInputContStyled>
 
         <AllCheckboxContStyled>
@@ -151,7 +175,7 @@ const ByParameters = () => {
               engineCapacity.value === "B5" ? "rgba(243, 243, 243, 0.40)" : null
             }
             isDisabled={engineCapacity.value === "B5" ? true : false}
-            helper={<HelperList/>}
+            helper={<HelperList />}
           />
           <GeneralCheckbox
             lableText="Авто на іноземних номерах"
@@ -159,8 +183,8 @@ const ByParameters = () => {
             val={formik.values.foreignNumber}
             isChecked={foreignNumber}
             changeCB={(e) => {
-              dispatch(setQueryText(""));
-              dispatch(setAddress({ label: "", value: "" }));
+              setQueryText("");
+              setAddress({ label: "", value: "" });
               formik.handleChange(e);
             }}
           />

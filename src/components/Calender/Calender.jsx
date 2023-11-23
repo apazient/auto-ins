@@ -19,15 +19,24 @@ const Calender = () => {
   //   dispatch(setSubmitObj(newObject));
   // };
   return (
-    <DatePicker
-      id="dateFrom"
-          value={dateFrom}
-          locale="uk"
-      selected={startDate}
-      onChange={(date) => setStartDate(date)}
-      includeDates={[new Date(), addDays(new Date(), 1)]}
-      placeholderText="This only includes today and tomorrow"
-    />
+   <DatePickerWrapper
+              id="dateFrom"
+              value={dateFrom}
+              closeOnScroll={(e) => e.target === document}
+              onChange={handleChangeDate}
+              name="date"
+              dateFormat="DD/MM/YYYY"
+              showIcon={true}
+              minDate={addDays(new Date(), 1)}
+              maxDate={addMonths(new Date(), 3)}
+              startDate={dateFrom}
+              locale="uk"
+              icon={
+                <Box className="iconCalender">
+                  <SpriteSVG name={"icon-calendar"} />
+                </Box>
+              }
+            />
   );
 };
 

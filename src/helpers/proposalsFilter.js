@@ -15,9 +15,7 @@ export const priceSortOptionsGeneral = [
 
 export const createSelectOptionsByCompaniName = (arr) => {
   const companiesNames = [
-    ...new Set(
-      arr.map((compani) => compani.insurerName.replace(/,[^,]+$/, ""))
-    ),
+    ...new Set(arr.map((compani) => compani.insurerName)),
   ];
 
   return companiesNames;

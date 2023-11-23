@@ -27,13 +27,13 @@ const Partners = () => {
           </TitleS>
           <UlPartnersListS>
             {firstEightPartners?.map((partner) => (
-              <SinglePartner key={partner?.web} partner={partner} />
+              <SinglePartner key={partner?.imgSrc} partner={partner} />
             ))}
 
             <Collapse in={showAdditionalPartners} timeout={500}>
               <UlPartnersListS className="additionalPartners">
                 {additionalPartners.map((partner) => (
-                  <SinglePartner key={partner?.web} partner={partner} />
+                  <SinglePartner key={partner?.imgSrc} partner={partner} />
                 ))}                
               </UlPartnersListS>
             </Collapse>

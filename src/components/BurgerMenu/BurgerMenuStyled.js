@@ -53,7 +53,7 @@ export const BodyMenu = styled(Box)(({ theme }) => ({
     color: theme.palette.primary.main,
     fontSize: "1.375rem",
     padding: "16px 0",
-    fontFamily: "OpenSans-ExtraBold, sans-serif",
+    fontFamily: "Open Sans, sans-serif",
     fontWeight: 800,
     lineHeight: "1.5rem",
 

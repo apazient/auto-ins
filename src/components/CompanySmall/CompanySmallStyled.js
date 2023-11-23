@@ -53,7 +53,7 @@ export const ContentBox = styled(Box)(({ theme }) => ({
   },
 
   "& .boldText": {
-    fontFamily: "OpenSans-ExtraBold",
+    fontFamily: "Open Sans",
     [theme.breakpoints.up("sm")]: { fontSize: "22px", lineHeight: "1.5em" },
   },
 }));

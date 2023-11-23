@@ -24,7 +24,7 @@ const Footer = () => {
   return (
     <footer style={{ oveflow: "hidden" }}>
       <FooterS disableGutters={true} maxWidth={false}>
-        <RRR />
+        {/* <RRR /> */}
         <FooterBoxS disableGutters={true}>
           <LogoBox>
             <BoxIconS className="logoIcon">

@@ -21,10 +21,10 @@ export const SelectsContStyled = styled(Box)(({ theme }) => ({
         backgroundColor: theme.palette.primary.lightBlue2,
         border: `1px solid ${theme.palette.primary.white}`,
         [theme.breakpoints.up("sm")]: {
-          width: 187,
+          width: 292,
         },
         [theme.breakpoints.up("lg")]: {
-          width: 272,
+          width: 470,
         },
       },
       "&option": {

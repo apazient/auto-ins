@@ -9,16 +9,16 @@ import { sortAndFilterTariff } from "../../helpers/sortAndFilterTariff";
 import { instance } from "../../services/api";
 import { setIsModalErrorOpen } from "../Global/globalSlice";
 
-const setSalePoint = (salePoint) => {
-  instance.defaults.params = { ...instance.defaults.params, salePoint };
-};
+// const setSalePoint = (salePoint) => {
+//   instance.defaults.params = { ...instance.defaults.params, salePoint };
+// };
 
 export const loginThunk = createAsyncThunk("auth/login", async (thunkAPI) => {
   try {
     const { data } = await instance.get("/user/getByEmail", {
       params: { email: "persichek5@gmail.com" },
     });
-    setSalePoint(data.salePoint.id);
+    // setSalePoint(data.salePoint.id);
     return userNormalize(data);
   } catch (error) {
     return thunkAPI.rejectWithValue(error.response.data);
@@ -69,7 +69,6 @@ export const osagoByDn = createAsyncThunk(
         params: {
           ...body,
           taxi: false,
-          // registrationType: "PERMANENT_WITHOUT_OTK",
         },
       });
 
@@ -119,7 +118,6 @@ export const chooseVclTariffDGO = createAsyncThunk(
         dateFrom,
         dateTo,
       });
-
       const newData = data.filter((el) => el.crossSell === false);
 
       return mergeObjectsById(newData, responseDGONormalize);

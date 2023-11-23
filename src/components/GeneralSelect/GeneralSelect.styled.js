@@ -5,7 +5,7 @@ export const SelectStyled = styled(Select)(({ theme, $find }) => ({
   "& .customSelect__": {
     "&control": {
       color: theme.palette.primary.main,
-      fontFamily: "OpenSans-SemiBold",
+      fontFamily: "Open Sans",
       fontSize: 16,
       fontWeight: "600",
       lineHeight: "150%" /* 24px */,
@@ -16,6 +16,7 @@ export const SelectStyled = styled(Select)(({ theme, $find }) => ({
       borderColor: theme.palette.primary.main,
       backgroundColor: "#FEFEFF",
       boxShadow: "0 0 0 0",
+     
       "&:hover, &:focus": {
         borderColor: theme.palette.primary.darkBlue,
         cursor: "pointer",
@@ -70,10 +71,11 @@ export const SelectStyled = styled(Select)(({ theme, $find }) => ({
       },
     },
     "&menu": {
+      zIndex:10,
       marginTop: 0,
       borderRadius: 25,
       color: theme.palette.primary.main,
-      fontFamily: "OpenSans-SemiBold",
+      fontFamily: "Open Sans",
       fontSize: 16,
       fontWeight: "600",
       lineHeight: "150%" /* 24px */,

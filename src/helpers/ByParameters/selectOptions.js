@@ -1,27 +1,19 @@
 export const selectCategoryOptions = [
-  {
-    label: "Всі категорії",
-    value: "",
+   {
+    label: "Легковий автомобіль",
+    value: "B",
   },
   {
     label: "Мотоцикл",
     value: "A",
   },
   {
-    label: "Легковий автомобіль",
-    value: "B",
-  },
-  {
-    label: "Вантажний автомобіль",
-    value: "C",
-  },
-  {
-    label: "Автобус",
-    value: "D",
-  },
-  {
     label: "Причеп",
     value: "EF",
+  },
+  {
+    label: "Всі категорії",
+    value: "",
   },
 ];
 export const selectAllCategoryOptions = [
@@ -53,22 +45,6 @@ export const selectAllCategoryOptions = [
     label:
       "Легковий электромобіль (виключно з силовим электродвигуном, крім гібридних авто)",
     value: "B5",
-  },
-  {
-    label: "Вантажний автомобіль - до 2т",
-    value: "C1",
-  },
-  {
-    label: "Вантажний автомобіль - більш як 2т",
-    value: "C2",
-  },
-  {
-    label: "Автобус - до 20 місць",
-    value: "D1",
-  },
-  {
-    label: "Автобус - більше як 20 місць",
-    value: "D2",
   },
   {
     label: "Причеп до вантажівки",

@@ -27,16 +27,27 @@ import {
   NATURALSelectOptions,
   PRIVILEGEDSelectOptions,
 } from "../../assets/utils/isPrivilegedOptions";
-import { useDispatch, useSelector } from "react-redux";
-import { setGlobalCustomerDataCustomer } from "../../redux/Global/globalSlice";
-
+import { useSelector } from "react-redux";
 import { getAutoByNumber } from "../../redux/References/selectors";
 import {
   carDataFormValidationSchema,
   contactsValidationSchema,
-  HomeAddressFormValidationSchema,
+  homeAddressFormValidationSchema,
+  insuredDataFormValidationSchema,
 } from "../../helpers/formValidationSchema";
 import { getSubmitObject } from "../../redux/byParameters/selectors";
+import { useActions } from "../../hooks/useActions";
+import format from "date-fns/format";
+
+import sub from "date-fns/sub";
+import { contractSaveOSAGONormalize } from "../../helpers/dataNormalize/contractSaveOSAGONormalize";
+import {
+  getGlobalCustomerData,
+  getHomeAddress,
+} from "../../redux/Global/selectors";
+import { getUser } from "../../redux/Calculator/selectors";
+import { customerInsuriensObject } from "../../helpers/customerInsuriensObject";
+import { contractSaveDGONormalize } from "../../helpers/dataNormalize/contractSaveDGONormalize";
 
 const steps = [
   { Контакти: "icon-email" },
@@ -56,10 +67,13 @@ const HomeAddressForm = lazy(() =>
 const CarDataForm = lazy(() => import("../../forms/CarDataForm/CarDataForm"));
 
 const Stepper = ({ backLinkRef }) => {
-  const dispatch = useDispatch();
+  const { contractSave } = useActions();
   const [activeStep, setActiveStep] = useState(0);
 
   const [identityCard, setIdentityCard] = useState([]);
+  const user = useSelector(getUser);
+  const { tariff, dgoTarrif } = useSelector(getGlobalCustomerData);
+  const homeAddress = useSelector(getHomeAddress);
   // const location = useLocation();
 
   const customerCategory = useSelector((state) => state.byParameters.benefits);
@@ -74,94 +88,74 @@ const Stepper = ({ backLinkRef }) => {
   const contactsFormik = useFormik({
     initialValues: contactsInitialValues,
     validationSchema: contactsValidationSchema(),
-    onSubmit: (values) => {
-      console.log("contacts", values);
-      dispatch(setGlobalCustomerDataCustomer(values));
+    onSubmit: () => {
       handleNext();
     },
   });
 
   const insuredDataFormik = useFormik({
-    initialValues: insuredDataInitialValues,
-    // validationSchema: insuredDataFormValidationSchema(),
-    onSubmit: (values) => {
-      console.log("insured", values);
-      const {
-        birthDate,
-        date,
-        issuedBy,
-        middleName,
-        name,
-        number,
-        record,
-        series,
-        surname,
-        taxNumber,
-      } = values;
-      const insuredValues = {
-        surname,
-        name,
-        middleName,
-        birthDate,
-        taxNumber,
-        record, //????????????????????????
-        document: {
-          //type: "", //document{}
-          series,
-          number,
-          issuedBy,
-          date,
-        },
-      };
-      dispatch(setGlobalCustomerDataCustomer(insuredValues));
+    initialValues: {
+      ...insuredDataInitialValues,
+      birthDate: sub(new Date(), {
+        years: 18,
+      }),
+      date: new Date(),
+    },
+
+    validationSchema: insuredDataFormValidationSchema(),
+    onSubmit: () => {
       handleNext();
     },
   });
 
   const homeAddressFormik = useFormik({
-    initialValues: homeAddressInitialValues,
-    //validationSchema: HomeAddressFormValidationSchema(),
-    onSubmit: (values) => {
-      console.log("homeAddress", values);
-      const { regionANDcity, street, houseNumber, apartmentNumber } = values;
-
-      const address = {
-        address: `${regionANDcity} ${street && `вул.${street}`} ${
-          houseNumber && `б.${houseNumber}`
-        } ${apartmentNumber && `кв.${apartmentNumber}`}`,
-      };
-      dispatch(setGlobalCustomerDataCustomer(address));
+    initialValues: { ...homeAddressInitialValues, regionANDcity: homeAddress },
+    validationSchema: homeAddressFormValidationSchema(),
+    onSubmit: () => {
       handleNext();
     },
   });
 
-  const [insuranceObject] = useSelector(getAutoByNumber);
+  const [insurObject] = useSelector(getAutoByNumber);
   const userParams = useSelector(getSubmitObject);
   const carDataFormik = useFormik({
     initialValues: {
-      stateNumber: insuranceObject?.stateNumber || "",
-      year: insuranceObject?.year || "",
-      brand: insuranceObject?.modelText || "",
+      stateNumber: insurObject?.stateNumber || "",
+      year: insurObject?.year || "",
+      brand: insurObject?.modelText || "",
       model: "",
-      bodyNumber: insuranceObject?.bodyNumber || "",
+      bodyNumber: insurObject?.bodyNumber || "",
       maker: "",
       outsideUkraine: userParams?.outsideUkraine || false,
+      category: insurObject?.category || getSubmitObject?.category,
     },
 
     onSubmit: (values) => {
-      const allValues = {
-        ...contactsFormik.values,
-        ...insuredDataFormik.values,
-        ...homeAddressFormik.values,
-        ...values,
-      };
-      console.log("values", values);
-      dispatch(setGlobalCustomerDataCustomer(values));
+      const customIsur = customerInsuriensObject(
+        insuredDataFormik,
+        homeAddressFormik,
+        contactsFormik,
+        identityCard,
+        carDataFormik,
+        insurObject
+      );
+      contractSave(
+        contractSaveOSAGONormalize(userParams, user, tariff, customIsur)
+      );
+      if (dgoTarrif) {
+        contractSave(
+          contractSaveDGONormalize(
+            userParams,
+            user,
+            dgoTarrif,
+            insurObject,
+            customIsur
+          )
+        );
+      }
     },
 
     validationSchema: carDataFormValidationSchema(),
-    // validateOnBlur: true,
-    // validateOnChange: false,
     enableReinitialize: true,
   });
 
@@ -236,7 +230,6 @@ const Stepper = ({ backLinkRef }) => {
         connector={<Connector />}
       >
         {steps.map((label) => {
-          console.log();
           const stepProps = {};
           // const labelProps = {};
 
