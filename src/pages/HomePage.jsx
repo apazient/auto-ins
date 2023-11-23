@@ -24,7 +24,7 @@ import AlertMUI from "../components/Alert/AlertMUI";
 const HomePage = () => {
   const location = useLocation();
   const { id } = location.state || {};
-  const { loginThunk, setIsBlockThanks } = useActions();
+  const { loginThunk } = useActions();
 
   const user = useSelector(getUser);
   const isError = useSelector(getIsModalErrorOpen);
@@ -38,7 +38,7 @@ const HomePage = () => {
 
   useEffect(() => {
     if (user) return;
-    setIsBlockThanks(false);
+
     loginThunk();
   }, [user, loginThunk]);
 

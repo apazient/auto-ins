@@ -142,6 +142,17 @@ const Stepper = ({ backLinkRef }) => {
       contractSave(
         contractSaveOSAGONormalize(userParams, user, tariff, customIsur)
       );
+      if (dgoTarrif) {
+        contractSave(
+          contractSaveDGONormalize(
+            userParams,
+            user,
+            dgoTarrif,
+            insurObject,
+            customIsur
+          )
+        );
+      }
     },
 
     validationSchema: carDataFormValidationSchema(),
