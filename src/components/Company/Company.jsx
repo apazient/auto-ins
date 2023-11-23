@@ -28,7 +28,7 @@ const Company = ({ proposal }) => {
 
   const user = useSelector(getUser);
   const theme = useTheme();
-  const { setGlobalCustomerData, setParamsFromUrl } = useActions;
+  const { setGlobalCustomerData, setParamsFromUrl } = useActions();
 
   const { insurerId, insurerName, tariff, autoCategory, registrationPlace } =
     proposal;

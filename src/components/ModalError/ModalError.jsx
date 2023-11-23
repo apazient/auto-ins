@@ -20,7 +20,7 @@ import {
 const ModalError = () => {
   const isError = useSelector(getIsModalErrorOpen);
   const [open, setOpen] = useState(isError);
-  const { setIsModalErrorOpen, setStateNumber } = useActions;
+  const { setIsModalErrorOpen, setStateNumber } = useActions();
 
   const navigate = useNavigate();
 
