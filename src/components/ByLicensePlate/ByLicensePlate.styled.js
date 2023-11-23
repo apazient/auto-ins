@@ -28,6 +28,9 @@ export const InputWrapperStyled = styled(InputContStyled)(({ theme }) => ({
       fontSize: 18,
     },
   },
+  "& .react-datepicker__day--selected": {
+    backgroundColor: theme.palette.primary.blue,
+  },
   "& .react-datepicker__tab-loop": {
     position: "absolute",
   },
@@ -164,7 +167,6 @@ export const InputStyled = styled(OutlinedInput)(({ theme }) => ({
   [theme.breakpoints.up("sm")]: {
     height: 59,
   },
-
 }));
 export const FormStyled = styled("form")(({ theme }) => ({
   display: "flex",
