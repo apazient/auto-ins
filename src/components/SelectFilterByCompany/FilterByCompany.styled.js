@@ -6,7 +6,7 @@ export const InputContStyled = styled(Box)(({ theme }) => ({
   gap: 8,
   [theme.breakpoints.up("sm")]: {
     gap: 16,
-    width:292,
+    width: 292,
   },
   [theme.breakpoints.up("lg")]: {
     width: 470,
@@ -94,7 +94,7 @@ export const MenuItemStyled = styled(MenuItem)(({ theme }) => ({
     },
     "& svg": {
       color: theme.palette.primary.blue,
-    }
+    },
   },
   "&.Mui-selected": {
     "& .MuiListItemText-root": {
@@ -136,17 +136,16 @@ export const MenuProps = {
       maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
       width: "fit-content",
       borderRadius: "25px",
-      "&::-webkit-scrollbar": {
+      "&::WebkitScrollbar": {
         width: 6 /* ширина всей полосы прокрутки */,
       },
-      "&::-webkit-scrollbar-track": {
+      "&::WebkitScrollbarTrack": {
         background: "rgba(21, 71, 248, 0.6)" /* цвет зоны отслеживания */,
       },
-      "&::-webkit-scrollbar-thumb": {
+      "&::WebkitScrollbarThumb": {
         backgroundColor: "rgba(255, 255, 255, 0.8)" /* цвет бегунка */,
         borderRadius: 4 /* округлось бегунка */,
       },
     },
   },
 };
-
