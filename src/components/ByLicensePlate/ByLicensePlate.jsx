@@ -138,7 +138,6 @@ const ByLicensePlate = () => {
         <SubmitButton
           type="submit"
           disabled={!formik.values.licensePlate}
-          className="button"
         >
           Розрахувати вартість
         </SubmitButton>
