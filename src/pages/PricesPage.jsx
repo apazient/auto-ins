@@ -56,7 +56,7 @@ const PricesPage = () => {
   return (
     <>
       <OutletPageWrapper>
-        <AlertMUI type="info" message="Будь ласка, оберіть компанію" />
+        <AlertMUI type="error" message={isError} />
         <CostCalculation />
         <ProposalsFilter />
         <LineSection />
