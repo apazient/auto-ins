@@ -57,9 +57,6 @@ export const InputWrapperStyled = styled(InputContStyled)(({ theme }) => ({
       borderTopLeftRadius: 50,
       padding: "15px 15px 0 15px",
     },
-    // "&__current-month": {
-    //   fontSize: "1.5rem",
-    // },
     "&__navigation": {
       top: 15,
       "&--next": {
@@ -105,6 +102,8 @@ export const InputWrapperStyled = styled(InputContStyled)(({ theme }) => ({
       width: "fit-content",
       margin: "auto",
       padding: 7.5,
+      flex: 1,
+      flexBasis: 0,
     },
     "&__week": {
       display: "flex",
@@ -165,25 +164,14 @@ export const InputStyled = styled(OutlinedInput)(({ theme }) => ({
   [theme.breakpoints.up("sm")]: {
     height: 59,
   },
-  // [theme.breakpoints.up("lg")]: {
-  //   width: "50%",
-  // },
+
 }));
 export const FormStyled = styled("form")(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   gap: 16,
   [theme.breakpoints.up("lg")]: {
-    // flexDirection: "row",
-    // flexWrap: "wrap",
     gap: 15,
-  },
-  "& .button": {
-    margin: "revert",
-    marginLeft: "auto",
-    [theme.breakpoints.up("lg")]: {
-      width: "50%",
-    },
   },
   "& .checkbox": {
     order: null,
