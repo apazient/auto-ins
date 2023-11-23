@@ -105,6 +105,8 @@ export const InputWrapperStyled = styled(InputContStyled)(({ theme }) => ({
       width: "fit-content",
       margin: "auto",
       padding: 7.5,
+      flex: 1,
+      flexBasis: 0,
     },
     "&__week": {
       display: "flex",

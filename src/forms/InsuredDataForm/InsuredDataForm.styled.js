@@ -105,5 +105,65 @@ export const WhiteButtonSVGStyled = styled(Box)(({ theme }) => ({
 }));
 
 export const DataContainerWrapper = styled(DataContainerStyled)(
-  ({ theme }) => ({})
+  ({ theme }) => ({
+
+    "& .react-datepicker__header__dropdown": {
+      backgroundColor: theme.palette.primary.lightBlue,
+      fontSize:24,
+      fontFamily: "Open Sans, sans-serif",
+      fontWeight: 600,
+      color: theme.palette.primary.main,
+      marginTop: 15,
+      display: "flex",
+      alignItem: "center",
+      justifyContent: "space-around",
+      borderRadius:20,
+      padding: '10px 0 10px 0 ',
+    },
+    "& .react-datepicker__month-dropdown, .react-datepicker__year-dropdown": {
+        borderRadius: 10,
+        padding: '15px',
+        "& div:nth-of-type(n)": {
+          padding: 5,
+          "&:hover": {
+            backgroundColor: theme.palette.primary.lightBlue2,
+          }
+        },
+      },
+    "& .react-datepicker__month-select, .react-datepicker__year-select": {
+      borderRadius: 10,
+      border:"none",
+      backgroundColor: "transparent",
+      cursor:"pointer",
+      fontWeight: 600,
+      color:theme.palette.primary.main,
+      outline:"none",
+      padding: '5px',
+          // "&:hover": {
+          //   color: theme.palette.primary.blue,
+          // }
+
+      },
+    "& .react-datepicker__month-dropdown-container": {
+      borderRadius:10,
+      display: "flex",
+      alignItem: "center",
+      justifyContent: "center",
+      
+    },
+    "& .react-datepicker__month-read-view--down-arrow, & .react-datepicker__year-read-view--down-arrow": {
+      top: 8,
+      display: "flex",
+      alignItem: "center",
+      justifyContent:"center",
+    },
+    "& .react-datepicker__month-read-view--selected-month": {
+      width:'100%',
+      display: "flex",
+      alignItem: "center",
+      justifyContent:"center",
+    },
+
+
+  })
 );

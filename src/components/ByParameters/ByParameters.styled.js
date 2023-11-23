@@ -132,6 +132,9 @@ export const DataContainerStyled = styled(InputContStyled)(({ theme }) => ({
   "& .react-datepicker__tab-loop": {
     position: 'absolute',
   },
+  "& .react-datepicker__day--selected": {
+    backgroundColor: theme.palette.primary.blue,
+  },
   "& .iconCalender": {
     display: "flex",
     alignItems: "center",
@@ -218,6 +221,8 @@ export const DataContainerStyled = styled(InputContStyled)(({ theme }) => ({
       width:"fit-content",
       margin: 'auto',
       padding: 7.5,
+      flex: 1,
+      flexBasis: 0,
       
     },
     "&__week": {

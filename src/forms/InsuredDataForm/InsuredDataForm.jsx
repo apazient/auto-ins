@@ -53,7 +53,7 @@ const InsuredDataForm = ({ formik, selectData }) => {
             selected={birthDate}
             onSelect={setBirthDate}
             onChange={hadleChangeBirthDate}
-            closeOnScroll={(e) => e.target === document}
+            // closeOnScroll={(e) => e.target === document}
             startDate={birthDate}
             name="date"
             maxDate={sub(new Date(), {
@@ -66,6 +66,7 @@ const InsuredDataForm = ({ formik, selectData }) => {
             withPortal
             showMonthDropdown
             showYearDropdown
+            dropdownMode="select"
             icon={
               <Box className="iconCalender">
                 <SpriteSVG name={"icon-calendar"} />
@@ -113,6 +114,7 @@ const InsuredDataForm = ({ formik, selectData }) => {
               withPortal
               showMonthDropdown
               showYearDropdown
+              dropdownMode="select"
               icon={
                 <Box className="iconCalender">
                   <SpriteSVG name={"icon-calendar"} />
