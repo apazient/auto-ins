@@ -3,7 +3,8 @@ import format from "date-fns/format";
 export const contractSaveDGONormalize = (
   userParams,
   user,
-  tariffDGO,
+  dgoTariff,
+  insurObject,
   customerInsuriensObject
 ) => {
   const { customer, insuranceObject } = customerInsuriensObject;
@@ -11,10 +12,10 @@ export const contractSaveDGONormalize = (
     type: "vcl",
     ...user,
     customer,
-    tariffDGO,
+    tariff: { id: dgoTariff.id, type: dgoTariff.type },
     insuranceObject: {
       ...insuranceObject,
-      engineVolume: tariffDGO.engineVolume,
+      engineVolume: insurObject.engineVolume,
     },
     dateFrom: format(
       new Date(userParams?.dateFrom),
@@ -23,6 +24,6 @@ export const contractSaveDGONormalize = (
     date: format(new Date(), "yyyy-MM-dd'T'HH:mm:ss.SSSxxxx"),
     state: "DRAFT",
 
-    limit: tariffDGO.limit,
+    limit: dgoTariff.limit,
   };
 };
