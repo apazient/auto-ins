@@ -24,7 +24,7 @@ import AlertMUI from "../components/Alert/AlertMUI";
 const HomePage = () => {
   const location = useLocation();
   const { id } = location.state || {};
-  const { loginThunk } = useActions();
+  const { loginThunk, setIsBlockThanks } = useActions();
 
   const user = useSelector(getUser);
   const isError = useSelector(getIsModalErrorOpen);
@@ -38,6 +38,7 @@ const HomePage = () => {
 
   useEffect(() => {
     if (user) return;
+    setIsBlockThanks(false);
     loginThunk();
   }, [user, loginThunk]);
 
@@ -46,7 +47,7 @@ const HomePage = () => {
   }
 
   return (
-    <>      
+    <>
       <main>
         <AlertMUI type="info" message="Будь ласка, заповніть поля" />
         <HeroTabs />

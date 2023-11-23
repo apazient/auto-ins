@@ -14,7 +14,7 @@ import {
 import { LinearProgress } from "@mui/material";
 import LineSection from "../components/LineSection/LineSection";
 import { useActions } from "../hooks/useActions";
-import AlertMUI from "../components/Alert/AlertMUI";
+
 // import { isError } from "lodash";
 
 const PricesPage = () => {
@@ -56,7 +56,6 @@ const PricesPage = () => {
   return (
     <>
       <OutletPageWrapper>
-        <AlertMUI type="error" message={isError} />
         <CostCalculation />
         <ProposalsFilter />
         <LineSection />

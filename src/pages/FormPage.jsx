@@ -5,19 +5,27 @@ import Stepper from "../components/Stepper/Stepper";
 import { Box } from "@mui/material";
 import { useRef } from "react";
 import OutletPageWrapper from "../components/OutletPageWrapper";
+import { useSelector } from "react-redux";
+import { getIsContractOSAGO } from "../redux/Global/selectors";
+import { BlockThank } from "../components/BlockThank/BlockThank";
 
 const FormPage = () => {
   const location = useLocation();
   const backLinkRef = useRef(location.state?.from);
+  const isContractOSAGO = useSelector(getIsContractOSAGO);
 
   return (
-    <OutletPageWrapper>
-      <Wrapper>
-        <CompanySmall />
-        <Box sx={{ display: "block" }}>
-          <Stepper backLinkRef={backLinkRef} />
-        </Box>
-      </Wrapper>
+    <OutletPageWrapper className="formPage">
+      {isContractOSAGO ? (
+        <BlockThank />
+      ) : (
+        <Wrapper>
+          <CompanySmall />
+          <Box sx={{ display: "block" }}>
+            <Stepper backLinkRef={backLinkRef} />
+          </Box>
+        </Wrapper>
+      )}
     </OutletPageWrapper>
   );
 };
