@@ -77,7 +77,7 @@ const Stepper = ({ backLinkRef }) => {
   // =======================Formik======================================
   const contactsFormik = useFormik({
     initialValues: contactsInitialValues,
-    validationSchema: contactsValidationSchema(),
+    //validationSchema: contactsValidationSchema(),
     onSubmit: () => {
       handleNext();
     },
@@ -93,7 +93,7 @@ const Stepper = ({ backLinkRef }) => {
 
   const homeAddressFormik = useFormik({
     initialValues: homeAddressInitialValues,
-    validationSchema: HomeAddressFormValidationSchema(),
+    //validationSchema: HomeAddressFormValidationSchema(),
     onSubmit: () => {
       handleNext();
     },
@@ -122,6 +122,7 @@ const Stepper = ({ backLinkRef }) => {
         } ${apartmentNumber && `кв.${apartmentNumber}`}`,
       };
       console.log(format(insuredDataFormik.values.date, "yyyy-MM-dd"));
+      console.log(format(insuredDataFormik.values.birthDate, "yyyy-MM-dd"));
 
       const customer = {
         code: "???????",

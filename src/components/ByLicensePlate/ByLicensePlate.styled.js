@@ -136,6 +136,7 @@ export const InputStyled = styled(OutlinedInput)(({ theme }) => ({
   borderRadius: 50,
   backgroundColor: `${theme.palette.primary.white}`,
   outline: `none`,
+
   "& .MuiInputBase-input.MuiOutlinedInput-input": {
     color: `${theme.palette.primary.main}`,
     fontWeight: 600,
@@ -144,17 +145,17 @@ export const InputStyled = styled(OutlinedInput)(({ theme }) => ({
     lineHeight: "150%" /* 24px */,
     outline: "none",
     border: "none",
-    // "&:-webkit-autofill": {
-    //   WebkitBackgroundClip: "text",
-    //   WebkitTextFillColor: theme.palette.primary.main,
-    // },
-    // "&:-webkit-autofill:focus": {
-    //   WebkitBackgroundClip: "text",
-    //   WebkitTextFillColor: theme.palette.primary.main,
-    // },
-    // [theme.breakpoints.up("sm")]: {
-    //   fontSize: 18,
-    // },
+    "&:-webkit-autofill": {
+      WebkitBackgroundClip: "text",
+      WebkitTextFillColor: theme.palette.primary.main,
+    },
+    "&:-webkit-autofill:focus": {
+      WebkitBackgroundClip: "text",
+      WebkitTextFillColor: theme.palette.primary.main,
+    },
+    [theme.breakpoints.up("sm")]: {
+      fontSize: 18,
+    },
   },
 
   "& fieldset.MuiOutlinedInput-notchedOutline": {
