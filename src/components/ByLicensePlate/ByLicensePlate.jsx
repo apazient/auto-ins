@@ -20,7 +20,8 @@ import { useActions } from "../../hooks/useActions";
 import { SpriteSVG } from "../../images/SpriteSVG";
 
 import { useState } from "react";
-import { addDayToDate } from "../../helpers/addDayToDate";
+
+import format from "date-fns/format";
 
 const ByLicensePlate = () => {
   const navigate = useNavigate();
@@ -37,18 +38,13 @@ const ByLicensePlate = () => {
     autoByNumber,
   } = useActions();
 
-  const [dateFrom, setDateFrom] = useState(
-    moment(addDayToDate()).format("DD/MM/YYYY")
-  );
-  const handleChangeDate = (e) => {
-    setDateFrom(moment(e).format("DD/MM/YYYY"));
-  };
+  const [dateFrom, setDateFrom] = useState(addDays(new Date(), 1));
 
   const formik = useFormik({
     initialValues: {
       licensePlate: "",
       benefits: false,
-      date: moment(dateFrom).format("YYYY-MM-DD"),
+      date: dateFrom,
     },
 
     validateOnChange: false,
@@ -58,12 +54,11 @@ const ByLicensePlate = () => {
         setIsModalErrorOpen(true);
         return;
       }
-
       const params = {
         outsideUkraine: false,
         customerCategory: values.benefits ? "PRIVILEGED" : "NATURAL",
         stateNumber: values.licensePlate,
-        dateFrom: moment(dateFrom, "DD/MM/YYYY").format("YYYY-MM-DD"),
+        dateFrom: format(dateFrom, "yyyy-MM-dd"),
       };
 
       setAddress({ label: "", value: "" });
@@ -111,17 +106,18 @@ const ByLicensePlate = () => {
             <label htmlFor="dateFrom">Дата початку дії поліса:</label>
             <DatePickerWrapper
               id="dateFrom"
-              value={dateFrom}
+              mode="single"
+              selected={dateFrom}
+              onSelect={setDateFrom}
               closeOnScroll={(e) => e.target === document}
-              onChange={handleChangeDate}
               name="date"
-              dateFormat="DD/MM/YYYY"
+              withPortal
+              dateFormat="dd/MM/yyyy"
               showIcon={true}
               minDate={addDays(new Date(), 1)}
               maxDate={addMonths(new Date(), 3)}
               startDate={dateFrom}
               locale="uk"
-              withPortal
               icon={
                 <Box className="iconCalender">
                   <SpriteSVG name={"icon-calendar"} />

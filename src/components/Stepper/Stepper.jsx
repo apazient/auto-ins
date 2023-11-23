@@ -33,9 +33,12 @@ import {
   carDataFormValidationSchema,
   contactsValidationSchema,
   HomeAddressFormValidationSchema,
+  insuredDataFormValidationSchema,
 } from "../../helpers/formValidationSchema";
 import { getSubmitObject } from "../../redux/byParameters/selectors";
 import { useActions } from "../../hooks/useActions";
+import { format } from "date-fns";
+import { setGlobalCustomerData } from "../../redux/Global/globalSlice";
 
 const steps = [
   { Контакти: "icon-email" },
@@ -61,6 +64,7 @@ const Stepper = ({ backLinkRef }) => {
 
   const [identityCard, setIdentityCard] = useState([]);
   // const location = useLocation();
+  console.log(identityCard);
 
   const customerCategory = useSelector((state) => state.byParameters.benefits);
   let InsuredDataSelectOptions = !customerCategory
@@ -74,89 +78,83 @@ const Stepper = ({ backLinkRef }) => {
   const contactsFormik = useFormik({
     initialValues: contactsInitialValues,
     validationSchema: contactsValidationSchema(),
-    onSubmit: (values) => {
-      console.log("contacts", values);
-      dispatch(setGlobalCustomerDataCustomer(values));
+    onSubmit: () => {
       handleNext();
     },
   });
 
   const insuredDataFormik = useFormik({
     initialValues: insuredDataInitialValues,
-    // validationSchema: insuredDataFormValidationSchema(),
-    onSubmit: (values) => {
-      console.log("insured", values);
-      const {
-        birthDate,
-        date,
-        issuedBy,
-        middleName,
-        name,
-        number,
-        record,
-        series,
-        surname,
-        taxNumber,
-      } = values;
-      const insuredValues = {
-        surname,
-        name,
-        middleName,
-        birthDate,
-        taxNumber,
-        record,
-        document: {
-          //type: "", //document{}
-          series,
-          number,
-          issuedBy,
-          date,
-        },
-      };
-      dispatch(setGlobalCustomerDataCustomer(insuredValues));
+    validationSchema: insuredDataFormValidationSchema(),
+    onSubmit: () => {
       handleNext();
     },
   });
 
   const homeAddressFormik = useFormik({
     initialValues: homeAddressInitialValues,
-    //validationSchema: HomeAddressFormValidationSchema(),
-    onSubmit: (values) => {
-      console.log("homeAddress", values);
-      const { regionANDcity, street, houseNumber, apartmentNumber } = values;
+    validationSchema: HomeAddressFormValidationSchema(),
+    onSubmit: () => {
+      handleNext();
+    },
+  });
 
+  const [insurObject] = useSelector(getAutoByNumber);
+  const userParams = useSelector(getSubmitObject);
+  const carDataFormik = useFormik({
+    initialValues: {
+      stateNumber: insurObject?.stateNumber || "",
+      year: insurObject?.year || "",
+      brand: insurObject?.modelText || "",
+      model: "",
+      bodyNumber: insurObject?.bodyNumber || "",
+      maker: "",
+      outsideUkraine: userParams?.outsideUkraine || false,
+      category: insurObject?.category || getSubmitObject?.category,
+    },
+
+    onSubmit: (values) => {
+      const { regionANDcity, street, houseNumber, apartmentNumber } =
+        homeAddressFormik.values;
       const address = {
         address: `${regionANDcity} ${street && `вул.${street}`} ${
           houseNumber && `б.${houseNumber}`
         } ${apartmentNumber && `кв.${apartmentNumber}`}`,
       };
-      dispatch(setGlobalCustomerDataCustomer(address));
-      handleNext();
-    },
-  });
+      console.log(format(insuredDataFormik.values.date, "yyyy-MM-dd"));
 
-  const [insuranceObject] = useSelector(getAutoByNumber);
-  const userParams = useSelector(getSubmitObject);
-  const carDataFormik = useFormik({
-    initialValues: {
-      stateNumber: insuranceObject?.stateNumber || "",
-      year: insuranceObject?.year || "",
-      brand: insuranceObject?.modelText || "",
-      model: "",
-      bodyNumber: insuranceObject?.bodyNumber || "",
-      maker: "",
-      outsideUkraine: userParams?.outsideUkraine || false,
-    },
-
-    onSubmit: (values) => {
-      const allValues = {
-        ...contactsFormik.values,
-        ...insuredDataFormik.values,
-        ...homeAddressFormik.values,
-        ...values,
+      const customer = {
+        code: "???????",
+        nameLast: insuredDataFormik.values.surname,
+        nameFirst:
+          insuredDataFormik.values.name + insuredDataFormik.values.middleName,
+        address,
+        phone: contactsFormik.values.phone,
+        birthDate: format(insuredDataFormik.values.birthDate, "yyyy-MM-dd"),
+        document: {
+          type: identityCard.value,
+          series: insuredDataFormik.values.series,
+          number: insuredDataFormik.values.number,
+          date: format(insuredDataFormik.values.date, "yyyy-MM-dd"),
+          issuedBy: insuredDataFormik.values.issuedBy,
+        },
       };
-      console.log("values", values);
-      setGlobalCustomerDataCustomer(values);
+      const insuranceObject = {
+        type: "??????",
+        model: {
+          id: carDataFormik.values.model.id,
+          autoMaker: { id: carDataFormik.values.maker.id },
+        },
+        modelText: carDataFormik.values.brand,
+        category: carDataFormik.values.category,
+        bodyNumber: carDataFormik.values.bodyNumber,
+        stateNumber: carDataFormik.values.stateNumber,
+        registrationPlace: insurObject?.registrationPlace?.id,
+        year: carDataFormik.values.year,
+      };
+      console.log({ customer, insuranceObject });
+
+      setGlobalCustomerData({ customer, insuranceObject });
     },
 
     validationSchema: carDataFormValidationSchema(),

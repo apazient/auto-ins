@@ -1,5 +1,5 @@
 import { OutlinedInput, styled } from "@mui/material";
-import DatePicker from "react-datepicker";
+import ReactDatePicker from "react-datepicker";
 import { InputContStyled } from "../ByParameters/ByParameters.styled";
 
 export const InputWrapperStyled = styled(InputContStyled)(({ theme }) => ({
@@ -28,33 +28,21 @@ export const InputWrapperStyled = styled(InputContStyled)(({ theme }) => ({
       fontSize: 18,
     },
   },
-   "& .react-datepicker__tab-loop": {
-    position: 'absolute',
+  "& .react-datepicker__tab-loop": {
+    position: "absolute",
   },
   "& .iconCalender": {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    width:24,
+    width: 24,
     right: 16,
-    top:16,
+    top: 16,
     zIndex: 1,
     pointerEvents: "none",
     "& svg": {
       width: 24,
-      height:24,
-    }
-  },
-    "& .react-datepicker__view-calendar-icon input": {
-    padding: 16,
-    borderRadius: "50px",
-    outline: "none",
-    borderColor: "transparent",
-    fontSize: 16,
-    fontWeight: 600,
-    lineHeight: "1.5",
-    [theme.breakpoints.up("sm")]: {
-      fontSize: 18,
+      height: 24,
     },
   },
   "& .react-datepicker": {
@@ -67,11 +55,11 @@ export const InputWrapperStyled = styled(InputContStyled)(({ theme }) => ({
     "&__header": {
       borderTopRightRadius: "50px!important",
       borderTopLeftRadius: 50,
-      padding:"15px 15px 0 15px"
+      padding: "15px 15px 0 15px",
     },
-    "&__current-month": {
-      fontSize: "1.5rem",
-    },
+    // "&__current-month": {
+    //   fontSize: "1.5rem",
+    // },
     "&__navigation": {
       top: 15,
       "&--next": {
@@ -97,7 +85,7 @@ export const InputWrapperStyled = styled(InputContStyled)(({ theme }) => ({
       margin: "0.31em",
     },
     "&__day, __month, __quarter, __year": {
-      transition: 'background-color 250ms ease-in-out',
+      transition: "background-color 250ms ease-in-out",
       "&:hover, &:focus": {
         backgroundColor: theme.palette.primary.blue,
         color: theme.palette.primary.white,
@@ -108,19 +96,18 @@ export const InputWrapperStyled = styled(InputContStyled)(({ theme }) => ({
       },
     },
     "&__month": {
-      padding:"0 15px 15px 15px",
+      padding: "0 15px 15px 15px",
     },
     "&__triangle": {
       display: "none",
     },
     "&__day": {
-      width:"fit-content",
-      margin: 'auto',
+      width: "fit-content",
+      margin: "auto",
       padding: 7.5,
-      
     },
     "&__week": {
-      display:'flex'
+      display: "flex",
     },
     "&__calendar-icon": {
       width: 24,
@@ -202,6 +189,6 @@ export const FormStyled = styled("form")(({ theme }) => ({
   },
 }));
 
-export const DatePickerWrapper = styled(DatePicker)(({ theme }) => ({
+export const DatePickerWrapper = styled(ReactDatePicker)(({ theme }) => ({
   width: "100%",
 }));

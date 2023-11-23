@@ -27,7 +27,7 @@ const initialState = {
     //   },
   },
   paramsFromUrl: null,
-  homeAddress:{ label: "", value:"" },
+  homeAddress: { label: "", value: "" },
 };
 
 export const globalSlice = createSlice({
@@ -38,6 +38,7 @@ export const globalSlice = createSlice({
       state.isLoading = payload;
     },
     setGlobalCustomerData: (state, { payload }) => {
+      console.log("payload", payload);
       state.globalCustomerData = { ...state.globalCustomerData, ...payload };
     },
     setIsModalErrorOpen: (state, { payload }) => {
@@ -59,7 +60,6 @@ export const globalSlice = createSlice({
     setHomeAddress: (state, { payload }) => {
       state.homeAddress = payload;
     },
-
   },
 });
 
