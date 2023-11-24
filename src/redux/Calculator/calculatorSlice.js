@@ -44,6 +44,9 @@ export const calculatorSlice = createSlice({
     setErrorMessage: (state, { payload }) => {
       state.errorMessage = payload;
     },
+    setIsModalErrorOpen: (state, { payload }) => {
+      state.isModalErrorOpen = payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -56,6 +59,7 @@ export const calculatorSlice = createSlice({
         state.policyStatus = 1;
       })
       .addCase(osagoByParams.rejected, (state, { payload }) => {
+        console.log(payload);
         state.error = payload;
         state.policyStatus = -1;
         state.isLoading = false;
@@ -67,16 +71,19 @@ export const calculatorSlice = createSlice({
       })
 
       .addCase(osagoByDn.fulfilled, (state, { payload }) => {
+        console.log(payload);
         state.tariffPolicyChoose = payload;
         state.policyStatus = 1;
+        state.error = false;
       })
       .addCase(osagoByDn.rejected, (state, { payload }) => {
-        state.error = payload;
+        console.log(payload);
+        state.error = true;
         state.policyStatus = -1;
         state.isLoading = false;
       })
-      .addCase(osagoByDn.pending, (state, { payload }) => {
-        state.error = payload;
+      .addCase(osagoByDn.pending, (state, _) => {
+        state.error = false;
         state.policyStatus = 0;
         state.isLoading = true;
       })

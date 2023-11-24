@@ -58,7 +58,8 @@ export const osagoByParams = createAsyncThunk(
 
       return response;
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      return rejectWithValue(dispatch(setIsModalErrorOpen(true)));
+      // return rejectWithValue(error.response.data);
     }
   }
 );
@@ -106,7 +107,6 @@ export const osagoByDn = createAsyncThunk(
 
       return response;
     } catch (error) {
-      dispatch(setErrorMessage(error.response.data.message));
       return rejectWithValue(dispatch(setIsModalErrorOpen(true)));
     }
   }
@@ -114,11 +114,12 @@ export const osagoByDn = createAsyncThunk(
 
 export const chooseVclTariffDGO = createAsyncThunk(
   "calculator/tariffDGO",
-  async (body, { rejectWithValue }) => {
+  async (body, { rejectWithValue, dispatch }) => {
     try {
       const { autoCategory, dateFrom, ...rest } = body;
       const dateTo = addYearToDate(dateFrom);
       const cat = autoKindAndLimit(autoCategory);
+
       const { data } = await instance.post("/tariff/choose/vcl", {
         ...rest,
         ...cat,
@@ -129,7 +130,7 @@ export const chooseVclTariffDGO = createAsyncThunk(
 
       return mergeObjectsById(newData, responseDGONormalize);
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      return rejectWithValue(dispatch(setIsModalErrorOpen(true)));
     }
   }
 );

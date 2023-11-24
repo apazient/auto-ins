@@ -28,7 +28,6 @@ const HomePage = () => {
 
   const user = useSelector(getUser);
   const isError = useSelector(getIsModalErrorOpen);
-  const errorMessage = useSelector(getErrorMessage);
 
   useEffect(() => {
     let element = document.getElementById(id);
@@ -44,14 +43,8 @@ const HomePage = () => {
   }, [user, loginThunk]);
 
   if (isError) {
-    return (
-      <>
-        <AlertMUI type="error" message={errorMessage} />
-        <ModalError />
-      </>
-    );
+    return <ModalError />;
   }
-
   return (
     <>
       <main>

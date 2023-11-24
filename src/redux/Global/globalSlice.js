@@ -26,6 +26,7 @@ export const globalSlice = createSlice({
       state.globalCustomerData = { ...state.globalCustomerData, ...payload };
     },
     setIsModalErrorOpen: (state, { payload }) => {
+      console.log("payload", payload);
       state.isModalErrorOpen = payload;
     },
     // setGlobalCustomerDataCustomer: (state, { payload }) => {
