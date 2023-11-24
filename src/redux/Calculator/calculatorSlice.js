@@ -16,6 +16,7 @@ const initialState = {
   policyStatus: 0,
   vclStatus: 0,
   user: null,
+  errorMessage: "",
   // autoByNumber: [],
   // allAutoByNumber: {},
   isLoading: false,
@@ -39,6 +40,9 @@ export const calculatorSlice = createSlice({
     },
     setFilteredCompanies: (state, { payload }) => {
       state.filteredCompanies = payload;
+    },
+    setErrorMessage: (state, { payload }) => {
+      state.errorMessage = payload;
     },
   },
   extraReducers: (builder) => {
@@ -105,5 +109,6 @@ export const {
   setTariffPolicyChoose,
   setFilteredCompanies,
   setTariffVcl,
+  setErrorMessage,
 } = calculatorSlice.actions;
 export const calculatorReducer = calculatorSlice.reducer;

@@ -125,9 +125,19 @@ const CarDataForm = ({ formik }) => {
           isDisabled={disabled}
         />
 
+        {/* {formik.errors.stateNumber ? (
+          <div style={{ color: "red" }}>{formik.errors.stateNumber}</div>
+        ) : null}
         {formik.errors.model ? (
           <div style={{ color: "red" }}>{formik.errors.model}</div>
         ) : null}
+        {formik.errors.bodyNumber ? (
+          <div style={{ color: "red" }}>{formik.errors.bodyNumber}</div>
+        ) : null}
+        {formik.errors.year ? (
+          <div style={{ color: "red" }}>{formik.errors.year}</div>
+        ) : null} */}
+
         <GeneralSelect
           id="model"
           lableText="Модель*:"

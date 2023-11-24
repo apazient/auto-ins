@@ -1,4 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import AlertMUI from "../../components/Alert/AlertMUI";
 import { addYearToDate } from "../../helpers/addYearToDate";
 import { autoKindAndLimit } from "../../helpers/autoKindAndLimit";
 import { responseDGONormalize } from "../../helpers/dataNormalize/responseDGONormalize";
@@ -8,17 +9,18 @@ import { mergeObjectsById } from "../../helpers/mergeObjectsById";
 import { sortAndFilterTariff } from "../../helpers/sortAndFilterTariff";
 import { instance } from "../../services/api";
 import { setIsModalErrorOpen } from "../Global/globalSlice";
+import { setErrorMessage } from "./calculatorSlice";
 
-const setSalePoint = (salePoint) => {
-  instance.defaults.params = { ...instance.defaults.params, salePoint };
-};
+// const setSalePoint = (salePoint) => {
+//   instance.defaults.params = { ...instance.defaults.params, salePoint };
+// };
 
 export const loginThunk = createAsyncThunk("auth/login", async (thunkAPI) => {
   try {
     const { data } = await instance.get("/user/getByEmail", {
       params: { email: "persichek5@gmail.com" },
     });
-    setSalePoint(data.salePoint.id);
+    // setSalePoint(data.salePoint.id);
     return userNormalize(data);
   } catch (error) {
     return thunkAPI.rejectWithValue(error.response.data);
@@ -65,11 +67,14 @@ export const osagoByDn = createAsyncThunk(
   "calculator/osagoByDn",
   async (body, { rejectWithValue, dispatch, getState }) => {
     try {
+      const { customerCategory, stateNumber, dateFrom } = body;
       const { data } = await instance.get("/tariff/choose/policy/statenumber", {
         params: {
-          ...body,
+          customerCategory,
+          stateNumber,
+          dateFrom,
+          registrationType: "PERMANENT_WITHOUT_OTK",
           taxi: false,
-          // registrationType: "PERMANENT_WITHOUT_OTK",
         },
       });
 
@@ -101,6 +106,7 @@ export const osagoByDn = createAsyncThunk(
 
       return response;
     } catch (error) {
+      dispatch(setErrorMessage(error.response.data.message));
       return rejectWithValue(dispatch(setIsModalErrorOpen(true)));
     }
   }
@@ -119,7 +125,6 @@ export const chooseVclTariffDGO = createAsyncThunk(
         dateFrom,
         dateTo,
       });
-
       const newData = data.filter((el) => el.crossSell === false);
 
       return mergeObjectsById(newData, responseDGONormalize);
