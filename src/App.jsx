@@ -25,7 +25,7 @@ function App() {
           }
         />
         <Route
-          path="/prices"
+          path="prices"
           element={
             <Suspense fallback={<Loader />}>
               <PricesPage />
@@ -33,7 +33,7 @@ function App() {
           }
         />
         <Route
-          path="/form"
+          path="form"
           element={
             <Suspense fallback={<Loader />}>
               <FormPage />
