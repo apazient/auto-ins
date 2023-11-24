@@ -6,8 +6,8 @@ const xAuthUser = "persichek5@gmail.com";
 const xAuthToken = "8a87f6e8-55e5-4448-ba5d-f9466667aca1";
 
 export const instance = axios.create({
-  baseURL: "/api",
-  // baseURL: "https://web.eua.in.ua/eua/api/v15",
+  // baseURL: "/api",
+  baseURL: "https://web.eua.in.ua/eua/api/v15",
 
   headers: {
     "x-auth-user": xAuthUser,
