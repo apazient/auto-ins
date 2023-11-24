@@ -51,7 +51,6 @@ const ByLicensePlate = () => {
 
     validateOnChange: false,
     onSubmit: (values) => {
-      console.log(values);
       const stateNumber = values.licensePlate.match(DNUMBER_REGEX);
       if (!stateNumber) {
         setIsModalErrorOpen(true);

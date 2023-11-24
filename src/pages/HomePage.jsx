@@ -1,7 +1,7 @@
 import { lazy, Suspense, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { getErrorMessage, getUser } from "../redux/Calculator/selectors";
+import { getUser } from "../redux/Calculator/selectors";
 
 import { getIsModalErrorOpen } from "../redux/Global/selectors";
 import { useActions } from "../hooks/useActions";

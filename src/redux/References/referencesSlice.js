@@ -1,8 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { useDispatch } from "react-redux";
-import { CATEGORY } from "../../constants";
-import { autoKindAndLimit } from "../../helpers/autoKindAndLimit";
-import { setIsModalErrorOpen } from "../Global/globalSlice";
+
 import {
   allAutoMakers,
   allAutoModelByMaker,
@@ -43,7 +40,6 @@ export const referencesSlice = createSlice({
         state.autoModelByMaker = payload;
       })
       .addCase(autoByNumber.fulfilled, (state, { payload }) => {
-        console.log("payload", payload);
         state.autoByNumber = payload;
       })
       .addCase(autoByMakerAndModel.fulfilled, (state, { payload }) => {

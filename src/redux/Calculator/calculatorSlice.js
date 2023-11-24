@@ -16,9 +16,6 @@ const initialState = {
   policyStatus: 0,
   vclStatus: 0,
   user: null,
-  errorMessage: "",
-  // autoByNumber: [],
-  // allAutoByNumber: {},
   isLoading: false,
 };
 
@@ -41,9 +38,7 @@ export const calculatorSlice = createSlice({
     setFilteredCompanies: (state, { payload }) => {
       state.filteredCompanies = payload;
     },
-    setErrorMessage: (state, { payload }) => {
-      state.errorMessage = payload;
-    },
+
     setIsModalErrorOpen: (state, { payload }) => {
       state.isModalErrorOpen = payload;
     },
@@ -59,7 +54,6 @@ export const calculatorSlice = createSlice({
         state.policyStatus = 1;
       })
       .addCase(osagoByParams.rejected, (state, { payload }) => {
-        console.log(payload);
         state.error = payload;
         state.policyStatus = -1;
         state.isLoading = false;
@@ -71,13 +65,11 @@ export const calculatorSlice = createSlice({
       })
 
       .addCase(osagoByDn.fulfilled, (state, { payload }) => {
-        console.log(payload);
         state.tariffPolicyChoose = payload;
         state.policyStatus = 1;
         state.error = false;
       })
-      .addCase(osagoByDn.rejected, (state, { payload }) => {
-        console.log(payload);
+      .addCase(osagoByDn.rejected, (state, _) => {
         state.error = true;
         state.policyStatus = -1;
         state.isLoading = false;
@@ -87,12 +79,6 @@ export const calculatorSlice = createSlice({
         state.policyStatus = 0;
         state.isLoading = true;
       })
-      // .addCase(autoByNumber.fulfilled, (state, { payload }) => {
-      //   console.log(payload);
-      //   const { bodyNumber, year, modelText } = payload;
-      //   state.autoByNumber = [bodyNumber, year, modelText];
-      //   state.allAutoByNumber = payload;
-      // })
 
       .addCase(chooseVclTariffDGO.fulfilled, (state, { payload }) => {
         state.tariffVcl = payload;
@@ -116,6 +102,5 @@ export const {
   setTariffPolicyChoose,
   setFilteredCompanies,
   setTariffVcl,
-  setErrorMessage,
 } = calculatorSlice.actions;
 export const calculatorReducer = calculatorSlice.reducer;

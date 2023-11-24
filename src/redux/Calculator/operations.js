@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import AlertMUI from "../../components/Alert/AlertMUI";
+
 import { addYearToDate } from "../../helpers/addYearToDate";
 import { autoKindAndLimit } from "../../helpers/autoKindAndLimit";
 import { responseDGONormalize } from "../../helpers/dataNormalize/responseDGONormalize";
@@ -9,7 +9,6 @@ import { mergeObjectsById } from "../../helpers/mergeObjectsById";
 import { sortAndFilterTariff } from "../../helpers/sortAndFilterTariff";
 import { instance } from "../../services/api";
 import { setIsModalErrorOpen } from "../Global/globalSlice";
-import { setErrorMessage } from "./calculatorSlice";
 
 // const setSalePoint = (salePoint) => {
 //   instance.defaults.params = { ...instance.defaults.params, salePoint };
@@ -59,7 +58,6 @@ export const osagoByParams = createAsyncThunk(
       return response;
     } catch (error) {
       return rejectWithValue(dispatch(setIsModalErrorOpen(true)));
-      // return rejectWithValue(error.response.data);
     }
   }
 );
