@@ -74,7 +74,7 @@ const Stepper = ({ backLinkRef }) => {
   const user = useSelector(getUser);
   const { tariff, dgoTarrif } = useSelector(getGlobalCustomerData);
   const homeAddress = useSelector(getHomeAddress);
-  const isLoaging = useSelector(getIsLoading);
+  const isLoading = useSelector(getIsLoading);
   // const location = useLocation();
 
   const customerCategory = useSelector((state) => state.byParameters.benefits);
@@ -85,7 +85,7 @@ const Stepper = ({ backLinkRef }) => {
     setIdentityCard(InsuredDataSelectOptions[0]);
   }, [InsuredDataSelectOptions]);
   const customButtonLoading = () => {
-    isLoaging ? (
+    return isLoading ? (
       <YellowButtonStyled onClick={handleSubmit}>
         <CircularProgress />
       </YellowButtonStyled>
@@ -264,7 +264,7 @@ const Stepper = ({ backLinkRef }) => {
         </Typography>
         {getStepContent(activeStep)}
         <ButtonContainerStyled component="div">
-          {customButtonLoading}
+          {customButtonLoading()}
           {/* <YellowButtonStyled onClick={handleSubmit}>
             Підтвердити
           </YellowButtonStyled> */}
