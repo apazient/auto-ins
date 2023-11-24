@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { SpriteSVG } from "../../images/SpriteSVG";
 import { Connector, Lable, LableIcon, StepperStyled } from "./StepperStyled";
 import StepIcon from "./StepIcon";
-import { useFormik } from "formik";
+import { Formik, useFormik } from "formik";
 import {
   contactsInitialValues,
   // carDataFormikInitialValues,
@@ -48,6 +48,7 @@ import {
 import { getUser } from "../../redux/Calculator/selectors";
 import { customerInsuriensObject } from "../../helpers/customerInsuriensObject";
 import { contractSaveDGONormalize } from "../../helpers/dataNormalize/contractSaveDGONormalize";
+import AlertMUI from "../Alert/AlertMUI";
 
 const steps = [
   { Контакти: "icon-email" },

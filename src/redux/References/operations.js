@@ -1,5 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { CATEGORY } from "../../constants";
+
 import { instance } from "../../services/api";
+import { setIsModalErrorOpen } from "../Global/globalSlice";
 
 export const allAutoMakers = createAsyncThunk(
   "references/allAutoMakers",
@@ -31,15 +34,21 @@ export const allAutoModelByMaker = createAsyncThunk(
 
 export const autoByNumber = createAsyncThunk(
   "references/autoByNumber",
-  async (query, { rejectWithValue }) => {
+  async (query, { rejectWithValue, dispatch }) => {
     try {
       const { data } = await instance.get("/auto/mtibu/number", {
         params: {
           query,
         },
       });
-
-      return data;
+      const [auto] = data;
+      const a = CATEGORY.find((item) => item === auto.category);
+      if (a) {
+        return data;
+      } else {
+        dispatch(setIsModalErrorOpen(true));
+        return [];
+      }
     } catch (error) {
       return rejectWithValue(error.response.data);
     }

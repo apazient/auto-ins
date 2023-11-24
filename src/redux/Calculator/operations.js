@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import AlertMUI from "../../components/Alert/AlertMUI";
+
 import { addYearToDate } from "../../helpers/addYearToDate";
 import { autoKindAndLimit } from "../../helpers/autoKindAndLimit";
 import { responseDGONormalize } from "../../helpers/dataNormalize/responseDGONormalize";
@@ -9,7 +9,6 @@ import { mergeObjectsById } from "../../helpers/mergeObjectsById";
 import { sortAndFilterTariff } from "../../helpers/sortAndFilterTariff";
 import { instance } from "../../services/api";
 import { setIsModalErrorOpen } from "../Global/globalSlice";
-import { setErrorMessage } from "./calculatorSlice";
 
 // const setSalePoint = (salePoint) => {
 //   instance.defaults.params = { ...instance.defaults.params, salePoint };
@@ -58,7 +57,7 @@ export const osagoByParams = createAsyncThunk(
 
       return response;
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      return rejectWithValue(dispatch(setIsModalErrorOpen(true)));
     }
   }
 );
@@ -106,7 +105,6 @@ export const osagoByDn = createAsyncThunk(
 
       return response;
     } catch (error) {
-      dispatch(setErrorMessage(error.response.data.message));
       return rejectWithValue(dispatch(setIsModalErrorOpen(true)));
     }
   }
@@ -114,11 +112,12 @@ export const osagoByDn = createAsyncThunk(
 
 export const chooseVclTariffDGO = createAsyncThunk(
   "calculator/tariffDGO",
-  async (body, { rejectWithValue }) => {
+  async (body, { rejectWithValue, dispatch }) => {
     try {
       const { autoCategory, dateFrom, ...rest } = body;
       const dateTo = addYearToDate(dateFrom);
       const cat = autoKindAndLimit(autoCategory);
+
       const { data } = await instance.post("/tariff/choose/vcl", {
         ...rest,
         ...cat,
@@ -129,7 +128,7 @@ export const chooseVclTariffDGO = createAsyncThunk(
 
       return mergeObjectsById(newData, responseDGONormalize);
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      return rejectWithValue(dispatch(setIsModalErrorOpen(true)));
     }
   }
 );

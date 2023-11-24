@@ -8,7 +8,6 @@ export const getFilteredCompanies = (state) =>
 export const getTariffVcl = (state) => state.calculator.tariffVcl;
 export const getStateNumber = (state) => state.calculator.stateNumber;
 export const getError = (state) => state.calculator.error;
-export const getErrorMessage = (state) => state.calculator.errorMessage;
 export const getPolicyStatus = (state) => state.calculator.policyStatus;
 export const getVclStatus = (state) => state.calculator.vclStatus;
 export const getTariffsStatus = createSelector(

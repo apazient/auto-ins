@@ -5,7 +5,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useActions } from "../../hooks/useActions";
 import { SpriteSVG } from "../../images/SpriteSVG";
 import { getIsModalErrorOpen } from "../../redux/Global/selectors";
@@ -18,9 +18,15 @@ import {
 } from "./ModalErrorStyled";
 
 const ModalError = () => {
+  const location = useLocation();
   const isError = useSelector(getIsModalErrorOpen);
   const [open, setOpen] = useState(isError);
   const { setIsModalErrorOpen, setStateNumber } = useActions();
+
+  const validError =
+    "Номер не відповідає вимогам оформлення Електронного поліса встановленим МТСБУ (Моторно-транспортне страхове бюро України).";
+  const categoryError =
+    "Транспорний засіб повиннен проходити обовязкове технічне обслуговування. Для прорахунку полісу зверніться будь-ласка до наших консультантів.";
 
   const navigate = useNavigate();
 
@@ -42,7 +48,6 @@ const ModalError = () => {
         >
           <SpriteSVG name={"icon-x"} />
         </Box>
-
         <TitleWrapper>
           <BoxImgYellow>
             <SpriteSVG name="icon-alert-triangle" />
@@ -55,19 +60,19 @@ const ModalError = () => {
         <DialogContent>
           <DialogContentText component="div">
             <Typography component="p" variant="body1">
-              Номер не відповідає вимогам оформлення Електронного поліса
-              встановленим МТСБУ (Моторно-транспортне страхове бюро України).
+              {location.pathname === "/prices" && categoryError}
+              {location.pathname === "/" && validError}
             </Typography>
             <Typography
               component="p"
               variant="subtitle1"
               sx={{ padding: { xs: "8px 0", sm: "16px 0" } }}
             >
-              Будь ласкаю перевірте правильність введення.
+              Будь ласка, перевірте правильність введення.
             </Typography>
             <Typography component="p" variant="body1">
-              Якщо власник авто зареєстрований в іншій країні, виберіть
-              відповідне місто реєстрації “ТЗ зареєстровано в іншій країні”.
+              Якщо авто зареєстровано в іншій країні, здійсніть пошук “За
+              параметрами” і виберіть “Авто на іноземних номерах”.
             </Typography>
           </DialogContentText>
         </DialogContent>
