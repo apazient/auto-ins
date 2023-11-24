@@ -135,10 +135,7 @@ const ByLicensePlate = () => {
           helper={<HelperList />}
           className="checkbox"
         />
-        <SubmitButton
-          type="submit"
-          disabled={!formik.values.licensePlate}
-        >
+        <SubmitButton type="submit" disabled={!formik.values.licensePlate}>
           Розрахувати вартість
         </SubmitButton>
       </FormStyled>
