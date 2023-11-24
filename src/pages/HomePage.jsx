@@ -1,7 +1,7 @@
 import { lazy, Suspense, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { getErrorMessage, getUser } from "../redux/Calculator/selectors";
+import { getUser } from "../redux/Calculator/selectors";
 
 import { getIsModalErrorOpen } from "../redux/Global/selectors";
 import { useActions } from "../hooks/useActions";
@@ -28,7 +28,6 @@ const HomePage = () => {
 
   const user = useSelector(getUser);
   const isError = useSelector(getIsModalErrorOpen);
-  const errorMessage = useSelector(getErrorMessage);
 
   useEffect(() => {
     let element = document.getElementById(id);
@@ -44,14 +43,8 @@ const HomePage = () => {
   }, [user, loginThunk]);
 
   if (isError) {
-    return (
-      <>
-        <AlertMUI type="error" message={errorMessage} />
-        <ModalError />
-      </>
-    );
+    return <ModalError />;
   }
-
   return (
     <>
       <main>

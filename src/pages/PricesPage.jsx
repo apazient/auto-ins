@@ -7,13 +7,14 @@ import CompanyList from "../components/CompanyList/CompanyList";
 import { useSelector } from "react-redux";
 import { getSubmitObject } from "../redux/byParameters/selectors";
 import {
-  getError,
   getStateCalculator,
   getStateNumber,
 } from "../redux/Calculator/selectors";
 import { LinearProgress } from "@mui/material";
 import LineSection from "../components/LineSection/LineSection";
-import { useActions } from "../hooks/useActions";
+
+import ModalError from "../components/ModalError/ModalError";
+import { getIsModalErrorOpen } from "../redux/Global/selectors";
 
 // import { isError } from "lodash";
 
@@ -24,35 +25,26 @@ const PricesPage = () => {
   const userParams = useSelector(getSubmitObject);
   const stateNumber = useSelector(getStateNumber);
   const isLoadingCalculator = useSelector(getStateCalculator);
-  const isError = useSelector(getError);
-
-  const { osagoByParams } = useActions();
+  // const isError = useSelector(getError);
+  const isError = useSelector(getIsModalErrorOpen);
 
   useEffect(() => {
     let subscribed = true;
-    if (!Object.hasOwn(userParams, "dateFrom") && stateNumber === "") {
-      navigate("/");
-      return;
-    }
     if (subscribed) {
-      //  if (stateNumber && userParams) {
-      //    osagoByDn(userParams);
-      //    autoByNumber(stateNumber);
-      //  }
-      if (!stateNumber && userParams) {
-        osagoByParams(userParams);
+      if (Object.keys(userParams) && stateNumber === "") {
+        navigate("/");
+        return;
       }
     }
     return () => {
       subscribed = false;
     };
-  }, [osagoByParams, userParams, stateNumber, navigate]);
+  }, [navigate, userParams, stateNumber]);
 
-  useEffect(() => {
-    if (isError) {
-      navigate("/");
-    }
-  }, [navigate, isError]);
+  if (isError) {
+    return <ModalError />;
+  }
+
   return (
     <>
       <OutletPageWrapper>

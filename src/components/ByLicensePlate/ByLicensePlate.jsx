@@ -1,4 +1,3 @@
-import moment from "moment/moment";
 import addDays from "date-fns/addDays";
 import addMonths from "date-fns/addMonths";
 import { useFormik } from "formik";
@@ -22,6 +21,8 @@ import { SpriteSVG } from "../../images/SpriteSVG";
 import { useState } from "react";
 
 import format from "date-fns/format";
+import { setAutoByNumber } from "../../redux/References/referencesSlice";
+import ModalError from "../ModalError/ModalError";
 
 const ByLicensePlate = () => {
   const navigate = useNavigate();
@@ -36,6 +37,7 @@ const ByLicensePlate = () => {
     setSubmitObj,
     osagoByDn,
     autoByNumber,
+    setAutoByNumber,
   } = useActions();
 
   const [dateFrom, setDateFrom] = useState(addDays(new Date(), 1));
@@ -60,16 +62,15 @@ const ByLicensePlate = () => {
         stateNumber: values.licensePlate,
         dateFrom: format(dateFrom, "yyyy-MM-dd"),
       };
-
+      setAutoByNumber([]);
       setAddress({ label: "", value: "" });
       setEngineCapacity({ label: "", value: "" });
       setAutoModelByMaker([]);
       setAutoMakers([]);
       setStateNumber(params.stateNumber);
       setSubmitObj(params);
-      osagoByDn(params);
       autoByNumber(params.stateNumber);
-
+      osagoByDn(params);
       navigate("/prices", {
         state: { from: locationPath },
       });
@@ -95,7 +96,7 @@ const ByLicensePlate = () => {
               value={formik.values.licensePlate.trim().toUpperCase()}
               onChange={(e) => {
                 const e2 = e.target.value.trim().toUpperCase();
-                e.target.value = e2;
+                formik.setFieldValue("licensePlate", e2);
                 formik.handleChange(e);
               }}
               id="license-plate"

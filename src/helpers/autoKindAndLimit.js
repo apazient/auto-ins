@@ -14,14 +14,14 @@ export const autoKindAndLimit = (data) => {
       return { autoKind: "CAR", autoKindLimit: "3001" };
     case "B5":
       return { autoKind: "CAR", autoKindLimit: "1600" };
-    case "C1":
-      return { autoKind: "FREIGHT", autoKindLimit: "2000" };
-    case "C2":
-      return { autoKind: "FREIGHT", autoKindLimit: "2001" };
-    case "D1":
-      return { autoKind: "PASSENGER", autoKindLimit: "20" };
-    case "D2":
-      return { autoKind: "PASSENGER", autoKindLimit: "21" };
+    // case "C1":
+    //   return { autoKind: "FREIGHT", autoKindLimit: "2000" };
+    // case "C2":
+    //   return { autoKind: "FREIGHT", autoKindLimit: "2001" };
+    // case "D1":
+    //   return { autoKind: "PASSENGER", autoKindLimit: "20" };
+    // case "D2":
+    //   return { autoKind: "PASSENGER", autoKindLimit: "21" };
     case "E":
       return { autoKind: "TRAILER", autoKindLimit: "0" };
     case "F":

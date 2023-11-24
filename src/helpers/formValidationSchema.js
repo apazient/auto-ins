@@ -12,19 +12,32 @@ export const validationName = () =>
     .matches(NAME_REGEX, "Введіть лише літери")
     .min(2, "Введіть щонайменше 2 символа")
     .max(50, "Занадто довге поле");
+
+export const validationStateNumber = () =>
+  Yup.string()
+    .required(REQUIRED_FIELD)
+    .when("outsideUkraine", {
+      is: false,
+      then: () =>
+        Yup.string()
+          .required(REQUIRED_FIELD)
+          .matches(DNUMBER_REGEX, "Номер авто вказано невірно"),
+    });
+
 // =============================================================================
 export const carDataFormValidationSchema = () =>
   Yup.object().shape({
     outsideUkraine: Yup.boolean(),
-    stateNumber: Yup.string()
-      .required(REQUIRED_FIELD)
-      .when("outsideUkraine", {
-        is: false,
-        then: () =>
-          Yup.string()
-            .required(REQUIRED_FIELD)
-            .matches(DNUMBER_REGEX, "Номер авто вказано невірно"),
-      }),
+    stateNumber: validationStateNumber(),
+    // stateNumber: Yup.string()
+    //   .required(REQUIRED_FIELD)
+    //   .when("outsideUkraine", {
+    //     is: false,
+    //     then: () =>
+    //       Yup.string()
+    //         .required(REQUIRED_FIELD)
+    //         .matches(DNUMBER_REGEX, "Номер авто вказано невірно"),
+    //   }),
 
     year: Yup.number()
       .integer("Рік повинен бути цілим числом")

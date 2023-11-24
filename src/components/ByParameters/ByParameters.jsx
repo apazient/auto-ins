@@ -43,6 +43,7 @@ const ByParameters = () => {
     setAutoModelByMaker,
     setTariffPolicyChoose,
     setTariffVcl,
+    osagoByParams,
   } = useActions();
   const {
     queryText,
@@ -99,6 +100,7 @@ const ByParameters = () => {
       setAutoModelByMaker([]);
       setTariffPolicyChoose([]);
       setTariffVcl([]);
+      osagoByParams(sendObj);
 
       navigate("/prices", {
         state: { from: locationPath },
