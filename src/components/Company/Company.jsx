@@ -10,39 +10,29 @@ import {
   WrapperStyled,
 } from "./CompanyStyled";
 import Grid from "@mui/material/Grid";
-import { lazy, Suspense, useState } from "react";
+import { useState } from "react";
 import useTheme from "@mui/material/styles/useTheme";
-
 import { useLocation, useNavigate } from "react-router-dom";
-// import { CompanyExpandMore } from "../CompanyExpandMore/CompanyExpandMore";
 import GeneralSelect from "../GeneralSelect/GeneralSelect";
 import Box from "@mui/material/Box";
 import { useEffect } from "react";
 import { useFormik } from "formik";
 import CompanyCardMedia from "../CompanyCardMedia/index";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  setGlobalCustomerData,
-  setParamsFromUrl,
-} from "../../redux/Global/globalSlice";
+import { useSelector } from "react-redux";
 import { getUser } from "../../redux/Calculator/selectors";
-import { getSubmitObject } from "../../redux/byParameters/selectors";
-
-const CompanyExpandMore = lazy(() =>
-  import("../CompanyExpandMore/CompanyExpandMore")
-);
+import { useActions } from "../../hooks/useActions";
 
 const Company = ({ proposal }) => {
   const location = useLocation();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+
   const user = useSelector(getUser);
   const theme = useTheme();
+  const { setGlobalCustomerData, setParamsFromUrl } = useActions();
 
   const { insurerId, insurerName, tariff, autoCategory, registrationPlace } =
     proposal;
 
-  const [checkSavety, setCheckSavety] = useState(false);
   const [franchise, setFranchise] = useState(tariff[0]);
   const [chooseDgo, setChooseDgo] = useState({
     limit: 0,
@@ -67,44 +57,38 @@ const Company = ({ proposal }) => {
 
   const formik = useFormik({
     initialValues: {},
-    onSubmit: (values) => {
+    onSubmit: () => {
       const sendObj = {
         insurerId,
         price: Math.round(price),
         autoCategory,
         tariff: franchise,
         dgoTarrif: chooseDgo,
-
         usageMonths: 0,
         taxi: false,
         salePoint: 40629,
       };
-
-      dispatch(
-        setGlobalCustomerData({
-          user,
+      setGlobalCustomerData({
+        user,
+        type: franchise.type,
+        tariff: {
           type: franchise.type,
-          tariff: {
-            type: franchise.type,
-            id: franchise.id,
-          },
-          dgoTarrif: {
-            type: chooseDgo.type,
-            id: chooseDgo.id,
-            limit: chooseDgo.limit,
-          },
-        })
-      );
+          id: franchise.id,
+        },
+        dgoTarrif: {
+          type: chooseDgo.type,
+          id: chooseDgo.id,
+          limit: chooseDgo.limit,
+        },
+      });
 
-      dispatch(
-        setParamsFromUrl({
-          price,
-          insurer: { id: franchise.insurer.id, name: franchise.insurer.name },
-          registrationPlace: registrationPlace || "",
-          // autoCategory,
-          franchise: franchise.franchise,
-        })
-      );
+      setParamsFromUrl({
+        price,
+        insurer: { id: franchise.insurer.id, name: franchise.insurer.name },
+        registrationPlace: registrationPlace || "",
+        // autoCategory,
+        franchise: franchise.franchise,
+      });
 
       navigate("/form", {
         state: {
