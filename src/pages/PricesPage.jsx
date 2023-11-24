@@ -31,7 +31,7 @@ const PricesPage = () => {
   useEffect(() => {
     let subscribed = true;
     if (subscribed) {
-      if (Object.keys(userParams) && stateNumber === "") {
+      if (!Object.keys(userParams) && stateNumber === "") {
         navigate("/");
         return;
       }
