@@ -59,18 +59,22 @@ export const DocInputsStyled = styled(Box)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   gap: 16,
+  "& .react-datepicker__calendar-icon": {
+    width: "24px!important",
+    pointerEvents:"none",
+  },
   [theme.breakpoints.up("sm")]: {
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "space-evenly",
     "& div:nth-of-type(n)": {
-      // width: 308,
+      width: 308,
     },
   },
   [theme.breakpoints.up("lg")]: {
     gap: 24,
     "& div:nth-of-type(n)": {
-      // width: 338,
+      width: 338,
     },
   },
 }));

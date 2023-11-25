@@ -12,6 +12,20 @@ export const InputContStyled = styled(Box)(({ theme }) => ({
     width: 470,
   },
 }));
+
+export const ChevronBoxStyled = styled(Box)(() => ({
+  display: "flex",
+  justifyContent: "center",
+  alignItems:"center",
+  pointerEvents: "none",
+  position: "absolute",
+  right:15,
+  cursor: "pointer",
+  "& svg": {
+    height: 24,
+    width: 24,
+},
+}));
 export const InputStyled = styled(OutlinedInput)(({ theme }) => ({
   width: "100%",
   height: 56,
@@ -61,7 +75,7 @@ export const InputStyled = styled(OutlinedInput)(({ theme }) => ({
     height: 59,
   },
 }));
-export const SelectStyled = styled(Select)(({ theme }) => ({
+export const SelectStyled = styled(Select)(() => ({
   "& svg": {
     transition: "transform 200ms ease-in-out",
   },

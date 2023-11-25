@@ -55,6 +55,7 @@ export const carDataFormValidationSchema = () =>
 // ===========================================================================
 export const homeAddressFormValidationSchema = () =>
   Yup.object().shape({
+    regionANDcity: Yup.string().required(REQUIRED_FIELD),
     street: validationName(),
     houseNumber: Yup.string().required(REQUIRED_FIELD),
     apartmentNumber: Yup.string(),
@@ -68,6 +69,7 @@ export const insuredDataFormValidationSchema = () =>
     birthDate: Yup.date().required(REQUIRED_FIELD),
     taxNumber: Yup.string()
       //  .required(REQUIRED_FIELD)
+      //  !!!!!============>>>> Чому попередній рядок закоментований<<<<<<================= ???
       .matches(/^[0-9\s]*$/, "Введіть лише числа")
       .min(10, "Занадто мало ІПН повинен бути 10 символів")
       .max(10, "ІПН повинен бути 10 символів"),
