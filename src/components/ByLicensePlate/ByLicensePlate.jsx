@@ -17,12 +17,8 @@ import HelperList from "../HelpCircle/HelperList/HelperList";
 import { useActions } from "../../hooks/useActions";
 
 import { SpriteSVG } from "../../images/SpriteSVG";
-
 import { useState } from "react";
-
 import format from "date-fns/format";
-import { setAutoByNumber } from "../../redux/References/referencesSlice";
-import ModalError from "../ModalError/ModalError";
 
 const ByLicensePlate = () => {
   const navigate = useNavigate();
@@ -72,7 +68,7 @@ const ByLicensePlate = () => {
       autoByNumber(params.stateNumber);
       osagoByDn(params)
         .unwrap()
-        .catch((e) => {
+        .catch(() => {
           setIsModalErrorOpen(true);
         });
       navigate("/prices", {

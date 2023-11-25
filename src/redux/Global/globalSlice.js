@@ -57,14 +57,14 @@ export const globalSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(contractSave.fulfilled, (state, _) => {
+      .addCase(contractSave.fulfilled, (state) => {
         state.isLoading = false;
       })
       .addCase(contractSave.rejected, (state, { payload }) => {
         state.error = errorMessage(payload);
         state.isLoading = false;
       })
-      .addCase(contractSave.pending, (state, _) => {
+      .addCase(contractSave.pending, (state) => {
         state.isLoading = true;
       });
   },

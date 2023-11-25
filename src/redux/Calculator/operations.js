@@ -8,7 +8,6 @@ import { userNormalize } from "../../helpers/dataNormalize/userNormalize";
 import { mergeObjectsById } from "../../helpers/mergeObjectsById";
 import { sortAndFilterTariff } from "../../helpers/sortAndFilterTariff";
 import { instance } from "../../services/api";
-import { setIsModalErrorOpen } from "../Global/globalSlice";
 
 // const setSalePoint = (salePoint) => {
 //   instance.defaults.params = { ...instance.defaults.params, salePoint };
@@ -21,11 +20,10 @@ export const loginThunk = createAsyncThunk(
       const { data } = await instance.get("/user/getByEmail", {
         params: { email: "persichek5@gmail.com" },
       });
-      // setSalePoint(data.salePoint.id);
+
       return userNormalize(data);
     } catch (error) {
       return rejectWithValue(error.response.data);
-      // return thunkAPI.rejectWithValue(error.response.data);
     }
   }
 );
@@ -62,7 +60,6 @@ export const osagoByParams = createAsyncThunk(
       return response;
     } catch (error) {
       return rejectWithValue(error.response.data);
-      // return rejectWithValue(dispatch(setIsModalErrorOpen(true)));
     }
   }
 );
@@ -111,14 +108,13 @@ export const osagoByDn = createAsyncThunk(
       return response;
     } catch (error) {
       return rejectWithValue(error.response.data);
-      // return rejectWithValue(dispatch(setIsModalErrorOpen(true)));
     }
   }
 );
 
 export const chooseVclTariffDGO = createAsyncThunk(
   "calculator/tariffDGO",
-  async (body, { rejectWithValue, dispatch }) => {
+  async (body, { rejectWithValue }) => {
     try {
       const { autoCategory, dateFrom, ...rest } = body;
       const dateTo = addYearToDate(dateFrom);
@@ -135,7 +131,6 @@ export const chooseVclTariffDGO = createAsyncThunk(
       return mergeObjectsById(newData, responseDGONormalize);
     } catch (error) {
       return rejectWithValue(error.response.data);
-      // return rejectWithValue(dispatch(setIsModalErrorOpen(true)));
     }
   }
 );

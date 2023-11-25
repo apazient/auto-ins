@@ -5,7 +5,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import Typography from "@mui/material/Typography";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useActions } from "../../hooks/useActions";
 import { SpriteSVG } from "../../images/SpriteSVG";
 import {
@@ -21,7 +21,6 @@ import {
 } from "./ModalErrorStyled";
 
 const ModalError = () => {
-  const location = useLocation();
   const isError = useSelector(getIsModalErrorOpen);
   const [open, setOpen] = useState(isError);
   const {
