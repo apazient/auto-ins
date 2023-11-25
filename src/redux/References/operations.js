@@ -1,8 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { CATEGORY } from "../../constants";
+import { CATEGORY, CATEGORY_ERROR } from "../../constants";
 
 import { instance } from "../../services/api";
 import { setIsModalErrorOpen } from "../Global/globalSlice";
+import { setRefError } from "./referencesSlice";
 
 export const allAutoMakers = createAsyncThunk(
   "references/allAutoMakers",
@@ -43,9 +44,11 @@ export const autoByNumber = createAsyncThunk(
       });
       const [auto] = data;
       const a = CATEGORY.find((item) => item === auto.category);
+
       if (a) {
         return data;
       } else {
+        dispatch(setRefError(CATEGORY_ERROR));
         dispatch(setIsModalErrorOpen(true));
         return [];
       }

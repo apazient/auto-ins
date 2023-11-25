@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { errorMessage } from "../../helpers/errorMessage";
 import { contractSave } from "./operations";
 
 const initialState = {
@@ -12,7 +13,7 @@ const initialState = {
   globalCustomerData: {},
   paramsFromUrl: null,
   homeAddress: { label: "", value: "" },
-  error: null,
+  error: "",
 };
 
 export const globalSlice = createSlice({
@@ -50,6 +51,9 @@ export const globalSlice = createSlice({
     setIsContractDGO: (state, { payload }) => {
       state.isContractDGO = payload;
     },
+    setGlobError: (state, { payload }) => {
+      state.error = payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -57,7 +61,7 @@ export const globalSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(contractSave.rejected, (state, { payload }) => {
-        state.error = payload;
+        state.error = errorMessage(payload);
         state.isLoading = false;
       })
       .addCase(contractSave.pending, (state, _) => {
@@ -76,5 +80,6 @@ export const {
   setHomeAddress,
   setIsContractOSAGO,
   setIsContractDGO,
+  setGlobError,
 } = globalSlice.actions;
 export const globalReducer = globalSlice.reducer;

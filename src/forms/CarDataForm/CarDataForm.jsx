@@ -79,7 +79,7 @@ const CarDataForm = ({ formik }) => {
   const findMakerAndModel = useCallback(() => {
     const maker = autoByBrand[0]?.autoMaker;
     setSelectedAutoMaker(maker);
-    if (autoByBrand.length === 0) {
+    if (autoByBrand?.length === 0) {
       allAutoMakers();
     }
   }, [autoByBrand, allAutoMakers]);
@@ -142,7 +142,7 @@ const CarDataForm = ({ formik }) => {
           id="model"
           lableText="Модель*:"
           currentValue={selectedAutoModel}
-          optionsArr={allAutoModel.length > 0 ? allAutoModel : autoByBrand}
+          optionsArr={allAutoModel?.length > 0 ? allAutoModel : autoByBrand}
           defaultValue={{ name: "Оберіть модель авто" }}
           getOptionLabel={(option) => option.name}
           getOptionValue={(option) => option.id}

@@ -70,7 +70,11 @@ const ByLicensePlate = () => {
       setStateNumber(params.stateNumber);
       setSubmitObj(params);
       autoByNumber(params.stateNumber);
-      osagoByDn(params);
+      osagoByDn(params)
+        .unwrap()
+        .catch((e) => {
+          setIsModalErrorOpen(true);
+        });
       navigate("/prices", {
         state: { from: locationPath },
       });

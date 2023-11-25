@@ -14,17 +14,21 @@ import { setIsModalErrorOpen } from "../Global/globalSlice";
 //   instance.defaults.params = { ...instance.defaults.params, salePoint };
 // };
 
-export const loginThunk = createAsyncThunk("auth/login", async (thunkAPI) => {
-  try {
-    const { data } = await instance.get("/user/getByEmail", {
-      params: { email: "persichek5@gmail.com" },
-    });
-    // setSalePoint(data.salePoint.id);
-    return userNormalize(data);
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.response.data);
+export const loginThunk = createAsyncThunk(
+  "auth/login",
+  async (thunkAPI, rejectWithValue) => {
+    try {
+      const { data } = await instance.get("/user/getByEmail", {
+        params: { email: "persichek5@gmail.com" },
+      });
+      // setSalePoint(data.salePoint.id);
+      return userNormalize(data);
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+      // return thunkAPI.rejectWithValue(error.response.data);
+    }
   }
-});
+);
 
 export const osagoByParams = createAsyncThunk(
   "calculator/osagoByParams",
@@ -57,7 +61,8 @@ export const osagoByParams = createAsyncThunk(
 
       return response;
     } catch (error) {
-      return rejectWithValue(dispatch(setIsModalErrorOpen(true)));
+      return rejectWithValue(error.response.data);
+      // return rejectWithValue(dispatch(setIsModalErrorOpen(true)));
     }
   }
 );
@@ -105,7 +110,8 @@ export const osagoByDn = createAsyncThunk(
 
       return response;
     } catch (error) {
-      return rejectWithValue(dispatch(setIsModalErrorOpen(true)));
+      return rejectWithValue(error.response.data);
+      // return rejectWithValue(dispatch(setIsModalErrorOpen(true)));
     }
   }
 );
@@ -128,7 +134,8 @@ export const chooseVclTariffDGO = createAsyncThunk(
 
       return mergeObjectsById(newData, responseDGONormalize);
     } catch (error) {
-      return rejectWithValue(dispatch(setIsModalErrorOpen(true)));
+      return rejectWithValue(error.response.data);
+      // return rejectWithValue(dispatch(setIsModalErrorOpen(true)));
     }
   }
 );

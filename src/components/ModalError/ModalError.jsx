@@ -3,12 +3,15 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import Typography from "@mui/material/Typography";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useActions } from "../../hooks/useActions";
 import { SpriteSVG } from "../../images/SpriteSVG";
-import { getIsModalErrorOpen } from "../../redux/Global/selectors";
+import {
+  combineError,
+  getIsModalErrorOpen,
+} from "../../redux/Global/selectors";
 import { BlueButton } from "../../style/Global.styled";
 import {
   BoxImgYellow,
@@ -21,12 +24,16 @@ const ModalError = () => {
   const location = useLocation();
   const isError = useSelector(getIsModalErrorOpen);
   const [open, setOpen] = useState(isError);
-  const { setIsModalErrorOpen, setStateNumber } = useActions();
-
+  const {
+    setIsModalErrorOpen,
+    setStateNumber,
+    setCalcError,
+    setGlobError,
+    setRefError,
+  } = useActions();
+  const globalError = useSelector(combineError);
   const validError =
     "Номер не відповідає вимогам оформлення Електронного поліса встановленим МТСБУ (Моторно-транспортне страхове бюро України).";
-  const categoryError =
-    "Транспорний засіб повиннен проходити обовязкове технічне обслуговування. Для прорахунку полісу зверніться будь-ласка до наших консультантів.";
 
   const navigate = useNavigate();
 
@@ -36,6 +43,13 @@ const ModalError = () => {
     setIsModalErrorOpen(false);
     setStateNumber("");
   };
+  useEffect(() => {
+    return () => {
+      setCalcError("");
+      setGlobError("");
+      setRefError("");
+    };
+  }, [setCalcError, setGlobError, setRefError]);
 
   return (
     <>
@@ -60,8 +74,7 @@ const ModalError = () => {
         <DialogContent>
           <DialogContentText component="div">
             <Typography component="p" variant="body1">
-              {location.pathname === "/prices" && categoryError}
-              {location.pathname === "/" && validError}
+              {globalError || validError}
             </Typography>
             <Typography
               component="p"

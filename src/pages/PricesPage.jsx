@@ -16,8 +16,6 @@ import LineSection from "../components/LineSection/LineSection";
 import ModalError from "../components/ModalError/ModalError";
 import { getIsModalErrorOpen } from "../redux/Global/selectors";
 
-// import { isError } from "lodash";
-
 const PricesPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -25,7 +23,6 @@ const PricesPage = () => {
   const userParams = useSelector(getSubmitObject);
   const stateNumber = useSelector(getStateNumber);
   const isLoadingCalculator = useSelector(getStateCalculator);
-  // const isError = useSelector(getError);
   const isError = useSelector(getIsModalErrorOpen);
 
   useEffect(() => {
