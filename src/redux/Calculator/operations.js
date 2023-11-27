@@ -1,4 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+
 import { addYearToDate } from "../../helpers/addYearToDate";
 import { autoKindAndLimit } from "../../helpers/autoKindAndLimit";
 import { responseDGONormalize } from "../../helpers/dataNormalize/responseDGONormalize";
@@ -7,23 +8,25 @@ import { userNormalize } from "../../helpers/dataNormalize/userNormalize";
 import { mergeObjectsById } from "../../helpers/mergeObjectsById";
 import { sortAndFilterTariff } from "../../helpers/sortAndFilterTariff";
 import { instance } from "../../services/api";
-import { setIsModalErrorOpen } from "../Global/globalSlice";
 
 // const setSalePoint = (salePoint) => {
 //   instance.defaults.params = { ...instance.defaults.params, salePoint };
 // };
 
-export const loginThunk = createAsyncThunk("auth/login", async (thunkAPI) => {
-  try {
-    const { data } = await instance.get("/user/getByEmail", {
-      params: { email: "persichek5@gmail.com" },
-    });
-    // setSalePoint(data.salePoint.id);
-    return userNormalize(data);
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.response.data);
+export const loginThunk = createAsyncThunk(
+  "auth/login",
+  async (thunkAPI, rejectWithValue) => {
+    try {
+      const { data } = await instance.get("/user/getByEmail", {
+        params: { email: "persichek5@gmail.com" },
+      });
+
+      return userNormalize(data);
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
   }
-});
+);
 
 export const osagoByParams = createAsyncThunk(
   "calculator/osagoByParams",
@@ -65,9 +68,13 @@ export const osagoByDn = createAsyncThunk(
   "calculator/osagoByDn",
   async (body, { rejectWithValue, dispatch, getState }) => {
     try {
+      const { customerCategory, stateNumber, dateFrom } = body;
       const { data } = await instance.get("/tariff/choose/policy/statenumber", {
         params: {
-          ...body,
+          customerCategory,
+          stateNumber,
+          dateFrom,
+          registrationType: "PERMANENT_WITHOUT_OTK",
           taxi: false,
         },
       });
@@ -100,7 +107,7 @@ export const osagoByDn = createAsyncThunk(
 
       return response;
     } catch (error) {
-      return rejectWithValue(dispatch(setIsModalErrorOpen(true)));
+      return rejectWithValue(error.response.data);
     }
   }
 );
@@ -112,6 +119,7 @@ export const chooseVclTariffDGO = createAsyncThunk(
       const { autoCategory, dateFrom, ...rest } = body;
       const dateTo = addYearToDate(dateFrom);
       const cat = autoKindAndLimit(autoCategory);
+
       const { data } = await instance.post("/tariff/choose/vcl", {
         ...rest,
         ...cat,

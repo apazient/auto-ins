@@ -1,12 +1,12 @@
 import PropTypes from "prop-types";
 import {
-  Box,
   Checkbox,
   ListItemText,
   MenuItem,
   Typography,
 } from "@mui/material";
 import {
+  ChevronBoxStyled,
   InputContStyled,
   InputStyled,
   MenuItemStyled,
@@ -39,21 +39,9 @@ const FilterByCompany = (props) => {
           }}
           MenuProps={MenuProps}
           IconComponent={() => (
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems:"center",
-                pointerEvents: "none",
-                "& svg": {
-                  height: 24,
-                  width: 24,
-                  cursor: "pointer",
-                },
-              }}
-            >
+            <ChevronBoxStyled>
               <SpriteSVG name="icon-chevron-down" />
-            </Box>
+            </ChevronBoxStyled>
           )}
         >
           <MenuItem disabled value="" sx={{ color: "black!important" }}>

@@ -3,12 +3,15 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import Typography from "@mui/material/Typography";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useActions } from "../../hooks/useActions";
 import { SpriteSVG } from "../../images/SpriteSVG";
-import { getIsModalErrorOpen } from "../../redux/Global/selectors";
+import {
+  combineError,
+  getIsModalErrorOpen,
+} from "../../redux/Global/selectors";
 import { BlueButton } from "../../style/Global.styled";
 import {
   BoxImgYellow,
@@ -20,7 +23,16 @@ import {
 const ModalError = () => {
   const isError = useSelector(getIsModalErrorOpen);
   const [open, setOpen] = useState(isError);
-  const { setIsModalErrorOpen, setStateNumber } = useActions();
+  const {
+    setIsModalErrorOpen,
+    setStateNumber,
+    setCalcError,
+    setGlobError,
+    setRefError,
+  } = useActions();
+  const globalError = useSelector(combineError);
+  const validError =
+    "Номер не відповідає вимогам оформлення Електронного поліса встановленим МТСБУ (Моторно-транспортне страхове бюро України).";
 
   const navigate = useNavigate();
 
@@ -30,6 +42,13 @@ const ModalError = () => {
     setIsModalErrorOpen(false);
     setStateNumber("");
   };
+  useEffect(() => {
+    return () => {
+      setCalcError("");
+      setGlobError("");
+      setRefError("");
+    };
+  }, [setCalcError, setGlobError, setRefError]);
 
   return (
     <>
@@ -42,7 +61,6 @@ const ModalError = () => {
         >
           <SpriteSVG name={"icon-x"} />
         </Box>
-
         <TitleWrapper>
           <BoxImgYellow>
             <SpriteSVG name="icon-alert-triangle" />
@@ -55,19 +73,18 @@ const ModalError = () => {
         <DialogContent>
           <DialogContentText component="div">
             <Typography component="p" variant="body1">
-              Номер не відповідає вимогам оформлення Електронного поліса
-              встановленим МТСБУ (Моторно-транспортне страхове бюро України).
+              {globalError || validError}
             </Typography>
             <Typography
               component="p"
               variant="subtitle1"
               sx={{ padding: { xs: "8px 0", sm: "16px 0" } }}
             >
-              Будь ласкаю перевірте правильність введення.
+              Будь ласка, перевірте правильність введення.
             </Typography>
             <Typography component="p" variant="body1">
-              Якщо власник авто зареєстрований в іншій країні, виберіть
-              відповідне місто реєстрації “ТЗ зареєстровано в іншій країні”.
+              Якщо авто зареєстровано в іншій країні, здійсніть пошук “За
+              параметрами” і виберіть “Авто на іноземних номерах”.
             </Typography>
           </DialogContentText>
         </DialogContent>

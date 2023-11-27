@@ -26,10 +26,10 @@ export const CostCalculation = React.memo(() => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    if (autoByNumber.length > 0) {
+    if (autoByNumber?.length > 0) {
       setItems(paramsByNumberNormalize(autoByNumber));
     }
-    if (autoByNumber.length === 0 && stateNumber === "") {
+    if (autoByNumber?.length === 0 && stateNumber === "") {
       setItems(pramsByParamsNormalize(autoByParams));
     }
   }, [stateNumber, autoByParams, autoByNumber]);

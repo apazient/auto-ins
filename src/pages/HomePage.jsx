@@ -2,7 +2,6 @@ import { lazy, Suspense, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getUser } from "../redux/Calculator/selectors";
-
 import { getIsModalErrorOpen } from "../redux/Global/selectors";
 import { useActions } from "../hooks/useActions";
 const AccordionSection = lazy(() =>
@@ -38,14 +37,12 @@ const HomePage = () => {
 
   useEffect(() => {
     if (user) return;
-
     loginThunk();
   }, [user, loginThunk]);
 
   if (isError) {
     return <ModalError />;
   }
-
   return (
     <>
       <main>
@@ -53,17 +50,9 @@ const HomePage = () => {
         <HeroTabs />
         <Suspense>
           <AdvatagesSection />
-        </Suspense>
-        <Suspense>
           <CheckInsSection />
-        </Suspense>
-        <Suspense>
           <Partners />
-        </Suspense>
-        <Suspense>
           <AccordionSection />
-        </Suspense>
-        <Suspense>
           <InfoSection />
         </Suspense>
       </main>

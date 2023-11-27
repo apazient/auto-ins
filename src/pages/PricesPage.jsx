@@ -1,58 +1,45 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { CostCalculation } from "../components/CostCalculation/CostCalculation";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import OutletPageWrapper from "../components/OutletPageWrapper";
 import ProposalsFilter from "../components/ProposalsFilter/ProposalsFilter";
 import CompanyList from "../components/CompanyList/CompanyList";
 import { useSelector } from "react-redux";
 import { getSubmitObject } from "../redux/byParameters/selectors";
 import {
-  getError,
   getStateCalculator,
   getStateNumber,
 } from "../redux/Calculator/selectors";
 import { LinearProgress } from "@mui/material";
 import LineSection from "../components/LineSection/LineSection";
-import { useActions } from "../hooks/useActions";
 
-// import { isError } from "lodash";
+import ModalError from "../components/ModalError/ModalError";
+import { getIsModalErrorOpen } from "../redux/Global/selectors";
 
 const PricesPage = () => {
-  const location = useLocation();
   const navigate = useNavigate();
-  const { current } = useRef(location.state?.from);
   const userParams = useSelector(getSubmitObject);
   const stateNumber = useSelector(getStateNumber);
   const isLoadingCalculator = useSelector(getStateCalculator);
-  const isError = useSelector(getError);
-
-  const { osagoByParams } = useActions();
+  const isError = useSelector(getIsModalErrorOpen);
 
   useEffect(() => {
     let subscribed = true;
-    if (!Object.hasOwn(userParams, "dateFrom") && stateNumber === "") {
-      navigate("/");
-      return;
-    }
     if (subscribed) {
-      //  if (stateNumber && userParams) {
-      //    osagoByDn(userParams);
-      //    autoByNumber(stateNumber);
-      //  }
-      if (!stateNumber && userParams) {
-        osagoByParams(userParams);
+      if (!Object.keys(userParams) && stateNumber === "") {
+        navigate("/");
+        return;
       }
     }
     return () => {
       subscribed = false;
     };
-  }, [osagoByParams, userParams, stateNumber, navigate]);
+  }, [navigate, userParams, stateNumber]);
 
-  useEffect(() => {
-    if (isError) {
-      navigate("/");
-    }
-  }, [navigate, isError]);
+  if (isError) {
+    return <ModalError />;
+  }
+
   return (
     <>
       <OutletPageWrapper>

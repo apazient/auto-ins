@@ -23,10 +23,6 @@ export const byParameters = createSlice({
       state.queryText = payload;
     },
     setSubmitObj: (state, { payload }) => {
-      // const { dateFrom } = payload;
-      // const d = new Date(dateFrom);
-      // payload.dateTo = d.getFullYear() + 1 + d.toISOString().substring(4, 10);
-
       state.submitObj = payload;
       state.benefits = payload.customerCategory === "PRIVILEGED" ? true : false;
       state.foreignNumber = payload.outsideUkraine;

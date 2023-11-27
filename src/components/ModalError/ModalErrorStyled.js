@@ -10,6 +10,9 @@ export const DialogStyled = styled(Dialog)(({ theme }) => ({
     borderRadius: "50px",
     color: theme.palette.primary.main,
     width: "100%",
+    [theme.breakpoints.down("sm")]: {
+      margin: "16px",
+    },
     [theme.breakpoints.up("sm")]: {
       padding: "56px",
     },
@@ -20,6 +23,7 @@ export const DialogStyled = styled(Dialog)(({ theme }) => ({
   },
   "& .MuiDialogContent-root": {
     padding: "12px 0 16px 0",
+    overflowY: "clip",
     [theme.breakpoints.up("sm")]: { padding: "24px 0 32px 0" },
     [theme.breakpoints.up("lg")]: { padding: "24px 0 48px 0" },
   },

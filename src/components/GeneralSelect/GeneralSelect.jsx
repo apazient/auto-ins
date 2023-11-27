@@ -18,6 +18,7 @@ const GeneralSelect = ({
   defaultValue,
   getOptionLabel,
   getOptionValue,
+  isValid = true,
 }) => {
   const theme = useTheme();
   return (
@@ -34,6 +35,8 @@ const GeneralSelect = ({
         {helper && <HelpCircle lableText={helper} color={color ? color : ""} />}
       </Typography>
       <SelectStyled
+        sx={{ borderColor: !isValid ? "#E04040" : "#030303" }}
+        $isValid={isValid}
         $find={inputChangeCB}
         components={
           inputChangeCB ? { DropdownIndicator: () => <SpriteSVG name="icon-zoom-out" /> } : true

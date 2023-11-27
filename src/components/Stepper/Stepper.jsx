@@ -21,7 +21,7 @@ import {
   WhiteButtonStyled,
   YellowButtonStyled,
 } from "../../forms/InsuredDataForm/InsuredDataForm.styled";
-import { Typography } from "@mui/material";
+import { CircularProgress, Typography } from "@mui/material";
 import BtnBack from "../../forms/Buttons/BtnBack";
 import {
   NATURALSelectOptions,
@@ -43,6 +43,7 @@ import { contractSaveOSAGONormalize } from "../../helpers/dataNormalize/contract
 import {
   getGlobalCustomerData,
   getHomeAddress,
+  getIsLoading,
 } from "../../redux/Global/selectors";
 import { getUser } from "../../redux/Calculator/selectors";
 import { customerInsuriensObject } from "../../helpers/customerInsuriensObject";
@@ -73,6 +74,7 @@ const Stepper = ({ backLinkRef }) => {
   const user = useSelector(getUser);
   const { tariff, dgoTarrif } = useSelector(getGlobalCustomerData);
   const homeAddress = useSelector(getHomeAddress);
+  const isLoading = useSelector(getIsLoading);
   // const location = useLocation();
 
   const customerCategory = useSelector((state) => state.byParameters.benefits);
@@ -82,6 +84,17 @@ const Stepper = ({ backLinkRef }) => {
   useEffect(() => {
     setIdentityCard(InsuredDataSelectOptions[0]);
   }, [InsuredDataSelectOptions]);
+  const customButtonLoading = () => {
+    return isLoading ? (
+      <YellowButtonStyled onClick={handleSubmit}>
+        <CircularProgress />
+      </YellowButtonStyled>
+    ) : (
+      <YellowButtonStyled onClick={handleSubmit}>
+        Підтвердити
+      </YellowButtonStyled>
+    );
+  };
 
   // =======================Formik======================================
   const contactsFormik = useFormik({
@@ -129,7 +142,7 @@ const Stepper = ({ backLinkRef }) => {
       category: insurObject?.category || getSubmitObject?.category,
     },
 
-    onSubmit: (values) => {
+    onSubmit: () => {
       const customIsur = customerInsuriensObject(
         insuredDataFormik,
         homeAddressFormik,
@@ -251,9 +264,10 @@ const Stepper = ({ backLinkRef }) => {
         </Typography>
         {getStepContent(activeStep)}
         <ButtonContainerStyled component="div">
-          <YellowButtonStyled onClick={handleSubmit}>
+          {customButtonLoading()}
+          {/* <YellowButtonStyled onClick={handleSubmit}>
             Підтвердити
-          </YellowButtonStyled>
+          </YellowButtonStyled> */}
           {activeStep === 0 ? (
             <BtnBack backLinkRef={backLinkRef} />
           ) : (

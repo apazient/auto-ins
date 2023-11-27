@@ -2,15 +2,14 @@ import PropTypes from "prop-types";
 import { InputBoxS, SpanS } from "./FormContactsStyled";
 import GeneralInput from "../../components/GeneralInput/GeneralInput";
 
-const FormContacts = ({ formik }) => {   
-
+const FormContacts = ({ formik }) => {
   return (
     <>
       <InputBoxS>
         <GeneralInput
           id="email"
           type="text"
-          lableText="Електронна пошта* :"          
+          lableText="Електронна пошта* :"
           formikData={formik}
         />
         <SpanS variant="inputSpan">
@@ -19,7 +18,7 @@ const FormContacts = ({ formik }) => {
         </SpanS>
         <GeneralInput
           id="phone"
-          lableText="Телефон* :"          
+          lableText="Телефон* :"
           type="phone"
           formikData={formik}
           placeholder="+38(_ _ _)_ _ _ - _ _ _ _"

@@ -12,6 +12,7 @@ export const validationName = () =>
     .matches(NAME_REGEX, "Введіть лише літери")
     .min(2, "Введіть щонайменше 2 символа")
     .max(50, "Занадто довге поле");
+
 // =============================================================================
 export const carDataFormValidationSchema = () =>
   Yup.object().shape({
@@ -42,6 +43,7 @@ export const carDataFormValidationSchema = () =>
 // ===========================================================================
 export const homeAddressFormValidationSchema = () =>
   Yup.object().shape({
+    regionANDcity: Yup.string().required(REQUIRED_FIELD),
     street: validationName(),
     houseNumber: Yup.string().required(REQUIRED_FIELD),
     apartmentNumber: Yup.string(),
@@ -55,14 +57,15 @@ export const insuredDataFormValidationSchema = () =>
     birthDate: Yup.date().required(REQUIRED_FIELD),
     taxNumber: Yup.string()
       //  .required(REQUIRED_FIELD)
+      //  !!!!!============>>>> Чому попередній рядок закоментований<<<<<<================= ???
       .matches(/^[0-9\s]*$/, "Введіть лише числа")
       .min(10, "Занадто мало ІПН повинен бути 10 символів")
       .max(10, "ІПН повинен бути 10 символів"),
     series: Yup.string().required(REQUIRED_FIELD),
     number: Yup.string()
       .required(REQUIRED_FIELD)
-      .min(6, "Номер паспорту має складатися з 6 цифр")
-      .max(6, "Номер паспорту має складатися з 6 цифр"),
+      .min(6, "Введіть 6 цифр")
+      .max(6, "Введіть 6 цифр"),
     issuedBy: Yup.string().required(REQUIRED_FIELD),
     date: Yup.date().required(REQUIRED_FIELD),
     record: Yup.string(),
