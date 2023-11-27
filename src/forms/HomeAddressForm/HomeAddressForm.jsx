@@ -38,6 +38,7 @@ const HomeAddressForm = ({ formik }) => {
           currentValue={address}
           inputValue={queryText}
           inputChangeCB={getHomeAddress}
+          isValid={address.label}
         />
         <GeneralInput id="street" lableText="Вулиця*:" formikData={formik} />
         <DocInputsStyled>

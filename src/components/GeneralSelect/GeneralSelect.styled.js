@@ -1,7 +1,7 @@
 import { Box, styled } from "@mui/material";
 import Select from "react-select";
 
-export const SelectStyled = styled(Select)(({ theme, $find }) => ({
+export const SelectStyled = styled(Select)(({ theme, $find, $isValid }) => ({
   "& .customSelect__": {
     "&control": {
       color: theme.palette.primary.main,
@@ -13,10 +13,10 @@ export const SelectStyled = styled(Select)(({ theme, $find }) => ({
       padding: 16,
       height: 56,
       borderRadius: 50,
-      borderColor: theme.palette.primary.main,
+      borderColor: !$isValid ? theme.palette.primary.red : theme.palette.primary.main,
       backgroundColor: "#FEFEFF",
       boxShadow: "0 0 0 0",
-     
+
       "&:hover, &:focus": {
         borderColor: theme.palette.primary.darkBlue,
         cursor: "pointer",
