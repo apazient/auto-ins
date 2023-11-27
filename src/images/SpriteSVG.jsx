@@ -16,7 +16,7 @@ import { CheckCircle } from "./Icons/CheckCircle";
 import { ChevronDown } from "./Icons/ChevronDown";
 import { Colaboration } from "./Icons/Colaboration";
 import { Email } from "./Icons/Email";
-import { Facebook } from "./Icons/facebook";
+import { Facebook } from "./Icons/Facebook";
 import { FilterSmaller } from "./Icons/FilterSmaller";
 import { HelpCircle } from "./Icons/HelpCircle";
 import { HelpCircleSmaller } from "./Icons/HelpCircleSmaller";
