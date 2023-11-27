@@ -99,7 +99,7 @@ const Stepper = ({ backLinkRef }) => {
   // =======================Formik======================================
   const contactsFormik = useFormik({
     initialValues: contactsInitialValues,
-    validationSchema: contactsValidationSchema(),
+    //  validationSchema: contactsValidationSchema(),
     onSubmit: () => {
       handleNext();
     },
@@ -114,7 +114,7 @@ const Stepper = ({ backLinkRef }) => {
       date: new Date(),
     },
 
-    validationSchema: insuredDataFormValidationSchema(),
+    // validationSchema: insuredDataFormValidationSchema(),
     onSubmit: () => {
       handleNext();
     },
@@ -122,7 +122,7 @@ const Stepper = ({ backLinkRef }) => {
 
   const homeAddressFormik = useFormik({
     initialValues: { ...homeAddressInitialValues, regionANDcity: homeAddress },
-    validationSchema: homeAddressFormValidationSchema(),
+    // validationSchema: homeAddressFormValidationSchema(),
     onSubmit: () => {
       handleNext();
     },
@@ -169,6 +169,7 @@ const Stepper = ({ backLinkRef }) => {
 
     validationSchema: carDataFormValidationSchema(),
     enableReinitialize: true,
+    validateOnBlur: true,
   });
 
   const handleNext = () => {

@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import { useCallback } from "react";
 import { getSubmitObject } from "../../redux/byParameters/selectors";
 import { useActions } from "../../hooks/useActions";
+import { DNUMBER_REGEX } from "../../constants";
 
 const CarDataForm = ({ formik }) => {
   const {
@@ -36,16 +37,26 @@ const CarDataForm = ({ formik }) => {
   const [disabled, setDisabled] = useState(
     insuranceObject?.stateNumber ? false : true
   );
+
   const handleBlurStateNumber = (e) => {
     setAutoByMakerAndModel([]);
+    console.log("e.target.value", e.target.value);
     if (e.target.value && outsideUkraine) {
       setDisabled(false);
       allAutoMakers();
     }
     if (e.target.value && !outsideUkraine) {
-      autoByNumber(e.target.value).then(() => {
-        setDisabled(false);
-      });
+      // console.log("e.target.value", e.target.value);
+
+      // autoByNumber(e.target.value).then(() => {
+      //   setDisabled(false);
+      // });
+      const stateNumber = e.target.value.match(DNUMBER_REGEX);
+      if (!stateNumber) {
+        autoByNumber(e.target.value).then(() => {
+          setDisabled(false);
+        });
+      }
     }
     formik.handleChange(e);
   };
@@ -147,6 +158,9 @@ const CarDataForm = ({ formik }) => {
           getOptionLabel={(option) => option.name}
           getOptionValue={(option) => option.id}
           isDisabled={disabled}
+          isValid={
+            selectedAutoModel?.name === "Оберіть модель авто" ? false : true
+          }
           changeCB={handleChangeModel}
         />
         <GeneralInput

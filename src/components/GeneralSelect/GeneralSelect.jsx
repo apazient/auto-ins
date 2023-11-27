@@ -35,11 +35,12 @@ const GeneralSelect = ({
         {helper && <HelpCircle lableText={helper} color={color ? color : ""} />}
       </Typography>
       <SelectStyled
-        sx={{ borderColor: !isValid ? "#E04040" : "#030303" }}
         $isValid={isValid}
         $find={inputChangeCB}
         components={
-          inputChangeCB ? { DropdownIndicator: () => <SpriteSVG name="icon-zoom-out" /> } : true
+          inputChangeCB
+            ? { DropdownIndicator: () => <SpriteSVG name="icon-zoom-out" /> }
+            : true
         }
         isDisabled={isDisabled}
         variant="body1"
@@ -66,10 +67,7 @@ GeneralSelect.propTypes = {
   lableText: PropTypes.string.isRequired,
   currentValue: PropTypes.object,
   id: PropTypes.string.isRequired,
-  helper: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.string
-  ]),
+  helper: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   inputValue: PropTypes.string,
   color: PropTypes.string,
   isDisabled: PropTypes.bool,

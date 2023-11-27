@@ -24,6 +24,9 @@ export const InputWrapperStyled = styled(InputContStyled)(({ theme }) => ({
     fontSize: 16,
     fontWeight: 600,
     lineHeight: "1.5",
+    "&:hover": {
+      cursor: "pointer",
+    },
     [theme.breakpoints.up("sm")]: {
       fontSize: 18,
     },
@@ -52,6 +55,7 @@ export const InputWrapperStyled = styled(InputContStyled)(({ theme }) => ({
     fontFamily: "Open Sans",
     fontSize: 16,
     borderRadius: 50,
+
     [theme.breakpoints.up("sm")]: {
       fontSize: 18,
     },
@@ -116,11 +120,7 @@ export const InputWrapperStyled = styled(InputContStyled)(({ theme }) => ({
       height: 24,
       right: 16,
       top: 16 / 2,
-      pointerEvents: "auto",
-      "&:hover": {
-        cursor: "pointer",
-        pointerEvents: "auto",
-      },
+      cursor: "pointer",
     },
     "&-wrapper": {
       width: "100%",
