@@ -14,6 +14,12 @@ import { useCallback } from "react";
 import { getSubmitObject } from "../../redux/byParameters/selectors";
 import { useActions } from "../../hooks/useActions";
 
+import {
+  combineError,
+  getIsModalErrorOpen,
+} from "../../redux/Global/selectors";
+import ModalError from "../../components/ModalError/ModalError";
+
 const CarDataForm = ({ formik }) => {
   const {
     setAutoByMakerAndModel,
@@ -21,6 +27,7 @@ const CarDataForm = ({ formik }) => {
     autoByNumber,
     allAutoModelByMaker,
     autoByMakerAndModel,
+    setRefError,
   } = useActions();
   const autoMakers = useSelector(getAutoMakers);
   const allAutoModel = useSelector(getAutoModelByMaker);
@@ -36,19 +43,33 @@ const CarDataForm = ({ formik }) => {
   const [disabled, setDisabled] = useState(
     insuranceObject?.stateNumber ? false : true
   );
+
+  const stateNumberError = useSelector(combineError);
+  const isError = useSelector(getIsModalErrorOpen);
+
   const handleBlurStateNumber = (e) => {
+    setRefError("");
     setAutoByMakerAndModel([]);
+
     if (e.target.value && outsideUkraine) {
       setDisabled(false);
       allAutoMakers();
     }
     if (e.target.value && !outsideUkraine) {
-      autoByNumber(e.target.value).then(() => {
-        setDisabled(false);
-      });
+      autoByNumber(e.target.value);
     }
     formik.handleChange(e);
   };
+
+  useEffect(() => {
+    if (insuranceObject) {
+      setDisabled(false);
+    }
+    if (!insuranceObject) {
+      setDisabled(true);
+    }
+  }, [insuranceObject]);
+
   const handleChangeStateNumber = (e) => {
     const e2 = e.target.value.trim().toUpperCase();
     e.target.value = e2;
@@ -96,7 +117,9 @@ const CarDataForm = ({ formik }) => {
       autoByMakerAndModel(maker + " " + model);
     }
   }, [formik.values?.brand, autoByMakerAndModel, outsideUkraine]);
-
+  if (isError) {
+    return <ModalError />;
+  }
   return (
     <>
       <InputContBoxStyled>
@@ -107,6 +130,11 @@ const CarDataForm = ({ formik }) => {
           customFunc={handleChangeStateNumber}
           formikData={formik}
         />
+        {formik.errors.stateNumber ? (
+          <div className="errorMessage">{formik.errors.stateNumber}</div>
+        ) : (
+          <div style={{ color: "red" }}>{stateNumberError}</div>
+        )}
         <GeneralInput
           id="year"
           lableText="Рік випуску*:"
@@ -125,19 +153,6 @@ const CarDataForm = ({ formik }) => {
           isDisabled={disabled}
         />
 
-        {/* {formik.errors.stateNumber ? (
-          <div style={{ color: "red" }}>{formik.errors.stateNumber}</div>
-        ) : null}
-        {formik.errors.model ? (
-          <div style={{ color: "red" }}>{formik.errors.model}</div>
-        ) : null}
-        {formik.errors.bodyNumber ? (
-          <div style={{ color: "red" }}>{formik.errors.bodyNumber}</div>
-        ) : null}
-        {formik.errors.year ? (
-          <div style={{ color: "red" }}>{formik.errors.year}</div>
-        ) : null} */}
-
         <GeneralSelect
           id="model"
           lableText="Модель*:"
@@ -147,6 +162,9 @@ const CarDataForm = ({ formik }) => {
           getOptionLabel={(option) => option.name}
           getOptionValue={(option) => option.id}
           isDisabled={disabled}
+          isValid={
+            selectedAutoModel?.name === "Оберіть модель авто" ? false : true
+          }
           changeCB={handleChangeModel}
         />
         <GeneralInput

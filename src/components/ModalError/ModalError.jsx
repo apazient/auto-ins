@@ -5,7 +5,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import Typography from "@mui/material/Typography";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useActions } from "../../hooks/useActions";
 import { SpriteSVG } from "../../images/SpriteSVG";
 import {
@@ -21,6 +21,7 @@ import {
 } from "./ModalErrorStyled";
 
 const ModalError = () => {
+  const location = useLocation();
   const isError = useSelector(getIsModalErrorOpen);
   const [open, setOpen] = useState(isError);
   const {
@@ -31,14 +32,22 @@ const ModalError = () => {
     setRefError,
   } = useActions();
   const globalError = useSelector(combineError);
+
   const validError =
     "Номер не відповідає вимогам оформлення Електронного поліса встановленим МТСБУ (Моторно-транспортне страхове бюро України).";
 
   const navigate = useNavigate();
+  const handleBack = () => {
+    setOpen(false);
+    navigate("/");
+    setIsModalErrorOpen(false);
+    setStateNumber("");
+  };
 
   const handleClose = () => {
     setOpen(false);
-    navigate("/");
+    // navigate("/");
+    navigate(location.pathname || "/");
     setIsModalErrorOpen(false);
     setStateNumber("");
   };
@@ -92,7 +101,7 @@ const ModalError = () => {
           <BlueButton
             arai-label="Розрахувати по єврономеру"
             className="buttonDesktop"
-            onClick={handleClose}
+            onClick={handleBack}
             sx={{ width: { xs: "100%" } }}
           >
             Розрахувати по єврономеру

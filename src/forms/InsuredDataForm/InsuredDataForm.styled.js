@@ -32,6 +32,11 @@ export const InputContBoxStyled = styled(Box)(({ theme }) => ({
     gap: 24,
     marginTop: 8,
   },
+
+  "& .errorMessage": {
+    color: theme.palette.primary.red,
+  },
+
   "& .select-container": {
     "& .MuiTypography-root.MuiTypography-body1": {
       [theme.breakpoints.up("xs")]: {
@@ -61,7 +66,7 @@ export const DocInputsStyled = styled(Box)(({ theme }) => ({
   gap: 16,
   "& .react-datepicker__calendar-icon": {
     width: "24px!important",
-    pointerEvents:"none",
+    pointerEvents: "none",
   },
   [theme.breakpoints.up("sm")]: {
     flexDirection: "row",
@@ -110,10 +115,9 @@ export const WhiteButtonSVGStyled = styled(Box)(({ theme }) => ({
 
 export const DataContainerWrapper = styled(DataContainerStyled)(
   ({ theme }) => ({
-
     "& .react-datepicker__header__dropdown": {
       backgroundColor: theme.palette.primary.lightBlue,
-      fontSize:24,
+      fontSize: 24,
       fontFamily: "Open Sans, sans-serif",
       fontWeight: 600,
       color: theme.palette.primary.main,
@@ -121,53 +125,50 @@ export const DataContainerWrapper = styled(DataContainerStyled)(
       display: "flex",
       alignItem: "center",
       justifyContent: "space-around",
-      borderRadius:20,
-      padding: '10px 0 10px 0 ',
+      borderRadius: 20,
+      padding: "10px 0 10px 0 ",
     },
     "& .react-datepicker__month-dropdown, .react-datepicker__year-dropdown": {
-        borderRadius: 10,
-        padding: '15px',
-        "& div:nth-of-type(n)": {
-          padding: 5,
-          "&:hover": {
-            backgroundColor: theme.palette.primary.lightBlue2,
-          }
+      borderRadius: 10,
+      padding: "15px",
+      "& div:nth-of-type(n)": {
+        padding: 5,
+        "&:hover": {
+          backgroundColor: theme.palette.primary.lightBlue2,
         },
       },
+    },
     "& .react-datepicker__month-select, .react-datepicker__year-select": {
       borderRadius: 10,
-      border:"none",
+      border: "none",
       backgroundColor: "transparent",
-      cursor:"pointer",
+      cursor: "pointer",
       fontWeight: 600,
-      color:theme.palette.primary.main,
-      outline:"none",
-      padding: '5px',
-          // "&:hover": {
-          //   color: theme.palette.primary.blue,
-          // }
-
-      },
+      color: theme.palette.primary.main,
+      outline: "none",
+      padding: "5px",
+      // "&:hover": {
+      //   color: theme.palette.primary.blue,
+      // }
+    },
     "& .react-datepicker__month-dropdown-container": {
-      borderRadius:10,
+      borderRadius: 10,
       display: "flex",
       alignItem: "center",
       justifyContent: "center",
-      
     },
-    "& .react-datepicker__month-read-view--down-arrow, & .react-datepicker__year-read-view--down-arrow": {
-      top: 8,
-      display: "flex",
-      alignItem: "center",
-      justifyContent:"center",
-    },
+    "& .react-datepicker__month-read-view--down-arrow, & .react-datepicker__year-read-view--down-arrow":
+      {
+        top: 8,
+        display: "flex",
+        alignItem: "center",
+        justifyContent: "center",
+      },
     "& .react-datepicker__month-read-view--selected-month": {
-      width:'100%',
+      width: "100%",
       display: "flex",
       alignItem: "center",
-      justifyContent:"center",
+      justifyContent: "center",
     },
-
-
   })
 );
