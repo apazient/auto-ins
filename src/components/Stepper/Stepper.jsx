@@ -9,7 +9,6 @@ import StepIcon from "./StepIcon";
 import { useFormik } from "formik";
 import {
   contactsInitialValues,
-  // carDataFormikInitialValues,
   homeAddressInitialValues,
   insuredDataInitialValues,
 } from "../../helpers/formikInitialValues";
@@ -86,7 +85,7 @@ const Stepper = ({ backLinkRef }) => {
   }, [InsuredDataSelectOptions]);
   const customButtonLoading = () => {
     return isLoading ? (
-      <YellowButtonStyled onClick={handleSubmit}>
+      <YellowButtonStyled>
         <CircularProgress />
       </YellowButtonStyled>
     ) : (
@@ -99,7 +98,7 @@ const Stepper = ({ backLinkRef }) => {
   // =======================Formik======================================
   const contactsFormik = useFormik({
     initialValues: contactsInitialValues,
-    //  validationSchema: contactsValidationSchema(),
+    validationSchema: contactsValidationSchema(),
     onSubmit: () => {
       handleNext();
     },
@@ -114,7 +113,7 @@ const Stepper = ({ backLinkRef }) => {
       date: new Date(),
     },
 
-    // validationSchema: insuredDataFormValidationSchema(),
+    validationSchema: insuredDataFormValidationSchema(),
     onSubmit: () => {
       handleNext();
     },
@@ -122,7 +121,7 @@ const Stepper = ({ backLinkRef }) => {
 
   const homeAddressFormik = useFormik({
     initialValues: { ...homeAddressInitialValues, regionANDcity: homeAddress },
-    // validationSchema: homeAddressFormValidationSchema(),
+    validationSchema: homeAddressFormValidationSchema(),
     onSubmit: () => {
       handleNext();
     },
@@ -154,7 +153,8 @@ const Stepper = ({ backLinkRef }) => {
       contractSave(
         contractSaveOSAGONormalize(userParams, user, tariff, customIsur)
       );
-      if (dgoTarrif) {
+
+      if (dgoTarrif?.id) {
         contractSave(
           contractSaveDGONormalize(
             userParams,
@@ -170,6 +170,7 @@ const Stepper = ({ backLinkRef }) => {
     validationSchema: carDataFormValidationSchema(),
     enableReinitialize: true,
     validateOnBlur: true,
+    validateOnChange: false,
   });
 
   const handleNext = () => {

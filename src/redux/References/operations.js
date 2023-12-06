@@ -42,15 +42,19 @@ export const autoByNumber = createAsyncThunk(
           query,
         },
       });
-      const [auto] = data;
-      const a = CATEGORY.find((item) => item === auto.category);
-
-      if (a) {
+      if (data.length === 0) {
+        dispatch(setIsModalErrorOpen(true));
         return data;
       } else {
-        dispatch(setRefError(CATEGORY_ERROR));
-        dispatch(setIsModalErrorOpen(true));
-        return [];
+        const [auto] = data;
+        const a = CATEGORY.find((item) => item === auto.category);
+        if (a) {
+          return data;
+        } else {
+          dispatch(setRefError(CATEGORY_ERROR));
+          dispatch(setIsModalErrorOpen(true));
+          return [];
+        }
       }
     } catch (error) {
       return rejectWithValue(error.response.data);

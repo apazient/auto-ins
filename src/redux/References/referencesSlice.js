@@ -51,10 +51,14 @@ export const referencesSlice = createSlice({
         state.autoModelByMaker = errorMessage(payload);
       })
       .addCase(autoByNumber.fulfilled, (state, { payload }) => {
-        state.autoByNumber = payload;
+        if (payload.length === 0) {
+          state.error = "Aвтомобіль зa таким номером не знайдено";
+        } else {
+          state.autoByNumber = payload;
+        }
       })
       .addCase(autoByNumber.rejected, (state, { payload }) => {
-        state.autoByNumber = payload;
+        state.error = errorMessage(payload);
       })
       .addCase(autoByMakerAndModel.fulfilled, (state, { payload }) => {
         state.autoByMakerAndModel = payload;

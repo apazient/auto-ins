@@ -61,7 +61,9 @@ export const globalSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(contractSave.rejected, (state, { payload }) => {
-        state.error = errorMessage(payload);
+        // state.error = errorMessage(payload);
+        // state.error = payload;
+        state.error = payload?.message;
         state.isLoading = false;
       })
       .addCase(contractSave.pending, (state) => {

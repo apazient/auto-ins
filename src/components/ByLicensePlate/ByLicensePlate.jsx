@@ -60,7 +60,6 @@ const ByLicensePlate = () => {
       };
       setAutoByNumber([]);
       setAddress({ label: "", value: "" });
-      setEngineCapacity({ label: "", value: "" });
       setAutoModelByMaker([]);
       setAutoMakers([]);
       setStateNumber(params.stateNumber);

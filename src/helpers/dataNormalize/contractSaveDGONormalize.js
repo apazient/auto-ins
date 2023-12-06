@@ -12,10 +12,10 @@ export const contractSaveDGONormalize = (
     type: "vcl",
     ...user,
     customer,
-    tariff: { id: dgoTariff.id, type: dgoTariff.type },
+    tariff: { id: dgoTariff?.id, type: dgoTariff?.type },
     insuranceObject: {
       ...insuranceObject,
-      engineVolume: insurObject.engineVolume,
+      engineVolume: insurObject?.engineVolume,
     },
     dateFrom: format(
       new Date(userParams?.dateFrom),
@@ -24,6 +24,6 @@ export const contractSaveDGONormalize = (
     date: format(new Date(), "yyyy-MM-dd'T'HH:mm:ss.SSSxxxx"),
     state: "DRAFT",
 
-    limit: dgoTariff.limit,
+    limit: dgoTariff?.limit,
   };
 };
