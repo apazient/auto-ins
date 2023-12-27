@@ -124,14 +124,14 @@ const ByParameters = () => {
             currentValue={vehicle}
           />
           <GeneralSelect
-            id="address"
+            id="engineCapacity"
             lableText="Об’єм двигуна"
             optionsArr={selectAutoCategory(vehicle.value)}
             changeCB={handleChangeengineCapacity}
             currentValue={engineCapacity}
           />
           <GeneralSelect
-            id="engineCapacity"
+            id="address"
             lableText="Адреса за техпаспортом"
             optionsArr={allAddress}
             changeCB={changeAddress}
