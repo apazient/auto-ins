@@ -1,13 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { errorMessage } from "../../helpers/errorMessage";
 import { contractSave } from "./operations";
 
 const initialState = {
   isLoading: false,
   isModalErrorOpen: false,
-
-  // globalCustomerData: null,
-  // forms: {},
   isContractOSAGO: false,
   isContractDGO: false,
   globalCustomerData: {},
@@ -29,16 +25,6 @@ export const globalSlice = createSlice({
     setIsModalErrorOpen: (state, { payload }) => {
       state.isModalErrorOpen = payload;
     },
-    // setGlobalCustomerDataCustomer: (state, { payload }) => {
-    //   state.globalCustomerData.customer = {
-    //     ...state.globalCustomerData.customer,
-    //     ...payload,
-    //   };
-    // },
-    // setFormData: (state, { payload }) => {
-    //   state.forms = { ...state.forms, ...payload };
-    // },
-
     setParamsFromUrl: (state, { payload }) => {
       state.paramsFromUrl = { ...state.payload, ...payload };
     },
@@ -61,8 +47,6 @@ export const globalSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(contractSave.rejected, (state, { payload }) => {
-        // state.error = errorMessage(payload);
-        // state.error = payload;
         state.error = payload?.message;
         state.isLoading = false;
       })

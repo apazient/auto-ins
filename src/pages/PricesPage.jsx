@@ -18,6 +18,7 @@ import { getIsModalErrorOpen } from "../redux/Global/selectors";
 
 const PricesPage = () => {
   const navigate = useNavigate();
+
   const userParams = useSelector(getSubmitObject);
   const stateNumber = useSelector(getStateNumber);
   const isLoadingCalculator = useSelector(getStateCalculator);
@@ -26,7 +27,10 @@ const PricesPage = () => {
   useEffect(() => {
     let subscribed = true;
     if (subscribed) {
-      if (!Object.keys(userParams) && stateNumber === "") {
+      if (
+        !Object.hasOwn(userParams, "customerCategory") &&
+        stateNumber === ""
+      ) {
         navigate("/");
         return;
       }
