@@ -16,8 +16,7 @@ const FormPage = () => {
 
   return (
     <OutletPageWrapper className="formPage">
-      <BlockThank />
-      {/* {isContractOSAGO ? (
+      {isContractOSAGO ? (
         <BlockThank />
       ) : (
         <Wrapper>
@@ -26,7 +25,7 @@ const FormPage = () => {
             <Stepper backLinkRef={backLinkRef} />
           </Box>
         </Wrapper>
-      )} */}
+      )}
     </OutletPageWrapper>
   );
 };
