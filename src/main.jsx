@@ -10,17 +10,6 @@ import { PersistGate } from "redux-persist/integration/react";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   // <React.StrictMode>
-<<<<<<< Updated upstream
-  <Provider store={store}>
-    {/* <BrowserRouter basename="/"> */}
-    <BrowserRouter basename="/auto-ins">
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <App />
-      </ThemeProvider>
-    </BrowserRouter>
-  </Provider>
-=======
   <PersistGate loading={null} persistor={persistor}>
     <Provider store={store}>
       <BrowserRouter basename="/auto-ins">
@@ -31,6 +20,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       </BrowserRouter>
     </Provider>
   </PersistGate>
->>>>>>> Stashed changes
   // </React.StrictMode>
 );
