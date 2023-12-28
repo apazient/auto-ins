@@ -18,9 +18,8 @@ import {
   FormStyled,
   WhiteButtonSVGStyled,
   WhiteButtonStyled,
-  YellowButtonStyled,
 } from "../../forms/InsuredDataForm/InsuredDataForm.styled";
-import { CircularProgress, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import BtnBack from "../../forms/Buttons/BtnBack";
 import {
   NATURALSelectOptions,
@@ -42,11 +41,11 @@ import { contractSaveOSAGONormalize } from "../../helpers/dataNormalize/contract
 import {
   getGlobalCustomerData,
   getHomeAddress,
-  getIsLoading,
 } from "../../redux/Global/selectors";
 import { getUser } from "../../redux/Calculator/selectors";
 import { customerInsuriensObject } from "../../helpers/customerInsuriensObject";
 import { contractSaveDGONormalize } from "../../helpers/dataNormalize/contractSaveDGONormalize";
+import CustomButtonLoading from "./CustomButtonLoading";
 
 const steps = [
   { Контакти: "icon-email" },
@@ -73,7 +72,6 @@ const Stepper = ({ backLinkRef }) => {
   const user = useSelector(getUser);
   const { tariff, dgoTarrif } = useSelector(getGlobalCustomerData);
   const homeAddress = useSelector(getHomeAddress);
-  const isLoading = useSelector(getIsLoading);
   // const location = useLocation();
 
   const customerCategory = useSelector((state) => state.byParameters.benefits);
@@ -83,17 +81,6 @@ const Stepper = ({ backLinkRef }) => {
   useEffect(() => {
     setIdentityCard(InsuredDataSelectOptions[0]);
   }, [InsuredDataSelectOptions]);
-  const customButtonLoading = () => {
-    return isLoading ? (
-      <YellowButtonStyled>
-        <CircularProgress />
-      </YellowButtonStyled>
-    ) : (
-      <YellowButtonStyled onClick={handleSubmit}>
-        Підтвердити
-      </YellowButtonStyled>
-    );
-  };
 
   // =======================Formik======================================
   const contactsFormik = useFormik({
@@ -181,6 +168,23 @@ const Stepper = ({ backLinkRef }) => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
+  const handleSubmit = () => {
+    switch (activeStep) {
+      case 0:
+        contactsFormik.handleSubmit();
+        break;
+      case 1:
+        insuredDataFormik.handleSubmit();
+        break;
+      case 2:
+        homeAddressFormik.handleSubmit();
+        break;
+      case 3:
+        carDataFormik.handleSubmit();
+        break;
+    }
+  };
+
   const getStepContent = (step) => {
     switch (step) {
       case 0:
@@ -219,23 +223,6 @@ const Stepper = ({ backLinkRef }) => {
     }
   };
 
-  const handleSubmit = () => {
-    switch (activeStep) {
-      case 0:
-        contactsFormik.handleSubmit();
-        break;
-      case 1:
-        insuredDataFormik.handleSubmit();
-        break;
-      case 2:
-        homeAddressFormik.handleSubmit();
-        break;
-      case 3:
-        carDataFormik.handleSubmit();
-        break;
-    }
-  };
-
   return (
     <Stack sx={{ width: "100%" }}>
       <StepperStyled
@@ -266,10 +253,10 @@ const Stepper = ({ backLinkRef }) => {
         </Typography>
         {getStepContent(activeStep)}
         <ButtonContainerStyled component="div">
-          {customButtonLoading()}
-          {/* <YellowButtonStyled onClick={handleSubmit}>
-            Підтвердити
-          </YellowButtonStyled> */}
+          <CustomButtonLoading
+            btnTitle={"Підтвердити"}
+            onCLick={handleSubmit}
+          />
           {activeStep === 0 ? (
             <BtnBack backLinkRef={backLinkRef} />
           ) : (

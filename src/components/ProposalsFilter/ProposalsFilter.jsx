@@ -32,7 +32,7 @@ const ProposalsFilter = () => {
     priceSortOptionsGeneral[0]
   );
 
-  const {setFilteredCompanies} = useActions()
+  const { setFilteredCompanies } = useActions();
 
   useEffect(() => {
     setCompaniesNameOptions(createSelectOptionsByCompaniName(companies));

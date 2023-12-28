@@ -45,6 +45,7 @@ export const InputStyled = styled(OutlinedInput)(({ theme }) => ({
     height: 59,
   },
 }));
+
 export const LableStyled = styled(Typography)(({ theme }) => ({
   display: "flex",
   justifyContent: "space-between",
