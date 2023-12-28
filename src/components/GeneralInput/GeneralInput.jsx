@@ -17,12 +17,13 @@ const GeneralInput = ({
   isDisabled = false,
   isReadOnly = false,
   formikData: { values, handleChange, errors, touched },
+  className,
 }) => {
   const theme = useTheme();
   const smScreen = useMediaQuery(theme.breakpoints.up("sm"));
 
   return (
-    <InputContStyled>
+    <InputContStyled className={className}>
       <LableStyled
         sx={{
           color: isDisabled ? "darkgray!important" : null,

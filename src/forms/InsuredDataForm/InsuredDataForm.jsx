@@ -12,6 +12,7 @@ import ReactDatePicker from "react-datepicker";
 import { useState } from "react";
 import sub from "date-fns/sub";
 import { InputStyled } from "../../components/GeneralInput/GeneralInput.styled";
+import CommonDatePicker from "../../components/CommonDatePicker/CommonDatePicker";
 
 const InsuredDataForm = ({ formik, selectData }) => {
   const { InsuredDataSelectOptions, identityCard, setIdentityCard } =
@@ -85,13 +86,29 @@ const InsuredDataForm = ({ formik, selectData }) => {
         />
         <DocInputsStyled>
           {!isID_PASSPORT && (
-            <GeneralInput id="series" lableText="Серія*:" formikData={formik} />
-          )}
-          <GeneralInput id="number" lableText="Номер*:" formikData={formik} />
-          {isID_PASSPORT && (
-            <GeneralInput id="record" lableText="УНЗР*:" formikData={formik} />
+            <GeneralInput
+              className="input-container"
+              id="series"
+              lableText="Серія*:"
+              formikData={formik}
+            />
           )}
           <GeneralInput
+            className="input-container"
+            id="number"
+            lableText="Номер*:"
+            formikData={formik}
+          />
+          {isID_PASSPORT && (
+            <GeneralInput
+              className="input-container"
+              id="record"
+              lableText="УНЗР*:"
+              formikData={formik}
+            />
+          )}
+          <GeneralInput
+            className="input-container"
             id="issuedBy"
             lableText="Ким виданий*:"
             formikData={formik}
@@ -99,7 +116,33 @@ const InsuredDataForm = ({ formik, selectData }) => {
           {formik.errors.date ? (
             <div style={{ color: "red" }}>{formik.errors.date}</div>
           ) : null}
-          <DataContainerWrapper>
+          <CommonDatePicker
+            className="input-container"
+            label="Дата видачі*:"
+            id="date"
+            mode="single"
+            selected={date}
+            onSelect={setDate}
+            onChange={hadleChangeDate}
+            closeOnScroll={(e) => e.target === document}
+            startDate={date}
+            name="date"
+            maxDate={new Date()}
+            customInput={<InputStyled />}
+            dateFormat="dd/MM/yyyy"
+            showIcon={true}
+            locale="uk"
+            withPortal
+            showMonthDropdown
+            showYearDropdown
+            dropdownMode="select"
+            icon={
+              <Box className="iconCalender">
+                <SpriteSVG name={"icon-calendar"} />
+              </Box>
+            }
+          />
+          {/* <DataContainerWrapper>
             <label htmlFor="dateFrom">Дата видачі*:</label>
             <ReactDatePicker
               id="date"
@@ -125,7 +168,7 @@ const InsuredDataForm = ({ formik, selectData }) => {
                 </Box>
               }
             />
-          </DataContainerWrapper>
+          </DataContainerWrapper> */}
         </DocInputsStyled>
       </InputContBoxStyled>
     </>

@@ -72,13 +72,19 @@ export const DocInputsStyled = styled(Box)(({ theme }) => ({
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "space-evenly",
-    "& div:nth-of-type(n)": {
-      width: 308,
+    // "& div:nth-of-type(n)": {
+    //   width: 308,
+    // },
+    "& input-container": {
+      width: 338,
     },
   },
   [theme.breakpoints.up("lg")]: {
     gap: 24,
-    "& div:nth-of-type(n)": {
+    // "& div:nth-of-type(n)": {
+    //   width: 338,
+    // },
+    "& input-container": {
       width: 338,
     },
   },
