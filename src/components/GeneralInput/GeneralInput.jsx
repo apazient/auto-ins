@@ -1,9 +1,11 @@
 import { useMediaQuery, useTheme } from "@mui/material";
+import { outlinedInputClasses } from "@mui/material/OutlinedInput";
 import PropTypes from "prop-types";
 import {
   InputContStyled,
   InputStyled,
   LableStyled,
+  TextMaskInputStyled,
 } from "./GeneralInput.styled";
 
 const GeneralInput = ({
@@ -18,6 +20,8 @@ const GeneralInput = ({
   isReadOnly = false,
   formikData: { values, handleChange, errors, touched },
   className,
+  withMask,
+  ...props
 }) => {
   const theme = useTheme();
   const smScreen = useMediaQuery(theme.breakpoints.up("sm"));
@@ -39,19 +43,37 @@ const GeneralInput = ({
           </span>
         )}
       </LableStyled>
-      <InputStyled
-        name={id}
-        type={type || "text"}
-        value={values[id]}
-        onChange={customFunc || handleChange}
-        onBlur={handleBlur}
-        id={id}
-        color={color || "inputBase"}
-        error={touched[id] && Boolean(errors[id])}
-        placeholder={placeholder}
-        disabled={isDisabled}
-        readOnly={isReadOnly}
-      />
+      {withMask ? (
+        <TextMaskInputStyled
+          name={id}
+          type={type || "text"}
+          value={values[id]}
+          onChange={customFunc || handleChange}
+          onBlur={handleBlur}
+          id={id}
+          color={color || "inputBase"}
+          error={String(touched[id] && Boolean(errors[id]))}
+          placeholder={placeholder}
+          disabled={isDisabled}
+          readOnly={isReadOnly}
+          // className={Object.values(outlinedInputClasses).join(" ")}
+          {...props}
+        />
+      ) : (
+        <InputStyled
+          name={id}
+          type={type || "text"}
+          value={values[id]}
+          onChange={customFunc || handleChange}
+          onBlur={handleBlur}
+          id={id}
+          color={color || "inputBase"}
+          error={touched[id] && Boolean(errors[id])}
+          placeholder={placeholder}
+          disabled={isDisabled}
+          readOnly={isReadOnly}
+        />
+      )}
     </InputContStyled>
   );
 };

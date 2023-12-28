@@ -11,18 +11,26 @@ const FormContacts = ({ formik }) => {
           type="text"
           lableText="Електронна пошта* :"
           formikData={formik}
+          customFunc={(e) =>
+            formik.setFieldValue("email", e.target.value.trim())
+          }
         />
         <SpanS variant="inputSpan">
           *ПЕРЕКОНАЙТЕСЬ ЩО ПОШТУ ВКАЗАНО КОРЕКТНО. НА ВКАЗАНУ ВАМИ ЕЛЕКТРОННУ
           ПОШТУ БУДЕ НАДІСЛАНО ДОГОВІР СТРАХУВАННЯ.
         </SpanS>
-        <GeneralInput
-          id="phone"
-          lableText="Телефон* :"
-          type="phone"
-          formikData={formik}
-          placeholder="+38(_ _ _)_ _ _ - _ _ _ _"
-        />
+        <>
+          <GeneralInput
+            id="phone"
+            lableText="Телефон* :"
+            type="phone"
+            formikData={formik}
+            format="+38##########"
+            allowEmptyFormatting
+            mask=" "
+            withMask
+          />
+        </>
       </InputBoxS>
     </>
   );
