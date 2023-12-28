@@ -7,7 +7,7 @@ import { useRef } from "react";
 import OutletPageWrapper from "../components/OutletPageWrapper";
 import { useSelector } from "react-redux";
 import { getIsContractOSAGO } from "../redux/Global/selectors";
-import { BlockThank } from "../components/BlockThank/index.js";
+import BlockThank from "../components/BlockThank/index.js";
 
 const FormPage = () => {
   const location = useLocation();
@@ -16,7 +16,8 @@ const FormPage = () => {
 
   return (
     <OutletPageWrapper className="formPage">
-      {isContractOSAGO ? (
+      <BlockThank />
+      {/* {isContractOSAGO ? (
         <BlockThank />
       ) : (
         <Wrapper>
@@ -25,7 +26,7 @@ const FormPage = () => {
             <Stepper backLinkRef={backLinkRef} />
           </Box>
         </Wrapper>
-      )}
+      )} */}
     </OutletPageWrapper>
   );
 };
