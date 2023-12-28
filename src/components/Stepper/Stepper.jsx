@@ -265,7 +265,7 @@ const Stepper = ({ backLinkRef }) => {
           {Object.keys(steps[activeStep])}
         </Typography>
         {getStepContent(activeStep)}
-        <ButtonContainerStyled component="div">
+        <ButtonContainerStyled component="div" disabled={isLoading}>
           {customButtonLoading()}
           {/* <YellowButtonStyled onClick={handleSubmit}>
             Підтвердити

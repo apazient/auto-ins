@@ -32,6 +32,11 @@ const InsuredDataForm = ({ formik, selectData }) => {
     formik.setFieldValue("date", e);
   };
 
+  const handleChangeInput = (e) => {
+    const e2 = e.target.value.trim().toUpperCase();
+    e.target.value = e2;
+    formik.handleChange(e);
+  };
   return (
     <>
       <InputContBoxStyled>
@@ -85,7 +90,12 @@ const InsuredDataForm = ({ formik, selectData }) => {
         />
         <DocInputsStyled>
           {!isID_PASSPORT && (
-            <GeneralInput id="series" lableText="Серія*:" formikData={formik} />
+            <GeneralInput
+              id="series"
+              lableText="Серія*:"
+              formikData={formik}
+              customFunc={handleChangeInput}
+            />
           )}
           <GeneralInput id="number" lableText="Номер*:" formikData={formik} />
           {isID_PASSPORT && (
@@ -110,6 +120,7 @@ const InsuredDataForm = ({ formik, selectData }) => {
               closeOnScroll={(e) => e.target === document}
               startDate={date}
               name="date"
+              minDate={birthDate}
               maxDate={new Date()}
               customInput={<InputStyled />}
               dateFormat="dd/MM/yyyy"
