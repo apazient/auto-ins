@@ -7,7 +7,7 @@ import { useRef } from "react";
 import OutletPageWrapper from "../components/OutletPageWrapper";
 import { useSelector } from "react-redux";
 import { getIsContractOSAGO } from "../redux/Global/selectors";
-import { BlockThank } from "../components/BlockThank/BlockThank";
+import { BlockThank } from "../components/BlockThank/index.js";
 
 const FormPage = () => {
   const location = useLocation();
