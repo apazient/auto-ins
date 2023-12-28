@@ -25,6 +25,7 @@ import { addMonths } from "date-fns/esm";
 import { InputStyled } from "../GeneralInput/GeneralInput.styled";
 import { useActions } from "../../hooks/useActions";
 import format from "date-fns/format";
+import CommonDatePicker from "../CommonDatePicker/CommonDatePicker";
 
 const ByParameters = () => {
   const navigate = useNavigate();
@@ -124,14 +125,14 @@ const ByParameters = () => {
             currentValue={vehicle}
           />
           <GeneralSelect
-            id="address"
+            id="engineCapacity"
             lableText="Об’єм двигуна"
             optionsArr={selectAutoCategory(vehicle.value)}
             changeCB={handleChangeengineCapacity}
             currentValue={engineCapacity}
           />
           <GeneralSelect
-            id="engineCapacity"
+            id="address"
             lableText="Адреса за техпаспортом"
             optionsArr={allAddress}
             changeCB={changeAddress}
@@ -141,7 +142,28 @@ const ByParameters = () => {
             helper={<HelperImg />}
             isDisabled={formik.values.foreignNumber}
           />
-          <DataContainerStyled>
+          <CommonDatePicker
+            label="Дата початку дії поліса:"
+            id="dateFrom"
+            selected={dateFrom}
+            onSelect={setDateFrom}
+            closeOnScroll={(e) => e.target === document}
+            customInput={<InputStyled />}
+            name="date"
+            dateFormat="dd/MM/yyyy"
+            showIcon={true}
+            minDate={addDays(new Date(), 1)}
+            maxDate={addMonths(new Date(), 3)}
+            startDate={dateFrom}
+            locale="uk"
+            withPortal
+            icon={
+              <Box className="iconCalender">
+                <SpriteSVG name="icon-calendar" />
+              </Box>
+            }
+          />
+          {/* <DataContainerStyled>
             <label htmlFor="dateFrom">Дата початку дії поліса:</label>
             <ReactDatePicker
               id="dateFrom"
@@ -163,7 +185,7 @@ const ByParameters = () => {
                 </Box>
               }
             />
-          </DataContainerStyled>
+          </DataContainerStyled> */}
         </AllInputContStyled>
 
         <AllCheckboxContStyled>
