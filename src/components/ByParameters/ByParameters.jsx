@@ -172,29 +172,6 @@ const ByParameters = () => {
               </Box>
             }
           />
-          {/* <DataContainerStyled>
-            <label htmlFor="dateFrom">Дата початку дії поліса:</label>
-            <ReactDatePicker
-              id="dateFrom"
-              selected={dateFrom}
-              onSelect={setDateFrom}
-              closeOnScroll={(e) => e.target === document}
-              customInput={<InputStyled />}
-              name="date"
-              dateFormat="dd/MM/yyyy"
-              showIcon={true}
-              minDate={addDays(new Date(), 1)}
-              maxDate={addMonths(new Date(), 3)}
-              startDate={dateFrom}
-              locale="uk"
-              withPortal
-              icon={
-                <Box className="iconCalender">
-                  <SpriteSVG name="icon-calendar" />
-                </Box>
-              }
-            />
-          </DataContainerStyled> */}
         </AllInputContStyled>
 
         <AllCheckboxContStyled>
