@@ -64,7 +64,7 @@ const ByParameters = () => {
     setEngineCapacity(e);
   };
   const handleChangeVehicle = (e) => {
-    const c = CATEGORY.find((item) => item === e.value);
+    const c = CATEGORY.find((item) => item.includes(e.value));
     if (c) {
       setVehicle(e);
       setEngineCapacity(selectAutoCategory(e.value)[0]);
