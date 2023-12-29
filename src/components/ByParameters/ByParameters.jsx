@@ -26,6 +26,7 @@ import { InputStyled } from "../GeneralInput/GeneralInput.styled";
 import { useActions } from "../../hooks/useActions";
 import format from "date-fns/format";
 import CommonDatePicker from "../CommonDatePicker/CommonDatePicker";
+import { CATEGORY, CATEGORY_ERROR } from "../../constants";
 
 const ByParameters = () => {
   const navigate = useNavigate();
@@ -45,6 +46,8 @@ const ByParameters = () => {
     setTariffPolicyChoose,
     setTariffVcl,
     osagoByParams,
+    setRefError,
+    setIsModalErrorOpen,
   } = useActions();
   const {
     queryText,
@@ -61,8 +64,14 @@ const ByParameters = () => {
     setEngineCapacity(e);
   };
   const handleChangeVehicle = (e) => {
-    setVehicle(e);
-    setEngineCapacity(selectAutoCategory(e.value)[0]);
+    const c = CATEGORY.find((item) => item === e.value);
+    if (c) {
+      setVehicle(e);
+      setEngineCapacity(selectAutoCategory(e.value)[0]);
+    } else {
+      setRefError(CATEGORY_ERROR);
+      setIsModalErrorOpen(true);
+    }
   };
   const handleChangeQueryText = (e) => {
     setQueryText(e.trim());

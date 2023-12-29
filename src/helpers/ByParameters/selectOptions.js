@@ -1,7 +1,15 @@
 export const selectCategoryOptions = [
-   {
+  {
     label: "Легковий автомобіль",
     value: "B",
+  },
+  {
+    label: "Вантажний автомобіль",
+    value: "C",
+  },
+  {
+    label: "Автобус",
+    value: "D",
   },
   {
     label: "Мотоцикл",
@@ -47,6 +55,22 @@ export const selectAllCategoryOptions = [
     value: "B5",
   },
   {
+    label: "Вантажний автомобіль - до 2т",
+    value: "C1",
+  },
+  {
+    label: "Вантажний автомобіль - більш як 2т",
+    value: "C2",
+  },
+  {
+    label: "Автобус - до 20 місць",
+    value: "D1",
+  },
+  {
+    label: "Автобус - більше як 20 місць",
+    value: "D2",
+  },
+  {
     label: "Причеп до вантажівки",
     value: "E",
   },
@@ -70,8 +94,8 @@ export function selectAutoCategory(category) {
   );
 }
 export function selectAddressOptions(arr) {
- return arr.map((address) => ({
-            label: address.nameFull,
-            value: address.id,
-          }));
+  return arr.map((address) => ({
+    label: address.nameFull,
+    value: address.id,
+  }));
 }
