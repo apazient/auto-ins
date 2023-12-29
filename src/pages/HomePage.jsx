@@ -45,7 +45,7 @@ const HomePage = () => {
   }
   return (
     <>
-      <main>
+      <main style={{ height: "100%" }}>
         <AlertMUI type="info" message="Будь ласка, заповніть поля" />
         <HeroTabs />
         <Suspense>

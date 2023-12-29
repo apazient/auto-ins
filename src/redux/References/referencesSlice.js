@@ -52,7 +52,7 @@ export const referencesSlice = createSlice({
       })
       .addCase(autoByNumber.fulfilled, (state, { payload }) => {
         if (payload.length === 0) {
-          state.error = "Aвтомобіль зa таким номером не знайдено";
+          // state.error = "Aвтомобіль зa таким номером не знайдено";
         } else {
           state.autoByNumber = payload;
         }

@@ -47,7 +47,10 @@ const ByLicensePlate = () => {
 
     validateOnChange: false,
     onSubmit: (values) => {
-      const stateNumber = values.licensePlate.match(DNUMBER_REGEX);
+      const stateNumber = values.licensePlate
+        .trim()
+        .toUpperCase()
+        .match(DNUMBER_REGEX);     
       if (!stateNumber) {
         setIsModalErrorOpen(true);
         return;
