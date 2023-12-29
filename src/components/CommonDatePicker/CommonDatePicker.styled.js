@@ -168,13 +168,6 @@ export const DataContainerStyled = styled(InputContStyled)(({ theme }) => ({
     //   color: theme.palette.primary.blue,
     // }
   },
-  "& option": {
-    color: "red",
-    fontSize: "0.5rem",
-    padding: "0.1rem",
-    lineHeight: "1.2"
-    // height: "0.5rem",
-  },
   "& .react-datepicker__month-dropdown-container": {
     borderRadius: 10,
     display: "flex",

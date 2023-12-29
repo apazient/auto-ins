@@ -33,11 +33,11 @@ const InsuredDataForm = ({ formik, selectData }) => {
     formik.setFieldValue("date", e);
   };
 
-  const handleChangeInput = (e) => {
-    const e2 = e.target.value.trim().toUpperCase();
-    e.target.value = e2;
-    formik.handleChange(e);
-  };
+  // const handleChangeInput = (e) => {
+  //   const e2 = e.target.value.trim().toUpperCase();
+  //   e.target.value = e2;
+  //   formik.handleChange(e);
+  // };
   return (
     <>
       <InputContBoxStyled>
