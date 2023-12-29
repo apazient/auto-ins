@@ -26,6 +26,7 @@ import { InputStyled } from "../GeneralInput/GeneralInput.styled";
 import { useActions } from "../../hooks/useActions";
 import format from "date-fns/format";
 import CommonDatePicker from "../CommonDatePicker/CommonDatePicker";
+import { CATEGORY, CATEGORY_ERROR } from "../../constants";
 
 const ByParameters = () => {
   const navigate = useNavigate();
@@ -45,6 +46,8 @@ const ByParameters = () => {
     setTariffPolicyChoose,
     setTariffVcl,
     osagoByParams,
+    setRefError,
+    setIsModalErrorOpen,
   } = useActions();
   const {
     queryText,
@@ -61,8 +64,14 @@ const ByParameters = () => {
     setEngineCapacity(e);
   };
   const handleChangeVehicle = (e) => {
-    setVehicle(e);
-    setEngineCapacity(selectAutoCategory(e.value)[0]);
+    const c = CATEGORY.find((item) => item.includes(e.value));
+    if (c) {
+      setVehicle(e);
+      setEngineCapacity(selectAutoCategory(e.value)[0]);
+    } else {
+      setRefError(CATEGORY_ERROR);
+      setIsModalErrorOpen(true);
+    }
   };
   const handleChangeQueryText = (e) => {
     setQueryText(e.trim());
@@ -163,29 +172,6 @@ const ByParameters = () => {
               </Box>
             }
           />
-          {/* <DataContainerStyled>
-            <label htmlFor="dateFrom">Дата початку дії поліса:</label>
-            <ReactDatePicker
-              id="dateFrom"
-              selected={dateFrom}
-              onSelect={setDateFrom}
-              closeOnScroll={(e) => e.target === document}
-              customInput={<InputStyled />}
-              name="date"
-              dateFormat="dd/MM/yyyy"
-              showIcon={true}
-              minDate={addDays(new Date(), 1)}
-              maxDate={addMonths(new Date(), 3)}
-              startDate={dateFrom}
-              locale="uk"
-              withPortal
-              icon={
-                <Box className="iconCalender">
-                  <SpriteSVG name="icon-calendar" />
-                </Box>
-              }
-            />
-          </DataContainerStyled> */}
         </AllInputContStyled>
 
         <AllCheckboxContStyled>
