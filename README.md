@@ -1,4 +1,5 @@
 # React + Vite
+## This branch consist code for deploy the customer`s hosting
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
