@@ -3,6 +3,7 @@ import {
   DNUMBER_REGEX,
   NAME_REGEX,
   REQUIRED_FIELD,
+  SERIES_PASSPORT_REGEX,
   VIN_REGEX,
 } from "../constants";
 
@@ -35,10 +36,7 @@ export const carDataFormValidationSchema = () =>
     model: Yup.object().required(REQUIRED_FIELD),
     bodyNumber: Yup.string()
       .required(REQUIRED_FIELD)
-      .matches(
-        VIN_REGEX,
-        "VIN повинен містити 17 літер або цифр і відсутній символ I, O, Q"
-      ),
+      .matches(VIN_REGEX, "VIN повинен містити 17 літер"),
   });
 // ===========================================================================
 export const homeAddressFormValidationSchema = () =>
@@ -59,9 +57,11 @@ export const insuredDataFormValidationSchema = () =>
       //  .required(REQUIRED_FIELD)
       //  !!!!!============>>>> Чому попередній рядок закоментований<<<<<<================= ???
       .matches(/^[0-9\s]*$/, "Введіть лише числа")
-      .min(10, "Занадто мало ІПН повинен бути 10 символів")
-      .max(10, "ІПН повинен бути 10 символів"),
-    series: Yup.string().required(REQUIRED_FIELD),
+      .min(10, "ІПН повинен мати 10 символів")
+      .max(10, "ІПН повинен мати 10 символів"),
+    series: Yup.string()
+      .required(REQUIRED_FIELD)
+      .matches(SERIES_PASSPORT_REGEX, "Введіть дві букви кирилиці"),
     number: Yup.string()
       .required(REQUIRED_FIELD)
       .min(6, "Введіть 6 цифр")

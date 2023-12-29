@@ -4,7 +4,7 @@ import { SpriteSVG } from "../../images/SpriteSVG";
 
 import { BoxImgS, ButtonS, FormContainerS } from "./BlockThankStyled";
 
-export const BlockThank = () => {
+const BlockThank = () => {
   const { setContractData } = useActions();
 
   return (
@@ -31,3 +31,5 @@ export const BlockThank = () => {
     </FormContainerS>
   );
 };
+
+export default BlockThank;

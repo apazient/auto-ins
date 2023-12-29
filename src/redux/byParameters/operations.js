@@ -14,7 +14,8 @@ export const fetchAddress = async (cityName) => {
     });
     return selectAddressOptions(data);
   } catch (error) {
-    console.log(error.massage);
+    // console.log(error.massage);
+    throw error;
   }
 };
 
