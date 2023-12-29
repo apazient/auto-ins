@@ -32,8 +32,9 @@ const HomePage = () => {
     let element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
+      delete location?.state;
     }
-  }, [id]);
+  }, [id, location?.state]);
 
   useEffect(() => {
     if (user) return;
