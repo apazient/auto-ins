@@ -22,7 +22,7 @@ const GeneralInput = ({
   const smScreen = useMediaQuery(theme.breakpoints.up("sm"));
 
   return (
-    <InputContStyled>
+    <InputContStyled className="document-info">
       <LableStyled
         sx={{
           color: isDisabled ? "darkgray!important" : null,

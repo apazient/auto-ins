@@ -109,7 +109,7 @@ const InsuredDataForm = ({ formik, selectData }) => {
           {formik.errors.date ? (
             <div style={{ color: "red" }}>{formik.errors.date}</div>
           ) : null}
-          <DataContainerWrapper>
+          <DataContainerWrapper className="document-info">
             <label htmlFor="dateFrom">Дата видачі*:</label>
             <ReactDatePicker
               id="date"
