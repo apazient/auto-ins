@@ -22,18 +22,22 @@ import AlertMUI from "../components/Alert/AlertMUI";
 
 const HomePage = () => {
   const location = useLocation();
-  const { id } = location.state || {};
+  // const { id } = location.state || {};
   const { loginThunk } = useActions();
 
   const user = useSelector(getUser);
   const isError = useSelector(getIsModalErrorOpen);
 
   useEffect(() => {
-    let element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+    if (location.state) {
+      const { id } = location.state;
+      let element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+        location.state = null;
+      }
     }
-  }, [id]);
+  }, [location.state]);
 
   useEffect(() => {
     if (user) return;
